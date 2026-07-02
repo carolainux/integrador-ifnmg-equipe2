@@ -23,16 +23,6 @@ model Usuario {
   @@map("usuario")
 }
 
-enum statusDispositivo {
-  Ativo
-  Inativo
-}
-
-enum statusSensor {
-  Ativo
-  Inativo
-}
-
 enum tipoSensor {
   temperatura
   umidade_ar   @map("Umidade do Ar")
@@ -64,7 +54,7 @@ model Dispositivo {
   id        String            @id @default(uuid())
   nome      String // Ex: "Arduino Mega 2560 - Kit 01"
   tipo      tipoDispositivo
-  status    statusDispositivo @default(Inativo)
+  status    Boolean @default(false)
   criado_em DateTime          @default(now())
 
   plantacao Plantacao?
@@ -97,7 +87,7 @@ model Sensor {
   nome      String // Ex: "Sensor de Temperatura DHT11"
   tipo      tipoSensor
   unidade   String // Ex: "°C", "%", "Lux"
-  status    statusSensor  @default(Inativo)
+  status    Boolean @default(false)
   direcao   direcaoAlerta @default(ABAIXO)
   criado_em DateTime      @default(now())
 

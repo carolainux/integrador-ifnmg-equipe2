@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import { statusDispositivo } from '../../generated/prisma/client';
 import { DispositivoModel } from '../models/dispositivo.model';
 import { findOrThrow } from '../utils/find-or-throw';
 import { parseId } from '../utils/parse-id';
@@ -8,7 +7,7 @@ export const DispositivoController = {
   async criar(req: Request, res: Response, _next: NextFunction) {
     const dados = {
       ...req.body,
-      status: req.body.status ?? statusDispositivo.Inativo,
+      status: req.body.status ?? false,
     };
     const novoDispositivo = await DispositivoModel.criar(dados);
     return res.status(201).json({
