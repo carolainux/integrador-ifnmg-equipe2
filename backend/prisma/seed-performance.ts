@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import { prisma } from "../src/lib/prisma";
-import { tipoSensor, statusSensor, tipoDispositivo, statusDispositivo, direcaoAlerta} from "../generated/prisma/client";
+import { tipoSensor, tipoDispositivo, direcaoAlerta} from "../generated/prisma/client";
 
 const intervaloMinutos = 2;
 const diasSimulados = 90;
@@ -45,27 +45,27 @@ async function main() {
   });
 
   const sTemp = await prisma.sensor.create({
-    data: { id: "c3d4e5f6-a7b8-4c9d-ae1f-2a3b4c5d6e7f", nome: "DHT22 - Sensor de Temperatura", tipo: tipoSensor.temperatura, unidade: "°C", status: statusSensor.Ativo, direcao: direcaoAlerta.ACIMA },
+    data: { id: "c3d4e5f6-a7b8-4c9d-ae1f-2a3b4c5d6e7f", nome: "DHT22 - Sensor de Temperatura", tipo: tipoSensor.temperatura, unidade: "°C", status: true, direcao: direcaoAlerta.ACIMA },
   });
 
   const sSolo = await prisma.sensor.create({
-    data: { id: "d4e5f6a7-b8c9-4dae-8f2a-3b4c5d6e7f8a", nome: "HL-69 - Sensor de Umidade do solo", tipo: tipoSensor.umidade_solo, unidade: "%", status: statusSensor.Ativo },
+    data: { id: "d4e5f6a7-b8c9-4dae-8f2a-3b4c5d6e7f8a", nome: "HL-69 - Sensor de Umidade do solo", tipo: tipoSensor.umidade_solo, unidade: "%", status: true },
   });
 
   const sAr = await prisma.sensor.create({
-    data: { id: "e5f6a7b8-c9d0-4eaf-9b3c-4d5e6f7a8b9c", nome: "DHT22 - Sensor de Umidade do Ar", tipo: tipoSensor.umidade_ar, unidade: "%", status: statusSensor.Ativo },
+    data: { id: "e5f6a7b8-c9d0-4eaf-9b3c-4d5e6f7a8b9c", nome: "DHT22 - Sensor de Umidade do Ar", tipo: tipoSensor.umidade_ar, unidade: "%", status: true },
   });
 
   const sLuz = await prisma.sensor.create({
-    data: { id: "f6a7b8c9-d0e1-4fba-ac4d-5e6f7a8b9c0d", nome: "LDR 8MM - Sensor de luz", tipo: tipoSensor.luminosidade, unidade: "%", status: statusSensor.Ativo },
+    data: { id: "f6a7b8c9-d0e1-4fba-ac4d-5e6f7a8b9c0d", nome: "LDR 8MM - Sensor de luz", tipo: tipoSensor.luminosidade, unidade: "%", status: true },
   });
 
   const disp01 = await prisma.dispositivo.create({
-    data: { id: "a7b8c9d0-e1f2-4a3b-8c5d-6e7f8a9b0c1d", nome: "Arduino Mega 2560", tipo: tipoDispositivo.Arduino_Mega, status: statusDispositivo.Ativo },
+    data: { id: "a7b8c9d0-e1f2-4a3b-8c5d-6e7f8a9b0c1d", nome: "Arduino Mega 2560", tipo: tipoDispositivo.Arduino_Mega, status: true },
   });
 
   const disp02 = await prisma.dispositivo.create({
-    data: { id: "b8c9d0e1-f2a3-4b4c-9d5e-7f8a9b0c1d2e", nome: "Arduino Uno R3", tipo: tipoDispositivo.Arduino_Uno, status: statusDispositivo.Ativo },
+    data: { id: "b8c9d0e1-f2a3-4b4c-9d5e-7f8a9b0c1d2e", nome: "Arduino Uno R3", tipo: tipoDispositivo.Arduino_Uno, status: true },
   });
 
   console.log("Catálogo de sensores e dispositivos criados.");

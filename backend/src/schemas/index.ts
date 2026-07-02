@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { tipoDispositivo, statusDispositivo, tipoSensor, statusSensor, tipoAlerta, direcaoAlerta } from '../../generated/prisma/client';
+import { tipoDispositivo, tipoSensor, tipoAlerta, direcaoAlerta } from '../../generated/prisma/client';
 
 export const criarUsuarioSchema = z.object({
   nome: z.string().min(3, 'Nome deve ter no mínimo 3 caracteres'),
@@ -13,7 +13,7 @@ export const atualizarUsuarioSchema = criarUsuarioSchema.partial();
 export const criarDispositivoSchema = z.object({
   nome: z.string(),
   tipo: z.enum(tipoDispositivo),
-  status: z.enum(statusDispositivo).optional(),
+  status: z.boolean().optional(),
 });
 
 export const atualizarDispositivoSchema = criarDispositivoSchema.partial();
@@ -35,7 +35,7 @@ export const criarSensorSchema = z.object({
   nome: z.string(),
   tipo: z.enum(tipoSensor),
   unidade: z.string(),
-  status: z.enum(statusSensor).optional(),
+  status: z.boolean().optional(),
   direcao: z.enum(direcaoAlerta).optional(),
 });
 

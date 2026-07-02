@@ -1,4 +1,3 @@
-import { statusSensor } from '../../generated/prisma/client';
 import { PlantacaoSensorModel } from '../models/plantacao-sensor.model';
 import { SensorModel } from '../models/sensor.model';
 import { findOrThrow } from '../utils/find-or-throw';
@@ -31,7 +30,7 @@ export const PlantacaoSensorService = {
 
     const resultado = await PlantacaoSensorModel.criar(plantacaoSensorDados);
 
-    await SensorModel.atualizar(dados.sensor_id, { status: statusSensor.Ativo });
+    await SensorModel.atualizar(dados.sensor_id, { status: true });
 
     return resultado;
   },
@@ -60,7 +59,7 @@ export const PlantacaoSensorService = {
   async deletar(id: string) {
     const vinculo = await PlantacaoSensorService.buscarPorId(id);
     await PlantacaoSensorModel.deletar(id);
-    await SensorModel.atualizar(vinculo.sensor_id, { status: statusSensor.Inativo });
+    await SensorModel.atualizar(vinculo.sensor_id, { status: false });
     return { mensagem: 'Associação plantação-sensor removida com sucesso.' };
   },
 
@@ -71,7 +70,7 @@ export const PlantacaoSensorService = {
     }
 
     for (const vinculo of sensores) {
-      await SensorModel.atualizar(vinculo.sensor_id, { status: statusSensor.Inativo });
+      await SensorModel.atualizar(vinculo.sensor_id, { status: false });
     }
 
     await PlantacaoSensorModel.deletarPorPlantacao(plantacao_id);

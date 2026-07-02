@@ -1,4 +1,3 @@
-import { statusDispositivo } from '../../generated/prisma/client';
 import { PlantacaoModel } from '../models/plantacao.model';
 import { DispositivoModel } from '../models/dispositivo.model';
 import { findOrThrow } from '../utils/find-or-throw';
@@ -38,7 +37,7 @@ export const PlantacaoService = {
 
     const resultado = await PlantacaoModel.criar(plantacaoDados);
 
-    await DispositivoModel.atualizar(dados.dispositivo_id, { status: statusDispositivo.Ativo });
+    await DispositivoModel.atualizar(dados.dispositivo_id, { status: true });
 
     return resultado;
   },
@@ -63,7 +62,7 @@ export const PlantacaoService = {
   async deletar(id: string) {
     const plantacao = await PlantacaoService.buscarPorId(id);
     await PlantacaoModel.deletar(id);
-    await DispositivoModel.atualizar(plantacao.dispositivo_id, { status: statusDispositivo.Inativo });
+    await DispositivoModel.atualizar(plantacao.dispositivo_id, { status: false });
     return { mensagem: 'Plantação removida com sucesso.' };
   },
 };
