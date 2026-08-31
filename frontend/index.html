@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AgroSensor - Dashboard</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="h-screen bg-white overflow-hidden">
+
+    <div class="flex h-screen">
+
+        <!-- MENU LATERAL -->
+        <aside class="w-[260px] shrink-0 bg-[#6aa86a] flex flex-col justify-between h-screen">
+
+            <div>
+
+                <!-- LOGO -->
+            <div class="flex items-center justify-center px-6 py-8">
+              <img src="assets/logo-agrosensor.svg" alt="AgroSensor" class="h-">
+            </div>
+
+                <!-- ITENS DO MENU -->
+                <nav class="space-y-1 px-3">
+
+                    <a href="index.html"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] bg-[#5a9c5a] text-white font-bold text-[15px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.5 1.5 0 012.122 0L22.25 12M4.5 9.75V21a.75.75 0 00.75.75H9.75a.75.75 0 00.75-.75v-4.5a.75.75 0 01.75-.75h1.5a.75.75 0 01.75.75V21a.75.75 0 00.75.75h4.5a.75.75 0 00.75-.75V9.75" />
+                        </svg>
+                        Dashboard
+                    </a>
+
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
+                        <img src="assets/mdi_leaf.svg" alt="Plantações" class="w-5 h-5 brightness-0 invert">
+                        Plantações
+                    </a>
+
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
+                        <img src="assets/Vector.svg" alt="Sensores" class="w-5 h-5 brightness-0 invert">
+                        Sensores
+                    </a>
+
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+                        </svg>
+                        Dispositivos
+                    </a>
+
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
+                        <img src="assets/mdi_bell-alert-outline.svg" alt="Alertas" class="w-5 h-5 brightness-0 invert">
+                        Alertas
+                    </a>
+
+                </nav>
+
+                <div class="border-t border-white/40 mx-6 my-2"></div>
+
+                <nav class="space-y-1 px-3">
+
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
+                        <img src="assets/LineMdAccount.svg" alt="Perfil" class="w-5 h-5 invert">
+                        Perfil
+                    </a>
+
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
+                        <img src="assets/line-md_cog.svg" alt="Configurações" class="w-5 h-5 brightness-0 invert">
+                        Configurções
+                    </a>
+
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
+                        <img src="assets/lineicons_question-mark-circle.svg" alt="Ajuda" class="w-5 h-5 brightness-0 invert">
+                        Ajuda
+                    </a>
+
+                </nav>
+
+            </div>
+
+            <!-- SAIR -->
+            <div class="px-3 pb-5">
+                <a href="login.html"
+                    class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0110.5 3h6a2.25 2.25 0 012.25 2.25v13.5A2.25 2.25 0 0116.5 21h-6a2.25 2.25 0 01-2.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                    </svg>
+                    Sair
+                </a>
+            </div>
+
+        </aside>
+
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="flex-1 px-8 py-4 overflow-y-auto">
+
+            <!-- CABEÇALHO -->
+            <div class="flex items-center justify-between border-b border-gray-200 pb-2">
+                <h1 class="text-[26px] font-bold text-black">Dashboard</h1>
+                <a href="#" class="text-gray-400 text-xl hover:text-gray-600">✕</a>
+            </div>
+
+            <p class="mt-2 text-[14px] text-[#817979]">
+                Resumo das suas platações - baseadas na última leitura recebida
+            </p>
+
+
+            <!-- CARDS RESUMO -->
+            <div class="mt-3 grid grid-cols-4 gap-3">
+
+                <div class="border border-gray-200 rounded-[10px] p-3 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-[8px] bg-green-100 flex items-center justify-center text-xl">🌱</div>
+                    <div>
+                        <p class="text-[19px] font-bold text-black leading-none">5</p>
+                        <p class="text-[12px] text-[#817979] leading-tight mt-1">Plantações<br>Ativas</p>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-[10px] p-3 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-[8px] bg-blue-100 flex items-center justify-center text-xl">📡</div>
+                    <div>
+                        <p class="text-[19px] font-bold text-black leading-none">12</p>
+                        <p class="text-[12px] text-[#817979] leading-tight mt-1">Dispositivos<br>conectados</p>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-[10px] p-3 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-[8px] bg-yellow-100 flex items-center justify-center text-xl">🔔</div>
+                    <div>
+                        <p class="text-[19px] font-bold text-black leading-none">5</p>
+                        <p class="text-[12px] text-[#817979] leading-tight mt-1">Alertas<br>Ativos</p>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-[10px] p-3 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-[8px] bg-purple-100 flex items-center justify-center text-xl">📈</div>
+                    <div>
+                        <p class="text-[19px] font-bold text-black leading-none">100%</p>
+                        <p class="text-[12px] text-[#817979] leading-tight mt-1">Sistema<br>Operacional</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- CARDS DE PLANTAÇÕES -->
+            <div class="mt-3 grid grid-cols-2 gap-3">
+
+                <!-- MILHO -->
+                <div class="border border-gray-200 rounded-[10px] overflow-hidden">
+                    <div class="h-[6px] bg-yellow-400"></div>
+                    <div class="p-3">
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <img src="assets/milho.png" alt="Milho" class="w-16 h-16 rounded-full object-cover">
+                                <div>
+                                    <p class="text-[17px] font-bold text-black">Milho - Lote A</p>
+
+                                    <p class="text-[12px] text-[#817979] flex items-center gap-10">
+                                        <span>Última leitura</span>
+                                        <span>🕐 Hoje: 14:50</span>
+                                   </p>
+
+                                </div>
+                            </div>
+                            <span class="text-gray-400 text-lg">›</span>
+                        </div>
+
+                        <div class="mt-2 flex justify-between text-center border-t border-b border-gray-100 py-2">
+                            <div>
+                                <p class="font-bold text-[15px]">💧 72%</p>
+                                <p class="text-[11px] text-[#817979]">Umidade do Solo</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-[15px]">🌡️ 28 °C</p>
+                                <p class="text-[11px] text-[#817979]">Temperatura</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-[15px]">☀️ Alta</p>
+                                <p class="text-[11px] text-[#817979]">Luminosidade</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-2 flex items-center justify-between">
+                            <p class="text-[12px]">Status geral:
+                                <span class="bg-green-100 text-green-700 text-[11px] px-2 py-0.5 rounded">Normal</span>
+                            </p>
+                            <a href="#" class="text-green-700 text-[12px] font-semibold">Ver detalhes ›</a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- FEIJÃO -->
+                <div class="border border-gray-200 rounded-[10px] overflow-hidden">
+                    <div class="h-[6px] bg-green-600"></div>
+                    <div class="p-3">
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <img src="assets/feijao.png" alt="Feijão" class="w-16 h-16 rounded-full object-cover">
+                                <div>
+                                    <p class="text-[17px] font-bold text-black">Feijão - Lote B</p>
+                                     <p class="text-[12px] text-[#817979] flex items-center gap-10">
+                                        <span>Última leitura</span>
+                                        <span>🕐 Hoje: 14:50</span>
+                                   </p>
+                                </div>
+                            </div>
+                            <span class="text-gray-400 text-lg">›</span>
+                        </div>
+
+                        <div class="mt-2 flex justify-between text-center border-t border-b border-gray-100 py-2">
+                            <div>
+                                <p class="font-bold text-[15px]">💧 65%</p>
+                                <p class="text-[11px] text-[#817979]">Umidade do Solo</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-[15px]">🌡️ 30 °C</p>
+                                <p class="text-[11px] text-[#817979]">Temperatura</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-[15px]">☀️ Média</p>
+                                <p class="text-[11px] text-[#817979]">Luminosidade</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-2 flex items-center justify-between">
+                            <p class="text-[12px]">Status geral:
+                                <span class="bg-orange-100 text-orange-600 text-[11px] px-2 py-0.5 rounded">Atenção</span>
+                            </p>
+                            <a href="#" class="text-green-700 text-[12px] font-semibold">Ver detalhes ›</a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- TOMATE -->
+                <div class="border border-gray-200 rounded-[10px] overflow-hidden">
+                    <div class="h-[6px] bg-red-600"></div>
+                    <div class="p-3">
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <img src="assets/tomate.png" alt="Tomate" class="w-16 h-16 rounded-full object-cover">
+                                <div>
+                                    <p class="text-[17px] font-bold text-black">Tomate - Lote C</p>
+                                     <p class="text-[12px] text-[#817979] flex items-center gap-10">
+                                        <span>Última leitura</span>
+                                        <span>🕐 Hoje: 14:50</span>
+                                   </p>
+                                </div>
+                            </div>
+                            <span class="text-gray-400 text-lg">›</span>
+                        </div>
+
+                        <div class="mt-2 flex justify-between text-center border-t border-b border-gray-100 py-2">
+                            <div>
+                                <p class="font-bold text-[15px]">💧 68%</p>
+                                <p class="text-[11px] text-[#817979]">Umidade do Solo</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-[15px]">🌡️ 24 °C</p>
+                                <p class="text-[11px] text-[#817979]">Temperatura</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-[15px]">☀️ Média</p>
+                                <p class="text-[11px] text-[#817979]">Luminosidade</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-2 flex items-center justify-between">
+                            <p class="text-[12px]">Status geral:
+                                <span class="bg-green-100 text-green-700 text-[11px] px-2 py-0.5 rounded">Normal</span>
+                            </p>
+                            <a href="#" class="text-green-700 text-[12px] font-semibold">Ver detalhes ›</a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- MANDIOCA -->
+                <div class="border border-gray-200 rounded-[10px] overflow-hidden">
+                    <div class="h-[6px] bg-[#8B5E3C]"></div>
+                    <div class="p-3">
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <img src="assets/mandioca.png" alt="Mandioca" class="w-16 h-16 rounded-full object-cover">
+                                <div>
+                                    <p class="text-[17px] font-bold text-black">Mandioca - Lote D</p>
+                                     <p class="text-[12px] text-[#817979] flex items-center gap-10">
+                                        <span>Última leitura</span>
+                                        <span>🕐 Hoje: 14:50</span>
+                                   </p>
+                                </div>
+                            </div>
+                            <span class="text-gray-400 text-lg">›</span>
+                        </div>
+
+                        <div class="mt-2 flex justify-between text-center border-t border-b border-gray-100 py-2">
+                            <div>
+                                <p class="font-bold text-[15px]">💧 30%</p>
+                                <p class="text-[11px] text-[#817979]">Umidade do Solo</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-[15px]">🌡️ 30 °C</p>
+                                <p class="text-[11px] text-[#817979]">Temperatura</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-[15px]">☀️ Alta</p>
+                                <p class="text-[11px] text-[#817979]">Luminosidade</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-2 flex items-center justify-between">
+                            <p class="text-[12px]">Status geral:
+                                <span class="bg-green-100 text-green-700 text-[11px] px-2 py-0.5 rounded">Normal</span>
+                            </p>
+                            <a href="#" class="text-green-700 text-[12px] font-semibold">Ver detalhes ›</a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- BOTÃO VOLTAR -->
+            <div class="mt-3 pt-3 border-t border-gray-200 mb-3">
+                <a href="#"
+                    class="inline-block border border-gray-300 rounded-[8px] px-8 py-2 text-[14px] font-semibold text-black hover:bg-gray-50 transition-colors">
+                    Voltar
+                </a>
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
