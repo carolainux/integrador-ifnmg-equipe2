@@ -49,3 +49,64 @@ if (ctxGrafico) {
         }
     });
 }
+
+const ctxPlantacao = document.getElementById('graficoMonitoramento');
+
+if (ctxPlantacao) {
+    new Chart(ctxPlantacao, {
+        type: 'line',
+        data: {
+            labels: ['00h', '02h', '04h', '06h', '08h', '10h', '12h', '14h', '16h', '18h'],
+            datasets: [
+                {
+                    label: 'Temperatura (°C)',
+                    data: [22, 35, 45, 38, 42, 15, 28, 25, 12, 45],
+                    borderColor: '#e11d48',
+                    backgroundColor: 'rgba(225, 29, 72, 0.1)',
+                    tension: 0.3
+                },
+                {
+                    label: 'Umidade (%)',
+                    data: [5, 30, 48, 45, 52, 35, 45, 50, 32, 50],
+                    borderColor: '#1e293b',
+                    backgroundColor: 'rgba(30, 41, 59, 0.1)',
+                    tension: 0.3
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom' }
+            },
+            scales: {
+                y: { min: 0, max: 60 }
+            }
+        }
+    });
+}
+
+/* ==========================================================
+   TODO - INTEGRAÇÃO COM BACKEND (API já pronta, ver backend/src/routes)
+
+   LOGIN (login.html):
+   POST /auth/login
+   Body: { email, senha }
+   → Substituir o submit do form por fetch() enviando os dados
+     e salvando o token retornado.
+
+   CADASTRO (cadastro.html):
+   POST /usuarios
+   Body: { nome, email, telefone, senha }
+   → Substituir o submit do form por fetch() enviando os dados.
+
+   DASHBOARD (index.html):
+   GET /plantacoes/usuario/:usuario_id
+   → Buscar lista de plantações do usuário logado e gerar os
+     cards dinamicamente, em vez dos 4 cards fixos no HTML.
+
+   DETALHE DA PLANTAÇÃO (plantacao-detalhe.html):
+   GET /plantacoes/:id                    → dados do card (Cultura, Início, Status)
+   GET /leituras/dashboard/:plantacao_id  → dados do gráfico Chart.js (temperatura/umidade)
+   GET /alertas/plantacao/:plantacao_id   → lista de alertas exibida na tela
+   ========================================================== */

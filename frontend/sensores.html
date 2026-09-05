@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AgroSensor - Sensores</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="h-screen bg-white overflow-hidden">
+
+    <div class="flex h-screen">
+
+        <!-- MENU LATERAL -->
+        <aside class="w-[260px] shrink-0 bg-[#6aa86a] flex flex-col justify-between h-screen">
+
+            <div>
+
+                <!-- LOGO -->
+                <div class="flex items-center justify-center px-6 py-5">
+                    <img src="assets/logo-agrosensor.svg" alt="AgroSensor" class="h-25">
+                </div>
+
+                <!-- ITENS DO MENU -->
+                <nav class="space-y-1 px-3">
+
+                    <a href="index.html"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.5 1.5 0 012.122 0L22.25 12M4.5 9.75V21a.75.75 0 00.75.75H9.75a.75.75 0 00.75-.75v-4.5a.75.75 0 01.75-.75h1.5a.75.75 0 01.75.75V21a.75.75 0 00.75.75h4.5a.75.75 0 00.75-.75V9.75" />
+                        </svg>
+                        Dashboard
+                    </a>
+
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
+                        <img src="assets/mdi_leaf.svg" alt="Plantações" class="w-5 h-5 brightness-0 invert">
+                        Plantações
+                    </a>
+
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] bg-[#5a9c5a] text-white font-bold text-[15px]">
+                        <img src="assets/Vector.svg" alt="Sensores" class="w-5 h-5 brightness-0 invert">
+                        Sensores
+                    </a>
+
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+                        </svg>
+                        Dispositivos
+                    </a>
+
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
+                        <img src="assets/mdi_bell-alert-outline.svg" alt="Alertas" class="w-5 h-5 brightness-0 invert">
+                        Alertas
+                    </a>
+
+                </nav>
+
+                <div class="border-t border-white/40 mx-6 my-2"></div>
+
+                <nav class="space-y-1 px-3">
+
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
+                        <img src="assets/LineMdAccount.svg" alt="Perfil" class="w-5 h-5 invert">
+                        Perfil
+                    </a>
+
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
+                        <img src="assets/line-md_cog.svg" alt="Configurações" class="w-5 h-5 brightness-0 invert">
+                        Configurações
+                    </a>
+
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
+                        <img src="assets/lineicons_question-mark-circle.svg" alt="Ajuda" class="w-5 h-5 brightness-0 invert">
+                        Ajuda
+                    </a>
+
+                </nav>
+
+            </div>
+
+            <!-- SAIR -->
+            <div class="px-3 pb-5">
+                <a href="login.html"
+                    class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0110.5 3h6a2.25 2.25 0 012.25 2.25v13.5A2.25 2.25 0 0116.5 21h-6a2.25 2.25 0 01-2.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                    </svg>
+                    Sair
+                </a>
+            </div>
+
+        </aside>
+
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="flex-1 px-8 py-4 overflow-y-auto">
+
+            <!-- CABEÇALHO -->
+            <div class="flex items-center justify-between border-b border-gray-200 pb-2">
+                <h1 class="text-[26px] font-bold text-black">Sensores</h1>
+                <a href="index.html" class="text-gray-400 text-xl hover:text-gray-600">✕</a>
+            </div>
+
+            <p class="mt-3 text-[15px] text-[#817979]">
+                Selecionar os sensores e defina os níveis de alerta e crítico
+            </p>
+
+
+            <!-- TABELA -->
+            <div class="mt-4">
+
+                <!-- CABEÇALHO DA TABELA -->
+                <div class="grid grid-cols-[2fr_1fr_1fr_1fr] items-center border-b border-gray-200 pb-2">
+                    <p class="text-[14px] font-bold text-black">Sensor</p>
+                    <p class="text-[14px] font-bold text-black">Ativo</p>
+                    <p class="text-[14px] font-bold text-black">Nível de alerta</p>
+                    <p class="text-[14px] font-bold text-black">Nível crítico</p>
+                </div>
+
+                <!-- TEMPERATURA -->
+                <div class="grid grid-cols-[2fr_1fr_1fr_1fr] items-center border-b border-gray-100 py-3">
+
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-[8px] bg-green-100 flex items-center justify-center">
+                            <img src="assets/zondicons_thermometer.svg" alt="Temperatura" class="w-6 h-6">
+                        </div>
+                        <div>
+                            <p class="text-[15px] font-bold text-black">Temperatura</p>
+                            <p class="text-[12px] text-[#817979]">Em graus Celsius (°C)</p>
+                        </div>
+                    </div>
+
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-600 transition-colors"></div>
+                        <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+                    </label>
+
+                    <input type="text" value="30°C"
+                        class="w-[110px] h-[38px] rounded-[8px] border border-gray-300 px-3 text-[14px] text-black focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+
+                    <input type="text" value="35°C"
+                        class="w-[110px] h-[38px] rounded-[8px] border border-gray-300 px-3 text-[14px] text-black focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+
+                </div>
+
+                <!-- UMIDADE DO SOLO -->
+                <div class="grid grid-cols-[2fr_1fr_1fr_1fr] items-center border-b border-gray-100 py-3">
+
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-[8px] bg-orange-100 flex items-center justify-center">
+                            <img src="assets/streamline-pixel_ecology-plant-growth-soil-nature.svg" alt="Umidade do Solo" class="w-6 h-6">
+                        </div>
+                        <div>
+                            <p class="text-[15px] font-bold text-black">Umidade do Solo</p>
+                            <p class="text-[12px] text-[#817979]">Em porcentagem (%)</p>
+                        </div>
+                    </div>
+
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-600 transition-colors"></div>
+                        <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+                    </label>
+
+                    <input type="text" value="30%"
+                        class="w-[110px] h-[38px] rounded-[8px] border border-gray-300 px-3 text-[14px] text-black focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+
+                    <input type="text" value="20%"
+                        class="w-[110px] h-[38px] rounded-[8px] border border-gray-300 px-3 text-[14px] text-black focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+
+                </div>
+
+                <!-- UMIDADE DO AR -->
+                <div class="grid grid-cols-[2fr_1fr_1fr_1fr] items-center border-b border-gray-100 py-3">
+
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-[8px] bg-blue-100 flex items-center justify-center">
+                            <img src="assets/mi_drop.svg" alt="Umidade do Ar" class="w-6 h-6">
+                        </div>
+                        <div>
+                            <p class="text-[15px] font-bold text-black">Umidade do Ar</p>
+                            <p class="text-[12px] text-[#817979]">Em porcentagem (%)</p>
+                        </div>
+                    </div>
+
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-600 transition-colors"></div>
+                        <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+                    </label>
+
+                    <input type="text" value="70%"
+                        class="w-[110px] h-[38px] rounded-[8px] border border-gray-300 px-3 text-[14px] text-black focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+
+                    <input type="text" value="50%"
+                        class="w-[110px] h-[38px] rounded-[8px] border border-gray-300 px-3 text-[14px] text-black focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+
+                </div>
+
+                <!-- LUMINOSIDADE -->
+                <div class="grid grid-cols-[2fr_1fr_1fr_1fr] items-center border-b border-gray-100 py-3">
+
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-[8px] bg-yellow-100 flex items-center justify-center">
+                            <img src="assets/meteor-icons_sun.svg" alt="Luminosidade" class="w-8 h-8" style="filter: brightness(0.7) saturate(150%);">
+                        </div>
+                        <div>
+                            <p class="text-[15px] font-bold text-black">Luminosidade</p>
+                            <p class="text-[12px] text-[#817979]">Em porcentagem (%)</p>
+                        </div>
+                    </div>
+
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-600 transition-colors"></div>
+                        <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+                    </label>
+
+                    <input type="text" value="60%"
+                        class="w-[110px] h-[38px] rounded-[8px] border border-gray-300 px-3 text-[14px] text-black focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+
+                    <input type="text" value="80%"
+                        class="w-[110px] h-[38px] rounded-[8px] border border-gray-300 px-3 text-[14px] text-black focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+
+                </div>
+
+            </div>
+
+
+            <!-- BOTÕES -->
+            <div class="mt-6 flex items-center justify-between mb-4">
+
+                <a href="index.html"
+                    class="inline-block border border-gray-300 rounded-[8px] px-8 py-2.5 text-[14px] font-semibold text-black hover:bg-gray-50 transition-colors">
+                    Voltar
+                </a>
+
+                <button
+                    type="button"
+                    class="bg-[#078607] text-white font-bold text-[15px] rounded-[8px] px-8 py-2.5 hover:bg-[#067306] transition-colors">
+                    Salvar e finalizar
+                </button>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
