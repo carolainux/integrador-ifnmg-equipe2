@@ -1,267 +1,890 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>AgroSensor - Sensores</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgroSensor - Sensores</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body class="h-screen bg-white overflow-hidden">
+  <div class="flex h-screen">
 
-    <div class="flex h-screen">
+    <!-- MENU LATERAL -->
+    <aside class="w-[260px] shrink-0 bg-[#6aa86a] flex flex-col justify-between h-screen">
+      <div>
 
-        <!-- MENU LATERAL -->
-        <aside class="w-[260px] shrink-0 bg-[#6aa86a] flex flex-col justify-between h-screen">
+        <!-- LOGO -->
+        <div class="flex items-center justify-center px-6 py-8">
+          <img src="assets/logo-agrosensor.svg" alt="AgroSensor" class="h-8" />
+        </div>
 
+        <!-- ITENS DO MENU -->
+        <nav class="space-y-1 px-3">
+
+          <a href="index.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.125 1.125 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            </svg>
+            Dashboard
+          </a>
+
+          <a href="plantacoes.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4.97 0-9-4.03-9-9 0-4.97 9-12 9-12s9 7.03 9 12c0 4.97-4.03 9-9 9z" />
+            </svg>
+            Plantações
+          </a>
+
+          <a href="sensores.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] bg-[#5a9c5a] text-white font-semibold">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12 20.25h.008v.008H12v-.008z" />
+            </svg>
+            Sensores
+          </a>
+
+          <a href="dispositivos.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+            </svg>
+            Dispositivos
+          </a>
+
+          <a href="alertas.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+            </svg>
+            Alertas
+          </a>
+
+          <a href="perfil.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
+            Perfil
+          </a>
+
+          <a href="configuracoes.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Configurações
+          </a>
+
+          <a href="ajuda.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M12 18h.008v.008H12V18z" /><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Ajuda
+          </a>
+
+        </nav>
+      </div>
+
+      <!-- SAIR -->
+      <div class="px-3 pb-8">
+        <a href="login.html"
+           class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H3" />
+          </svg>
+          Sair
+        </a>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="flex-1 flex flex-col p-8 overflow-y-auto">
+
+      <!-- CABEÇALHO -->
+      <div class="flex items-center justify-between mb-6">
+        <h1 class="text-2xl font-bold text-gray-900">Sensores</h1>
+        <a href="index.html" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</a>
+      </div>
+
+      <!-- BUSCA + NOVO -->
+      <div class="flex items-center gap-4 mb-6">
+        <div class="flex-1 relative">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+          </svg>
+          <input type="text" id="busca-sensor" placeholder="Buscar sensores..."
+                 class="w-full pl-10 pr-4 py-2.5 rounded-[8px] border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#077C07]" />
+        </div>
+        <button type="button" id="btn-novo-sensor" class="flex items-center gap-2 bg-[#077C07] hover:bg-[#067306] text-white font-semibold px-4 py-2.5 rounded-[8px] whitespace-nowrap transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+          Novo sensor
+        </button>
+      </div>
+
+      <!-- LISTA DE SENSORES -->
+      <div id="lista-sensores" class="flex flex-col gap-3">
+
+        <!-- Sensor 01 -->
+        <div class="linha-sensor flex items-center justify-between border border-gray-200 rounded-[10px] px-4 py-3 cursor-pointer hover:border-[#077C07] transition-colors"
+             data-id="1" data-nome="Sensor 01" data-tipo="Temperatura" data-status="Ativo">
+          <div class="flex items-center gap-3">
+            <div class="sensor-icone w-9 h-9 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-lg">🌡️</div>
             <div>
-
-                <!-- LOGO -->
-                <div class="flex items-center justify-center px-6 py-5">
-                    <img src="assets/logo-agrosensor.svg" alt="AgroSensor" class="h-25">
-                </div>
-
-                <!-- ITENS DO MENU -->
-                <nav class="space-y-1 px-3">
-
-                    <a href="index.html"
-                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.5 1.5 0 012.122 0L22.25 12M4.5 9.75V21a.75.75 0 00.75.75H9.75a.75.75 0 00.75-.75v-4.5a.75.75 0 01.75-.75h1.5a.75.75 0 01.75.75V21a.75.75 0 00.75.75h4.5a.75.75 0 00.75-.75V9.75" />
-                        </svg>
-                        Dashboard
-                    </a>
-
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
-                        <img src="assets/mdi_leaf.svg" alt="Plantações" class="w-5 h-5 brightness-0 invert">
-                        Plantações
-                    </a>
-
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] bg-[#5a9c5a] text-white font-bold text-[15px]">
-                        <img src="assets/Vector.svg" alt="Sensores" class="w-5 h-5 brightness-0 invert">
-                        Sensores
-                    </a>
-
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-                        </svg>
-                        Dispositivos
-                    </a>
-
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
-                        <img src="assets/mdi_bell-alert-outline.svg" alt="Alertas" class="w-5 h-5 brightness-0 invert">
-                        Alertas
-                    </a>
-
-                </nav>
-
-                <div class="border-t border-white/40 mx-6 my-2"></div>
-
-                <nav class="space-y-1 px-3">
-
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
-                        <img src="assets/LineMdAccount.svg" alt="Perfil" class="w-5 h-5 invert">
-                        Perfil
-                    </a>
-
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
-                        <img src="assets/line-md_cog.svg" alt="Configurações" class="w-5 h-5 brightness-0 invert">
-                        Configurações
-                    </a>
-
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
-                        <img src="assets/lineicons_question-mark-circle.svg" alt="Ajuda" class="w-5 h-5 brightness-0 invert">
-                        Ajuda
-                    </a>
-
-                </nav>
-
+              <p class="sensor-nome font-semibold text-gray-900">Sensor 01</p>
+              <p class="sensor-tipo text-sm text-gray-500">Temperatura</p>
             </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" class="btn-editar-sensor flex items-center gap-1 text-sm border border-gray-300 rounded-[8px] px-3 py-1.5 hover:bg-gray-50">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
+              </svg>
+              Editar
+            </button>
+            <button type="button" class="btn-excluir-sensor flex items-center gap-1 text-sm border border-red-200 text-red-600 rounded-[8px] px-3 py-1.5 hover:bg-red-50">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+              </svg>
+              Excluir
+            </button>
+            <span class="sensor-status-badge flex items-center gap-1 text-xs font-medium text-green-700 bg-green-100 px-2.5 py-1 rounded-full">
+              <span class="sensor-status-dot w-1.5 h-1.5 rounded-full bg-green-600"></span>
+              <span class="sensor-status-texto">Ativo</span>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-gray-400">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </div>
+        </div>
 
-            <!-- SAIR -->
-            <div class="px-3 pb-5">
-                <a href="login.html"
-                    class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0110.5 3h6a2.25 2.25 0 012.25 2.25v13.5A2.25 2.25 0 0116.5 21h-6a2.25 2.25 0 01-2.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
-                    </svg>
-                    Sair
-                </a>
+        <!-- Sensor 02 -->
+        <div class="linha-sensor flex items-center justify-between border border-gray-200 rounded-[10px] px-4 py-3 cursor-pointer hover:border-[#077C07] transition-colors"
+             data-id="2" data-nome="Sensor 02" data-tipo="Umidade do Solo" data-status="Ativo">
+          <div class="flex items-center gap-3">
+            <div class="sensor-icone w-9 h-9 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 text-lg">🌱</div>
+            <div>
+              <p class="sensor-nome font-semibold text-gray-900">Sensor 02</p>
+              <p class="sensor-tipo text-sm text-gray-500">Umidade do Solo</p>
             </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" class="btn-editar-sensor flex items-center gap-1 text-sm border border-gray-300 rounded-[8px] px-3 py-1.5 hover:bg-gray-50">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
+              </svg>
+              Editar
+            </button>
+            <button type="button" class="btn-excluir-sensor flex items-center gap-1 text-sm border border-red-200 text-red-600 rounded-[8px] px-3 py-1.5 hover:bg-red-50">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+              </svg>
+              Excluir
+            </button>
+            <span class="sensor-status-badge flex items-center gap-1 text-xs font-medium text-green-700 bg-green-100 px-2.5 py-1 rounded-full">
+              <span class="sensor-status-dot w-1.5 h-1.5 rounded-full bg-green-600"></span>
+              <span class="sensor-status-texto">Ativo</span>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-gray-400">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </div>
+        </div>
 
-        </aside>
-
-
-        <!-- CONTEÚDO PRINCIPAL -->
-        <main class="flex-1 px-8 py-4 overflow-y-auto">
-
-            <!-- CABEÇALHO -->
-            <div class="flex items-center justify-between border-b border-gray-200 pb-2">
-                <h1 class="text-[26px] font-bold text-black">Sensores</h1>
-                <a href="index.html" class="text-gray-400 text-xl hover:text-gray-600">✕</a>
+        <!-- Sensor 03 -->
+        <div class="linha-sensor flex items-center justify-between border border-gray-200 rounded-[10px] px-4 py-3 cursor-pointer hover:border-[#077C07] transition-colors"
+             data-id="3" data-nome="Sensor 03" data-tipo="Luminosidade" data-status="Inativo">
+          <div class="flex items-center gap-3">
+            <div class="sensor-icone w-9 h-9 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 text-lg">☀️</div>
+            <div>
+              <p class="sensor-nome font-semibold text-gray-900">Sensor 03</p>
+              <p class="sensor-tipo text-sm text-gray-500">Luminosidade</p>
             </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" class="btn-editar-sensor flex items-center gap-1 text-sm border border-gray-300 rounded-[8px] px-3 py-1.5 hover:bg-gray-50">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
+              </svg>
+              Editar
+            </button>
+            <button type="button" class="btn-excluir-sensor flex items-center gap-1 text-sm border border-red-200 text-red-600 rounded-[8px] px-3 py-1.5 hover:bg-red-50">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+              </svg>
+              Excluir
+            </button>
+            <span class="sensor-status-badge flex items-center gap-1 text-xs font-medium text-gray-600 bg-gray-100 px-2.5 py-1 rounded-full">
+              <span class="sensor-status-dot w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+              <span class="sensor-status-texto">Inativo</span>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-gray-400">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </div>
+        </div>
 
-            <p class="mt-3 text-[15px] text-[#817979]">
-                Selecionar os sensores e defina os níveis de alerta e crítico
-            </p>
-
-
-            <!-- TABELA -->
-            <div class="mt-4">
-
-                <!-- CABEÇALHO DA TABELA -->
-                <div class="grid grid-cols-[2fr_1fr_1fr_1fr] items-center border-b border-gray-200 pb-2">
-                    <p class="text-[14px] font-bold text-black">Sensor</p>
-                    <p class="text-[14px] font-bold text-black">Ativo</p>
-                    <p class="text-[14px] font-bold text-black">Nível de alerta</p>
-                    <p class="text-[14px] font-bold text-black">Nível crítico</p>
-                </div>
-
-                <!-- TEMPERATURA -->
-                <div class="grid grid-cols-[2fr_1fr_1fr_1fr] items-center border-b border-gray-100 py-3">
-
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-[8px] bg-green-100 flex items-center justify-center">
-                            <img src="assets/zondicons_thermometer.svg" alt="Temperatura" class="w-6 h-6">
-                        </div>
-                        <div>
-                            <p class="text-[15px] font-bold text-black">Temperatura</p>
-                            <p class="text-[12px] text-[#817979]">Em graus Celsius (°C)</p>
-                        </div>
-                    </div>
-
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" class="sr-only peer" checked>
-                        <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-600 transition-colors"></div>
-                        <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
-                    </label>
-
-                    <input type="text" value="30°C"
-                        class="w-[110px] h-[38px] rounded-[8px] border border-gray-300 px-3 text-[14px] text-black focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
-
-                    <input type="text" value="35°C"
-                        class="w-[110px] h-[38px] rounded-[8px] border border-gray-300 px-3 text-[14px] text-black focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
-
-                </div>
-
-                <!-- UMIDADE DO SOLO -->
-                <div class="grid grid-cols-[2fr_1fr_1fr_1fr] items-center border-b border-gray-100 py-3">
-
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-[8px] bg-orange-100 flex items-center justify-center">
-                            <img src="assets/streamline-pixel_ecology-plant-growth-soil-nature.svg" alt="Umidade do Solo" class="w-6 h-6">
-                        </div>
-                        <div>
-                            <p class="text-[15px] font-bold text-black">Umidade do Solo</p>
-                            <p class="text-[12px] text-[#817979]">Em porcentagem (%)</p>
-                        </div>
-                    </div>
-
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" class="sr-only peer" checked>
-                        <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-600 transition-colors"></div>
-                        <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
-                    </label>
-
-                    <input type="text" value="30%"
-                        class="w-[110px] h-[38px] rounded-[8px] border border-gray-300 px-3 text-[14px] text-black focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
-
-                    <input type="text" value="20%"
-                        class="w-[110px] h-[38px] rounded-[8px] border border-gray-300 px-3 text-[14px] text-black focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
-
-                </div>
-
-                <!-- UMIDADE DO AR -->
-                <div class="grid grid-cols-[2fr_1fr_1fr_1fr] items-center border-b border-gray-100 py-3">
-
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-[8px] bg-blue-100 flex items-center justify-center">
-                            <img src="assets/mi_drop.svg" alt="Umidade do Ar" class="w-6 h-6">
-                        </div>
-                        <div>
-                            <p class="text-[15px] font-bold text-black">Umidade do Ar</p>
-                            <p class="text-[12px] text-[#817979]">Em porcentagem (%)</p>
-                        </div>
-                    </div>
-
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" class="sr-only peer" checked>
-                        <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-600 transition-colors"></div>
-                        <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
-                    </label>
-
-                    <input type="text" value="70%"
-                        class="w-[110px] h-[38px] rounded-[8px] border border-gray-300 px-3 text-[14px] text-black focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
-
-                    <input type="text" value="50%"
-                        class="w-[110px] h-[38px] rounded-[8px] border border-gray-300 px-3 text-[14px] text-black focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
-
-                </div>
-
-                <!-- LUMINOSIDADE -->
-                <div class="grid grid-cols-[2fr_1fr_1fr_1fr] items-center border-b border-gray-100 py-3">
-
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-[8px] bg-yellow-100 flex items-center justify-center">
-                            <img src="assets/meteor-icons_sun.svg" alt="Luminosidade" class="w-8 h-8" style="filter: brightness(0.7) saturate(150%);">
-                        </div>
-                        <div>
-                            <p class="text-[15px] font-bold text-black">Luminosidade</p>
-                            <p class="text-[12px] text-[#817979]">Em porcentagem (%)</p>
-                        </div>
-                    </div>
-
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" class="sr-only peer" checked>
-                        <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-600 transition-colors"></div>
-                        <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
-                    </label>
-
-                    <input type="text" value="60%"
-                        class="w-[110px] h-[38px] rounded-[8px] border border-gray-300 px-3 text-[14px] text-black focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
-
-                    <input type="text" value="80%"
-                        class="w-[110px] h-[38px] rounded-[8px] border border-gray-300 px-3 text-[14px] text-black focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
-
-                </div>
-
+        <!-- Sensor 04 -->
+        <div class="linha-sensor flex items-center justify-between border border-gray-200 rounded-[10px] px-4 py-3 cursor-pointer hover:border-[#077C07] transition-colors"
+             data-id="4" data-nome="Sensor 04" data-tipo="Umidade do Ar" data-status="Ativo">
+          <div class="flex items-center gap-3">
+            <div class="sensor-icone w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-lg">💧</div>
+            <div>
+              <p class="sensor-nome font-semibold text-gray-900">Sensor 04</p>
+              <p class="sensor-tipo text-sm text-gray-500">Umidade do Ar</p>
             </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" class="btn-editar-sensor flex items-center gap-1 text-sm border border-gray-300 rounded-[8px] px-3 py-1.5 hover:bg-gray-50">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
+              </svg>
+              Editar
+            </button>
+            <button type="button" class="btn-excluir-sensor flex items-center gap-1 text-sm border border-red-200 text-red-600 rounded-[8px] px-3 py-1.5 hover:bg-red-50">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+              </svg>
+              Excluir
+            </button>
+            <span class="sensor-status-badge flex items-center gap-1 text-xs font-medium text-green-700 bg-green-100 px-2.5 py-1 rounded-full">
+              <span class="sensor-status-dot w-1.5 h-1.5 rounded-full bg-green-600"></span>
+              <span class="sensor-status-texto">Ativo</span>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-gray-400">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </div>
+        </div>
 
-
-            <!-- BOTÕES -->
-            <div class="mt-6 flex items-center justify-between mb-4">
-
-                <a href="index.html"
-                    class="inline-block border border-gray-300 rounded-[8px] px-8 py-2.5 text-[14px] font-semibold text-black hover:bg-gray-50 transition-colors">
-                    Voltar
-                </a>
-
-                <button
-                    type="button"
-                    class="bg-[#078607] text-white font-bold text-[15px] rounded-[8px] px-8 py-2.5 hover:bg-[#067306] transition-colors">
-                    Salvar e finalizar
-                </button>
-
+        <!-- Sensor 05 -->
+        <div class="linha-sensor flex items-center justify-between border border-gray-200 rounded-[10px] px-4 py-3 cursor-pointer hover:border-[#077C07] transition-colors"
+             data-id="5" data-nome="Sensor 05" data-tipo="Temperatura" data-status="Inativo">
+          <div class="flex items-center gap-3">
+            <div class="sensor-icone w-9 h-9 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-lg">🌡️</div>
+            <div>
+              <p class="sensor-nome font-semibold text-gray-900">Sensor 05</p>
+              <p class="sensor-tipo text-sm text-gray-500">Temperatura</p>
             </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" class="btn-editar-sensor flex items-center gap-1 text-sm border border-gray-300 rounded-[8px] px-3 py-1.5 hover:bg-gray-50">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
+              </svg>
+              Editar
+            </button>
+            <button type="button" class="btn-excluir-sensor flex items-center gap-1 text-sm border border-red-200 text-red-600 rounded-[8px] px-3 py-1.5 hover:bg-red-50">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+              </svg>
+              Excluir
+            </button>
+            <span class="sensor-status-badge flex items-center gap-1 text-xs font-medium text-gray-600 bg-gray-100 px-2.5 py-1 rounded-full">
+              <span class="sensor-status-dot w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+              <span class="sensor-status-texto">Inativo</span>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-gray-400">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </div>
+        </div>
 
-        </main>
+        <!-- Sensor 06 -->
+        <div class="linha-sensor flex items-center justify-between border border-gray-200 rounded-[10px] px-4 py-3 cursor-pointer hover:border-[#077C07] transition-colors"
+             data-id="6" data-nome="Sensor 06" data-tipo="Umidade do Solo" data-status="Ativo">
+          <div class="flex items-center gap-3">
+            <div class="sensor-icone w-9 h-9 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 text-lg">🌱</div>
+            <div>
+              <p class="sensor-nome font-semibold text-gray-900">Sensor 06</p>
+              <p class="sensor-tipo text-sm text-gray-500">Umidade do Solo</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" class="btn-editar-sensor flex items-center gap-1 text-sm border border-gray-300 rounded-[8px] px-3 py-1.5 hover:bg-gray-50">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
+              </svg>
+              Editar
+            </button>
+            <button type="button" class="btn-excluir-sensor flex items-center gap-1 text-sm border border-red-200 text-red-600 rounded-[8px] px-3 py-1.5 hover:bg-red-50">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+              </svg>
+              Excluir
+            </button>
+            <span class="sensor-status-badge flex items-center gap-1 text-xs font-medium text-green-700 bg-green-100 px-2.5 py-1 rounded-full">
+              <span class="sensor-status-dot w-1.5 h-1.5 rounded-full bg-green-600"></span>
+              <span class="sensor-status-texto">Ativo</span>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-gray-400">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Sensor 07 -->
+        <div class="linha-sensor flex items-center justify-between border border-gray-200 rounded-[10px] px-4 py-3 cursor-pointer hover:border-[#077C07] transition-colors"
+             data-id="7" data-nome="Sensor 07" data-tipo="Luminosidade" data-status="Ativo">
+          <div class="flex items-center gap-3">
+            <div class="sensor-icone w-9 h-9 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 text-lg">☀️</div>
+            <div>
+              <p class="sensor-nome font-semibold text-gray-900">Sensor 07</p>
+              <p class="sensor-tipo text-sm text-gray-500">Luminosidade</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" class="btn-editar-sensor flex items-center gap-1 text-sm border border-gray-300 rounded-[8px] px-3 py-1.5 hover:bg-gray-50">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
+              </svg>
+              Editar
+            </button>
+            <button type="button" class="btn-excluir-sensor flex items-center gap-1 text-sm border border-red-200 text-red-600 rounded-[8px] px-3 py-1.5 hover:bg-red-50">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+              </svg>
+              Excluir
+            </button>
+            <span class="sensor-status-badge flex items-center gap-1 text-xs font-medium text-green-700 bg-green-100 px-2.5 py-1 rounded-full">
+              <span class="sensor-status-dot w-1.5 h-1.5 rounded-full bg-green-600"></span>
+              <span class="sensor-status-texto">Ativo</span>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-gray-400">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- VOLTAR -->
+      <div class="mt-6">
+        <a href="index.html"
+           class="inline-block border border-gray-300 rounded-[8px] px-6 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+          Voltar
+        </a>
+      </div>
+
+    </main>
+  </div>
+
+
+  <!-- ============================================= -->
+  <!-- MODAL: DETALHES DO SENSOR                       -->
+  <!-- ============================================= -->
+  <div id="modal-detalhes-sensor" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-[10px] w-full max-w-[420px] p-6 relative shadow-xl">
+
+      <button type="button" id="fechar-detalhes-sensor" class="absolute top-4 right-4 text-gray-400 text-xl hover:text-gray-600">✕</button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div id="detalhes-sensor-icone" class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-2xl">🌡️</div>
+        <div>
+          <h2 id="detalhes-sensor-nome" class="text-[18px] font-bold text-gray-900">Sensor 01</h2>
+          <p id="detalhes-sensor-tipo" class="text-sm text-gray-500">Temperatura</p>
+        </div>
+      </div>
+
+      <div class="space-y-3 text-sm">
+        <div class="flex items-center justify-between border-b border-gray-100 pb-2">
+          <span class="text-gray-500">Status</span>
+          <span id="detalhes-sensor-status" class="flex items-center gap-1.5 text-xs font-medium text-green-700 bg-green-100 px-2.5 py-1 rounded-full">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-600"></span> Ativo
+          </span>
+        </div>
+        <div class="flex items-center justify-between border-b border-gray-100 pb-2">
+          <span class="text-gray-500">Identificador</span>
+          <span id="detalhes-sensor-id" class="font-medium text-gray-900">#1</span>
+        </div>
+        <div class="flex items-center justify-between border-b border-gray-100 pb-2">
+          <span class="text-gray-500">Última leitura</span>
+          <span class="font-medium text-gray-900">—</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-gray-500">Plantação vinculada</span>
+          <span class="font-medium text-gray-900">—</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-3 mt-6">
+        <button type="button" id="detalhes-editar-sensor"
+          class="border border-gray-300 rounded-[8px] px-5 py-2.5 text-[14px] font-semibold text-black hover:bg-gray-50 transition-colors">
+          Editar
+        </button>
+        <button type="button" id="fechar-detalhes-sensor-2"
+          class="bg-[#077C07] text-white font-bold text-[14px] rounded-[8px] px-5 py-2.5 hover:bg-[#067306] transition-colors">
+          Fechar
+        </button>
+      </div>
 
     </div>
+  </div>
 
 
-    <script src="script.js"></script>
+  <!-- ============================================= -->
+  <!-- MODAL: EDITAR SENSOR                            -->
+  <!-- ============================================= -->
+  <div id="modal-editar-sensor" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-[10px] w-full max-w-[420px] p-6 relative shadow-xl">
+
+      <button type="button" id="fechar-editar-sensor" class="absolute top-4 right-4 text-gray-400 text-xl hover:text-gray-600">✕</button>
+
+      <h2 class="text-[18px] font-bold text-gray-900 mb-1">Editar sensor</h2>
+      <p class="text-[13px] text-gray-500 mb-4">Atualize as informações e o status do sensor</p>
+
+      <form id="form-editar-sensor" class="space-y-4">
+        <input type="hidden" id="editar-sensor-id">
+
+        <div>
+          <label class="block text-[14px] font-semibold text-black mb-1">Nome</label>
+          <input type="text" id="editar-sensor-nome" required
+            class="w-full h-[44px] rounded-[8px] border border-[#5f5353] px-4 text-[14px] text-black
+                   focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+        </div>
+
+        <div>
+          <label class="block text-[14px] font-semibold text-black mb-1">Tipo de sensor</label>
+          <select id="editar-sensor-tipo"
+            class="w-full h-[44px] rounded-[8px] border border-[#5f5353] px-4 text-[14px] text-black
+                   focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+            <option value="Temperatura">Temperatura</option>
+            <option value="Umidade do Solo">Umidade do Solo</option>
+            <option value="Umidade do Ar">Umidade do Ar</option>
+            <option value="Luminosidade">Luminosidade</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[14px] font-semibold text-black mb-2">Ativo</label>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="editar-sensor-ativo" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-600 transition-colors"></div>
+            <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+          </label>
+          <span id="editar-sensor-ativo-texto" class="ml-3 text-[13px] text-gray-500 align-middle">Inativo</span>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-2">
+          <button type="button" id="cancelar-editar-sensor"
+            class="border border-gray-300 rounded-[8px] px-6 py-2.5 text-[14px] font-semibold text-black hover:bg-gray-50 transition-colors">
+            Cancelar
+          </button>
+          <button type="submit"
+            class="bg-[#078607] text-white font-bold text-[14px] rounded-[8px] px-6 py-2.5 hover:bg-[#067306] transition-colors">
+            Salvar alterações
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+
+  <!-- ============================================= -->
+  <!-- MODAL: CONFIRMAR EXCLUSÃO DO SENSOR              -->
+  <!-- ============================================= -->
+  <div id="modal-excluir-sensor" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-[10px] w-full max-w-[380px] p-6 text-center shadow-xl">
+
+      <div class="mx-auto mb-3 w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-6 h-6 text-red-600">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+        </svg>
+      </div>
+
+      <h2 class="text-[18px] font-bold text-black mb-2">Excluir sensor</h2>
+      <p class="text-[14px] text-[#817979] mb-6">
+        Tem certeza que deseja excluir <span id="excluir-sensor-nome" class="font-semibold text-black"></span>?
+        Essa ação não pode ser desfeita.
+      </p>
+
+      <div class="flex items-center justify-center gap-3">
+        <button type="button" id="cancelar-excluir-sensor"
+          class="border border-gray-300 rounded-[8px] px-6 py-2.5 text-[14px] font-semibold text-black hover:bg-gray-50 transition-colors">
+          Cancelar
+        </button>
+        <button type="button" id="confirmar-excluir-sensor"
+          class="bg-red-600 text-white font-bold text-[14px] rounded-[8px] px-6 py-2.5 hover:bg-red-700 transition-colors">
+          Sim, excluir
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================= -->
+  <!-- MODAL: NOVO SENSOR                              -->
+  <!-- ============================================= -->
+  <div id="modal-novo-sensor" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-[10px] w-full max-w-[420px] p-6 relative shadow-xl">
+
+      <button type="button" id="fechar-novo-sensor" class="absolute top-4 right-4 text-gray-400 text-xl hover:text-gray-600">✕</button>
+
+      <h2 class="text-[18px] font-bold text-gray-900 mb-1">Novo sensor</h2>
+      <p class="text-[13px] text-gray-500 mb-4">Cadastre um novo sensor no sistema</p>
+
+      <form id="form-novo-sensor" class="space-y-4">
+
+        <div>
+          <label class="block text-[14px] font-semibold text-black mb-1">Nome</label>
+          <input type="text" id="novo-sensor-nome" required placeholder="Ex: Sensor 08"
+            class="w-full h-[44px] rounded-[8px] border border-[#5f5353] px-4 text-[14px] text-black
+                   focus:outline-none focus:border-[#077C07] focus:ring-1 focus:ring-[#077C07]">
+        </div>
+
+        <div>
+          <label class="block text-[14px] font-semibold text-black mb-1">Tipo de sensor</label>
+          <select id="novo-sensor-tipo"
+            class="w-full h-[44px] rounded-[8px] border border-[#5f5353] px-4 text-[14px] text-black
+                   focus:outline-none focus:border-[#077C07] focus:ring-1 focus:ring-[#077C07]">
+            <option value="Temperatura">Temperatura</option>
+            <option value="Umidade do Solo">Umidade do Solo</option>
+            <option value="Umidade do Ar">Umidade do Ar</option>
+            <option value="Luminosidade">Luminosidade</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[14px] font-semibold text-black mb-2">Ativo</label>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="novo-sensor-ativo" class="sr-only peer" checked>
+            <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-600 transition-colors"></div>
+            <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+          </label>
+          <span id="novo-sensor-ativo-texto" class="ml-3 text-[13px] text-gray-500 align-middle">Ativo</span>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-2">
+          <button type="button" id="cancelar-novo-sensor"
+            class="border border-gray-300 rounded-[8px] px-6 py-2.5 text-[14px] font-semibold text-black hover:bg-gray-50 transition-colors">
+            Cancelar
+          </button>
+          <button type="submit"
+            class="bg-[#077C07] text-white font-bold text-[14px] rounded-[8px] px-6 py-2.5 hover:bg-[#067306] transition-colors">
+            Cadastrar sensor
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // ============================================= //
+    // CONFIGURAÇÃO DE ÍCONES/CORES POR TIPO DE SENSOR  //
+    // ============================================= //
+    const configTipo = {
+      'Temperatura':      { icone: '🌡️', bg: 'bg-green-100', text: 'text-green-600' },
+      'Umidade do Solo':  { icone: '🌱', bg: 'bg-pink-100',   text: 'text-pink-600'  },
+      'Umidade do Ar':    { icone: '💧', bg: 'bg-blue-100',   text: 'text-blue-600'  },
+      'Luminosidade':     { icone: '☀️', bg: 'bg-yellow-100', text: 'text-yellow-600'}
+    };
+
+    const configStatus = {
+      'Ativo':   { bg: 'bg-green-100', text: 'text-green-700', dot: 'bg-green-600' },
+      'Inativo': { bg: 'bg-gray-100',  text: 'text-gray-600',  dot: 'bg-gray-500'  }
+    };
+
+    const modalDetalhes = document.getElementById('modal-detalhes-sensor');
+    const modalEditar   = document.getElementById('modal-editar-sensor');
+    const modalExcluir  = document.getElementById('modal-excluir-sensor');
+    const formEditar    = document.getElementById('form-editar-sensor');
+
+    let idParaExcluir = null;
+    let idParaDetalhes = null;
+
+    // ============================================= //
+    // DETALHES (clicar na linha do sensor)            //
+    // ============================================= //
+    function abrirDetalhes(linha) {
+      idParaDetalhes = linha.dataset.id;
+      const tipo = linha.dataset.tipo;
+      const status = linha.dataset.status;
+      const cfgTipo = configTipo[tipo] || configTipo['Temperatura'];
+      const cfgStatus = configStatus[status] || configStatus['Ativo'];
+
+      document.getElementById('detalhes-sensor-nome').textContent = linha.dataset.nome;
+      document.getElementById('detalhes-sensor-tipo').textContent = tipo;
+      document.getElementById('detalhes-sensor-id').textContent = '#' + linha.dataset.id;
+
+      const icone = document.getElementById('detalhes-sensor-icone');
+      icone.className = `w-12 h-12 rounded-full ${cfgTipo.bg} flex items-center justify-center ${cfgTipo.text} text-2xl`;
+      icone.textContent = cfgTipo.icone;
+
+      const badge = document.getElementById('detalhes-sensor-status');
+      badge.className = `flex items-center gap-1.5 text-xs font-medium ${cfgStatus.text} ${cfgStatus.bg} px-2.5 py-1 rounded-full`;
+      badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full ${cfgStatus.dot}"></span> ${status}`;
+
+      modalDetalhes.classList.remove('hidden');
+    }
+
+    function fecharDetalhes() {
+      idParaDetalhes = null;
+      modalDetalhes.classList.add('hidden');
+    }
+
+    document.querySelectorAll('.linha-sensor').forEach((linha) => {
+      linha.addEventListener('click', (evento) => {
+        // ignora cliques nos botões de ação, que têm seu próprio comportamento
+        if (evento.target.closest('.btn-editar-sensor') || evento.target.closest('.btn-excluir-sensor')) return;
+        abrirDetalhes(linha);
+      });
+    });
+
+    document.getElementById('fechar-detalhes-sensor').addEventListener('click', fecharDetalhes);
+    document.getElementById('fechar-detalhes-sensor-2').addEventListener('click', fecharDetalhes);
+    modalDetalhes.addEventListener('click', (evento) => {
+      if (evento.target === modalDetalhes) fecharDetalhes();
+    });
+
+    // atalho: dentro dos detalhes, "Editar" leva direto para o modal de edição
+    document.getElementById('detalhes-editar-sensor').addEventListener('click', () => {
+      const linha = document.querySelector(`.linha-sensor[data-id="${idParaDetalhes}"]`);
+      fecharDetalhes();
+      if (linha) abrirEditar(linha);
+    });
+
+    // ============================================= //
+    // EDITAR                                          //
+    // ============================================= //
+    function abrirEditar(linha) {
+      document.getElementById('editar-sensor-id').value = linha.dataset.id;
+      document.getElementById('editar-sensor-nome').value = linha.dataset.nome;
+      document.getElementById('editar-sensor-tipo').value = linha.dataset.tipo;
+
+      const ativo = linha.dataset.status === 'Ativo';
+      document.getElementById('editar-sensor-ativo').checked = ativo;
+      document.getElementById('editar-sensor-ativo-texto').textContent = ativo ? 'Ativo' : 'Inativo';
+
+      modalEditar.classList.remove('hidden');
+    }
+
+    function fecharEditar() {
+      modalEditar.classList.add('hidden');
+      formEditar.reset();
+    }
+
+    document.querySelectorAll('.btn-editar-sensor').forEach((botao) => {
+      botao.addEventListener('click', (evento) => {
+        evento.stopPropagation();
+        const linha = botao.closest('.linha-sensor');
+        abrirEditar(linha);
+      });
+    });
+
+    document.getElementById('fechar-editar-sensor').addEventListener('click', fecharEditar);
+    document.getElementById('cancelar-editar-sensor').addEventListener('click', fecharEditar);
+    modalEditar.addEventListener('click', (evento) => {
+      if (evento.target === modalEditar) fecharEditar();
+    });
+
+    // atualiza o texto "Ativo/Inativo" ao lado do switch conforme ele muda
+    document.getElementById('editar-sensor-ativo').addEventListener('change', (evento) => {
+      document.getElementById('editar-sensor-ativo-texto').textContent = evento.target.checked ? 'Ativo' : 'Inativo';
+    });
+
+    formEditar.addEventListener('submit', (evento) => {
+      evento.preventDefault();
+
+      const id = document.getElementById('editar-sensor-id').value;
+      const linha = document.querySelector(`.linha-sensor[data-id="${id}"]`);
+      if (!linha) return;
+
+      const nome = document.getElementById('editar-sensor-nome').value.trim();
+      const tipo = document.getElementById('editar-sensor-tipo').value;
+      const status = document.getElementById('editar-sensor-ativo').checked ? 'Ativo' : 'Inativo';
+
+      // atualiza os dados guardados na linha
+      linha.dataset.nome = nome;
+      linha.dataset.tipo = tipo;
+      linha.dataset.status = status;
+
+      // atualiza o que aparece na tela
+      linha.querySelector('.sensor-nome').textContent = nome;
+      linha.querySelector('.sensor-tipo').textContent = tipo;
+
+      const cfgTipo = configTipo[tipo] || configTipo['Temperatura'];
+      const icone = linha.querySelector('.sensor-icone');
+      icone.className = `sensor-icone w-9 h-9 rounded-full ${cfgTipo.bg} flex items-center justify-center ${cfgTipo.text} text-lg`;
+      icone.textContent = cfgTipo.icone;
+
+      const cfgStatus = configStatus[status] || configStatus['Ativo'];
+      const badge = linha.querySelector('.sensor-status-badge');
+      badge.className = `sensor-status-badge flex items-center gap-1 text-xs font-medium ${cfgStatus.text} ${cfgStatus.bg} px-2.5 py-1 rounded-full`;
+      linha.querySelector('.sensor-status-dot').className = `sensor-status-dot w-1.5 h-1.5 rounded-full ${cfgStatus.dot}`;
+      linha.querySelector('.sensor-status-texto').textContent = status;
+
+      // TODO - INTEGRAÇÃO COM BACKEND:
+      // PATCH/PUT /sensor/:id com { nome, tipo, status }
+
+      fecharEditar();
+    });
+
+    // ============================================= //
+    // EXCLUIR                                         //
+    // ============================================= //
+    function abrirExcluir(linha) {
+      idParaExcluir = linha.dataset.id;
+      document.getElementById('excluir-sensor-nome').textContent = linha.dataset.nome;
+      modalExcluir.classList.remove('hidden');
+    }
+
+    function fecharExcluir() {
+      idParaExcluir = null;
+      modalExcluir.classList.add('hidden');
+    }
+
+    document.querySelectorAll('.btn-excluir-sensor').forEach((botao) => {
+      botao.addEventListener('click', (evento) => {
+        evento.stopPropagation();
+        const linha = botao.closest('.linha-sensor');
+        abrirExcluir(linha);
+      });
+    });
+
+    document.getElementById('cancelar-excluir-sensor').addEventListener('click', fecharExcluir);
+    modalExcluir.addEventListener('click', (evento) => {
+      if (evento.target === modalExcluir) fecharExcluir();
+    });
+
+    document.getElementById('confirmar-excluir-sensor').addEventListener('click', () => {
+      if (idParaExcluir) {
+        const linha = document.querySelector(`.linha-sensor[data-id="${idParaExcluir}"]`);
+        if (linha) linha.remove();
+
+        // TODO - INTEGRAÇÃO COM BACKEND:
+        // DELETE /sensor/:id
+      }
+      fecharExcluir();
+    });
+
+        // ============================================= //
+    // BUSCA                                           //
+    // ============================================= //
+    document.getElementById('busca-sensor').addEventListener('input', (evento) => {
+      const termo = evento.target.value.trim().toLowerCase();
+      document.querySelectorAll('.linha-sensor').forEach((linha) => {
+        const nome = linha.dataset.nome.toLowerCase();
+        const tipo = linha.dataset.tipo.toLowerCase();
+        const corresponde = nome.includes(termo) || tipo.includes(termo);
+        linha.style.display = corresponde ? '' : 'none';
+      });
+    });
+
+    // ============================================= //
+    // NOVO SENSOR                                     //
+    // ============================================= //
+    const modalNovo = document.getElementById('modal-novo-sensor');
+    const formNovo   = document.getElementById('form-novo-sensor');
+
+    function abrirNovo() {
+      modalNovo.classList.remove('hidden');
+    }
+
+    function fecharNovo() {
+      modalNovo.classList.add('hidden');
+      formNovo.reset();
+      document.getElementById('novo-sensor-ativo-texto').textContent = 'Ativo';
+    }
+
+    document.getElementById('btn-novo-sensor').addEventListener('click', abrirNovo);
+    document.getElementById('fechar-novo-sensor').addEventListener('click', fecharNovo);
+    document.getElementById('cancelar-novo-sensor').addEventListener('click', fecharNovo);
+    modalNovo.addEventListener('click', (evento) => {
+      if (evento.target === modalNovo) fecharNovo();
+    });
+
+    document.getElementById('novo-sensor-ativo').addEventListener('change', (evento) => {
+      document.getElementById('novo-sensor-ativo-texto').textContent = evento.target.checked ? 'Ativo' : 'Inativo';
+    });
+
+    // liga clique/editar/excluir em uma linha recém-criada (as mesmas ações das linhas originais)
+    function ligarEventosLinha(linha) {
+      linha.addEventListener('click', (evento) => {
+        if (evento.target.closest('.btn-editar-sensor') || evento.target.closest('.btn-excluir-sensor')) return;
+        abrirDetalhes(linha);
+      });
+      linha.querySelector('.btn-editar-sensor').addEventListener('click', (evento) => {
+        evento.stopPropagation();
+        abrirEditar(linha);
+      });
+      linha.querySelector('.btn-excluir-sensor').addEventListener('click', (evento) => {
+        evento.stopPropagation();
+        abrirExcluir(linha);
+      });
+    }
+
+    formNovo.addEventListener('submit', (evento) => {
+      evento.preventDefault();
+
+      const nome = document.getElementById('novo-sensor-nome').value.trim();
+      const tipo = document.getElementById('novo-sensor-tipo').value;
+      const status = document.getElementById('novo-sensor-ativo').checked ? 'Ativo' : 'Inativo';
+
+      // gera um novo id (maior id existente + 1)
+      const idsExistentes = Array.from(document.querySelectorAll('.linha-sensor'))
+        .map((linha) => parseInt(linha.dataset.id, 10));
+      const novoId = idsExistentes.length ? Math.max(...idsExistentes) + 1 : 1;
+
+      const cfgTipo = configTipo[tipo] || configTipo['Temperatura'];
+      const cfgStatus = configStatus[status] || configStatus['Ativo'];
+
+      const novaLinha = document.createElement('div');
+      novaLinha.className = 'linha-sensor flex items-center justify-between border border-gray-200 rounded-[10px] px-4 py-3 cursor-pointer hover:border-[#077C07] transition-colors';
+      novaLinha.dataset.id = novoId;
+      novaLinha.dataset.nome = nome;
+      novaLinha.dataset.tipo = tipo;
+      novaLinha.dataset.status = status;
+
+      novaLinha.innerHTML = `
+        <div class="flex items-center gap-3">
+          <div class="sensor-icone w-9 h-9 rounded-full ${cfgTipo.bg} flex items-center justify-center ${cfgTipo.text} text-lg">${cfgTipo.icone}</div>
+          <div>
+            <p class="sensor-nome font-semibold text-gray-900">${nome}</p>
+            <p class="sensor-tipo text-sm text-gray-500">${tipo}</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" class="btn-editar-sensor flex items-center gap-1 text-sm border border-gray-300 rounded-[8px] px-3 py-1.5 hover:bg-gray-50">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
+            </svg>
+            Editar
+          </button>
+          <button type="button" class="btn-excluir-sensor flex items-center gap-1 text-sm border border-red-200 text-red-600 rounded-[8px] px-3 py-1.5 hover:bg-red-50">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+            </svg>
+            Excluir
+          </button>
+          <span class="sensor-status-badge flex items-center gap-1 text-xs font-medium ${cfgStatus.text} ${cfgStatus.bg} px-2.5 py-1 rounded-full">
+            <span class="sensor-status-dot w-1.5 h-1.5 rounded-full ${cfgStatus.dot}"></span>
+            <span class="sensor-status-texto">${status}</span>
+          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-gray-400">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </div>
+      `;
+
+      document.getElementById('lista-sensores').appendChild(novaLinha);
+      ligarEventosLinha(novaLinha);
+
+      // TODO - INTEGRAÇÃO COM BACKEND:
+      // POST /sensor com { nome, tipo, status }
+
+      fecharNovo();
+    });
+    
+  </script>
 
 </body>
-
 </html>

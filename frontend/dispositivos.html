@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgroSensor - Dispositivos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="h-screen bg-white overflow-hidden">
+  <div class="flex h-screen">
+
+    <!-- MENU LATERAL -->
+    <aside class="w-[260px] shrink-0 bg-[#6aa86a] flex flex-col justify-between h-screen">
+      <div>
+
+        <!-- LOGO -->
+        <div class="flex items-center justify-center px-6 py-8">
+          <img src="assets/logo-agrosensor.svg" alt="AgroSensor" class="h-8" />
+        </div>
+
+        <!-- ITENS DO MENU -->
+        <nav class="space-y-1 px-3">
+
+          <a href="index.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.125 1.125 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            </svg>
+            Dashboard
+          </a>
+
+          <a href="plantacoes.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4.97 0-9-4.03-9-9 0-4.97 9-12 9-12s9 7.03 9 12c0 4.97-4.03 9-9 9z" />
+            </svg>
+            Plantações
+          </a>
+
+          <a href="sensores.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12 20.25h.008v.008H12v-.008z" />
+            </svg>
+            Sensores
+          </a>
+
+          <a href="dispositivos.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] bg-[#5a9c5a] text-white font-semibold">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+            </svg>
+            Dispositivos
+          </a>
+
+          <a href="alertas.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+            </svg>
+            Alertas
+          </a>
+
+          <a href="perfil.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
+            Perfil
+          </a>
+
+          <a href="configuracoes.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Configurações
+          </a>
+
+          <a href="ajuda.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M12 18h.008v.008H12V18z" /><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Ajuda
+          </a>
+
+        </nav>
+      </div>
+
+      <!-- SAIR -->
+      <div class="px-3 pb-8">
+        <a href="login.html"
+           class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H3" />
+          </svg>
+          Sair
+        </a>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="flex-1 flex flex-col p-8 overflow-y-auto">
+
+      <!-- CABEÇALHO -->
+      <div class="flex items-center justify-between mb-6">
+        <h1 class="text-2xl font-bold text-gray-900">Dispositivos</h1>
+<a href="index.html" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</a>
+</div>
+
+<!-- BUSCA + NOVO -->
+<div class="flex items-center gap-4 mb-6">
+    <div class="flex-1 relative">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+    </svg>
+    <input type="text" id="busca-dispositivo" placeholder="Buscar dispositivo..."
+            class="w-full pl-10 pr-4 py-2.5 rounded-[8px] border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#077C07]" />
+</div>
+<button type="button" id="btn-novo-dispositivo" class="flex items-center gap-2 bg-[#077C07] hover:bg-[#067306] text-white font-semibold px-4 py-2.5 rounded-[8px] whitespace-nowrap transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+    </svg>
+    Novo dispositivo
+</button>
+</div>
+
+      <!-- LISTA DE DISPOSITIVOS -->
+<div id="lista-dispositivos" class="flex flex-col gap-3">
+
+    <!-- Dispositivo 01 -->
+    <div class="linha-dispositivo flex items-center justify-between border border-gray-200 rounded-[10px] px-5 py-4"
+         data-id="1" data-nome="Arduino Mega 2560" data-sensores="3" data-status="Ativo">
+        <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-[8px] bg-blue-50 flex items-center justify-center text-3xl">🔌</div>
+            <div>
+                <p class="dispositivo-nome text-lg font-bold text-gray-900">Arduino Mega 2560</p>
+                <p class="text-sm text-gray-500">1 dispositivo conectado</p>
+                <p class="text-sm text-gray-500">Sensores conectados: <span class="dispositivo-sensores text-green-700 font-semibold">3</span></p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <button type="button" class="btn-excluir-dispositivo flex items-center gap-1 text-sm border border-red-200 text-red-600 rounded-[8px] px-3 py-1.5 hover:bg-red-50">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                </svg>
+                Excluir
+            </button>
+            <span class="dispositivo-status-badge flex items-center gap-1 text-xs font-medium text-green-700 bg-green-100 px-2.5 py-1 rounded-full">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                <span class="dispositivo-status-texto">Ativo</span>
+            </span>
+        </div>
+    </div>
+
+</div>
+
+      <!-- VOLTAR -->
+      <div class="mt-6">
+        <a href="index.html"
+           class="inline-block border border-gray-300 rounded-[8px] px-6 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+          Voltar
+        </a>
+      </div>
+
+    </main>
+  </div>
+
+    <!-- ============================================= -->
+  <!-- MODAL: NOVO DISPOSITIVO                         -->
+  <!-- ============================================= -->
+  <div id="modal-novo-dispositivo" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-[10px] w-full max-w-[420px] p-6 relative shadow-xl">
+
+      <button type="button" id="fechar-novo-dispositivo" class="absolute top-4 right-4 text-gray-400 text-xl hover:text-gray-600">✕</button>
+
+      <h2 class="text-[18px] font-bold text-gray-900 mb-1">Novo dispositivo</h2>
+      <p class="text-[13px] text-gray-500 mb-4">Cadastre um novo dispositivo no sistema</p>
+
+      <form id="form-novo-dispositivo" class="space-y-4">
+
+        <div>
+          <label class="block text-[14px] font-semibold text-black mb-1">Nome / Modelo</label>
+          <select id="novo-dispositivo-nome"
+            class="w-full h-[44px] rounded-[8px] border border-[#5f5353] px-4 text-[14px] text-black
+                   focus:outline-none focus:border-[#077C07] focus:ring-1 focus:ring-[#077C07]">
+            <option>Arduino Mega 2560</option>
+            <option>Arduino Uno</option>
+            <option>ESP32</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[14px] font-semibold text-black mb-1">Sensores conectados</label>
+          <input type="number" id="novo-dispositivo-sensores" min="0" value="0" required
+            class="w-full h-[44px] rounded-[8px] border border-[#5f5353] px-4 text-[14px] text-black
+                   focus:outline-none focus:border-[#077C07] focus:ring-1 focus:ring-[#077C07]">
+        </div>
+
+        <div>
+          <label class="block text-[14px] font-semibold text-black mb-2">Ativo</label>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="novo-dispositivo-ativo" class="sr-only peer" checked>
+            <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-600 transition-colors"></div>
+            <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+          </label>
+          <span id="novo-dispositivo-ativo-texto" class="ml-3 text-[13px] text-gray-500 align-middle">Ativo</span>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-2">
+          <button type="button" id="cancelar-novo-dispositivo"
+            class="border border-gray-300 rounded-[8px] px-6 py-2.5 text-[14px] font-semibold text-black hover:bg-gray-50 transition-colors">
+            Cancelar
+          </button>
+          <button type="submit"
+            class="bg-[#077C07] text-white font-bold text-[14px] rounded-[8px] px-6 py-2.5 hover:bg-[#067306] transition-colors">
+            Cadastrar dispositivo
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+
+  <!-- ============================================= -->
+  <!-- MODAL: CONFIRMAR EXCLUSÃO DO DISPOSITIVO        -->
+  <!-- ============================================= -->
+  <div id="modal-excluir-dispositivo" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-[10px] w-full max-w-[380px] p-6 text-center shadow-xl">
+
+      <div class="mx-auto mb-3 w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-6 h-6 text-red-600">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+        </svg>
+      </div>
+
+      <h2 class="text-[18px] font-bold text-black mb-2">Excluir dispositivo</h2>
+      <p class="text-[14px] text-[#817979] mb-6">
+        Tem certeza que deseja excluir <span id="excluir-dispositivo-nome" class="font-semibold text-black"></span>?
+        Essa ação não pode ser desfeita.
+      </p>
+
+      <div class="flex items-center justify-center gap-3">
+        <button type="button" id="cancelar-excluir-dispositivo"
+          class="border border-gray-300 rounded-[8px] px-6 py-2.5 text-[14px] font-semibold text-black hover:bg-gray-50 transition-colors">
+          Cancelar
+        </button>
+        <button type="button" id="confirmar-excluir-dispositivo"
+          class="bg-red-600 text-white font-bold text-[14px] rounded-[8px] px-6 py-2.5 hover:bg-red-700 transition-colors">
+          Sim, excluir
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+  <script>
+    // ============================================= //
+    // BUSCA                                           //
+    // ============================================= //
+    document.getElementById('busca-dispositivo').addEventListener('input', (evento) => {
+      const termo = evento.target.value.trim().toLowerCase();
+      document.querySelectorAll('.linha-dispositivo').forEach((linha) => {
+        const nome = linha.dataset.nome.toLowerCase();
+        linha.style.display = nome.includes(termo) ? '' : 'none';
+      });
+    });
+
+    // ============================================= //
+    // EXCLUIR                                         //
+    // ============================================= //
+    const modalExcluir = document.getElementById('modal-excluir-dispositivo');
+    let idParaExcluir = null;
+
+    function abrirExcluir(linha) {
+      idParaExcluir = linha.dataset.id;
+      document.getElementById('excluir-dispositivo-nome').textContent = linha.dataset.nome;
+      modalExcluir.classList.remove('hidden');
+    }
+
+    function fecharExcluir() {
+      idParaExcluir = null;
+      modalExcluir.classList.add('hidden');
+    }
+
+    function ligarExcluir(linha) {
+      linha.querySelector('.btn-excluir-dispositivo').addEventListener('click', () => abrirExcluir(linha));
+    }
+
+    document.querySelectorAll('.linha-dispositivo').forEach(ligarExcluir);
+
+    document.getElementById('cancelar-excluir-dispositivo').addEventListener('click', fecharExcluir);
+    modalExcluir.addEventListener('click', (evento) => {
+      if (evento.target === modalExcluir) fecharExcluir();
+    });
+
+    document.getElementById('confirmar-excluir-dispositivo').addEventListener('click', () => {
+      if (idParaExcluir) {
+        const linha = document.querySelector(`.linha-dispositivo[data-id="${idParaExcluir}"]`);
+        if (linha) linha.remove();
+
+        // TODO - INTEGRAÇÃO COM BACKEND:
+        // DELETE /dispositivo/:id
+      }
+      fecharExcluir();
+    });
+
+    // ============================================= //
+    // NOVO DISPOSITIVO                                //
+    // ============================================= //
+    const modalNovo = document.getElementById('modal-novo-dispositivo');
+    const formNovo = document.getElementById('form-novo-dispositivo');
+
+    function abrirNovo() {
+      modalNovo.classList.remove('hidden');
+    }
+
+    function fecharNovo() {
+      modalNovo.classList.add('hidden');
+      formNovo.reset();
+      document.getElementById('novo-dispositivo-ativo-texto').textContent = 'Ativo';
+    }
+
+    document.getElementById('btn-novo-dispositivo').addEventListener('click', abrirNovo);
+    document.getElementById('fechar-novo-dispositivo').addEventListener('click', fecharNovo);
+    document.getElementById('cancelar-novo-dispositivo').addEventListener('click', fecharNovo);
+    modalNovo.addEventListener('click', (evento) => {
+      if (evento.target === modalNovo) fecharNovo();
+    });
+
+    document.getElementById('novo-dispositivo-ativo').addEventListener('change', (evento) => {
+      document.getElementById('novo-dispositivo-ativo-texto').textContent = evento.target.checked ? 'Ativo' : 'Inativo';
+    });
+
+    formNovo.addEventListener('submit', (evento) => {
+      evento.preventDefault();
+
+      const nome = document.getElementById('novo-dispositivo-nome').value;
+      const sensores = document.getElementById('novo-dispositivo-sensores').value;
+      const status = document.getElementById('novo-dispositivo-ativo').checked ? 'Ativo' : 'Inativo';
+
+      const idsExistentes = Array.from(document.querySelectorAll('.linha-dispositivo'))
+        .map((linha) => parseInt(linha.dataset.id, 10));
+      const novoId = idsExistentes.length ? Math.max(...idsExistentes) + 1 : 1;
+
+      const corStatus = status === 'Ativo'
+        ? { bg: 'bg-green-100', text: 'text-green-700', dot: 'bg-green-600' }
+        : { bg: 'bg-gray-100', text: 'text-gray-600', dot: 'bg-gray-500' };
+
+      const novaLinha = document.createElement('div');
+      novaLinha.className = 'linha-dispositivo flex items-center justify-between border border-gray-200 rounded-[10px] px-5 py-4';
+      novaLinha.dataset.id = novoId;
+      novaLinha.dataset.nome = nome;
+      novaLinha.dataset.sensores = sensores;
+      novaLinha.dataset.status = status;
+
+      novaLinha.innerHTML = `
+        <div class="flex items-center gap-4">
+          <div class="w-16 h-16 rounded-[8px] bg-blue-50 flex items-center justify-center text-3xl">🔌</div>
+          <div>
+            <p class="dispositivo-nome text-lg font-bold text-gray-900">${nome}</p>
+            <p class="text-sm text-gray-500">1 dispositivo conectado</p>
+            <p class="text-sm text-gray-500">Sensores conectados: <span class="dispositivo-sensores text-green-700 font-semibold">${sensores}</span></p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" class="btn-excluir-dispositivo flex items-center gap-1 text-sm border border-red-200 text-red-600 rounded-[8px] px-3 py-1.5 hover:bg-red-50">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+            </svg>
+            Excluir
+          </button>
+          <span class="dispositivo-status-badge flex items-center gap-1 text-xs font-medium ${corStatus.text} ${corStatus.bg} px-2.5 py-1 rounded-full">
+            <span class="w-1.5 h-1.5 rounded-full ${corStatus.dot}"></span>
+            <span class="dispositivo-status-texto">${status}</span>
+          </span>
+        </div>
+      `;
+
+      document.getElementById('lista-dispositivos').appendChild(novaLinha);
+      ligarExcluir(novaLinha);
+
+      // TODO - INTEGRAÇÃO COM BACKEND:
+      // POST /dispositivo com { nome, sensores, status }
+
+      fecharNovo();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgroSensor - Perfil</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="h-screen bg-white overflow-hidden">
+  <div class="flex h-screen">
+
+    <!-- MENU LATERAL -->
+    <aside class="w-[260px] shrink-0 bg-[#6aa86a] flex flex-col justify-between h-screen">
+      <div>
+
+        <!-- LOGO -->
+        <div class="flex items-center justify-center px-6 py-8">
+          <img src="assets/logo-agrosensor.svg" alt="AgroSensor" class="h-8" />
+        </div>
+
+        <!-- ITENS DO MENU -->
+        <nav class="space-y-1 px-3">
+
+          <a href="index.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.125 1.125 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            </svg>
+            Dashboard
+          </a>
+
+          <a href="plantacoes.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4.97 0-9-4.03-9-9 0-4.97 9-12 9-12s9 7.03 9 12c0 4.97-4.03 9-9 9z" />
+            </svg>
+            Plantações
+          </a>
+
+          <a href="sensores.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12 20.25h.008v.008H12v-.008z" />
+            </svg>
+            Sensores
+          </a>
+
+          <a href="dispositivos.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+            </svg>
+            Dispositivos
+          </a>
+
+          <a href="alertas.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+            </svg>
+            Alertas
+          </a>
+
+          <a href="perfil.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] bg-[#5a9c5a] text-white font-semibold">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
+            Perfil
+          </a>
+
+          <a href="configuracoes.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Configurações
+          </a>
+
+          <a href="ajuda.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M12 18h.008v.008H12V18z" /><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Ajuda
+          </a>
+
+        </nav>
+      </div>
+
+      <!-- SAIR -->
+      <div class="px-3 pb-8">
+        <a href="login.html"
+           class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H3" />
+          </svg>
+          Sair
+        </a>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="flex-1 flex flex-col p-8 overflow-y-auto">
+
+      <!-- CABEÇALHO -->
+      <div class="flex items-center justify-between mb-6">
+        <h1 class="text-2xl font-bold text-gray-900">Perfil</h1>
+        <a href="index.html" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</a>
+      </div>
+
+      <!-- CARD DO USUÁRIO -->
+      <div class="border border-gray-200 rounded-[10px] px-5 py-4 mb-4">
+        <div class="flex items-center gap-4">
+          <div class="relative w-14 h-14 shrink-0">
+            <div id="avatar-placeholder" class="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-8 h-8 text-gray-400">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <img id="avatar-usuario" src="" alt="Foto de perfil" class="hidden w-14 h-14 rounded-full object-cover absolute inset-0" />
+            <button type="button" onclick="document.getElementById('input-avatar').click()"
+                    title="Trocar foto de perfil"
+                    class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#077C07] hover:bg-[#067306] flex items-center justify-center border-2 border-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z" />
+              </svg>
+            </button>
+            <input type="file" id="input-avatar" accept="image/*" class="hidden" onchange="trocarFotoPerfil(event)">
+          </div>
+          <div>
+            <p id="nome-topo-perfil" class="text-lg font-bold text-gray-900">Sem Júnior</p>
+            <p class="text-sm text-gray-500">Agricultor Familiar &middot; Vale do Jequitinhonha, MG</p>
+            <span class="inline-flex items-center gap-1 mt-1 text-xs font-medium text-green-700 bg-green-100 px-2.5 py-1 rounded-full">
+              <span class="w-1.5 h-1.5 rounded-full bg-green-600"></span> Conta Ativa
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DADOS PESSOAIS -->
+      <div class="border border-gray-200 rounded-[10px] px-5 py-4 mb-4">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-bold text-gray-900">Dados Pessoais</h2>
+
+          <div id="dados-pessoais-acoes-visualizacao">
+            <button type="button" onclick="editarDadosPessoais()"
+                    class="flex items-center gap-1 text-sm border border-gray-300 rounded-[8px] px-3 py-1.5 hover:bg-gray-50">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
+              </svg>
+              Editar
+            </button>
+          </div>
+
+          <div id="dados-pessoais-acoes-edicao" class="hidden flex items-center gap-2">
+            <button type="button" onclick="cancelarEdicaoDadosPessoais()"
+                    class="text-sm border border-gray-300 rounded-[8px] px-3 py-1.5 text-gray-700 hover:bg-gray-50">
+              Cancelar
+            </button>
+            <button type="button" onclick="salvarDadosPessoais()"
+                    class="text-sm bg-[#077C07] hover:bg-[#067306] text-white rounded-[8px] px-3 py-1.5 font-semibold transition-colors">
+              Salvar
+            </button>
+          </div>
+        </div>
+
+        <!-- MODO VISUALIZAÇÃO -->
+        <div id="dados-pessoais-visualizacao" class="grid grid-cols-2 gap-x-8 gap-y-4">
+          <div>
+            <p class="text-xs text-gray-400 mb-1">Nome Completo</p>
+            <p id="view-nome" class="text-sm font-medium text-gray-900">Sem Júnior Neymar</p>
+          </div>
+          <div>
+            <p class="text-xs text-gray-400 mb-1">E-mail</p>
+            <p id="view-email" class="text-sm font-medium text-gray-900">semjunior@email.com</p>
+          </div>
+          <div>
+            <p class="text-xs text-gray-400 mb-1">Telefone</p>
+            <p id="view-telefone" class="text-sm font-medium text-gray-900">4002-8922</p>
+          </div>
+        </div>
+
+        <!-- MODO EDIÇÃO -->
+        <form id="dados-pessoais-edicao" class="hidden grid grid-cols-2 gap-x-8 gap-y-4" onsubmit="event.preventDefault(); salvarDadosPessoais();">
+          <div>
+            <label for="edit-nome" class="block text-xs text-gray-400 mb-1">Nome Completo</label>
+            <input type="text" id="edit-nome" required
+                   class="w-full rounded-[8px] border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#077C07] focus:border-transparent">
+          </div>
+          <div>
+            <label for="edit-email" class="block text-xs text-gray-400 mb-1">E-mail</label>
+            <input type="email" id="edit-email" required
+                   class="w-full rounded-[8px] border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#077C07] focus:border-transparent">
+          </div>
+          <div>
+            <label for="edit-telefone" class="block text-xs text-gray-400 mb-1">Telefone</label>
+            <input type="tel" id="edit-telefone" required
+                   class="w-full rounded-[8px] border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#077C07] focus:border-transparent">
+          </div>
+        </form>
+      </div>
+
+      <!-- AÇÕES DA CONTA -->
+      <div class="border border-gray-200 rounded-[10px] px-5 py-4 mb-4">
+        <h2 class="text-lg font-bold text-gray-900 mb-4">Ações da Conta</h2>
+        <div class="flex flex-col gap-2">
+
+          <a href="#" onclick="abrirModalAlterarSenha(); return false;"
+             class="flex items-center justify-between border border-gray-200 rounded-[8px] px-4 py-3 hover:bg-gray-50 transition-colors">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-[8px] bg-blue-100 flex items-center justify-center text-blue-600">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4.5 h-4.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-gray-900">Alterar Senha</p>
+                <p class="text-xs text-gray-500">Atualize sua senha de acesso</p>
+              </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-gray-400">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </a>
+
+          <a href="configuracoes.html" class="flex items-center justify-between border border-gray-200 rounded-[8px] px-4 py-3 hover:bg-gray-50 transition-colors">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-[8px] bg-gray-100 flex items-center justify-center text-gray-600">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4.5 h-4.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-gray-900">Configurações</p>
+                <p class="text-xs text-gray-500">Tema, notificações e preferências</p>
+              </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-gray-400">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </a>
+
+          <a href="#" onclick="abrirModalExcluirConta(); return false;"
+             class="flex items-center justify-between border border-red-200 rounded-[8px] px-4 py-3 hover:bg-red-50 transition-colors">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-[8px] bg-red-100 flex items-center justify-center text-red-600">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4.5 h-4.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0zM6 6l12 12" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-red-600">Excluir Conta</p>
+                <p class="text-xs text-red-500">Está ação é irreversível</p>
+              </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-gray-400">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- VOLTAR -->
+      <div>
+        <a href="index.html"
+           class="inline-block border border-gray-300 rounded-[8px] px-6 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+          Voltar
+        </a>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- MODAL: CONFIRMAR EXCLUSÃO -->
+  <div id="modal-excluir-conta" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div class="bg-white rounded-[10px] w-full max-w-sm p-6 text-center shadow-xl">
+
+      <div class="w-14 h-14 rounded-full bg-red-600 flex items-center justify-center mx-auto mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" class="w-7 h-7">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0 3h.008v.008H12V15.75zm9-3.75a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+
+      <h2 class="text-lg font-bold text-gray-900 mb-2">Excluir Conta</h2>
+      <p class="text-sm text-gray-500 mb-1">Tem certeza que deseja excluir sua conta?</p>
+      <p class="text-xs text-gray-400 mb-6">
+        Esta ação não pode ser desfeita e todos os seus dados serão permanentemente removidos.
+      </p>
+
+      <div class="flex items-center gap-3">
+        <button onclick="fecharModalExcluirConta()"
+                class="flex-1 border border-gray-300 rounded-[8px] py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+          Cancelar
+        </button>
+        <button onclick="confirmarExclusaoConta()"
+                class="flex-1 bg-red-600 hover:bg-red-700 text-white rounded-[8px] py-2.5 text-sm font-semibold transition-colors">
+          Excluir Conta
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL: SUCESSO -->
+  <div id="modal-conta-excluida" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div class="bg-white rounded-[10px] w-full max-w-sm p-6 text-center shadow-xl">
+
+      <div class="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" class="w-7 h-7">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+        </svg>
+      </div>
+
+      <h2 class="text-lg font-bold text-gray-900 mb-2">Conta excluída com sucesso!</h2>
+      <p class="text-sm text-gray-500 mb-6">
+        Sua conta foi excluída permanentemente e todos os seus dados foram removidos dos nosso sistemas.
+      </p>
+
+      <a href="login.html" class="text-sm font-semibold text-[#077C07] hover:underline">
+        Ir para a página inicial
+      </a>
+
+    </div>
+  </div>
+
+  <!-- MODAL: ALTERAR SENHA -->
+  <div id="modal-alterar-senha" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div class="bg-white rounded-[10px] w-full max-w-sm p-6 shadow-xl">
+
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-bold text-gray-900">Alterar Senha</h2>
+        <button onclick="fecharModalAlterarSenha()" class="text-gray-400 hover:text-gray-600 text-xl leading-none">&times;</button>
+      </div>
+
+      <form id="form-alterar-senha" class="space-y-4" onsubmit="confirmarAlteracaoSenha(event)">
+
+        <div>
+          <label class="block text-xs text-gray-500 mb-1" for="senha-atual">Senha atual</label>
+          <input type="password" id="senha-atual" required
+                 class="w-full rounded-[8px] border border-gray-300 px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#077C07] focus:border-transparent">
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-500 mb-1" for="nova-senha">Nova senha</label>
+          <input type="password" id="nova-senha" required minlength="8"
+                 class="w-full rounded-[8px] border border-gray-300 px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#077C07] focus:border-transparent">
+          <p class="text-xs text-gray-400 mt-1">Mínimo de 8 caracteres.</p>
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-500 mb-1" for="confirmar-senha">Confirmar nova senha</label>
+          <input type="password" id="confirmar-senha" required minlength="8"
+                 class="w-full rounded-[8px] border border-gray-300 px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#077C07] focus:border-transparent">
+        </div>
+
+        <p id="erro-alterar-senha" class="hidden text-xs text-red-600"></p>
+
+        <div class="flex items-center gap-3 pt-2">
+          <button type="button" onclick="fecharModalAlterarSenha()"
+                  class="flex-1 border border-gray-300 rounded-[8px] py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+            Cancelar
+          </button>
+          <button type="submit"
+                  class="flex-1 bg-[#077C07] hover:bg-[#067306] text-white rounded-[8px] py-2.5 text-sm font-semibold transition-colors">
+            Salvar
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: SENHA ALTERADA COM SUCESSO -->
+  <div id="modal-senha-alterada" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div class="bg-white rounded-[10px] w-full max-w-sm p-6 text-center shadow-xl">
+
+      <div class="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" class="w-7 h-7">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+        </svg>
+      </div>
+
+      <h2 class="text-lg font-bold text-gray-900 mb-2">Senha alterada com sucesso!</h2>
+      <p class="text-sm text-gray-500 mb-6">
+        Sua senha foi atualizada. Use a nova senha no seu próximo login.
+      </p>
+
+      <button onclick="fecharModalSenhaAlterada()"
+              class="text-sm font-semibold text-[#077C07] hover:underline">
+        Fechar
+      </button>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    function abrirModalExcluirConta() {
+      document.getElementById("modal-excluir-conta").classList.remove("hidden");
+    }
+    function fecharModalExcluirConta() {
+      document.getElementById("modal-excluir-conta").classList.add("hidden");
+    }
+    function confirmarExclusaoConta() {
+      // Troque pela chamada real de exclusão de conta (API/backend)
+      fecharModalExcluirConta();
+      document.getElementById("modal-conta-excluida").classList.remove("hidden");
+    }
+
+    function abrirModalAlterarSenha() {
+      document.getElementById("form-alterar-senha").reset();
+      document.getElementById("erro-alterar-senha").classList.add("hidden");
+      document.getElementById("modal-alterar-senha").classList.remove("hidden");
+    }
+    function fecharModalAlterarSenha() {
+      document.getElementById("modal-alterar-senha").classList.add("hidden");
+    }
+    function confirmarAlteracaoSenha(event) {
+      event.preventDefault();
+      const novaSenha = document.getElementById("nova-senha").value;
+      const confirmarSenha = document.getElementById("confirmar-senha").value;
+      const erro = document.getElementById("erro-alterar-senha");
+
+      if (novaSenha !== confirmarSenha) {
+        erro.textContent = "As senhas não coincidem. Tente novamente.";
+        erro.classList.remove("hidden");
+        return;
+      }
+
+      // Troque pela chamada real de alteração de senha (API/backend)
+      fecharModalAlterarSenha();
+      document.getElementById("modal-senha-alterada").classList.remove("hidden");
+    }
+    function fecharModalSenhaAlterada() {
+      document.getElementById("modal-senha-alterada").classList.add("hidden");
+    }
+
+    function trocarFotoPerfil(event) {
+      const arquivo = event.target.files && event.target.files[0];
+      if (!arquivo) return;
+
+      if (!arquivo.type.startsWith("image/")) {
+        alert("Selecione um arquivo de imagem válido.");
+        return;
+      }
+
+      const leitor = new FileReader();
+      leitor.onload = function (e) {
+        aplicarFotoPerfil(e.target.result);
+        // Troque por um upload real pro backend (ex: enviar `arquivo` via FormData)
+        try {
+          localStorage.setItem("agrosensor-avatar-perfil", e.target.result);
+        } catch (err) {
+          console.warn("Não foi possível salvar a foto localmente:", err);
+        }
+      };
+      leitor.readAsDataURL(arquivo);
+    }
+
+    function aplicarFotoPerfil(dataUrl) {
+      const img = document.getElementById("avatar-usuario");
+      const placeholder = document.getElementById("avatar-placeholder");
+      img.src = dataUrl;
+      img.classList.remove("hidden");
+      placeholder.classList.add("hidden");
+    }
+
+    // Ao carregar a página, recupera a última foto salva (se houver)
+    (function carregarFotoPerfilSalva() {
+      try {
+        const salva = localStorage.getItem("agrosensor-avatar-perfil");
+        if (salva) aplicarFotoPerfil(salva);
+      } catch (err) {
+        console.warn("Não foi possível recuperar a foto salva:", err);
+      }
+    })();
+
+    function editarDadosPessoais() {
+      document.getElementById("edit-nome").value = document.getElementById("view-nome").textContent.trim();
+      document.getElementById("edit-email").value = document.getElementById("view-email").textContent.trim();
+      document.getElementById("edit-telefone").value = document.getElementById("view-telefone").textContent.trim();
+
+      document.getElementById("dados-pessoais-visualizacao").classList.add("hidden");
+      document.getElementById("dados-pessoais-acoes-visualizacao").classList.add("hidden");
+      document.getElementById("dados-pessoais-edicao").classList.remove("hidden");
+      document.getElementById("dados-pessoais-acoes-edicao").classList.remove("hidden");
+    }
+
+    function cancelarEdicaoDadosPessoais() {
+      document.getElementById("dados-pessoais-edicao").classList.add("hidden");
+      document.getElementById("dados-pessoais-acoes-edicao").classList.add("hidden");
+      document.getElementById("dados-pessoais-visualizacao").classList.remove("hidden");
+      document.getElementById("dados-pessoais-acoes-visualizacao").classList.remove("hidden");
+    }
+
+    function salvarDadosPessoais() {
+      const form = document.getElementById("dados-pessoais-edicao");
+      if (!form.reportValidity()) return;
+
+      document.getElementById("view-nome").textContent = document.getElementById("edit-nome").value.trim();
+      document.getElementById("view-email").textContent = document.getElementById("edit-email").value.trim();
+      document.getElementById("view-telefone").textContent = document.getElementById("edit-telefone").value.trim();
+      document.getElementById("nome-topo-perfil").textContent = document.getElementById("edit-nome").value.trim();
+
+      // Troque pela chamada real de atualização de dados (API/backend)
+      cancelarEdicaoDadosPessoais();
+    }
+  </script>
+</body>
+</html>

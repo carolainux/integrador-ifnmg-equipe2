@@ -85,6 +85,18 @@ if (ctxPlantacao) {
         }
     });
 }
+// --- Dashboard: carregando dados ---
+document.addEventListener("DOMContentLoaded", () => {
+  const secaoCarregando = document.getElementById("secao-carregando");
+  const secaoDashboard = document.getElementById("secao-dashboard");
+
+  if (secaoCarregando && secaoDashboard) {
+    setTimeout(() => {
+      secaoCarregando.classList.add("hidden");
+      secaoDashboard.classList.remove("hidden");
+    }, 2000);
+  }
+});
 
 /* ==========================================================
    TODO - INTEGRAÇÃO COM BACKEND (API já pronta, ver backend/src/routes)

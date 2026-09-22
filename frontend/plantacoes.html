@@ -8,6 +8,7 @@
     <title>AgroSensor - Plantações</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="h-screen bg-white overflow-hidden">
@@ -16,91 +17,94 @@
 
         <!-- MENU LATERAL -->
         <aside class="w-[260px] shrink-0 bg-[#6aa86a] flex flex-col justify-between h-screen">
+      <div>
 
-            <div>
+        <!-- LOGO -->
+        <div class="flex items-center justify-center px-6 py-8">
+          <img src="assets/logo-agrosensor.svg" alt="AgroSensor" class="h-8" />
+        </div>
 
-                <!-- LOGO -->
-                <div class="flex items-center justify-center px-6 py-5">
-                    <img src="assets/logo-agrosensor.svg" alt="AgroSensor" class="h-14">
-                </div>
+        <!-- ITENS DO MENU -->
+        <nav class="space-y-1 px-3">
 
-                <!-- ITENS DO MENU -->
-                <nav class="space-y-1 px-3">
+          <a href="index.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.125 1.125 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            </svg>
+            Dashboard
+          </a>
 
-                    <a href="index.html"
-                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.5 1.5 0 012.122 0L22.25 12M4.5 9.75V21a.75.75 0 00.75.75H9.75a.75.75 0 00.75-.75v-4.5a.75.75 0 01.75-.75h1.5a.75.75 0 01.75.75V21a.75.75 0 00.75.75h4.5a.75.75 0 00.75-.75V9.75" />
-                        </svg>
-                        Dashboard
-                    </a>
+          <a href="plantacoes.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] bg-[#5a9c5a] text-white font-semibold">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4.97 0-9-4.03-9-9 0-4.97 9-12 9-12s9 7.03 9 12c0 4.97-4.03 9-9 9z" />
+            </svg>
+            Plantações
+          </a>
 
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] bg-[#5a9c5a] text-white font-bold text-[15px]">
-                        <img src="assets/mdi_leaf.svg" alt="Plantações" class="w-5 h-5 brightness-0 invert">
-                        Plantações
-                    </a>
+          <a href="sensores.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12 20.25h.008v.008H12v-.008z" />
+            </svg>
+            Sensores
+          </a>
 
-                    <a href="sensores.html"
-                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
-                        <img src="assets/Vector.svg" alt="Sensores" class="w-5 h-5 brightness-0 invert">
-                        Sensores
-                    </a>
+          <a href="dispositivos.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+            </svg>
+            Dispositivos
+          </a>
 
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-                        </svg>
-                        Dispositivos
-                    </a>
+          <a href="alertas.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+            </svg>
+            Alertas
+          </a>
 
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
-                        <img src="assets/mdi_bell-alert-outline.svg" alt="Alertas" class="w-5 h-5 brightness-0 invert">
-                        Alertas
-                    </a>
+          <a href="perfil.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
+            Perfil
+          </a>
 
-                </nav>
+          <a href="configuracoes.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Configurações
+          </a>
 
-                <div class="border-t border-white/40 mx-6 my-2"></div>
+          <a href="ajuda.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M12 18h.008v.008H12V18z" /><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Ajuda
+          </a>
 
-                <nav class="space-y-1 px-3">
+        </nav>
+      </div>
 
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
-                        <img src="assets/LineMdAccount.svg" alt="Perfil" class="w-5 h-5 invert">
-                        Perfil
-                    </a>
-
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
-                        <img src="assets/line-md_cog.svg" alt="Configurações" class="w-5 h-5 brightness-0 invert">
-                        Configurações
-                    </a>
-
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
-                        <img src="assets/lineicons_question-mark-circle.svg" alt="Ajuda" class="w-5 h-5 brightness-0 invert">
-                        Ajuda
-                    </a>
-
-                </nav>
-
-            </div>
-
-            <!-- SAIR -->
-            <div class="px-3 pb-5">
-                <a href="login.html"
-                    class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold text-[15px] hover:bg-[#5a9c5a] transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0110.5 3h6a2.25 2.25 0 012.25 2.25v13.5A2.25 2.25 0 0116.5 21h-6a2.25 2.25 0 01-2.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
-                    </svg>
-                    Sair
-                </a>
-            </div>
-
-        </aside>
+      <!-- SAIR -->
+      <div class="px-3 pb-8">
+        <a href="login.html"
+           class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H3" />
+          </svg>
+          Sair
+        </a>
+      </div>
+    </aside>
 
 
         <!-- CONTEÚDO PRINCIPAL -->
@@ -128,6 +132,7 @@
                     </span>
                     <input
                         type="text"
+                        id="busca-plantacao"
                         placeholder="Buscar plantação..."
                         class="w-full h-[44px] rounded-[8px]
                                border border-gray-300
@@ -135,49 +140,49 @@
                                text-[14px] text-black
                                placeholder-gray-400
                                focus:outline-none
-                               focus:border-[#078607]
+                               focus:border-[#077C07]
                                focus:ring-1
-                               focus:ring-[#078607]">
+                               focus:ring-[#077C07]">
                 </div>
 
-                <button
-                    type="button"
+                <a href="plantacao-nova.html"
                     class="flex items-center gap-2 shrink-0
-                           bg-[#078607] text-white font-bold text-[14px]
+                           bg-[#077C07] text-white font-bold text-[14px]
                            rounded-[8px] px-5 py-3
                            hover:bg-[#067306] transition-colors">
                     <span class="text-lg leading-none">+</span>
                     Nova plantação
-                </button>
+                </a>
 
             </div>
 
 
             <!-- LISTA DE PLANTAÇÕES -->
-            <div class="mt-3">
+            <div id="lista-plantacoes" class="mt-3">
 
                 <!-- MILHO -->
-                <div class="flex items-center justify-between border-b border-gray-100 py-4">
+                <div class="linha-plantacao flex items-center justify-between border-b border-gray-100 py-4"
+                     data-id="1" data-nome="Milho - Lote A" data-cultura="Milho" data-sensores="3" data-status="Ideal" data-criado="15/06/2025">
 
                     <div class="flex items-center gap-4">
                         <img src="assets/milho.png" alt="Milho" class="w-16 h-16 rounded-full object-cover">
                         <div>
-                            <p class="text-[18px] font-bold text-black">Milho - Lote A</p>
-                            <p class="text-[13px] text-[#817979] mt-1">Sensores: <span class="font-semibold text-black">3 Ativos</span></p>
+                            <p class="plantacao-nome text-[18px] font-bold text-black">Milho - Lote A</p>
+                            <p class="text-[13px] text-[#817979] mt-1">Sensores: <span class="plantacao-sensores font-semibold text-black">3 Ativos</span></p>
                             <p class="text-[13px] text-[#817979]">Criado em: 15/06/2025</p>
                         </div>
                     </div>
 
-                    <p class="text-[14px] text-[#817979] w-24">Milho</p>
+                    <p class="plantacao-cultura text-[14px] text-[#817979] w-24">Milho</p>
 
-                    <span class="flex items-center gap-1.5 bg-green-100 text-green-700 text-[13px] font-semibold px-3 py-1.5 rounded-full">
-                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                        Ideal
+                    <span class="plantacao-status flex items-center gap-1.5 bg-green-100 text-green-700 text-[13px] font-semibold px-3 py-1.5 rounded-full">
+                        <span class="plantacao-status-dot w-2 h-2 rounded-full bg-green-500"></span>
+                        <span class="plantacao-status-texto">Ideal</span>
                     </span>
 
                     <div class="flex items-center gap-2">
 
-                        <a href="plantacao-detalhe.html" class="flex items-center gap-1 border border-green-300 text-green-700 text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-green-50 transition-colors">
+                        <a href="plantacao-detalhe.html?id=1" class="btn-ver flex items-center gap-1 border border-green-300 text-green-700 text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-green-50 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.644C3.423 7.51 7.36 4.5 12 4.5c4.64 0 8.577 3.01 9.964 7.178.07.21.07.434 0 .644C20.577 16.49 16.64 19.5 12 19.5c-4.64 0-8.577-3.01-9.964-7.178z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -185,19 +190,19 @@
                             Ver
                         </a>
 
-                        <a href="#" class="flex items-center gap-1 border border-gray-300 text-black text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-gray-50 transition-colors">
+                        <button type="button" class="btn-editar flex items-center gap-1 border border-gray-300 text-black text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-gray-50 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
                             </svg>
                             Editar
-                        </a>
+                        </button>
 
-                        <a href="#" class="flex items-center gap-1 border border-red-200 text-red-600 text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-red-50 transition-colors">
+                        <button type="button" class="btn-excluir flex items-center gap-1 border border-red-200 text-red-600 text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-red-50 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                             </svg>
                             Excluir
-                        </a>
+                        </button>
 
                     </div>
 
@@ -205,27 +210,28 @@
 
 
                 <!-- FEIJÃO -->
-                <div class="flex items-center justify-between border-b border-gray-100 py-4">
+                <div class="linha-plantacao flex items-center justify-between border-b border-gray-100 py-4"
+                     data-id="2" data-nome="Feijão - Lote B" data-cultura="Feijão" data-sensores="2" data-status="Ideal" data-criado="19/07/2025">
 
                     <div class="flex items-center gap-4">
                         <img src="assets/feijao.png" alt="Feijão" class="w-16 h-16 rounded-full object-cover">
                         <div>
-                            <p class="text-[18px] font-bold text-black">Feijão - Lote B</p>
-                            <p class="text-[13px] text-[#817979] mt-1">Sensores: <span class="font-semibold text-black">2 Ativos</span></p>
+                            <p class="plantacao-nome text-[18px] font-bold text-black">Feijão - Lote B</p>
+                            <p class="text-[13px] text-[#817979] mt-1">Sensores: <span class="plantacao-sensores font-semibold text-black">2 Ativos</span></p>
                             <p class="text-[13px] text-[#817979]">Criado em: 19/07/2025</p>
                         </div>
                     </div>
 
-                    <p class="text-[14px] text-[#817979] w-24">Feijão</p>
+                    <p class="plantacao-cultura text-[14px] text-[#817979] w-24">Feijão</p>
 
-                    <span class="flex items-center gap-1.5 bg-green-100 text-green-700 text-[13px] font-semibold px-3 py-1.5 rounded-full">
-                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                        Ideal
+                    <span class="plantacao-status flex items-center gap-1.5 bg-green-100 text-green-700 text-[13px] font-semibold px-3 py-1.5 rounded-full">
+                        <span class="plantacao-status-dot w-2 h-2 rounded-full bg-green-500"></span>
+                        <span class="plantacao-status-texto">Ideal</span>
                     </span>
 
                     <div class="flex items-center gap-2">
 
-                        <a href="plantacao-detalhe.html" class="flex items-center gap-1 border border-green-300 text-green-700 text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-green-50 transition-colors">
+                        <a href="plantacao-detalhe.html?id=2" class="btn-ver flex items-center gap-1 border border-green-300 text-green-700 text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-green-50 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.644C3.423 7.51 7.36 4.5 12 4.5c4.64 0 8.577 3.01 9.964 7.178.07.21.07.434 0 .644C20.577 16.49 16.64 19.5 12 19.5c-4.64 0-8.577-3.01-9.964-7.178z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -233,19 +239,19 @@
                             Ver
                         </a>
 
-                        <a href="#" class="flex items-center gap-1 border border-gray-300 text-black text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-gray-50 transition-colors">
+                        <button type="button" class="btn-editar flex items-center gap-1 border border-gray-300 text-black text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-gray-50 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
                             </svg>
                             Editar
-                        </a>
+                        </button>
 
-                        <a href="#" class="flex items-center gap-1 border border-red-200 text-red-600 text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-red-50 transition-colors">
+                        <button type="button" class="btn-excluir flex items-center gap-1 border border-red-200 text-red-600 text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-red-50 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.166 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                             </svg>
                             Excluir
-                        </a>
+                        </button>
 
                     </div>
 
@@ -253,27 +259,28 @@
 
 
                 <!-- TOMATE -->
-                <div class="flex items-center justify-between border-b border-gray-100 py-4">
+                <div class="linha-plantacao flex items-center justify-between border-b border-gray-100 py-4"
+                     data-id="3" data-nome="Tomate - Lote C" data-cultura="Tomate" data-sensores="2" data-status="Ideal" data-criado="28/09/2025">
 
                     <div class="flex items-center gap-4">
                         <img src="assets/tomate.png" alt="Tomate" class="w-16 h-16 rounded-full object-cover">
                         <div>
-                            <p class="text-[18px] font-bold text-black">Tomate - Lote C</p>
-                            <p class="text-[13px] text-[#817979] mt-1">Sensores: <span class="font-semibold text-black">2 Ativos</span></p>
+                            <p class="plantacao-nome text-[18px] font-bold text-black">Tomate - Lote C</p>
+                            <p class="text-[13px] text-[#817979] mt-1">Sensores: <span class="plantacao-sensores font-semibold text-black">2 Ativos</span></p>
                             <p class="text-[13px] text-[#817979]">Criado em: 28/09/2025</p>
                         </div>
                     </div>
 
-                    <p class="text-[14px] text-[#817979] w-24">Tomate</p>
+                    <p class="plantacao-cultura text-[14px] text-[#817979] w-24">Tomate</p>
 
-                    <span class="flex items-center gap-1.5 bg-green-100 text-green-700 text-[13px] font-semibold px-3 py-1.5 rounded-full">
-                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                        Ideal
+                    <span class="plantacao-status flex items-center gap-1.5 bg-green-100 text-green-700 text-[13px] font-semibold px-3 py-1.5 rounded-full">
+                        <span class="plantacao-status-dot w-2 h-2 rounded-full bg-green-500"></span>
+                        <span class="plantacao-status-texto">Ideal</span>
                     </span>
 
                     <div class="flex items-center gap-2">
 
-                        <a href="plantacao-detalhe.html" class="flex items-center gap-1 border border-green-300 text-green-700 text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-green-50 transition-colors">
+                        <a href="plantacao-detalhe.html?id=3" class="btn-ver flex items-center gap-1 border border-green-300 text-green-700 text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-green-50 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.644C3.423 7.51 7.36 4.5 12 4.5c4.64 0 8.577 3.01 9.964 7.178.07.21.07.434 0 .644C20.577 16.49 16.64 19.5 12 19.5c-4.64 0-8.577-3.01-9.964-7.178z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -281,19 +288,19 @@
                             Ver
                         </a>
 
-                        <a href="#" class="flex items-center gap-1 border border-gray-300 text-black text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-gray-50 transition-colors">
+                        <button type="button" class="btn-editar flex items-center gap-1 border border-gray-300 text-black text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-gray-50 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
                             </svg>
                             Editar
-                        </a>
+                        </button>
 
-                        <a href="#" class="flex items-center gap-1 border border-red-200 text-red-600 text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-red-50 transition-colors">
+                        <button type="button" class="btn-excluir flex items-center gap-1 border border-red-200 text-red-600 text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-red-50 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                             </svg>
                             Excluir
-                        </a>
+                        </button>
 
                     </div>
 
@@ -301,27 +308,28 @@
 
 
                 <!-- MANDIOCA -->
-                <div class="flex items-center justify-between border-b border-gray-100 py-4">
+                <div class="linha-plantacao flex items-center justify-between border-b border-gray-100 py-4"
+                     data-id="4" data-nome="Mandioca - Lote D" data-cultura="Mandioca" data-sensores="2" data-status="Ideal" data-criado="28/09/2025">
 
                     <div class="flex items-center gap-4">
                         <img src="assets/mandioca.png" alt="Mandioca" class="w-16 h-16 rounded-full object-cover">
                         <div>
-                            <p class="text-[18px] font-bold text-black">Mandioca - Lote D</p>
-                            <p class="text-[13px] text-[#817979] mt-1">Sensores: <span class="font-semibold text-black">2 Ativos</span></p>
+                            <p class="plantacao-nome text-[18px] font-bold text-black">Mandioca - Lote D</p>
+                            <p class="text-[13px] text-[#817979] mt-1">Sensores: <span class="plantacao-sensores font-semibold text-black">2 Ativos</span></p>
                             <p class="text-[13px] text-[#817979]">Criado em: 28/09/2025</p>
                         </div>
                     </div>
 
-                    <p class="text-[14px] text-[#817979] w-24">Mandioca</p>
+                    <p class="plantacao-cultura text-[14px] text-[#817979] w-24">Mandioca</p>
 
-                    <span class="flex items-center gap-1.5 bg-green-100 text-green-700 text-[13px] font-semibold px-3 py-1.5 rounded-full">
-                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                        Ideal
+                    <span class="plantacao-status flex items-center gap-1.5 bg-green-100 text-green-700 text-[13px] font-semibold px-3 py-1.5 rounded-full">
+                        <span class="plantacao-status-dot w-2 h-2 rounded-full bg-green-500"></span>
+                        <span class="plantacao-status-texto">Ideal</span>
                     </span>
 
                     <div class="flex items-center gap-2">
 
-                        <a href="plantacao-detalhe.html" class="flex items-center gap-1 border border-green-300 text-green-700 text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-green-50 transition-colors">
+                        <a href="plantacao-detalhe.html?id=4" class="btn-ver flex items-center gap-1 border border-green-300 text-green-700 text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-green-50 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.644C3.423 7.51 7.36 4.5 12 4.5c4.64 0 8.577 3.01 9.964 7.178.07.21.07.434 0 .644C20.577 16.49 16.64 19.5 12 19.5c-4.64 0-8.577-3.01-9.964-7.178z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -329,19 +337,19 @@
                             Ver
                         </a>
 
-                        <a href="#" class="flex items-center gap-1 border border-gray-300 text-black text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-gray-50 transition-colors">
+                        <button type="button" class="btn-editar flex items-center gap-1 border border-gray-300 text-black text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-gray-50 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
                             </svg>
                             Editar
-                        </a>
+                        </button>
 
-                        <a href="#" class="flex items-center gap-1 border border-red-200 text-red-600 text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-red-50 transition-colors">
+                        <button type="button" class="btn-excluir flex items-center gap-1 border border-red-200 text-red-600 text-[13px] font-semibold rounded-[6px] px-3 py-2 hover:bg-red-50 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                             </svg>
                             Excluir
-                        </a>
+                        </button>
 
                     </div>
 
@@ -363,7 +371,243 @@
     </div>
 
 
+    <!-- ============================================= -->
+    <!-- MODAL: EDITAR PLANTAÇÃO                        -->
+    <!-- ============================================= -->
+    <div id="modal-editar" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-[10px] w-full max-w-[460px] p-6 relative shadow-xl">
+
+            <button type="button" id="fechar-editar" class="absolute top-4 right-4 text-gray-400 text-xl hover:text-gray-600">✕</button>
+
+            <h2 class="text-[20px] font-bold text-black mb-1">Editar plantação</h2>
+            <p class="text-[13px] text-[#817979] mb-4">Atualize as informações e salve as alterações</p>
+
+            <form id="form-editar" class="space-y-4">
+                <input type="hidden" id="editar-id">
+
+                <div>
+                    <label class="block text-[14px] font-semibold text-black mb-1">Nome</label>
+                    <input type="text" id="editar-nome" required
+                        class="w-full h-[44px] rounded-[8px] border border-[#5f5353] px-4 text-[14px] text-black
+                               focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+                </div>
+
+                <div>
+                    <label class="block text-[14px] font-semibold text-black mb-1">Cultura</label>
+                    <select id="editar-cultura"
+                        class="w-full h-[44px] rounded-[8px] border border-[#5f5353] px-4 text-[14px] text-black
+                               focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+                        <option>Feijão</option>
+                        <option>Milho</option>
+                        <option>Mandioca</option>
+                        <option>Tomate</option>
+                        <option>Abóbora</option>
+                        <option>Alface</option>
+                        <option>Couve</option>
+                        <option>Cebolinha</option>
+                        <option>Coentro</option>
+                        <option>Rúcula</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[14px] font-semibold text-black mb-1">Sensores ativos</label>
+                        <input type="number" id="editar-sensores" min="0" required
+                            class="w-full h-[44px] rounded-[8px] border border-[#5f5353] px-4 text-[14px] text-black
+                                   focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+                    </div>
+
+                    <div>
+                        <label class="block text-[14px] font-semibold text-black mb-1">Status</label>
+                        <select id="editar-status"
+                            class="w-full h-[44px] rounded-[8px] border border-[#5f5353] px-4 text-[14px] text-black
+                                   focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+                            <option value="Ideal">Ideal</option>
+                            <option value="Alerta">Alerta</option>
+                            <option value="Crítico">Crítico</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-end gap-3 pt-2">
+                    <button type="button" id="cancelar-editar"
+                        class="border border-gray-300 rounded-[8px] px-6 py-2.5 text-[14px] font-semibold text-black hover:bg-gray-50 transition-colors">
+                        Cancelar
+                    </button>
+                    <button type="submit"
+                        class="bg-[#078607] text-white font-bold text-[14px] rounded-[8px] px-6 py-2.5 hover:bg-[#067306] transition-colors">
+                        Salvar alterações
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+    <!-- ============================================= -->
+    <!-- MODAL: CONFIRMAR EXCLUSÃO                      -->
+    <!-- ============================================= -->
+    <div id="modal-excluir" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-[10px] w-full max-w-[380px] p-6 text-center shadow-xl">
+
+            <div class="mx-auto mb-3 w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-6 h-6 text-red-600">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                </svg>
+            </div>
+
+            <h2 class="text-[18px] font-bold text-black mb-2">Excluir plantação</h2>
+            <p class="text-[14px] text-[#817979] mb-6">
+                Tem certeza que deseja excluir <span id="excluir-nome" class="font-semibold text-black"></span>?
+                Essa ação não pode ser desfeita.
+            </p>
+
+            <div class="flex items-center justify-center gap-3">
+                <button type="button" id="cancelar-excluir"
+                    class="border border-gray-300 rounded-[8px] px-6 py-2.5 text-[14px] font-semibold text-black hover:bg-gray-50 transition-colors">
+                    Cancelar
+                </button>
+                <button type="button" id="confirmar-excluir"
+                    class="bg-red-600 text-white font-bold text-[14px] rounded-[8px] px-6 py-2.5 hover:bg-red-700 transition-colors">
+                    Sim, excluir
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
     <script src="script.js"></script>
+    <script>
+        // ============================================= //
+        // CONFIGURAÇÃO DAS CORES POR STATUS               //
+        // ============================================= //
+        const coresStatus = {
+            'Ideal':   { bg: 'bg-green-100',  text: 'text-green-700',  dot: 'bg-green-500'  },
+            'Alerta':  { bg: 'bg-yellow-100', text: 'text-yellow-700', dot: 'bg-yellow-500' },
+            'Crítico': { bg: 'bg-red-100',    text: 'text-red-700',   dot: 'bg-red-500'    }
+        };
+
+        const modalEditar   = document.getElementById('modal-editar');
+        const modalExcluir  = document.getElementById('modal-excluir');
+        const formEditar    = document.getElementById('form-editar');
+
+        let idParaExcluir = null;
+
+        // ============================================= //
+        // VER -> já navega via href="plantacao-detalhe.html?id=X"
+        // (não precisa de JS, o link já leva para a plantação certa)
+        // ============================================= //
+
+        // ============================================= //
+        // EDITAR                                          //
+        // ============================================= //
+        function abrirEditar(linha) {
+            document.getElementById('editar-id').value = linha.dataset.id;
+            document.getElementById('editar-nome').value = linha.dataset.nome;
+            document.getElementById('editar-cultura').value = linha.dataset.cultura;
+            document.getElementById('editar-sensores').value = linha.dataset.sensores;
+            document.getElementById('editar-status').value = linha.dataset.status;
+            modalEditar.classList.remove('hidden');
+        }
+
+        function fecharEditar() {
+            modalEditar.classList.add('hidden');
+            formEditar.reset();
+        }
+
+        document.querySelectorAll('.btn-editar').forEach((botao) => {
+            botao.addEventListener('click', () => {
+                const linha = botao.closest('.linha-plantacao');
+                abrirEditar(linha);
+            });
+        });
+
+        document.getElementById('fechar-editar').addEventListener('click', fecharEditar);
+        document.getElementById('cancelar-editar').addEventListener('click', fecharEditar);
+
+        // fecha ao clicar fora do card
+        modalEditar.addEventListener('click', (evento) => {
+            if (evento.target === modalEditar) fecharEditar();
+        });
+
+        formEditar.addEventListener('submit', (evento) => {
+            evento.preventDefault();
+
+            const id = document.getElementById('editar-id').value;
+            const linha = document.querySelector(`.linha-plantacao[data-id="${id}"]`);
+            if (!linha) return;
+
+            const nome = document.getElementById('editar-nome').value.trim();
+            const cultura = document.getElementById('editar-cultura').value;
+            const sensores = document.getElementById('editar-sensores').value;
+            const status = document.getElementById('editar-status').value;
+
+            // atualiza os dados guardados na linha
+            linha.dataset.nome = nome;
+            linha.dataset.cultura = cultura;
+            linha.dataset.sensores = sensores;
+            linha.dataset.status = status;
+
+            // atualiza o que aparece na tela
+            linha.querySelector('.plantacao-nome').textContent = nome;
+            linha.querySelector('.plantacao-cultura').textContent = cultura;
+            linha.querySelector('.plantacao-sensores').textContent =
+                `${sensores} ${sensores == 1 ? 'Ativo' : 'Ativos'}`;
+
+            const cores = coresStatus[status] || coresStatus['Ideal'];
+            const badge = linha.querySelector('.plantacao-status');
+            badge.className = `plantacao-status flex items-center gap-1.5 ${cores.bg} ${cores.text} text-[13px] font-semibold px-3 py-1.5 rounded-full`;
+            linha.querySelector('.plantacao-status-dot').className = `plantacao-status-dot w-2 h-2 rounded-full ${cores.dot}`;
+            linha.querySelector('.plantacao-status-texto').textContent = status;
+
+            // TODO - INTEGRAÇÃO COM BACKEND:
+            // PATCH/PUT /plantacao/:id com { nome, cultura, sensores, status }
+
+            fecharEditar();
+        });
+
+        // ============================================= //
+        // EXCLUIR                                         //
+        // ============================================= //
+        function abrirExcluir(linha) {
+            idParaExcluir = linha.dataset.id;
+            document.getElementById('excluir-nome').textContent = linha.dataset.nome;
+            modalExcluir.classList.remove('hidden');
+        }
+
+        function fecharExcluir() {
+            idParaExcluir = null;
+            modalExcluir.classList.add('hidden');
+        }
+
+        document.querySelectorAll('.btn-excluir').forEach((botao) => {
+            botao.addEventListener('click', () => {
+                const linha = botao.closest('.linha-plantacao');
+                abrirExcluir(linha);
+            });
+        });
+
+        document.getElementById('cancelar-excluir').addEventListener('click', fecharExcluir);
+
+        // fecha ao clicar fora do card
+        modalExcluir.addEventListener('click', (evento) => {
+            if (evento.target === modalExcluir) fecharExcluir();
+        });
+
+        document.getElementById('confirmar-excluir').addEventListener('click', () => {
+            if (idParaExcluir) {
+                const linha = document.querySelector(`.linha-plantacao[data-id="${idParaExcluir}"]`);
+                if (linha) linha.remove();
+
+                // TODO - INTEGRAÇÃO COM BACKEND:
+                // DELETE /plantacao/:id
+            }
+            fecharExcluir();
+        });
+    </script>
 
 </body>
 
