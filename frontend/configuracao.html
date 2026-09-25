@@ -3,11 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AgroSensor - Ajuda</title>
+  <title>AgroSensor - Configurações</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+  <script>
+    // Aplica o tema salvo ANTES da página renderizar, evitando "flash" de tela clara
+    if (localStorage.getItem('tema') === 'escuro') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="h-screen bg-white overflow-hidden">
+<body class="h-screen bg-white dark:bg-gray-900 overflow-hidden transition-colors">
   <div class="flex h-screen">
 
     <!-- MENU LATERAL -->
@@ -15,10 +26,9 @@
       <div>
 
        <!-- LOGO -->
-<div class="flex items-center justify-center px-4 py-6">
-  <div class="bg-white/15 backdrop-blur-md rounded-[10px] px-4 py-3">
-    <img src="img/AgroSensor.png" alt="AgroSensor" class="h-10 w-auto object-contain" />
-  </div>
+<div class="flex items-center justify-center px-4 py-8">
+  <img src="img/AgroSensor.png" alt="AgroSensor"
+       class="h-14 w-auto object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]" />
 </div>
 
         <!-- ITENS DO MENU -->
@@ -76,7 +86,7 @@
           </a>
 
           <a href="configuracoes.html"
-             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] bg-[#5a9c5a] text-white font-semibold">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
               <path d="M20 15C22.7667 15 25 17.2333 25 20C25 22.7667 22.7667 25 20 25C17.2333 25 15 22.7667 15 20C15 17.2333 17.2333 15 20 15Z" />
               <path d="M25.3999 10.6167C26.0832 11 26.7332 11.4667 27.2999 12C27.2999 12 31.6666 10.2 31.6832 10.2333L34.2832 14.7333C34.2999 14.7833 30.5832 17.65 30.5832 17.65C30.7499 18.4 30.8332 19.2 30.8332 20C30.8499 20.7667 30.7666 21.5667 30.5832 22.3167C30.5832 22.3167 34.3332 25.2 34.2999 25.2333L31.6999 29.7333C31.6666 29.7667 27.3166 27.9833 27.3166 27.9833C26.7499 28.5 26.0999 28.9667 25.3999 29.3667C24.7332 29.7667 24.0332 30.1 23.2832 30.3167C23.2832 30.3167 22.6666 35 22.6166 35H17.4166C17.3666 34.9833 16.7332 30.3333 16.7332 30.3333C15.9999 30.1 15.2666 29.7667 14.5666 29.3667C13.9166 29 13.2666 28.5333 12.6999 28C12.6999 28 8.33321 29.8 8.31654 29.7667L5.71654 25.2667C5.69988 25.2167 9.41654 22.35 9.41654 22.35C9.24988 21.6 9.16654 20.8 9.16654 20C9.14988 19.2333 9.23321 18.4333 9.41654 17.6833C9.41654 17.6833 5.66654 14.8 5.69988 14.7667L8.29988 10.2667C8.33321 10.2333 12.6832 12.0167 12.6832 12.0167C13.2499 11.5 13.8999 11.0333 14.5999 10.6333C15.2666 10.2333 15.9999 9.9 16.7499 9.68333C16.7499 9.68333 17.3666 5 17.4166 5H22.6166C22.6666 5.01667 23.2999 9.66667 23.2999 9.66667C24.0332 9.9 24.7666 10.2333 25.3999 10.6333V10.6167Z" />
@@ -85,7 +95,7 @@
           </a>
 
           <a href="ajuda.html"
-             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] bg-[#5a9c5a] text-white font-semibold">
+             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="currentColor" class="w-5 h-5">
               <path d="M18.2003 17.3969C18.2004 17.0875 18.2803 16.7833 18.4322 16.5137C18.5841 16.2441 18.8029 16.0183 19.0675 15.8579C19.3322 15.6975 19.6337 15.6081 19.943 15.5982C20.2522 15.5883 20.5588 15.6583 20.8332 15.8015C21.1075 15.9446 21.3403 16.1561 21.5091 16.4154C21.6779 16.6747 21.777 16.9732 21.7968 17.282C21.8167 17.5908 21.7566 17.8995 21.6223 18.1783C21.4881 18.4571 21.2843 18.6966 21.0305 18.8737C20.5805 19.1903 20.0338 19.6104 19.5971 20.1404C19.1521 20.6771 18.7504 21.4055 18.7504 22.3072C18.7504 22.6387 18.8821 22.9567 19.1165 23.1911C19.3509 23.4255 19.6689 23.5572 20.0004 23.5572C20.332 23.5572 20.6499 23.4255 20.8844 23.1911C21.1188 22.9567 21.2505 22.6387 21.2505 22.3072C21.2505 22.1822 21.3005 22.0005 21.5205 21.7355C21.7997 21.4255 22.1167 21.1517 22.4639 20.9204C23.0697 20.497 23.5562 19.9245 23.8764 19.2583C24.1965 18.5921 24.3395 17.8546 24.2916 17.117C24.2437 16.3794 24.0065 15.6666 23.6028 15.0474C23.1992 14.4282 22.6427 13.9235 21.9872 13.582C21.3317 13.2405 20.5992 13.0737 19.8604 13.0978C19.1216 13.1219 18.4016 13.336 17.7696 13.7194C17.1377 14.1028 16.6153 14.6427 16.2528 15.2869C15.8903 15.931 15.7 16.6578 15.7002 17.3969C15.7002 17.7284 15.8319 18.0464 16.0663 18.2808C16.3008 18.5153 16.6187 18.647 16.9503 18.647C17.2818 18.647 17.5998 18.5153 17.8342 18.2808C18.0686 18.0464 18.2003 17.7284 18.2003 17.3969ZM20.0004 24.404C19.6689 24.404 19.3509 24.5357 19.1165 24.7701C18.8821 25.0045 18.7504 25.3225 18.7504 25.654C18.7504 25.9856 18.8821 26.3035 19.1165 26.538C19.3509 26.7724 19.6689 26.9041 20.0004 26.9041C20.332 26.9041 20.6499 26.7724 20.8844 26.538C21.1188 26.3035 21.2505 25.9856 21.2505 25.654C21.2505 25.3225 21.1188 25.0045 20.8844 24.7701C20.6499 24.5357 20.332 24.404 20.0004 24.404Z" />
               <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0002 3.33353C10.7952 3.33353 3.3335 10.7952 3.3335 20.0002C3.3335 29.2052 10.7952 36.6669 20.0002 36.6669C29.2052 36.6669 36.6668 29.2052 36.6668 20.0002C36.6668 10.7952 29.2052 3.33353 20.0002 3.33353ZM5.8335 20.0002C5.8335 16.243 7.32605 12.6396 9.98282 9.98285C12.6396 7.32608 16.2429 5.83353 20.0002 5.83353C23.7574 5.83353 27.3607 7.32608 30.0175 9.98285C32.6743 12.6396 34.1668 16.243 34.1668 20.0002C34.1668 23.7574 32.6743 27.3608 30.0175 30.0175C27.3607 32.6743 23.7574 34.1669 20.0002 34.1669C16.2429 34.1669 12.6396 32.6743 9.98282 30.0175C7.32605 27.3608 5.8335 23.7574 5.8335 20.0002Z" />
@@ -108,117 +118,117 @@
       </div>
     </aside>
 
-
     <!-- CONTEÚDO PRINCIPAL -->
-    <main class="flex-1 flex flex-col p-8 overflow-y-auto">
+    <main class="flex-1 flex flex-col p-8 overflow-y-auto bg-white dark:bg-gray-900 transition-colors">
 
       <!-- CABEÇALHO -->
-      <div class="flex items-center justify-between mb-6">
-        <h1 class="text-2xl font-bold text-gray-900">Ajuda</h1>
-        <a href="index.html" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</a>
+      <div class="flex items-start justify-between mb-6">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Configurações</h1>
+          <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Personalize a plataforma</p>
+        </div>
+        <a href="index.html" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-2xl leading-none">&times;</a>
       </div>
 
-     
+      <!-- APARÊNCIA -->
+      <div class="border border-gray-200 dark:border-gray-700 rounded-[10px] px-5 py-4 mb-4">
+        <h2 class="text-base font-bold text-gray-900 dark:text-white mb-3">Aparência</h2>
+        <div class="grid grid-cols-2 gap-4">
 
-      <!-- RESULTADOS (clique para expandir a resposta) -->
-      <div class="flex flex-col gap-3 mb-4">
-
-        <div class="border border-gray-200 rounded-[10px] overflow-hidden">
-          <button type="button" onclick="toggleAjuda(this)"
-                  class="w-full flex items-start gap-4 px-4 py-4 text-left hover:bg-gray-50 transition-colors">
-            <div class="w-9 h-9 rounded-[8px] bg-green-50 flex items-center justify-center text-[#077C07] shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-1.519-2.769L12 17.25m5.231-2.769a48.474 48.474 0 00-8.462 0m8.462 0L21 21M6.75 3v18m0-18a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 006.75 21m0-18h5.379a2.25 2.25 0 011.591.659l4.622 4.622a2.25 2.25 0 01.659 1.591V19.5a2.25 2.25 0 01-2.25 2.25H6.75" />
-              </svg>
-            </div>
-            <div class="flex-1">
-              <p class="font-bold text-[#077C07]">Como redefinir minha senha</p>
-              <p class="text-sm text-gray-500">Aprenda a redefinir sua senha de acesso caso tenha esquecido.</p>
-            </div>
-            <svg class="icone-seta w-5 h-5 text-gray-400 shrink-0 mt-1 transition-transform duration-200"
-                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+          <label id="label-tema-claro"
+                 class="relative flex flex-col items-center justify-center gap-2 border-2 border-[#077C07] bg-green-50 dark:bg-green-950/40 rounded-[10px] py-6 cursor-pointer transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6 text-yellow-500">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
             </svg>
-          </button>
-          <div class="resposta-ajuda max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-            <p class="text-sm text-gray-600 leading-relaxed px-4 pb-4 pl-[52px] pt-2 border-t border-gray-100">
-              Na tela de login, clique em <strong>"Esqueci minha senha"</strong>. Você receberá um
-              e-mail com um link de redefinição — o link é válido por 30 minutos. Ao acessá-lo,
-              defina uma nova senha com pelo menos 8 caracteres, incluindo letras e números.
-            </p>
-          </div>
-        </div>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Tema Claro</span>
+            <input type="radio" id="tema-claro" name="tema" checked class="sr-only" />
+            <div id="toggle-tema-claro" class="w-9 h-5 rounded-full bg-[#077C07] flex items-center px-0.5 justify-end transition-colors">
+              <div class="w-4 h-4 rounded-full bg-white"></div>
+            </div>
+          </label>
 
-        <div class="border border-gray-200 rounded-[10px] overflow-hidden">
-          <button type="button" onclick="toggleAjuda(this)"
-                  class="w-full flex items-start gap-4 px-4 py-4 text-left hover:bg-gray-50 transition-colors">
-            <div class="w-9 h-9 rounded-[8px] bg-green-50 flex items-center justify-center text-[#077C07] shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-1.519-2.769L12 17.25m5.231-2.769a48.474 48.474 0 00-8.462 0m8.462 0L21 21M6.75 3v18m0-18a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 006.75 21m0-18h5.379a2.25 2.25 0 011.591.659l4.622 4.622a2.25 2.25 0 01.659 1.591V19.5a2.25 2.25 0 01-2.25 2.25H6.75" />
-              </svg>
-            </div>
-            <div class="flex-1">
-              <p class="font-bold text-[#077C07]">Problemas ao acessar minha conta</p>
-              <p class="text-sm text-gray-500">Soluções para problemas comuns ao fazer login no sistema.</p>
-            </div>
-            <svg class="icone-seta w-5 h-5 text-gray-400 shrink-0 mt-1 transition-transform duration-200"
-                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+          <label id="label-tema-escuro"
+                 class="relative flex flex-col items-center justify-center gap-2 border border-gray-200 dark:border-gray-600 rounded-[10px] py-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6 text-gray-700 dark:text-gray-300">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
             </svg>
-          </button>
-          <div class="resposta-ajuda max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-            <p class="text-sm text-gray-600 leading-relaxed px-4 pb-4 pl-[52px] pt-2 border-t border-gray-100">
-              Verifique se o e-mail e a senha foram digitados corretamente (sem espaços extras).
-              Se o problema persistir, confira sua conexão com a internet ou tente redefinir a
-              senha. Contas bloqueadas por tentativas incorretas são liberadas automaticamente
-              após 15 minutos.
-            </p>
-          </div>
-        </div>
-
-        <div class="border border-gray-200 rounded-[10px] overflow-hidden">
-          <button type="button" onclick="toggleAjuda(this)"
-                  class="w-full flex items-start gap-4 px-4 py-4 text-left hover:bg-gray-50 transition-colors">
-            <div class="w-9 h-9 rounded-[8px] bg-green-50 flex items-center justify-center text-[#077C07] shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-1.519-2.769L12 17.25m5.231-2.769a48.474 48.474 0 00-8.462 0m8.462 0L21 21M6.75 3v18m0-18a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 006.75 21m0-18h5.379a2.25 2.25 0 011.591.659l4.622 4.622a2.25 2.25 0 01.659 1.591V19.5a2.25 2.25 0 01-2.25 2.25H6.75" />
-              </svg>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Tema Escuro</span>
+            <input type="radio" id="tema-escuro" name="tema" class="sr-only" />
+            <div id="toggle-tema-escuro" class="w-9 h-5 rounded-full bg-gray-300 flex items-center px-0.5 transition-colors">
+              <div class="w-4 h-4 rounded-full bg-white"></div>
             </div>
-            <div class="flex-1">
-              <p class="font-bold text-[#077C07]">Dicas de segurança de conta</p>
-              <p class="text-sm text-gray-500">Boas práticas para manter sua conta segura e protegida.</p>
-            </div>
-            <svg class="icone-seta w-5 h-5 text-gray-400 shrink-0 mt-1 transition-transform duration-200"
-                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-            </svg>
-          </button>
-          <div class="resposta-ajuda max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-            <p class="text-sm text-gray-600 leading-relaxed px-4 pb-4 pl-[52px] pt-2 border-t border-gray-100">
-              Use uma senha exclusiva (não repita a de outros sites), ative a verificação em duas
-              etapas se disponível, e nunca compartilhe seu e-mail e senha por telefone, WhatsApp
-              ou mensagens não solicitadas — a equipe AgroSensor nunca pede sua senha.
-            </p>
-          </div>
-        </div>
+          </label>
 
+        </div>
       </div>
 
-      <!-- FALE CONOSCO -->
-      <a href="mailto:suporte@agrosensor.com"
-         class="flex items-center justify-center gap-2 border border-[#077C07] text-[#077C07] font-semibold rounded-[8px] py-2.5 mb-6 hover:bg-green-50 transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-        </svg>
-        Não encontrou? Fale conosco
-      </a>
+      <!-- IDIOMA -->
+      <div class="border border-gray-200 dark:border-gray-700 rounded-[10px] px-5 py-4 mb-4">
+        <h2 class="text-base font-bold text-gray-900 dark:text-white mb-3">Idioma</h2>
+        <div class="relative">
+          <select class="w-full appearance-none border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 rounded-[8px] px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-[#077C07]">
+            <option>Português (Brasil)</option>
+            <option>English</option>
+            <option>Español</option>
+          </select>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               class="w-4 h-4 absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+          </svg>
+        </div>
+      </div>
 
-      <!-- VOLTAR -->
-      <div>
+      <!-- NOTIFICAÇÕES -->
+      <div class="border border-gray-200 dark:border-gray-700 rounded-[10px] px-5 py-4 mb-4">
+        <h2 class="text-base font-bold text-gray-900 dark:text-white mb-3">Notificações</h2>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-[8px] bg-green-50 dark:bg-gray-700 flex items-center justify-center text-lg">💬</div>
+            <div>
+              <p class="text-sm font-semibold text-gray-900 dark:text-white">WhatsApp</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Alertas via whatsapp</p>
+            </div>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer" />
+            <div class="w-11 h-6 bg-gray-300 dark:bg-gray-600 rounded-full peer peer-checked:bg-[#077C07] transition-colors"></div>
+            <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+          </label>
+        </div>
+      </div>
+
+      <!-- ATUALIZAÇÕES DE DADOS -->
+      <div class="border border-gray-200 dark:border-gray-700 rounded-[10px] px-5 py-4 mb-6">
+        <h2 class="text-base font-bold text-gray-900 dark:text-white mb-3">Atualizações de Dados</h2>
+        <div class="grid grid-cols-2 gap-y-3">
+          <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer">
+            <input type="radio" name="atualizacao" class="w-4 h-4 accent-[#077C07]" />
+            A cada 5 minutos
+          </label>
+          <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer">
+            <input type="radio" name="atualizacao" class="w-4 h-4 accent-[#077C07]" />
+            A cada 15 minutos
+          </label>
+          <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer">
+            <input type="radio" name="atualizacao" checked class="w-4 h-4 accent-[#077C07]" />
+            A cada 30 minutos
+          </label>
+          <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer">
+            <input type="radio" name="atualizacao" class="w-4 h-4 accent-[#077C07]" />
+            A cada 1 hora
+          </label>
+        </div>
+      </div>
+
+      <!-- AÇÕES -->
+      <div class="flex items-center justify-between">
         <a href="index.html"
-           class="inline-block border border-gray-300 rounded-[8px] px-6 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+           class="border border-gray-300 dark:border-gray-600 rounded-[8px] px-6 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
           Voltar
         </a>
+        <button class="bg-[#077C07] hover:bg-[#067306] text-white font-semibold px-6 py-2.5 rounded-[8px] transition-colors">
+          Salvar Configurações
+        </button>
       </div>
 
     </main>
@@ -227,24 +237,49 @@
   <script src="script.js"></script>
   <script>
     // ============================================= //
-    // ACORDEÃO DOS RESULTADOS DE AJUDA                //
+    // TEMA CLARO / ESCURO                             //
     // ============================================= //
-    function toggleAjuda(botao) {
-      const cartao = botao.parentElement;
-      const resposta = cartao.querySelector('.resposta-ajuda');
-      const seta = botao.querySelector('.icone-seta');
-      const jaAberto = resposta.classList.contains('max-h-96');
+    const inputTemaClaro = document.getElementById('tema-claro');
+    const inputTemaEscuro = document.getElementById('tema-escuro');
+    const labelTemaClaro = document.getElementById('label-tema-claro');
+    const labelTemaEscuro = document.getElementById('label-tema-escuro');
+    const toggleTemaClaro = document.getElementById('toggle-tema-claro');
+    const toggleTemaEscuro = document.getElementById('toggle-tema-escuro');
 
-      // fecha qualquer outro item aberto (só um por vez)
-      document.querySelectorAll('.resposta-ajuda').forEach((r) => r.classList.remove('max-h-96'));
-      document.querySelectorAll('.icone-seta').forEach((s) => s.classList.remove('rotate-180'));
+    function aplicarTema(tema) {
+      // liga/desliga a classe "dark" no <html>, que ativa todas as variantes dark: do Tailwind
+      document.documentElement.classList.toggle('dark', tema === 'escuro');
 
-      // abre o clicado, se não estava aberto
-      if (!jaAberto) {
-        resposta.classList.add('max-h-96');
-        seta.classList.add('rotate-180');
-      }
+      // marca o radio correspondente
+      inputTemaClaro.checked = tema === 'claro';
+      inputTemaEscuro.checked = tema === 'escuro';
+
+      // realça o cartão selecionado e "apaga" o outro
+      const selecionado = ['border-2', 'border-[#077C07]', 'bg-green-50', 'dark:bg-green-950/40'];
+      const naoSelecionado = ['border', 'border-gray-200', 'dark:border-gray-600', 'hover:bg-gray-50', 'dark:hover:bg-gray-800'];
+
+      labelTemaClaro.classList.remove(...selecionado, ...naoSelecionado);
+      labelTemaEscuro.classList.remove(...selecionado, ...naoSelecionado);
+      labelTemaClaro.classList.add(...(tema === 'claro' ? selecionado : naoSelecionado));
+      labelTemaEscuro.classList.add(...(tema === 'escuro' ? selecionado : naoSelecionado));
+
+      // move a bolinha do toggle de cada cartão
+      toggleTemaClaro.classList.toggle('bg-[#077C07]', tema === 'claro');
+      toggleTemaClaro.classList.toggle('justify-end', tema === 'claro');
+      toggleTemaClaro.classList.toggle('bg-gray-300', tema !== 'claro');
+
+      toggleTemaEscuro.classList.toggle('bg-[#077C07]', tema === 'escuro');
+      toggleTemaEscuro.classList.toggle('justify-end', tema === 'escuro');
+      toggleTemaEscuro.classList.toggle('bg-gray-300', tema !== 'escuro');
+
+      localStorage.setItem('tema', tema);
     }
+
+    labelTemaClaro.addEventListener('click', () => aplicarTema('claro'));
+    labelTemaEscuro.addEventListener('click', () => aplicarTema('escuro'));
+
+    // sincroniza a UI com o que já foi aplicado no <head> (evita flash)
+    aplicarTema(localStorage.getItem('tema') === 'escuro' ? 'escuro' : 'claro');
   </script>
 </body>
 </html>
