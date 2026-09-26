@@ -15,22 +15,27 @@
 
     <div class="flex h-screen">
 
-    <!-- MENU LATERAL -->
-        <aside class="w-[260px] shrink-0 bg-[#6aa86a] flex flex-col justify-between h-screen">
-      <div>
+  <!-- MENU LATERAL -->
+<aside class="relative w-[260px] shrink-0 bg-gradient-to-b from-[#499A35] to-[#077C07] flex flex-col justify-between h-screen overflow-hidden">
 
-       <!-- LOGO -->
-<div class="flex items-center justify-center px-4 py-6">
-  <div class="bg-white/15 backdrop-blur-md rounded-[10px] px-4 py-3">
-    <img src="img/AgroSensor.png" alt="AgroSensor" class="h-10 w-auto object-contain" />
-  </div>
+  <!-- GLOW SUPERIOR -->
+  <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-[280px] h-[180px] bg-white/25 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="relative z-10">
+
+    <!-- LOGO -->
+    <div class="flex items-center justify-center px-4 pt-6 pb-2">
+  <img src="img/AgroSensor.svg" alt="AgroSensor" class="h-15 w-auto object-contain" />
 </div>
 
-        <!-- ITENS DO MENU -->
-        <nav class="space-y-1 px-3">
+    <!-- ITENS DO MENU -->
+    <nav class="space-y-2 px-3">
 
           <a href="index.html"
-             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
+              class="relative flex items-center gap-3 px-4 py-2.5 rounded-[8px] bg-[#5a9c5a] text-white font-semibold">
+
+             <span class="absolute top-0 left-4 right-4 h-[3px] bg-white/80 rounded-full"></span>
+
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
               <path d="M11.47 3.841a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.061l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 101.061 1.06l8.69-8.689z" />
               <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.432z" />
@@ -39,13 +44,13 @@
           </a>
 
           <a href="plantacoes.html"
-             class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] bg-[#5a9c5a] text-white font-semibold">
+              class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="currentColor" class="w-5 h-5">
               <path d="M28.3335 13.3333C13.3335 16.6667 9.8335 26.95 6.36683 35.5667L9.51683 36.6667L11.1002 32.8333C11.9002 33.1167 12.7335 33.3333 13.3335 33.3333C31.6668 33.3333 36.6668 5 36.6668 5C35.0002 8.33333 23.3335 8.75 15.0002 10.4167C6.66683 12.0833 3.3335 19.1667 3.3335 22.5C3.3335 25.8333 6.25016 28.75 6.25016 28.75C11.6668 13.3333 28.3335 13.3333 28.3335 13.3333Z" />
             </svg>
             Plantações
           </a>
-
+          
           <a href="sensores.html"
              class="flex items-center gap-3 px-4 py-2.5 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" class="w-5 h-5">

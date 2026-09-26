@@ -40,9 +40,11 @@
 
                 </div>
 
+                <!-- MENSAGEM DE FEEDBACK -->
+                <div id="mensagemFeedback" class="hidden mb-4 px-4 py-3 rounded-[8px] text-[15px] font-medium"></div>
 
                 <!-- FORMULÁRIO -->
-                <form class="space-y-5">
+                <form id="formCadastro" class="space-y-5">
 
                     <!-- NOME -->
                     <div>
@@ -52,6 +54,9 @@
                             id="nome"
                             name="nome"
                             placeholder="Nome completo"
+                            required
+                            pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+"
+                            title="Digite apenas letras, sem números."
                             class="w-full h-[52px] rounded-[8px]
                                    border border-[#5f5353]
                                    bg-white
@@ -74,6 +79,7 @@
                             id="email"
                             name="email"
                             placeholder="Email"
+                            required
                             class="w-full h-[52px] rounded-[8px]
                                    border border-[#5f5353]
                                    bg-white
@@ -89,116 +95,131 @@
 
 
                     <!-- TELEFONE -->
-                    <div>
+<div>
 
-                        <input
-                            type="tel"
-                            id="telefone"
-                            name="telefone"
-                            placeholder="Telefone"
-                            class="w-full h-[52px] rounded-[8px]
-                                   border border-[#5f5353]
-                                   bg-white
-                                   px-6
-                                   text-[17px] text-[#5f5959]
-                                   placeholder-[#5f5959]
-                                   focus:outline-none
-                                   focus:border-[#077C07]
-                                   focus:ring-1
-                                   focus:ring-[#077C07]">
+    <input
+    type="tel"
+    id="telefone"
+    name="telefone"
+    placeholder="(00) 00000-0000"
+    inputmode="numeric"
+    maxlength="15"
+    required
+    pattern="\(\d{2}\) \d{5}-\d{4}"
+    title="Preencha o telefone completo, com DDD."
+    oninput="mascararTelefone(this)"
+    class="w-full h-[52px] rounded-[8px]
+           border border-[#5f5353]
+           bg-white
+           px-6
+           text-[17px] text-[#5f5959]
+           placeholder-[#5f5959]
+           focus:outline-none
+           focus:border-[#077C07]
+           focus:ring-1
+           focus:ring-[#077C07]">
 
-                    </div>
-
-
-                    <!-- SENHA -->
-                    <div class="relative">
-
-                        <input
-                            type="password"
-                            id="senha"
-                            name="senha"
-                            placeholder="Senha"
-                            class="w-full h-[52px] rounded-[8px]
-                                   border border-[#5f5353]
-                                   bg-white
-                                   px-6 pr-14
-                                   text-[17px] text-[#5f5959]
-                                   placeholder-[#5f5959]
-                                   focus:outline-none
-                                   focus:border-[#077C07]
-                                   focus:ring-1
-                                   focus:ring-[#077C07]">
-
-                        <button
-                            type="button"
-                            onclick="mostrarSenha('senha', 'iconeSenha')"
-                            class="absolute right-5 top-1/2 -translate-y-1/2">
-
-                            <svg
-                                id="iconeSenha"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="currentColor"
-                                class="w-6 h-6 text-black">
-
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
-
-                            </svg>
-
-                        </button>
-
-                    </div>
+</div>
 
 
-                    <!-- CONFIRMAR SENHA -->
-                    <div class="relative">
+                  <!-- SENHA -->
+<div>
+    <div class="relative">
 
-                        <input
-                            type="password"
-                            id="confirmarSenha"
-                            name="confirmarSenha"
-                            placeholder="Confirmar Senha"
-                            class="w-full h-[52px] rounded-[8px]
-                                   border border-[#5f5353]
-                                   bg-white
-                                   px-6 pr-14
-                                   text-[17px] text-[#5f5959]
-                                   placeholder-[#5f5959]
-                                   focus:outline-none
-                                   focus:border-[#077C07]
-                                   focus:ring-1
-                                   focus:ring-[#077C07]">
+        <input
+            type="password"
+            id="senha"
+            name="senha"
+            placeholder="Senha"
+            required
+            minlength="8"
+            class="w-full h-[52px] rounded-[8px]
+                   border border-[#5f5353]
+                   bg-white
+                   px-6 pr-14
+                   text-[17px] text-[#5f5959]
+                   placeholder-[#5f5959]
+                   focus:outline-none
+                   focus:border-[#077C07]
+                   focus:ring-1
+                   focus:ring-[#077C07]">
 
-                        <button
-                            type="button"
-                            onclick="mostrarSenha('confirmarSenha', 'iconeConfirmarSenha')"
-                            class="absolute right-5 top-1/2 -translate-y-1/2">
+        <button
+            type="button"
+            onclick="mostrarSenha('senha', 'iconeSenha')"
+            class="absolute right-5 top-1/2 -translate-y-1/2">
 
-                            <svg
-                                id="iconeConfirmarSenha"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="currentColor"
-                                class="w-6 h-6 text-black">
+            <svg
+                id="iconeSenha"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6 text-black">
 
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
 
-                            </svg>
+            </svg>
 
-                        </button>
+        </button>
 
-                    </div>
+    </div>
+    <p class="mt-1 text-[14px] text-[#817979]">Mínimo de 8 caracteres.</p>
+</div>
 
+
+                  <!-- CONFIRMAR SENHA -->
+<div>
+    <div class="relative">
+
+        <input
+            type="password"
+            id="confirmarSenha"
+            name="confirmarSenha"
+            placeholder="Confirmar Senha"
+            required
+            minlength="8"
+            class="w-full h-[52px] rounded-[8px]
+                   border border-[#5f5353]
+                   bg-white
+                   px-6 pr-14
+                   text-[17px] text-[#5f5959]
+                   placeholder-[#5f5959]
+                   focus:outline-none
+                   focus:border-[#077C07]
+                   focus:ring-1
+                   focus:ring-[#077C07]">
+
+        <button
+            type="button"
+            onclick="mostrarSenha('confirmarSenha', 'iconeConfirmarSenha')"
+            class="absolute right-5 top-1/2 -translate-y-1/2">
+
+            <svg
+                id="iconeConfirmarSenha"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6 text-black">
+
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+
+            </svg>
+
+        </button>
+
+    </div>
+    <p class="mt-1 text-[14px] text-[#817979]">Mínimo de 8 caracteres.</p>
+</div>
 
                     <!-- TERMOS -->
                     <div class="flex items-center gap-2">
@@ -207,6 +228,7 @@
                             type="checkbox"
                             id="termos"
                             name="termos"
+                            required
                             class="w-4 h-4 rounded border-[#5f5353]
                                    accent-[#077C07]">
 
@@ -330,10 +352,7 @@
                        nossa Política de Privacidade.</p>
                 </div>
 
-                <p class="text-[13px] text-[#817979] italic">
-                    Este é um texto de exemplo para fins de demonstração/protótipo. Substitua pelo termo de uso
-                    revisado juridicamente antes de publicar em produção.
-                </p>
+
 
             </div>
 
@@ -370,6 +389,91 @@
         // fecha com a tecla Esc
         document.addEventListener('keydown', (evento) => {
             if (evento.key === 'Escape') fecharTermos();
+        });
+
+        // ============================================= //
+        // MÁSCARA - TELEFONE                              //
+        // ============================================= //
+        function mascararTelefone(input) {
+            let v = input.value.replace(/\D/g, '').slice(0, 11);
+            if (v.length > 10) {
+                v = v.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+            } else if (v.length > 5) {
+                v = v.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+            } else if (v.length > 2) {
+                v = v.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+            } else if (v.length > 0) {
+                v = '(' + v;
+            }
+            input.value = v;
+        }
+
+        // ============================================= //
+        // CADASTRO - SUCESSO / ERRO / DUPLICADOS          //
+        // ============================================= //
+        function mostrarFeedback(mensagem, tipo) {
+            const caixa = document.getElementById('mensagemFeedback');
+            caixa.textContent = mensagem;
+            caixa.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+            if (tipo === 'sucesso') {
+                caixa.classList.add('bg-green-100', 'text-green-700');
+            } else {
+                caixa.classList.add('bg-red-100', 'text-red-700');
+            }
+            caixa.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        document.getElementById('formCadastro').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            if (!this.checkValidity()) {
+                this.reportValidity();
+                return;
+            }
+
+            const senha = document.getElementById('senha').value;
+            const confirmarSenha = document.getElementById('confirmarSenha').value;
+
+            if (senha !== confirmarSenha) {
+                mostrarFeedback('As senhas não coincidem. Tente novamente.', 'erro');
+                return;
+            }
+
+            const email = document.getElementById('email').value.trim().toLowerCase();
+            const telefone = document.getElementById('telefone').value.trim();
+
+            try {
+                const usuarios = JSON.parse(localStorage.getItem('agrosensor_usuarios') || '[]');
+
+                const emailExiste = usuarios.some(u => u.email === email);
+                const telefoneExiste = usuarios.some(u => u.telefone === telefone);
+
+                if (emailExiste) {
+                    mostrarFeedback('Este e-mail já está cadastrado. Faça login ou use outro e-mail.', 'erro');
+                    return;
+                }
+
+                if (telefoneExiste) {
+                    mostrarFeedback('Este telefone já está cadastrado. Use outro número.', 'erro');
+                    return;
+                }
+
+                usuarios.push({
+                    nome: document.getElementById('nome').value.trim(),
+                    email: email,
+                    telefone: telefone
+                });
+                localStorage.setItem('agrosensor_usuarios', JSON.stringify(usuarios));
+
+                mostrarFeedback('Conta criada com sucesso! Redirecionando para o login...', 'sucesso');
+
+                setTimeout(() => {
+                    window.location.href = 'primeiraplantacao.html';
+                }, 1800);
+
+            } catch (erro) {
+                mostrarFeedback('Não foi possível criar sua conta agora. Tente novamente.', 'erro');
+            }
         });
     </script>
 
