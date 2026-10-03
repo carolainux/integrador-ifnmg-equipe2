@@ -250,3 +250,48 @@ Foi reforçado que, com o backend já entregue no semestre anterior, o foco do s
 - O quadro Kanban foi reorganizado e populado com todas as issues de frontend pendentes.
 - A integração com a API será tratada em issues separadas, após a conclusão das telas visuais.
 - A equipe de QA (Cybelle) ficará responsável por validar as telas já implementadas e testar a responsividade do sistema.
+
+---
+
+# Reunião 04
+
+Data:
+02/10/2026
+
+Horário:
+20:00 até 21:00
+
+## Participantes
+
+- Carolaine Costa 
+- Alex Alves Santos
+- Sandy Barbosa Fonseca
+
+## Ausentes
+
+- Cybelle Leandro Bittencourt
+- Jailson Santos da Silva
+
+## Objetivo da Reunião
+
+Alinhar o andamento do projeto, definir o processo de trabalho no repositório e distribuir as próximas tarefas de integração do frontend com a API. 
+
+## Assuntos Discutidos
+
+### 1. Status do frontend e da integração
+Telas concluídas, telas pendentes e o que ainda está faltando. Os marcadores `TODO - INTEGRAÇÃO COM BACKEND` seguem presentes em alertas, dispositivos, plantações e sensores.
+
+---
+
+### 2. Organização do repositório
+- Limpeza dos assets do frontend (duplicados e imagens geradas removidos da `main`).
+- Revert do refactor de pastas que quebrou o frontend.
+- Pull Request #102: [decisão: resolver conflitos / pedir ajuste ao autor / fechar].
+
+---
+
+### 3. Processo de trabalho
+- A `main` só recebe alterações via Pull Request, com descrição e revisão da QA.
+- Cada integrante trabalha em branch própria.
+- Definição de "tela pronta": integrada à API, sem TODO, testada pela QA e com assets conferidos.
+
