@@ -28,6 +28,7 @@ O AgroSensor é um sistema de monitoramento climático desenvolvido para apoiar 
 | RF16 | O sistema deve armazenar o histórico de leituras e alertas gerados. |
 | RF17 | O sistema deve enviar notificações via WhatsApp quando configurado para alertas críticos. |
 | RF18 | O sistema deve disponibilizar operações REST para gerenciamento de usuários, plantações, sensores, dispositivos, leituras e alertas. |
+| RF19 | O usuário deve poder visualizar a lista de dispositivos e sensores disponíveis no momento do cadastro de uma plantação. |
 
 ---
 
