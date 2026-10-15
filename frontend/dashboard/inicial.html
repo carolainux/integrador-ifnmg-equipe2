@@ -8,58 +8,98 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="shortcut icon" href="../assets/img/favicon-agrosensor.png" type="image/x-icon">
     <title>AgroSensor - Início</title>
+
+    <style>
+        @keyframes subir {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: none; }
+        }
+        @keyframes aparecer {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        .anim-subir    { opacity: 0; animation: subir 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; }
+        .anim-aparecer { opacity: 0; animation: aparecer 1.2s ease-out forwards; }
+
+        /* Respeita quem desativou animações no sistema */
+        @media (prefers-reduced-motion: reduce) {
+            .anim-subir, .anim-aparecer { animation: none; opacity: 1; }
+        }
+    </style>
 </head>
 
-<body class="h-screen overflow-hidden bg-[url('../assets/img/img-page1.jpg')] bg-cover bg-center bg-no-repeat">
+<body class="h-screen overflow-hidden bg-[#022a16] bg-[url('../assets/img/img-page1.jpg')] bg-cover bg-center bg-no-repeat">
 
-    <div class="h-screen flex flex-col justify-between px-14 py-8">
+    <!-- DEGRADÊ VERDE À ESQUERDA (mesmas cores do menu lateral) -->
+    <div class="anim-aparecer absolute inset-0 pointer-events-none bg-gradient-to-r from-[#022a16]/95 via-[#05452a]/70 to-transparent"></div>
+    <div class="anim-aparecer absolute inset-0 pointer-events-none bg-gradient-to-t from-[#022a16]/60 via-transparent to-transparent"></div>
 
-        <!-- ESPAÇADOR SUPERIOR -->
-        <div></div>
+    <!-- DECORAÇÃO CANTO INFERIOR ESQUERDO (curva + folhas) -->
+    <svg class="anim-aparecer [animation-delay:400ms] absolute bottom-0 left-0 w-[560px] max-w-[60vw] h-auto pointer-events-none hidden md:block" viewBox="0 0 560 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M0 300 L0 70 C140 55 400 95 556 300 Z" fill="#05452a" fill-opacity="0.85"/>
+        <path d="M0 70 C140 55 400 95 556 300" stroke="#1f9a55" stroke-opacity="0.8" stroke-width="1.5"/>
+        <path d="M0 10 C40 40 70 100 78 190" stroke="#1f9a55" stroke-opacity="0.6" stroke-width="1.3"/>
+        <path d="M18 200 C20 150 50 118 96 108 C98 150 70 190 18 200 Z" fill="#0e7a42" fill-opacity="0.7" stroke="#1f9a55" stroke-width="1.2"/>
+        <path d="M60 215 C55 165 85 125 130 112 C138 160 110 205 60 215 Z" fill="#0f8a2f" fill-opacity="0.55" stroke="#1f9a55" stroke-width="1.2"/>
+    </svg>
 
-        
+    <!-- AGRICULTOR 3D (animado com Three.js) -->
+    <div id="agricultor-3d" class="anim-aparecer [animation-delay:600ms] absolute right-0 bottom-0 w-[50%] h-[85%] pointer-events-none hidden md:block"></div>
+
+    <div class="relative z-10 h-screen flex flex-col justify-between px-8 md:px-14 py-8">
+
         <!-- LOGO -->
-    <div class="max-w-2xl">
-        <img src="../assets/img/AgroSensor_transparente_blur.svg" alt="AgroSensor" class="h-[75px]">
-    </div>
+        <div class="anim-aparecer [animation-delay:200ms] max-w-2xl mt-10">
+            <img src="../assets/img/AgroSensor_versao3_folha_original.svg" alt="AgroSensor"
+                 class="h-[150px] w-auto object-contain object-left -ml-12">
+        </div>
 
         <!-- CONTEÚDO CENTRAL -->
-        <div class="max-w-2xl">
+        <div class="max-w-2xl relative -top-16">
 
-            <h1 class="text-white text-5xl font-sans font-semibold drop-shadow-[0_4px_4px_rgba(0,0,0,0.60)] leading-tight">
-                Monitoramento Inteligente para Agricultura Familiar
+            <h1 class="anim-subir [animation-delay:400ms] text-white text-4xl md:text-5xl font-sans font-semibold drop-shadow-[0_4px_4px_rgba(0,0,0,0.60)] leading-tight">
+                Monitoramento Inteligente para <span class="text-emerald-300">Agricultura Familiar</span>
             </h1>
 
-            <p class="mt-4 text-white text-2xl font-sans font-semibold drop-shadow-[0_4px_4px_rgba(0,0,0,0.60)]">
+            <p class="anim-subir [animation-delay:600ms] mt-4 text-white/90 text-lg md:text-xl font-sans max-w-xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.60)]">
                 Tecnologia e dados trabalhando juntos para mais produtividade e sustentabilidade no campo.
             </p>
 
             <div class="mt-8 flex flex-col gap-4">
 
-                <div class="flex gap-4">
-   <a href="../user/login.html" class="w-56 text-center text-white text-2xl font-semibold px-10 py-3 bg-[#077C07] rounded-lg shadow-md hover:bg-[#067306] transition-colors">
-        Entrar
-    </a>
-    <a href="../user/cadastro.html" class="w-56 text-center text-black text-2xl font-semibold px-10 py-3 bg-white rounded-lg shadow-md hover:bg-gray-100 transition-colors">
-        Criar Conta
-    </a>
-</div>
+                <div class="anim-subir [animation-delay:800ms] flex flex-wrap gap-4">
+                    <a href="../user/login.html"
+                       class="w-56 inline-flex items-center justify-center gap-3 text-white text-xl font-semibold px-8 py-3 bg-[#0f8a2f] rounded-xl shadow-lg hover:bg-[#0c7527] transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                        Entrar
+                    </a>
+                    <a href="../user/cadastro.html"
+                       class="w-56 inline-flex items-center justify-center gap-3 text-[#05452a] text-xl font-semibold px-8 py-3 bg-white rounded-xl shadow-lg hover:bg-gray-100 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                            <path d="M9 12a4 4 0 100-8 4 4 0 000 8zM2 20v-1c0-3 2.7-5 6-5h2c3.3 0 6 2 6 5v1a1 1 0 01-1 1H3a1 1 0 01-1-1zM19 8h-2v2h-2v2h2v2h2v-2h2v-2h-2V8z" />
+                        </svg>
+                        Criar Conta
+                    </a>
+                </div>
 
-
-                    <button type="button" onclick="abrirModalSaibaMais()"
-                        class="w-56 text-center text-black text-2xl font-semibold px-10 py-3 bg-white rounded-lg shadow-md hover:bg-gray-100 transition-colors">
+                <button type="button" onclick="abrirModalSaibaMais()"
+                        class="anim-subir [animation-delay:950ms] w-56 inline-flex items-center justify-center gap-3 text-white text-xl font-semibold px-8 py-3 rounded-xl border border-white/40 bg-black/20 backdrop-blur-sm hover:bg-white/10 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 11v5M12 8h.01" />
+                    </svg>
                     Saiba mais
-            
                 </button>
 
             </div>
-
         </div>
 
         <!-- VERSÃO -->
-        <div class="flex items-center gap-2">
+        <div class="anim-aparecer [animation-delay:1200ms] flex items-center gap-2">
             <img src="../assets/img/favicon-agrosensor.png" alt="Ícone AgroSensor" class="w-6 h-6">
-            <p class="text-white text-lg font-sans">Versão 1.0.0</p>
+            <p class="text-white text-lg font-sans -ml-2">Versão 1.0.0</p>
         </div>
 
     </div>
@@ -137,7 +177,7 @@
             </div>
 
             <div class="flex gap-3 pt-2">
-                <a href="../user/cadastro.html" class="flex-1 text-center text-white font-semibold px-6 py-2.5 bg-[#077C07] rounded-lg shadow-md hover:bg-[#067306] transition-colors">
+                <a href="../user/cadastro.html" class="flex-1 text-center text-white font-semibold px-6 py-2.5 bg-[#0f8a2f] rounded-lg shadow-md hover:bg-[#0c7527] transition-colors">
                     Criar Conta
                 </a>
                 <button onclick="fecharModalSaibaMais()"
@@ -149,6 +189,9 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="agricultor3d.js"></script>
+
     <script>
         function abrirModalSaibaMais() {
             document.getElementById("modal-saiba-mais").classList.remove("hidden");
@@ -156,6 +199,11 @@
         function fecharModalSaibaMais() {
             document.getElementById("modal-saiba-mais").classList.add("hidden");
         }
+        // Fecha com a tecla ESC ou clicando fora do modal
+        document.addEventListener("keydown", (e) => { if (e.key === "Escape") fecharModalSaibaMais(); });
+        document.getElementById("modal-saiba-mais").addEventListener("click", (e) => {
+            if (e.target.id === "modal-saiba-mais") fecharModalSaibaMais();
+        });
     </script>
 
 </body>
