@@ -1,380 +1,788 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>AgroSensor - Milho Lote A</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="shortcut icon" href="../assets/img/favicon-agrosensor.png" type="image/x-icon"> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgroSensor - Detalhes da plantação</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="shortcut icon" href="../assets/img/favicon-agrosensor.png" type="image/x-icon">
 </head>
 
-<body class="h-screen bg-white overflow-hidden">
+<body class="h-screen bg-[#f4f7f5] overflow-hidden">
+<div class="flex h-screen">
 
-    <div class="flex h-screen">
+  <!-- MENU LATERAL -->
+  <aside class="relative w-[260px] shrink-0 flex flex-col justify-between h-screen overflow-y-auto overflow-x-hidden bg-gradient-to-b from-[#05452a] to-[#022a16] [&>div]:relative [&>div]:z-10">
 
- <!-- MENU LATERAL -->
-<aside class="relative w-[260px] shrink-0 bg-gradient-to-b from-[#499A35] to-[#077C07] flex flex-col justify-between h-screen overflow-hidden">
+    <span class="absolute -top-20 -left-16 w-[300px] h-[300px] rounded-full bg-emerald-500/20 blur-3xl pointer-events-none"></span>
 
-  <!-- GLOW SUPERIOR -->
-  <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-[280px] h-[180px] bg-white/25 rounded-full blur-3xl pointer-events-none"></div>
+    <svg class="absolute bottom-0 left-0 w-full h-[340px] pointer-events-none" viewBox="0 0 260 340" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M95 340 C150 255 210 210 260 192 L260 215 C215 232 165 268 128 340 Z" fill="#0e7a42" fill-opacity="0.22"/>
+      <path d="M95 340 C150 255 210 210 260 192" stroke="#1f9a55" stroke-opacity="0.6" stroke-width="1.4"/>
+      <path d="M128 340 C165 268 215 232 260 215" stroke="#1f9a55" stroke-opacity="0.5" stroke-width="1.2"/>
+      <path d="M150 340 C175 300 205 270 260 245" stroke="#1f9a55" stroke-opacity="0.4" stroke-width="1"/>
+      <path d="M185 340 C205 305 230 280 260 268" stroke="#1f9a55" stroke-opacity="0.4" stroke-width="1"/>
+      <path d="M215 340 C228 315 244 298 260 290" stroke="#1f9a55" stroke-opacity="0.4" stroke-width="1"/>
+      <path d="M0 78 C55 92 95 150 108 240 C110 262 110 285 108 305" stroke="#1f9a55" stroke-opacity="0.55" stroke-width="1.3"/>
+      <path d="M0 112 C40 128 82 175 96 235" stroke="#1f9a55" stroke-opacity="0.4" stroke-width="1"/>
+      <path d="M108 305 C100 262 112 238 148 218 C152 226 153 238 148 252 C138 278 122 296 108 305 Z" stroke="#1f9a55" stroke-opacity="0.65" stroke-width="1.3"/>
+      <path d="M108 305 C118 272 132 246 148 218" stroke="#1f9a55" stroke-opacity="0.45" stroke-width="0.9"/>
+      <path d="M0 318 C20 292 60 288 108 305 C150 318 210 330 260 340" stroke="#1f9a55" stroke-opacity="0.5" stroke-width="1.2"/>
+      <path d="M0 340 C25 320 65 318 105 330" stroke="#1f9a55" stroke-opacity="0.4" stroke-width="1"/>
+    </svg>
 
-  <div class="relative z-10">
-
-    <!-- LOGO -->
-    <div class="flex items-center justify-center px-4 pt-6 pb-2">
-  <img src="../assets/img/AgroSensor.svg" alt="AgroSensor" class="h-15 w-auto object-contain" />
-</div>
-
-    <!-- ITENS DO MENU -->
-    <nav class="space-y-2 px-3">
-
-          <a href="../dashboard/index.html"
-             class="flex items-center gap-3 px-4 py-2 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-              <path d="M11.47 3.841a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.061l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 101.061 1.06l8.69-8.689z" />
-              <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.432z" />
-            </svg>
-            Dashboard
-          </a>
-
-          <a href="plantacoes.html"
-              class="relative flex items-center gap-3 px-4 py-2 rounded-[8px] bg-[#5a9c5a] text-white font-semibold">
-
-             <span class="absolute top-0 left-4 right-4 h-[3px] bg-white/80 rounded-full"></span>
-
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="currentColor" class="w-5 h-5">
-              <path d="M28.3335 13.3333C13.3335 16.6667 9.8335 26.95 6.36683 35.5667L9.51683 36.6667L11.1002 32.8333C11.9002 33.1167 12.7335 33.3333 13.3335 33.3333C31.6668 33.3333 36.6668 5 36.6668 5C35.0002 8.33333 23.3335 8.75 15.0002 10.4167C6.66683 12.0833 3.3335 19.1667 3.3335 22.5C3.3335 25.8333 6.25016 28.75 6.25016 28.75C11.6668 13.3333 28.3335 13.3333 28.3335 13.3333Z" />
-            </svg>
-            Plantações
-          </a>
-
-          <a href="../sensores/sensores.html"
-             class="flex items-center gap-3 px-4 py-2 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" class="w-5 h-5">
-              <path d="M5.63638 1.39106C2.63541 5.73836 0.994064 11.2256 1.00002 16.8911C1.00002 22.79 2.74183 28.1936 5.63638 32.3911M12.6182 25.3476C10.9814 22.9748 10.0867 19.9802 10.0909 16.8889C10.0909 13.6731 11.04 10.7258 12.6182 8.43451M36.3636 32.3889C39.3638 28.0427 41.0051 22.5572 41 16.8933C41 10.9966 39.2582 5.59292 36.3636 1.39326M29.3818 25.3454C31.0174 22.9743 31.912 19.9824 31.9091 16.8933C31.9129 13.8026 31.0182 10.8089 29.3818 8.43671M20.9982 19.0943C20.516 19.0943 20.0535 18.8624 19.7125 18.4497C19.3716 18.0369 19.18 17.477 19.18 16.8933C19.18 16.3095 19.3716 15.7496 19.7125 15.3369C20.0535 14.9241 20.516 14.6922 20.9982 14.6922C21.4804 14.6922 21.9429 14.9241 22.2838 15.3369C22.6248 15.7496 22.8164 16.3095 22.8164 16.8933C22.8164 17.477 22.6248 18.0369 22.2838 18.4497C21.9429 18.8624 21.4804 19.0943 20.9982 19.0943Z" />
-            </svg>
-            Sensores
-          </a>
-
-          <a href="../dispositivos/dispositivos.html"
-             class="flex items-center gap-3 px-4 py-2 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-              <rect x="3" y="4.5" width="18" height="12" rx="1.5" />
-              <path d="M9 20.5h6M12 16.5v4" />
-            </svg>
-            Dispositivos
-          </a>
-
-          <a href="../dashboard/alertas.html"
-             class="flex items-center gap-3 px-4 py-2 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="currentColor" class="w-5 h-5">
-              <path d="M20 3.33333C19.1159 3.33333 18.2681 3.68452 17.643 4.30964C17.0179 4.93476 16.6667 5.78261 16.6667 6.66666C16.655 6.82756 16.655 6.9891 16.6667 7.14999C11.8667 8.56666 8.33333 13.0333 8.33333 18.3333V28.3333L5 31.6667V33.3333H35V31.6667L31.6667 28.3333V18.3333C31.6667 13.0333 28.1333 8.56666 23.3333 7.14999C23.345 6.9891 23.345 6.82756 23.3333 6.66666C23.3333 5.78261 22.9821 4.93476 22.357 4.30964C21.7319 3.68452 20.8841 3.33333 20 3.33333ZM20 9.99999C22.2101 9.99999 24.3298 10.878 25.8926 12.4408C27.4554 14.0036 28.3333 16.1232 28.3333 18.3333V30H11.6667V18.3333C11.6667 16.1232 12.5446 14.0036 14.1074 12.4408C15.6702 10.878 17.7899 9.99999 20 9.99999ZM16.6667 35C16.6667 35.884 17.0179 36.7319 17.643 37.357C18.2681 37.9821 19.1159 38.3333 20 38.3333C20.8841 38.3333 21.7319 37.9821 22.357 37.357C22.9821 36.7319 23.3333 35.884 23.3333 35H16.6667Z" />
-            </svg>
-            Alertas
-          </a>
-
-          <a href="../user/perfil.html"
-             class="flex items-center gap-3 px-4 py-2 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z" />
-              <path d="M4 21v-1c0-3.31 2.69-6 6-6h4c3.31 0 6 2.69 6 6v1a1 1 0 01-1 1H5a1 1 0 01-1-1z" />
-            </svg>
-            Perfil
-          </a>
-
-          <a href="../dashboard/configuracoes.html"
-             class="flex items-center gap-3 px-4 py-2 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-              <path d="M20 15C22.7667 15 25 17.2333 25 20C25 22.7667 22.7667 25 20 25C17.2333 25 15 22.7667 15 20C15 17.2333 17.2333 15 20 15Z" />
-              <path d="M25.3999 10.6167C26.0832 11 26.7332 11.4667 27.2999 12C27.2999 12 31.6666 10.2 31.6832 10.2333L34.2832 14.7333C34.2999 14.7833 30.5832 17.65 30.5832 17.65C30.7499 18.4 30.8332 19.2 30.8332 20C30.8499 20.7667 30.7666 21.5667 30.5832 22.3167C30.5832 22.3167 34.3332 25.2 34.2999 25.2333L31.6999 29.7333C31.6666 29.7667 27.3166 27.9833 27.3166 27.9833C26.7499 28.5 26.0999 28.9667 25.3999 29.3667C24.7332 29.7667 24.0332 30.1 23.2832 30.3167C23.2832 30.3167 22.6666 35 22.6166 35H17.4166C17.3666 34.9833 16.7332 30.3333 16.7332 30.3333C15.9999 30.1 15.2666 29.7667 14.5666 29.3667C13.9166 29 13.2666 28.5333 12.6999 28C12.6999 28 8.33321 29.8 8.31654 29.7667L5.71654 25.2667C5.69988 25.2167 9.41654 22.35 9.41654 22.35C9.24988 21.6 9.16654 20.8 9.16654 20C9.14988 19.2333 9.23321 18.4333 9.41654 17.6833C9.41654 17.6833 5.66654 14.8 5.69988 14.7667L8.29988 10.2667C8.33321 10.2333 12.6832 12.0167 12.6832 12.0167C13.2499 11.5 13.8999 11.0333 14.5999 10.6333C15.2666 10.2333 15.9999 9.9 16.7499 9.68333C16.7499 9.68333 17.3666 5 17.4166 5H22.6166C22.6666 5.01667 23.2999 9.66667 23.2999 9.66667C24.0332 9.9 24.7666 10.2333 25.3999 10.6333V10.6167Z" />
-            </svg>
-            Configurações
-          </a>
-
-          <a href="../dashboard/ajuda.html"
-             class="flex items-center gap-3 px-4 py-2 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="currentColor" class="w-5 h-5">
-              <path d="M18.2003 17.3969C18.2004 17.0875 18.2803 16.7833 18.4322 16.5137C18.5841 16.2441 18.8029 16.0183 19.0675 15.8579C19.3322 15.6975 19.6337 15.6081 19.943 15.5982C20.2522 15.5883 20.5588 15.6583 20.8332 15.8015C21.1075 15.9446 21.3403 16.1561 21.5091 16.4154C21.6779 16.6747 21.777 16.9732 21.7968 17.282C21.8167 17.5908 21.7566 17.8995 21.6223 18.1783C21.4881 18.4571 21.2843 18.6966 21.0305 18.8737C20.5805 19.1903 20.0338 19.6104 19.5971 20.1404C19.1521 20.6771 18.7504 21.4055 18.7504 22.3072C18.7504 22.6387 18.8821 22.9567 19.1165 23.1911C19.3509 23.4255 19.6689 23.5572 20.0004 23.5572C20.332 23.5572 20.6499 23.4255 20.8844 23.1911C21.1188 22.9567 21.2505 22.6387 21.2505 22.3072C21.2505 22.1822 21.3005 22.0005 21.5205 21.7355C21.7997 21.4255 22.1167 21.1517 22.4639 20.9204C23.0697 20.497 23.5562 19.9245 23.8764 19.2583C24.1965 18.5921 24.3395 17.8546 24.2916 17.117C24.2437 16.3794 24.0065 15.6666 23.6028 15.0474C23.1992 14.4282 22.6427 13.9235 21.9872 13.582C21.3317 13.2405 20.5992 13.0737 19.8604 13.0978C19.1216 13.1219 18.4016 13.336 17.7696 13.7194C17.1377 14.1028 16.6153 14.6427 16.2528 15.2869C15.8903 15.931 15.7 16.6578 15.7002 17.3969C15.7002 17.7284 15.8319 18.0464 16.0663 18.2808C16.3008 18.5153 16.6187 18.647 16.9503 18.647C17.2818 18.647 17.5998 18.5153 17.8342 18.2808C18.0686 18.0464 18.2003 17.7284 18.2003 17.3969ZM20.0004 24.404C19.6689 24.404 19.3509 24.5357 19.1165 24.7701C18.8821 25.0045 18.7504 25.3225 18.7504 25.654C18.7504 25.9856 18.8821 26.3035 19.1165 26.538C19.3509 26.7724 19.6689 26.9041 20.0004 26.9041C20.332 26.9041 20.6499 26.7724 20.8844 26.538C21.1188 26.3035 21.2505 25.9856 21.2505 25.654C21.2505 25.3225 21.1188 25.0045 20.8844 24.7701C20.6499 24.5357 20.332 24.404 20.0004 24.404Z" />
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0002 3.33353C10.7952 3.33353 3.3335 10.7952 3.3335 20.0002C3.3335 29.2052 10.7952 36.6669 20.0002 36.6669C29.2052 36.6669 36.6668 29.2052 36.6668 20.0002C36.6668 10.7952 29.2052 3.33353 20.0002 3.33353ZM5.8335 20.0002C5.8335 16.243 7.32605 12.6396 9.98282 9.98285C12.6396 7.32608 16.2429 5.83353 20.0002 5.83353C23.7574 5.83353 27.3607 7.32608 30.0175 9.98285C32.6743 12.6396 34.1668 16.243 34.1668 20.0002C34.1668 23.7574 32.6743 27.3608 30.0175 30.0175C27.3607 32.6743 23.7574 34.1669 20.0002 34.1669C16.2429 34.1669 12.6396 32.6743 9.98282 30.0175C7.32605 27.3608 5.8335 23.7574 5.8335 20.0002Z" />
-            </svg>
-            Ajuda
-          </a>
-
-        </nav>
+    <div>
+      <div class="flex flex-col items-center px-4 pt-6 pb-6 [@media(max-height:760px)]:pb-3">
+        <img src="../assets/img/AgroSensor_versao3_folha_original.svg" alt="AgroSensor" class="h-[64px] w-auto object-contain">
       </div>
 
-      <!-- SAIR -->
-      <div class="px-3 pb-8">
-        <a href="../user/login.html"
-           class="flex items-center gap-3 px-4 py-2 rounded-[8px] text-white font-semibold hover:bg-[#5a9c5a] transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-            <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H3" />
+      <nav class="flex flex-col gap-3 [@media(max-height:760px)]:gap-4 px-3">
+
+        <a href="../dashboard/index.html" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-white/90 font-medium hover:bg-white/10 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+            <path d="M11.47 3.841a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.061l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 101.061 1.06l8.69-8.689z"/>
+            <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.432z"/>
           </svg>
-          Sair
+          Dashboard
         </a>
-      </div>
-    </aside>
 
+        <a href="plantacoes.html" class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-[#0f8a2f] text-white font-semibold">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="currentColor" class="w-5 h-5">
+            <path d="M28.3335 13.3333C13.3335 16.6667 9.8335 26.95 6.36683 35.5667L9.51683 36.6667L11.1002 32.8333C11.9002 33.1167 12.7335 33.3333 13.3335 33.3333C31.6668 33.3333 36.6668 5 36.6668 5C35.0002 8.33333 23.3335 8.75 15.0002 10.4167C6.66683 12.0833 3.3335 19.1667 3.3335 22.5C3.3335 25.8333 6.25016 28.75 6.25016 28.75C11.6668 13.3333 28.3335 13.3333 28.3335 13.3333Z"/>
+          </svg>
+          Plantações
+        </a>
 
+        <a href="../sensores/sensores.html" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-white/90 font-medium hover:bg-white/10 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" class="w-5 h-5">
+            <path d="M5.63638 1.39106C2.63541 5.73836 0.994064 11.2256 1.00002 16.8911C1.00002 22.79 2.74183 28.1936 5.63638 32.3911M12.6182 25.3476C10.9814 22.9748 10.0867 19.9802 10.0909 16.8889C10.0909 13.6731 11.04 10.7258 12.6182 8.43451M36.3636 32.3889C39.3638 28.0427 41.0051 22.5572 41 16.8933C41 10.9966 39.2582 5.59292 36.3636 1.39326M29.3818 25.3454C31.0174 22.9743 31.912 19.9824 31.9091 16.8933C31.9129 13.8026 31.0182 10.8089 29.3818 8.43671M20.9982 19.0943C20.516 19.0943 20.0535 18.8624 19.7125 18.4497C19.3716 18.0369 19.18 17.477 19.18 16.8933C19.18 16.3095 19.3716 15.7496 19.7125 15.3369C20.0535 14.9241 20.516 14.6922 20.9982 14.6922C21.4804 14.6922 21.9429 14.9241 22.2838 15.3369C22.6248 15.7496 22.8164 16.3095 22.8164 16.8933C22.8164 17.477 22.6248 18.0369 22.2838 18.4497C21.9429 18.8624 21.4804 19.0943 20.9982 19.0943Z"/>
+          </svg>
+          Sensores
+        </a>
 
-        <!-- CONTEÚDO PRINCIPAL -->
-        <main class="flex-1 px-8 py-4 overflow-y-auto">
+        <a href="../dispositivos/dispositivos.html" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-white/90 font-medium hover:bg-white/10 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+            <rect x="3" y="4.5" width="18" height="12" rx="1.5"/>
+            <path d="M9 20.5h6M12 16.5v4"/>
+          </svg>
+          Dispositivos
+        </a>
 
-            <!-- CABEÇALHO -->
-            <div class="flex items-center justify-between border-b border-gray-200 pb-2">
-                <h1 class="text-[26px] font-bold text-black">Milho Lote A</h1>
-                <a href="plantacoes.html" class="text-gray-400 text-xl hover:text-gray-600">✕</a>
-            </div>
+        <a href="../dashboard/alertas.html" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-white/90 font-medium hover:bg-white/10 transition-colors">
+          <span class="relative">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="currentColor" class="w-5 h-5">
+              <path d="M20 3.33333C19.1159 3.33333 18.2681 3.68452 17.643 4.30964C17.0179 4.93476 16.6667 5.78261 16.6667 6.66666C16.655 6.82756 16.655 6.9891 16.6667 7.14999C11.8667 8.56666 8.33333 13.0333 8.33333 18.3333V28.3333L5 31.6667V33.3333H35V31.6667L31.6667 28.3333V18.3333C31.6667 13.0333 28.1333 8.56666 23.3333 7.14999C23.345 6.9891 23.345 6.82756 23.3333 6.66666C23.3333 5.78261 22.9821 4.93476 22.357 4.30964C21.7319 3.68452 20.8841 3.33333 20 3.33333ZM20 9.99999C22.2101 9.99999 24.3298 10.878 25.8926 12.4408C27.4554 14.0036 28.3333 16.1232 28.3333 18.3333V30H11.6667V18.3333C11.6667 16.1232 12.5446 14.0036 14.1074 12.4408C15.6702 10.878 17.7899 9.99999 20 9.99999ZM16.6667 35C16.6667 35.884 17.0179 36.7319 17.643 37.357C18.2681 37.9821 19.1159 38.3333 20 38.3333C20.8841 38.3333 21.7319 37.9821 22.357 37.357C22.9821 36.7319 23.3333 35.884 23.3333 35H16.6667Z"/>
+            </svg>
+            <span class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">2</span>
+          </span>
+          Alertas
+        </a>
 
-            <!-- BREADCRUMB -->
-            <p class="mt-2 text-[14px] text-[#817979]">
-              <a href="plantacoes.html" class="hover:underline">Plantações</a>
-                 <span class="mx-1">›</span>
-                 <span class="text-black">Milho Lote A</span>
-            </p>
+        <a href="../user/perfil.html" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-white/90 font-medium hover:bg-white/10 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"/>
+            <path d="M4 21v-1c0-3.31 2.69-6 6-6h4c3.31 0 6 2.69 6 6v1a1 1 0 01-1 1H5a1 1 0 01-1-1z"/>
+          </svg>
+          Perfil
+        </a>
 
+        <a href="../dashboard/configuracoes.html" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-white/90 font-medium hover:bg-white/10 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+            <path d="M20 15C22.7667 15 25 17.2333 25 20C25 22.7667 22.7667 25 20 25C17.2333 25 15 22.7667 15 20C15 17.2333 17.2333 15 20 15Z"/>
+            <path d="M25.3999 10.6167C26.0832 11 26.7332 11.4667 27.2999 12C27.2999 12 31.6666 10.2 31.6832 10.2333L34.2832 14.7333C34.2999 14.7833 30.5832 17.65 30.5832 17.65C30.7499 18.4 30.8332 19.2 30.8332 20C30.8499 20.7667 30.7666 21.5667 30.5832 22.3167C30.5832 22.3167 34.3332 25.2 34.2999 25.2333L31.6999 29.7333C31.6666 29.7667 27.3166 27.9833 27.3166 27.9833C26.7499 28.5 26.0999 28.9667 25.3999 29.3667C24.7332 29.7667 24.0332 30.1 23.2832 30.3167C23.2832 30.3167 22.6666 35 22.6166 35H17.4166C17.3666 34.9833 16.7332 30.3333 16.7332 30.3333C15.9999 30.1 15.2666 29.7667 14.5666 29.3667C13.9166 29 13.2666 28.5333 12.6999 28C12.6999 28 8.33321 29.8 8.31654 29.7667L5.71654 25.2667C5.69988 25.2167 9.41654 22.35 9.41654 22.35C9.24988 21.6 9.16654 20.8 9.16654 20C9.14988 19.2333 9.23321 18.4333 9.41654 17.6833C9.41654 17.6833 5.66654 14.8 5.69988 14.7667L8.29988 10.2667C8.33321 10.2333 12.6832 12.0167 12.6832 12.0167C13.2499 11.5 13.8999 11.0333 14.5999 10.6333C15.2666 10.2333 15.9999 9.9 16.7499 9.68333C16.7499 9.68333 17.3666 5 17.4166 5H22.6166C22.6666 5.01667 23.2999 9.66667 23.2999 9.66667C24.0332 9.9 24.7666 10.2333 25.3999 10.6333V10.6167Z"/>
+          </svg>
+          Configurações
+        </a>
 
-            <!-- CARDS INFO -->
-            <div class="mt-3 grid grid-cols-3 gap-3">
-
-                <div class="border border-gray-200 rounded-[10px] p-3 text-center">
-                    <img src="../assets/leaf-cultura.svg" alt="Cultura" class="w-5 h-5 mx-auto mb-1">
-                    <p class="text-[13px] text-[#817979]">Cultura</p>
-                    <p class="text-[17px] font-bold text-black">Milho</p>
-                </div>
-
-                <div class="border border-gray-200 rounded-[10px] p-3 text-center">
-                    <img src="../assets/tabler_calendar-event.svg" alt="Início" class="w-5 h-5 mx-auto mb-1">
-                    <p class="text-[13px] text-[#817979]">Início</p>
-                    <p class="text-[17px] font-bold text-black">15/06/2025</p>
-                </div>
-
-                <div class="border border-gray-200 rounded-[10px] p-3 text-center">
-                    <img src="../assets/uil_comment-verify.svg" alt="Status" class="w-5 h-5 mx-auto mb-1">
-                    <p class="text-[13px] text-[#817979]">Status</p>
-                    <p class="text-[17px] font-bold text-[#077C07]">Ideal</p>
-                </div>
-
-            </div>
-
-
-            <!-- GRÁFICO -->
-            <div class="mt-3 border border-gray-200 rounded-[10px] p-4">
-                <h2 class="text-[16px] font-bold text-black mb-2">Temperatura e Umidade - 24h</h2>
-                <div class="w-full overflow-hidden">
-                    <canvas id="graficoMonitoramento" width="1040" height="260" class="w-full h-auto block"></canvas>
-                </div>
-            </div>
-
-
-            <!-- SENSORES E ALERTAS -->
-            <div class="mt-3 grid grid-cols-2 gap-3">
-
-                <!-- SENSORES ASSOCIADOS -->
-                <div class="border border-gray-200 rounded-[10px] p-4">
-
-                    <h2 class="text-[16px] font-bold text-black mb-3">Sensores Associados</h2>
-
-                    <div class="flex items-center gap-3 border border-gray-100 rounded-[8px] p-2 mb-2">
-                        <div class="w-9 h-9 rounded-full bg-green-500 flex items-center justify-center">
-                            <img src="../assets/zondicons_thermometer.svg" alt="Temperatura" class="w-4 h-4 brightness-0 invert">
-                        </div>
-                        <div>
-                            <p class="text-[14px] font-bold text-black">Sensor 01 - Lote A</p>
-                            <p class="text-[12px] text-[#817979]">Temperatura / Umidade do Ar</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-3 border border-gray-100 rounded-[8px] p-2 mb-2">
-                        <div class="w-9 h-9 rounded-full bg-orange-400 flex items-center justify-center">
-                            <img src="../assets/streamline-pixel_ecology-plant-growth-soil-nature.svg" alt="Umidade do Solo" class="w-4 h-4 brightness-0 invert">
-                        </div>
-                        <div>
-                            <p class="text-[14px] font-bold text-black">Sensor 02 - Lote A</p>
-                            <p class="text-[12px] text-[#817979]">Umidade do Solo</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-3 border border-gray-100 rounded-[8px] p-2">
-                        <div class="w-9 h-9 rounded-full bg-yellow-400 flex items-center justify-center">
-                            <img src="../assets/meteor-icons_sun.svg" alt="Luminosidade" class="w-4 h-4 brightness-0 invert">
-                        </div>
-                        <div>
-                            <p class="text-[14px] font-bold text-black">Sensor 03 - Lote A</p>
-                            <p class="text-[12px] text-[#817979]">Luminosidade</p>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <!-- ALERTAS DA PLANTAÇÃO -->
-                <div class="border border-gray-200 rounded-[10px] p-4">
-
-                    <h2 class="text-[16px] font-bold text-black mb-3">Alerta da Plantação</h2>
-
-                    <div class="flex items-center gap-3 border border-gray-100 rounded-[8px] p-2 mb-2">
-                        <div class="w-9 h-9 rounded-full bg-red-500 flex items-center justify-center">
-                            <img src="../assets/mdi_alert-circle-outline.svg" alt="Temperatura Alta" class="w-4 h-4 brightness-0 invert">
-                        </div>
-                        <div>
-                            <p class="text-[14px] font-bold text-black">Temperatura Alta</p>
-                            <p class="text-[12px] text-[#817979]">Acima da faixa ideal</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-3 border border-gray-100 rounded-[8px] p-2 mb-2">
-                        <div class="w-9 h-9 rounded-full bg-yellow-400 flex items-center justify-center">
-                            <img src="../assets/mdi_alert.svg" alt="Irrigação Necessária" class="w-4 h-4 brightness-0 invert">
-                        </div>
-                        <div>
-                            <p class="text-[14px] font-bold text-black">Irrigação Necessária</p>
-                            <p class="text-[12px] text-[#817979]">Umidade do solo baixa</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-3 border border-gray-100 rounded-[8px] p-2">
-                        <div class="w-9 h-9 rounded-full bg-yellow-400 flex items-center justify-center">
-                            <img src="../assets/mdi_alert.svg" alt="Excesso de Exposição Solar" class="w-4 h-4 brightness-0 invert">
-                        </div>
-                        <div>
-                            <p class="text-[14px] font-bold text-black">Excesso de Exposição Solar</p>
-                            <p class="text-[12px] text-[#817979]">Luminosidade elevada</p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- HISTÓRICO DE LEITURAS -->
-            <div class="mt-3 mb-4 border border-gray-200 rounded-[10px] p-4">
-
-                <h2 class="text-[16px] font-bold text-black mb-3">Histórico de Leituras</h2>
-
-                <table class="w-full text-[13px] text-left">
-                    <thead>
-                        <tr class="text-[#817979] border-b border-gray-200">
-                            <th class="py-1 font-semibold">Hora</th>
-                            <th class="py-1 font-semibold">Sensor</th>
-                            <th class="py-1 font-semibold">Temp. (°C)</th>
-                            <th class="py-1 font-semibold">Umid. Ar (%)</th>
-                            <th class="py-1 font-semibold">Umid. Solo (%)</th>
-                            <th class="py-1 font-semibold">Lux</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b border-gray-100">
-                            <td class="py-1.5">14:50</td>
-                            <td class="py-1.5">Sensor 01</td>
-                            <td class="py-1.5">28</td>
-                            <td class="py-1.5">55</td>
-                            <td class="py-1.5">72</td>
-                            <td class="py-1.5">850</td>
-                        </tr>
-                        <tr class="border-b border-gray-100">
-                            <td class="py-1.5">12:50</td>
-                            <td class="py-1.5">Sensor 01</td>
-                            <td class="py-1.5">30</td>
-                            <td class="py-1.5">48</td>
-                            <td class="py-1.5">65</td>
-                            <td class="py-1.5">920</td>
-                        </tr>
-                        <tr>
-                            <td class="py-1.5">10:50</td>
-                            <td class="py-1.5">Sensor 01</td>
-                            <td class="py-1.5">22</td>
-                            <td class="py-1.5">60</td>
-                            <td class="py-1.5">78</td>
-                            <td class="py-1.5">610</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
-
-
-            <!-- BOTÃO VOLTAR -->
-            <div class="mb-4">
-                 <a href="plantacoes.html" onclick="if (document.referrer && document.referrer.includes(window.location.host)) { history.back(); return false; }"
-                 class="inline-block border border-gray-300 rounded-[8px] px-8 py-2 text-[14px] font-semibold text-black hover:bg-gray-50 transition-colors">
-                 Voltar
-               </a>
-            </div>
-
-        </main>
-
+        <a href="../dashboard/ajuda.html" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-white/90 font-medium hover:bg-white/10 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="currentColor" class="w-5 h-5">
+            <path d="M18.2003 17.3969C18.2004 17.0875 18.2803 16.7833 18.4322 16.5137C18.5841 16.2441 18.8029 16.0183 19.0675 15.8579C19.3322 15.6975 19.6337 15.6081 19.943 15.5982C20.2522 15.5883 20.5588 15.6583 20.8332 15.8015C21.1075 15.9446 21.3403 16.1561 21.5091 16.4154C21.6779 16.6747 21.777 16.9732 21.7968 17.282C21.8167 17.5908 21.7566 17.8995 21.6223 18.1783C21.4881 18.4571 21.2843 18.6966 21.0305 18.8737C20.5805 19.1903 20.0338 19.6104 19.5971 20.1404C19.1521 20.6771 18.7504 21.4055 18.7504 22.3072C18.7504 22.6387 18.8821 22.9567 19.1165 23.1911C19.3509 23.4255 19.6689 23.5572 20.0004 23.5572C20.332 23.5572 20.6499 23.4255 20.8844 23.1911C21.1188 22.9567 21.2505 22.6387 21.2505 22.3072C21.2505 22.1822 21.3005 22.0005 21.5205 21.7355C21.7997 21.4255 22.1167 21.1517 22.4639 20.9204C23.0697 20.497 23.5562 19.9245 23.8764 19.2583C24.1965 18.5921 24.3395 17.8546 24.2916 17.117C24.2437 16.3794 24.0065 15.6666 23.6028 15.0474C23.1992 14.4282 22.6427 13.9235 21.9872 13.582C21.3317 13.2405 20.5992 13.0737 19.8604 13.0978C19.1216 13.1219 18.4016 13.336 17.7696 13.7194C17.1377 14.1028 16.6153 14.6427 16.2528 15.2869C15.8903 15.931 15.7 16.6578 15.7002 17.3969C15.7002 17.7284 15.8319 18.0464 16.0663 18.2808C16.3008 18.5153 16.6187 18.647 16.9503 18.647C17.2818 18.647 17.5998 18.5153 17.8342 18.2808C18.0686 18.0464 18.2003 17.7284 18.2003 17.3969ZM20.0004 24.404C19.6689 24.404 19.3509 24.5357 19.1165 24.7701C18.8821 25.0045 18.7504 25.3225 18.7504 25.654C18.7504 25.9856 18.8821 26.3035 19.1165 26.538C19.3509 26.7724 19.6689 26.9041 20.0004 26.9041C20.332 26.9041 20.6499 26.7724 20.8844 26.538C21.1188 26.3035 21.2505 25.9856 21.2505 25.654C21.2505 25.3225 21.1188 25.0045 20.8844 24.7701C20.6499 24.5357 20.332 24.404 20.0004 24.404Z"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0002 3.33353C10.7952 3.33353 3.3335 10.7952 3.3335 20.0002C3.3335 29.2052 10.7952 36.6669 20.0002 36.6669C29.2052 36.6669 36.6668 29.2052 36.6668 20.0002C36.6668 10.7952 29.2052 3.33353 20.0002 3.33353ZM5.8335 20.0002C5.8335 16.243 7.32605 12.6396 9.98282 9.98285C12.6396 7.32608 16.2429 5.83353 20.0002 5.83353C23.7574 5.83353 27.3607 7.32608 30.0175 9.98285C32.6743 12.6396 34.1668 16.243 34.1668 20.0002C34.1668 23.7574 32.6743 27.3608 30.0175 30.0175C27.3607 32.6743 23.7574 34.1669 20.0002 34.1669C16.2429 34.1669 12.6396 32.6743 9.98282 30.0175C7.32605 27.3608 5.8335 23.7574 5.8335 20.0002Z"/>
+          </svg>
+          Ajuda
+        </a>
+      </nav>
     </div>
 
+    <div class="px-3 pb-6 pt-4">
+      <a href="../user/login.html" class="inline-flex items-center gap-3 px-5 py-2.5 rounded-xl border border-white/30 text-white/90 font-medium hover:bg-white/10 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+          <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H3"/>
+        </svg>
+        Sair
+      </a>
+    </div>
+  </aside>
 
-    <!-- CHART.JS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        const ctx = document.getElementById('graficoMonitoramento');
+  <!-- CONTEÚDO -->
+  <main class="flex-1 overflow-y-auto">
 
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['00h', '02h', '04h', '06h', '08h', '10h', '12h', '14h', '16h', '18h', '20h', '22h'],
-                datasets: [
-                    {
-                        label: 'Umidade (%)',
-                        data: [30, 32, 48, 53, 50, 54, 41, 33, 54, 39, 34, 52],
-                        borderColor: '#2b2f3a',
-                        backgroundColor: '#2b2f3a',
-                        pointBackgroundColor: '#ffffff',
-                        pointBorderColor: '#2b2f3a',
-                        pointBorderWidth: 2,
-                        pointRadius: 4,
-                        borderWidth: 2,
-                        tension: 0.35,
-                        fill: false
-                    },
-                    {
-                        label: 'Temperatura (°C)',
-                        data: [5, 40, 44, 22, 47, 50, 10, 30, 25, 47, 30, 50],
-                        borderColor: '#e08a7b',
-                        backgroundColor: '#e08a7b',
-                        pointBackgroundColor: '#ffffff',
-                        pointBorderColor: '#e08a7b',
-                        pointBorderWidth: 2,
-                        pointRadius: 4,
-                        borderWidth: 2,
-                        tension: 0.35,
-                        fill: false
-                    }
-                ]
-            },
-            options: {
-                responsive: false,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'bottom',
-                        labels: { boxWidth: 12, font: { size: 11 } }
-                    }
-                },
-                scales: {
-                    y: {
-                        min: 0,
-                        max: 60,
-                        ticks: { stepSize: 15 },
-                        grid: { color: '#e5e7eb' }
-                    },
-                    x: {
-                        grid: { display: false }
-                    }
-                }
+    <!-- CABEÇALHO -->
+    <header class="flex items-center justify-between bg-white border-b border-gray-100 px-8 py-4">
+      <div class="flex items-center gap-4">
+        <div class="icone-caixa ic-header rounded-xl bg-green-100 flex items-center justify-center overflow-hidden shrink-0">
+          <img id="img-cultura" src="" alt="">
+        </div>
+        <div>
+          <div class="flex items-center gap-3">
+            <h1 id="titulo" class="text-[28px] font-bold leading-none text-black"></h1>
+            <span class="inline-flex items-center gap-1.5 bg-green-100 text-green-700 text-[12px] font-semibold px-3 py-1 rounded-full">
+              <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Ativa
+            </span>
+          </div>
+          <p class="mt-1 text-[13px] text-[#817979]">Acompanhe em tempo real as condições da sua plantação e o desempenho dos sensores.</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6 text-[12px] text-[#817979]">
+        <div class="flex items-center gap-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.6" class="w-7 h-7"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          <div>
+            <p id="data-hoje" class="font-semibold text-gray-700"></p>
+            <p id="dia-semana"></p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-3xl">☀️</span>
+          <div>
+            <p class="text-[16px] font-bold text-black">26°C</p>
+            <p>Céu limpo</p>
+          </div>
+        </div>
+        <div class="w-10 h-10 rounded-full bg-[#05452a] text-white flex items-center justify-center">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21v-1c0-3.3 2.7-6 6-6h4c3.3 0 6 2.7 6 6v1a1 1 0 01-1 1H5a1 1 0 01-1-1z"/></svg>
+        </div>
+      </div>
+    </header>
+
+    <div class="px-8 py-5 space-y-5">
+
+      <!-- VOLTAR + BREADCRUMB + EDITAR -->
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <a href="plantacoes.html" id="btn-voltar" class="inline-flex items-center gap-2 h-[40px] bg-white border border-gray-200 rounded-xl px-5 text-[13px] font-semibold text-gray-700 shadow-sm hover:bg-gray-50 transition-colors">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Voltar
+          </a>
+          <p class="text-[13px] text-[#817979]">
+            <a href="plantacoes.html" class="hover:underline">Plantações</a>
+            <span class="mx-1">›</span>
+            <span id="breadcrumb" class="text-black font-medium"></span>
+          </p>
+        </div>
+
+        <a href="plantacao-editar.html" id="btn-editar" class="inline-flex items-center gap-2 h-[40px] bg-white border border-green-300 text-green-700 rounded-xl px-5 text-[13px] font-semibold shadow-sm hover:bg-green-50 transition-colors">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+          Editar plantação
+        </a>
+      </div>
+
+      <!-- CARDS DE INFORMAÇÃO -->
+      <div class="grid grid-cols-4 gap-4">
+
+        <div class="flex items-center gap-4 bg-white rounded-2xl border border-gray-100 shadow-sm px-5 py-4">
+          <span class="icone-caixa ic-cultura rounded-xl bg-green-100 flex items-center justify-center shrink-0 overflow-hidden"><img id="img-cultura-card" src="" alt=""></span>
+          <div>
+            <p class="text-[13px] text-[#817979]">Cultura</p>
+            <p id="info-cultura" class="text-[18px] font-bold text-black leading-tight"></p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 bg-white rounded-2xl border border-gray-100 shadow-sm px-5 py-4">
+          <span class="icone-caixa ic-calendario rounded-xl bg-green-100 flex items-center justify-center shrink-0 overflow-hidden"><img src="../assets/calendario.png" alt=""></span>
+          <div>
+            <p class="text-[13px] text-[#817979]">Criado em</p>
+            <p id="info-inicio" class="text-[18px] font-bold text-black leading-tight"></p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 bg-white rounded-2xl border border-gray-100 shadow-sm px-5 py-4">
+          <span id="info-status-icone" class="icone-caixa ic-status rounded-xl bg-green-100 flex items-center justify-center shrink-0 overflow-hidden"></span>
+          <div>
+            <p class="text-[13px] text-[#817979]">Status</p>
+            <p id="info-status" class="text-[18px] font-bold leading-tight"></p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 bg-white rounded-2xl border border-gray-100 shadow-sm px-5 py-4">
+          <span class="icone-caixa ic-sensores rounded-xl bg-green-100 flex items-center justify-center shrink-0 overflow-hidden"><img src="../assets/sensor.png" alt=""></span>
+          <div>
+            <p class="text-[13px] text-[#817979]">Sensores</p>
+            <p id="info-sensores" class="text-[18px] font-bold text-black leading-tight"></p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- LEITURAS ATUAIS (mesmas da lista de plantações) -->
+      <div class="grid grid-cols-3 gap-4">
+
+        <div class="flex items-center gap-4 bg-white rounded-2xl border border-gray-100 shadow-sm px-5 py-4">
+          <span class="w-12 h-12 rounded-xl bg-green-100 text-2xl flex items-center justify-center shrink-0">💧</span>
+          <div>
+            <p class="text-[13px] text-[#817979]">Umidade do Solo</p>
+            <p id="leitura-umidade" class="text-[18px] font-bold text-black leading-tight"></p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 bg-white rounded-2xl border border-gray-100 shadow-sm px-5 py-4">
+          <span class="w-12 h-12 rounded-xl bg-green-100 text-2xl flex items-center justify-center shrink-0">🌡️</span>
+          <div>
+            <p class="text-[13px] text-[#817979]">Temperatura</p>
+            <p id="leitura-temp" class="text-[18px] font-bold text-black leading-tight"></p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 bg-white rounded-2xl border border-gray-100 shadow-sm px-5 py-4">
+          <span class="w-12 h-12 rounded-xl bg-green-100 text-2xl flex items-center justify-center shrink-0">☀️</span>
+          <div>
+            <p class="text-[13px] text-[#817979]">Luminosidade</p>
+            <p id="leitura-luz" class="text-[18px] font-bold text-black leading-tight"></p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- GRÁFICO -->
+      <section class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+
+        <div class="px-6 pt-5 flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <span class="icone-caixa ic-graf rounded-xl bg-green-100 flex items-center justify-center shrink-0 overflow-hidden"><img src="../assets/graf.png" alt=""></span>
+            <h2 id="titulo-grafico" class="text-[18px] font-bold text-black leading-tight">Temperatura e Umidade - 24h</h2>
+          </div>
+
+          <div id="abas-periodo" class="flex items-center gap-1 rounded-full border border-gray-200 p-1">
+            <button type="button" data-periodo="24h" class="aba-periodo"></button>
+            <button type="button" data-periodo="7d" class="aba-periodo"></button>
+            <button type="button" data-periodo="30d" class="aba-periodo"></button>
+          </div>
+        </div>
+
+        <!-- RESUMO + LEGENDA -->
+        <div class="px-6 mt-4 flex items-center justify-between">
+          <div id="resumo-grafico" class="flex items-center gap-3"></div>
+
+          <div class="flex items-center gap-2 text-[12px] font-medium text-gray-700">
+            <button type="button" data-serie="0" class="legenda-item flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1.5 hover:bg-gray-50 transition-opacity">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>Temperatura (°C)
+            </button>
+            <button type="button" data-serie="1" class="legenda-item flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1.5 hover:bg-gray-50 transition-opacity">
+              <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>Umidade (%)
+            </button>
+          </div>
+        </div>
+
+        <!-- GRÁFICO (de ponta a ponta do card) -->
+        <div class="mt-3 h-[380px] w-full">
+          <canvas id="graficoMonitoramento"></canvas>
+        </div>
+      </section>
+
+      <!-- SENSORES E ALERTAS -->
+      <div class="grid grid-cols-2 gap-5">
+
+        <!-- SENSORES ASSOCIADOS -->
+        <section class="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-5">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <span class="icone-caixa ic-sensor-titulo rounded-xl bg-green-100 flex items-center justify-center shrink-0 overflow-hidden"><img src="../assets/sensor.png" alt=""></span>
+              <h2 class="text-[18px] font-bold text-black leading-tight">Sensores Associados</h2>
+            </div>
+            <a href="../sensores/sensores.html" class="inline-flex items-center gap-2 h-[34px] border border-green-300 text-green-700 text-[12px] font-semibold rounded-full px-4 hover:bg-green-50 transition-colors">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+              Ver todos
+            </a>
+          </div>
+          <div id="lista-sensores" class="mt-4 space-y-2"></div>
+        </section>
+
+        <!-- ALERTAS DA PLANTAÇÃO -->
+        <section class="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-5">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <span class="icone-caixa ic-alertas-titulo rounded-xl bg-green-100 flex items-center justify-center shrink-0 overflow-hidden"><img src="../assets/irrigação.png" alt=""></span>
+              <h2 class="text-[18px] font-bold text-black leading-tight">Alertas da Plantação</h2>
+            </div>
+            <a href="../dashboard/alertas.html" class="inline-flex items-center gap-2 h-[34px] border border-green-300 text-green-700 text-[12px] font-semibold rounded-full px-4 hover:bg-green-50 transition-colors">
+              Ver todos
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+          <div id="lista-alertas" class="mt-4 space-y-2"></div>
+        </section>
+
+      </div>
+
+      <!-- HISTÓRICO DE LEITURAS -->
+      <section class="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-5">
+        <div class="flex items-center gap-4">
+          <span class="icone-caixa ic-dados rounded-xl bg-green-100 flex items-center justify-center shrink-0 overflow-hidden"><img src="../assets/dados.png" alt=""></span>
+          <h2 class="text-[18px] font-bold text-black leading-tight">Histórico de Leituras</h2>
+        </div>
+
+        <div class="mt-4 rounded-xl border border-gray-100 overflow-hidden">
+          <table class="w-full text-[13px] text-left">
+            <thead>
+              <tr class="bg-[#fafbfa] text-[#817979] border-b border-gray-100">
+                <th class="px-4 py-2.5 font-semibold">Hora</th>
+                <th class="px-4 py-2.5 font-semibold">Sensor</th>
+                <th class="px-4 py-2.5 font-semibold">Temp. (°C)</th>
+                <th class="px-4 py-2.5 font-semibold">Umid. Ar (%)</th>
+                <th class="px-4 py-2.5 font-semibold">Umid. Solo (%)</th>
+                <th class="px-4 py-2.5 font-semibold">Lux</th>
+              </tr>
+            </thead>
+            <!-- TODO - INTEGRAÇÃO COM BACKEND: GET /plantacao/:id/leituras -->
+            <tbody id="tabela-leituras" class="divide-y divide-gray-100"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<style>
+  /* Efeito hover nos cards de informação e leituras */
+.grid > div.bg-white.rounded-2xl {
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.grid > div.bg-white.rounded-2xl:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);
+}
+
+/* Efeito hover nas seções Sensores, Alertas e Histórico */
+section.bg-white.px-6.py-5 {
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+section.bg-white.px-6.py-5:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);
+}
+  /* =====================================================================
+     TAMANHO DOS ÍCONES  
+     ===================================================================== */
+  .icone-caixa { width: var(--caixa); height: var(--caixa); }
+  .icone-caixa > img,
+  .icone-caixa > svg { width: var(--img); height: var(--img); object-fit: contain; }
+
+  .ic-header          { --caixa: 64px; --img: 58px; }  /* ícone ao lado do título da página  */
+
+  .ic-cultura         { --caixa: 58px; --img: 46px; }  /* card Cultura                       */
+  .ic-calendario      { --caixa: 58px; --img: 50px; }  /* card Criado em                     */
+  .ic-status          { --caixa: 58px; --img: 50px; }  /* card Status                        */
+  .ic-sensores        { --caixa: 58px; --img: 46px; }  /* card Sensores                      */
+
+  .ic-graf            { --caixa: 58px; --img: 58px; }  /* título Temperatura e Umidade       */
+  .ic-sensor-titulo   { --caixa: 58px; --img: 46px; }  /* título Sensores Associados         */
+  .ic-alertas-titulo  { --caixa: 58px; --img: 58px; }  /* título Alertas da Plantação        */
+  .ic-dados           { --caixa: 58px; --img: 48px; }  /* título Histórico de Leituras       */
+
+  .ic-termometro      { --caixa: 48px; --img: 32px; }  /* Sensor 01                          */
+  .ic-plantacao-ativa { --caixa: 48px; --img: 32px; }  /* Sensor 02                          */
+  .ic-sol             { --caixa: 48px; --img: 32px; }  /* Sensor 03                          */
+
+  .ic-alerta-verde    { --caixa: 44px; --img: 32px; }  /* alerta Tudo sob controle           */
+  .ic-alerta-amarelo  { --caixa: 44px; --img: 28px; }  /* alertas amarelos                   */
+  .ic-alerta-vermelho { --caixa: 44px; --img: 28px; }  /* alertas vermelhos                  */
+  .aba-periodo { height: 30px; padding: 0 16px; border-radius: 9999px; font-size: 12px; font-weight: 600; transition: background-color .15s, color .15s; }
+</style>
+
+<!-- CHART.JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../script.js"></script>
+<script>
+  const $ = id => document.getElementById(id);
+
+  // ---------- DATA ----------
+  const hoje = new Date();
+  $('data-hoje').textContent = hoje.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+  const dia = hoje.toLocaleDateString('pt-BR', { weekday: 'long' });
+  $('dia-semana').textContent = dia.charAt(0).toUpperCase() + dia.slice(1);
+
+  // ---------- DADOS DA PLANTAÇÃO ----------
+  // Mesmos dados da lista (plantacoes.html).
+  // TODO - INTEGRAÇÃO COM BACKEND: GET /plantacao/:id
+  const plantacoes = {
+    1: { nome: 'Milho - Lote A',    cultura: 'Milho',    sensores: 3, status: 'Ideal',   criado: '15/06/2025', umidade: 72, temp: 28, luz: 'Alta' },
+    2: { nome: 'Feijão - Lote B',   cultura: 'Feijão',   sensores: 2, status: 'Ideal',   criado: '19/07/2025', umidade: 65, temp: 30, luz: 'Média' },
+    3: { nome: 'Tomate - Lote C',   cultura: 'Tomate',   sensores: 2, status: 'Ideal',   criado: '28/09/2025', umidade: 68, temp: 24, luz: 'Média' },
+    4: { nome: 'Mandioca - Lote D', cultura: 'Mandioca', sensores: 2, status: 'Atenção', criado: '28/09/2025', umidade: 30, temp: 30, luz: 'Alta' }
+  };
+
+  // Imagens e cores das culturas (iguais às da lista)
+  const imagens = {
+    'Milho': '../assets/img/icone.milho.png',
+    'Feijão': '../assets/img/icone.feijão.png',
+    'Mandioca': '../assets/img/icone.mandioca.png',
+    'Tomate': '../assets/img/icone.tomate.png'
+  };
+  const imagemPadrao = '../assets/img/favicon-agrosensor.png';
+
+  const bordaCultura = {
+    'Milho':    'border-l-yellow-400',
+    'Feijão':   'border-l-green-500',
+    'Tomate':   'border-l-red-500',
+    'Mandioca': 'border-l-[#8b5a2b]'
+  };
+
+  const id = new URLSearchParams(location.search).get('id');
+  const p = plantacoes[id] || plantacoes[1];
+  const lote = (p.nome.split(' - ')[1] || '').trim();
+
+  // Editar: leva para a tela de edição da mesma plantação
+  $('btn-editar').href = 'plantacao-editar.html?id=' + (plantacoes[id] ? id : 1);
+
+  document.title = 'AgroSensor - ' + p.nome;
+  $('titulo').textContent = p.nome;
+  $('breadcrumb').textContent = p.nome;
+
+  const imgCultura = $('img-cultura');
+  imgCultura.alt = p.cultura;
+  imgCultura.onerror = () => { imgCultura.onerror = null; imgCultura.src = imagemPadrao; };
+  imgCultura.src = imagens[p.cultura] || imagemPadrao;
+
+  const imgCard = $('img-cultura-card');
+  imgCard.alt = p.cultura;
+  imgCard.onerror = () => { imgCard.onerror = null; imgCard.src = imagemPadrao; };
+  imgCard.src = imagens[p.cultura] || imagemPadrao;
+
+  $('info-cultura').textContent = p.cultura;
+  $('info-inicio').textContent = p.criado;
+  $('info-sensores').textContent = p.sensores + ' ' + (p.sensores === 1 ? 'Ativo' : 'Ativos');
+  $('leitura-umidade').textContent = p.umidade + '%';
+  $('leitura-temp').textContent = p.temp + '°C';
+  $('leitura-luz').textContent = p.luz;
+
+  const estiloStatus = {
+    'Ideal':   { texto: 'text-[#0f8a2f]', caixa: 'bg-green-100 text-[#0f8a2f]' },
+    'Atenção': { texto: 'text-yellow-600', caixa: 'bg-yellow-100 text-yellow-600' },
+    'Crítico': { texto: 'text-red-600',    caixa: 'bg-red-100 text-red-600' }
+  };
+  const es = estiloStatus[p.status] || estiloStatus['Ideal'];
+  $('info-status').textContent = p.status;
+  $('info-status').className = 'text-[18px] font-bold leading-tight ' + es.texto;
+  $('info-status-icone').className = 'icone-caixa ic-status rounded-xl flex items-center justify-center shrink-0 overflow-hidden ' + es.caixa;
+
+  // Voltar: usa o histórico do navegador quando veio da lista
+  $('btn-voltar').addEventListener('click', e => {
+    if (document.referrer && document.referrer.includes(location.host)) {
+      e.preventDefault();
+      history.back();
+    }
+  });
+
+  // ---------- ÍCONES ----------
+  const svg = (paths, cls = 'w-5 h-5') => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${cls}">${paths}</svg>`;
+  const ICONES = {
+    temp:   '<path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z"/>',
+    drop:   '<path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/>',
+    sun:    '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+    sprout: '<path d="M12 21v-8M12 13c0-3-2-5-6-5 0 3 2 5 6 5zM12 15c0-3 2-5 6-5 0 3-2 5-6 5zM3 21h18"/>',
+    alerta: '<path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/>',
+    circulo:'<circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>',
+    seta:   '<path d="M9 18l6-6-6-6"/>'
+  };
+
+  // ---------- ÍCONE DO STATUS ----------
+  $('info-status-icone').innerHTML = p.status === 'Ideal'
+    ? '<img src="../assets/ok.png" alt="">'
+    : svg(ICONES.alerta, '');
+
+  // ---------- SENSORES ASSOCIADOS ----------
+  // TODO - INTEGRAÇÃO COM BACKEND: GET /plantacao/:id/sensores
+  const sensores = [
+    { nome: 'Sensor 01', tipo: 'Temperatura / Umidade do Ar', ic: 'temp', img: 'termometro', cor: 'bg-red-100 text-red-500',
+      leituras: [ { ic: 'temp', v: '32°C', r: 'Temperatura', cor: 'text-red-500' }, { ic: 'drop', v: '68%', r: 'Umidade', cor: 'text-blue-500' } ] },
+    { nome: 'Sensor 02', tipo: 'Umidade do Solo', ic: 'sprout', img: 'plantacao.ativa', cor: 'bg-green-100 text-green-600',
+      leituras: [ { ic: 'drop', v: '45%', r: 'Umidade do Solo', cor: 'text-blue-500' } ] },
+    { nome: 'Sensor 03', tipo: 'Luminosidade', ic: 'sun', img: 'sol', cor: 'bg-yellow-100 text-yellow-500',
+      leituras: [ { ic: 'sun', v: '720 lux', r: 'Luminosidade', cor: 'text-yellow-500' } ] }
+  ];
+
+  $('lista-sensores').innerHTML = sensores.slice(0, p.sensores).map(s => `
+    <div class="flex items-center gap-3 rounded-xl border border-gray-100 bg-[#fafbfa] px-3 py-2.5">
+      <span class="icone-caixa ic-${s.img.replace(/\./g, '-')} rounded-full ${s.cor} flex items-center justify-center shrink-0"><img src="../assets/${s.img}.png" alt=""></span>
+
+      <div class="w-[170px] shrink-0">
+        <p class="text-[13px] font-bold text-black leading-tight">${s.nome}${lote ? ' - Lote ' + lote : ''}</p>
+        <p class="text-[11px] text-[#817979] leading-tight mt-0.5">${s.tipo}</p>
+      </div>
+
+      <div class="flex-1 flex items-center gap-4">
+        ${s.leituras.map(l => `
+          <div class="flex items-center gap-2">
+            <span class="${l.cor}">${svg(ICONES[l.ic], 'w-4 h-4')}</span>
+            <div>
+              <p class="text-[13px] font-bold text-black leading-tight">${l.v}</p>
+              <p class="text-[10px] text-[#817979] leading-tight">${l.r}</p>
+            </div>
+          </div>`).join('')}
+      </div>
+
+      <span class="inline-flex items-center gap-1.5 bg-green-100 text-green-700 text-[11px] font-semibold px-2.5 py-1 rounded-full whitespace-nowrap">
+        <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Online
+      </span>
+      <span class="text-gray-400">${svg(ICONES.seta, 'w-4 h-4')}</span>
+    </div>`).join('');
+
+  // ---------- ALERTAS DA PLANTAÇÃO ----------
+  // Os alertas seguem o status da plantação.
+  // TODO - INTEGRAÇÃO COM BACKEND: GET /plantacao/:id/alertas
+  ICONES.check = '<path d="M5 13l4 4L19 7"/>';
+
+  const hojeCurta = hoje.toLocaleDateString('pt-BR');
+  const alertas = [];
+
+  if (p.status === 'Ideal') {
+    alertas.push({ titulo: 'Tudo sob controle', desc: 'Todos os sensores estão operando normalmente.', data: hojeCurta, hora: '09:15', tipo: 'verde', ic: 'check', img: 'ok' });
+  } else {
+    if (p.status === 'Crítico') {
+      alertas.push({ titulo: 'Temperatura Alta', desc: 'A temperatura da plantação está acima do ideal.', data: hojeCurta, hora: '14:32', tipo: 'vermelho', ic: 'temp' });
+    }
+    if (p.umidade < 40) {
+      alertas.push({ titulo: 'Irrigação Necessária', desc: 'A umidade do solo está abaixo do ideal.', data: hojeCurta, hora: '13:10', tipo: 'amarelo', ic: 'alerta' });
+    }
+    if (p.luz === 'Alta') {
+      alertas.push({ titulo: 'Excesso de Exposição Solar', desc: 'A luminosidade está acima do recomendado.', data: hojeCurta, hora: '12:45', tipo: 'amarelo', ic: 'alerta' });
+    }
+    if (!alertas.length) {
+      alertas.push({ titulo: 'Atenção às leituras', desc: 'Alguma leitura saiu da faixa ideal.', data: hojeCurta, hora: '12:00', tipo: 'amarelo', ic: 'alerta' });
+    }
+  }
+
+  const estiloAlerta = {
+    vermelho: { fundo: 'bg-red-50/60 border-red-100 border-l-red-500',          icone: 'bg-red-500' },
+    amarelo:  { fundo: 'bg-yellow-50/60 border-yellow-100 border-l-yellow-400', icone: 'bg-yellow-400' },
+    verde:    { fundo: 'bg-green-50/60 border-green-100 border-l-green-500',    icone: 'bg-green-100' }
+  };
+
+  $('lista-alertas').innerHTML = alertas.map(a => {
+    const e = estiloAlerta[a.tipo];
+    return `
+      <div class="flex items-center gap-3 rounded-xl border border-l-4 ${e.fundo} px-3 py-2.5">
+        <span class="icone-caixa ic-alerta-${a.tipo} rounded-full ${e.icone} text-white flex items-center justify-center shrink-0">${a.img ? `<img src="../assets/${a.img}.png" alt="">` : svg(ICONES[a.ic], '')}</span>
+        <div class="flex-1">
+          <p class="text-[13px] font-bold text-black leading-tight">${a.titulo}</p>
+          <p class="text-[11px] text-[#817979] leading-tight mt-0.5">${a.desc}</p>
+        </div>
+        <div class="text-right text-[11px] text-[#817979] leading-tight">
+          <p>${a.data}</p>
+          <p>${a.hora}</p>
+        </div>
+        <span class="text-gray-400">${svg(ICONES.seta, 'w-4 h-4')}</span>
+      </div>`;
+  }).join('');
+
+  // ---------- HISTÓRICO DE LEITURAS ----------
+  // A leitura mais recente usa os mesmos valores da lista de plantações.
+  const luxBase = { 'Alta': 880, 'Média': 610, 'Baixa': 320 }[p.luz] || 600;
+  const leituras = [
+    { hora: '14:50', sensor: 'Sensor 01', temp: p.temp,     ar: 55, solo: p.umidade,     lux: luxBase },
+    { hora: '12:50', sensor: 'Sensor 01', temp: p.temp + 2, ar: 48, solo: p.umidade - 7, lux: luxBase + 40 },
+    { hora: '10:50', sensor: 'Sensor 01', temp: p.temp - 6, ar: 60, solo: p.umidade + 6, lux: luxBase - 270 }
+  ];
+
+  $('tabela-leituras').innerHTML = leituras.map(l => `
+    <tr>
+      <td class="px-4 py-2.5">${l.hora}</td>
+      <td class="px-4 py-2.5">${l.sensor}</td>
+      <td class="px-4 py-2.5">${l.temp}</td>
+      <td class="px-4 py-2.5">${l.ar}</td>
+      <td class="px-4 py-2.5">${l.solo}</td>
+      <td class="px-4 py-2.5">${l.lux}</td>
+    </tr>`).join('');
+
+  // ---------- GRÁFICO ----------
+  // TODO - INTEGRAÇÃO COM BACKEND: GET /plantacao/:id/leituras?periodo=24h|7d|30d
+  const periodos = {
+    '24h': {
+      rotulo: '24h', titulo: 'Temperatura e Umidade - 24h',
+      labels: ['00h', '02h', '04h', '06h', '08h', '10h', '12h', '14h', '16h', '18h', '20h', '22h'],
+      temp:   [10, 40, 46, 31, 46, 50, 17, 30, 28, 47, 31, 45],
+      umid:   [52, 54, 62, 67, 63, 61, 58, 53, 67, 59, 56, 67]
+    },
+    '7d': {
+      rotulo: '7 dias', titulo: 'Temperatura e Umidade - 7 dias',
+      labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+      temp:   [28, 31, 33, 29, 27, 30, 32],
+      umid:   [64, 60, 55, 62, 68, 63, 58]
+    },
+    '30d': {
+      rotulo: '30 dias', titulo: 'Temperatura e Umidade - 30 dias',
+      labels: ['Dia 1', 'Dia 5', 'Dia 10', 'Dia 15', 'Dia 20', 'Dia 25', 'Dia 30'],
+      temp:   [27, 29, 32, 30, 28, 31, 29],
+      umid:   [66, 61, 57, 60, 65, 59, 62]
+    }
+  };
+
+  // O gráfico é criado quando a página termina de carregar, depois do ../script.js
+  window.addEventListener('load', () => {
+    const corTemp = '#ef4444';
+    const corUmid = '#3b82f6';
+
+    // Linha do gráfico com preenchimento em degradê
+    const estiloLinha = cor => ({
+      borderColor: cor,
+      backgroundColor: contexto => {
+        const { chart } = contexto;
+        const { ctx: c, chartArea } = chart;
+        if (!chartArea) return cor + '14';
+        const g = c.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+        g.addColorStop(0, cor + '45');
+        g.addColorStop(1, cor + '00');
+        return g;
+      },
+      pointBackgroundColor: '#ffffff',
+      pointBorderColor: cor,
+      pointBorderWidth: 2,
+      pointRadius: 3,
+      pointHoverRadius: 7,
+      pointHoverBorderWidth: 3,
+      borderWidth: 2.5,
+      tension: 0.4,
+      fill: true
+    });
+
+    // Linha vertical que acompanha o mouse
+    const linhaGuia = {
+      id: 'linhaGuia',
+      afterDatasetsDraw(chart) {
+        const ativos = chart.tooltip && chart.tooltip._active;
+        if (!ativos || !ativos.length) return;
+        const x = ativos[0].element.x;
+        const { top, bottom } = chart.chartArea;
+        const c = chart.ctx;
+        c.save();
+        c.beginPath();
+        c.setLineDash([4, 4]);
+        c.moveTo(x, top);
+        c.lineTo(x, bottom);
+        c.lineWidth = 1;
+        c.strokeStyle = '#9ca3af';
+        c.stroke();
+        c.restore();
+      }
+    };
+
+    const canvasGrafico = $('graficoMonitoramento');
+    // o ../script.js também cria um gráfico neste canvas; remove o antigo para usar o novo
+    const graficoAntigo = Chart.getChart(canvasGrafico);
+    if (graficoAntigo) graficoAntigo.destroy();
+
+    const grafico = new Chart(canvasGrafico, {
+      type: 'line',
+      data: {
+        labels: periodos['24h'].labels,
+        datasets: [
+          { label: 'Temperatura (°C)', data: periodos['24h'].temp, yAxisID: 'yTemp', ...estiloLinha(corTemp) },
+          { label: 'Umidade (%)',      data: periodos['24h'].umid, yAxisID: 'yUmid', ...estiloLinha(corUmid) }
+        ]
+      },
+      plugins: [linhaGuia],
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        layout: { padding: { top: 12, right: 16, bottom: 10, left: 12 } },
+        animation: { duration: 700, easing: 'easeOutQuart' },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#05452a',
+            titleColor: '#ffffff',
+            bodyColor: '#e5f5ec',
+            padding: 12,
+            cornerRadius: 10,
+            usePointStyle: true,
+            boxPadding: 4,
+            callbacks: {
+              label: c => ` ${c.dataset.label.split(' ')[0]}: ${c.parsed.y}${c.datasetIndex === 0 ? '°C' : '%'}`
             }
-        });
-    </script>
-    <script src="../script.js"></script>
+          }
+        },
+        scales: {
+          x: {
+            grid: { display: false },
+            border: { display: false },
+            ticks: { color: '#6b7280', font: { size: 11 } }
+          },
+          yTemp: {
+            display: 'auto',
+            position: 'left',
+            min: 0, max: 60,
+            border: { display: false },
+            ticks: { stepSize: 15, color: corTemp, font: { size: 11 }, callback: v => v + '°C' },
+            grid: { color: '#eef0ee', borderDash: [4, 4] }
+          },
+          yUmid: {
+            display: 'auto',
+            position: 'right',
+            min: 0, max: 100,
+            border: { display: false },
+            ticks: { stepSize: 25, color: corUmid, font: { size: 11 }, callback: v => v + '%' },
+            grid: { drawOnChartArea: false }
+          }
+        }
+      }
+    });
+
+    // ---------- RESUMO DO PERÍODO ----------
+    function renderResumo(d) {
+      const media = a => Math.round(a.reduce((soma, v) => soma + v, 0) / a.length);
+      const itens = [
+        ['Temp. média', media(d.temp) + '°C',        'bg-red-500'],
+        ['Temp. máx.',  Math.max(...d.temp) + '°C',  'bg-red-500'],
+        ['Umid. média', media(d.umid) + '%',         'bg-blue-500'],
+        ['Umid. mín.',  Math.min(...d.umid) + '%',   'bg-blue-500']
+      ];
+      $('resumo-grafico').innerHTML = itens.map(([rotulo, valor, cor]) => `
+        <div class="flex items-center gap-2.5 rounded-xl border border-gray-100 bg-[#fafbfa] px-3 py-1.5">
+          <span class="w-1.5 h-6 rounded-full ${cor}"></span>
+          <div>
+            <p class="text-[10px] text-[#817979] leading-tight">${rotulo}</p>
+            <p class="text-[14px] font-bold text-black leading-tight">${valor}</p>
+          </div>
+        </div>`).join('');
+    }
+
+    // ---------- LEGENDA CLICÁVEL ----------
+    document.querySelectorAll('.legenda-item').forEach(b => b.addEventListener('click', () => {
+      const i = Number(b.dataset.serie);
+      const visivel = grafico.isDatasetVisible(i);
+      grafico.setDatasetVisibility(i, !visivel);
+      b.classList.toggle('opacity-40', visivel);
+      grafico.update();
+    }));
+
+    // ---------- ABAS DE PERÍODO ----------
+    function renderAbas(ativo) {
+      document.querySelectorAll('.aba-periodo').forEach(b => {
+        const chave = b.dataset.periodo;
+        b.textContent = periodos[chave].rotulo;
+        b.className = 'aba-periodo ' + (chave === ativo ? 'bg-[#0f8a2f] text-white' : 'text-gray-600 hover:bg-gray-50');
+      });
+    }
+
+    function trocarPeriodo(chave) {
+      const d = periodos[chave];
+      grafico.data.labels = d.labels;
+      grafico.data.datasets[0].data = d.temp;
+      grafico.data.datasets[1].data = d.umid;
+      grafico.update();
+      $('titulo-grafico').textContent = d.titulo;
+      renderAbas(chave);
+      renderResumo(d);
+    }
+
+    document.querySelectorAll('.aba-periodo').forEach(b => b.addEventListener('click', () => trocarPeriodo(b.dataset.periodo)));
+    renderAbas('24h');
+    renderResumo(periodos['24h']);
+  });
+</script>
 
 </body>
-
 </html>
