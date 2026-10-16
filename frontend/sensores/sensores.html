@@ -230,7 +230,7 @@
   </div>
 </div>
 
-<!-- MODAL NOVO / EDITAR (mesmo formulário) -->
+<!-- MODAL NOVO / EDITAR -->
 <div id="modal-form" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-[460px] p-6 relative shadow-xl">
     <button type="button" id="fechar-form" class="absolute top-4 right-4 text-gray-400 text-xl hover:text-gray-600">✕</button>
@@ -311,7 +311,7 @@
     { id: 7, nome: 'Sensor 07', tipo: 'Luminosidade',    status: 'Ativo',   leitura: 'Alta', ultima: 'Há 1 min',  plantacao: 'Tomate - Lote C' }
   ];
 
-  // Os caminhos precisam corresponder aos nomes reais dos arquivos.
+  
   const imagemPadrao = '../assets/img/favicon-agrosensor.png';
 
   const tipos = {
@@ -484,14 +484,12 @@
       if (!s) return;
       Object.assign(s, dados);
 
-      // TODO - INTEGRAÇÃO COM BACKEND:
-      // PATCH/PUT /sensor/:id com { nome, tipo, status }
+      
     } else {
       const novoId = sensores.length ? Math.max(...sensores.map(x => x.id)) + 1 : 1;
       sensores.push({ id: novoId, ...dados, leitura: '—', ultima: '—', plantacao: '—' });
 
-      // TODO - INTEGRAÇÃO COM BACKEND:
-      // POST /sensor com { nome, tipo, status }
+      
     }
 
     fecharForm();
@@ -508,7 +506,7 @@
     if (idParaExcluir === null) return;
     sensores = sensores.filter(s => s.id !== idParaExcluir);
 
-    // TODO - INTEGRAÇÃO COM BACKEND:
+  
     // DELETE /sensor/:id
 
     fecharExcluir();

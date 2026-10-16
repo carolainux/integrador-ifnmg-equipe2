@@ -202,8 +202,6 @@
   const $ = (id) => document.getElementById(id);
 
   // ---------- IMAGENS DAS CULTURAS ----------
-  // >>> AQUI você troca o caminho de cada imagem <<<
-  // O caminho é relativo à pasta onde está este arquivo HTML.
   const imagens = {
     'Milho':     '../assets/img/icone.milho.png',
     'Feijão':    '../assets/img/icone.feijão.png',
@@ -241,9 +239,36 @@
   ];
 
   const cores = {
-    'Ideal':   {borda: 'border-l-green-500',  badge: 'bg-white border-gray-400 text-black shadow-sm hover:bg-gray-50', icone: '✅'},
-    'Atenção': {borda: 'border-l-yellow-400', badge: 'bg-white border-gray-400 text-black shadow-sm hover:bg-gray-50', icone: '⚠️'},
-    'Crítico': {borda: 'border-l-red-500',    badge: 'bg-white border-gray-400 text-black shadow-sm hover:bg-gray-50', icone: '🚨'}
+    'Ideal': {
+      borda: 'border-l-green-500',
+      badge: 'bg-white border-gray-400 text-black shadow-sm hover:bg-gray-50',
+      icone: '✅',
+      destaque: '',
+      gradiente: 'from-white'
+    },
+    'Atenção': {
+      borda: 'border-l-yellow-400',
+      badge: 'bg-yellow-100 border-yellow-400 text-yellow-800 shadow-sm',
+      icone: '⚠️',
+      destaque: 'ring-2 ring-yellow-300 shadow-md shadow-yellow-100',
+      gradiente: 'from-yellow-50'
+    },
+    'Crítico': {
+      borda: 'border-l-red-500',
+      badge: 'bg-red-100 border-red-500 text-red-700 shadow-sm animate-pulse',
+      icone: '🚨',
+      destaque: 'ring-2 ring-red-400 shadow-lg shadow-red-100',
+      gradiente: 'from-red-50'
+    }
+  };
+
+  // ---------- COR DA BORDA LATERAL POR CULTURA ----------
+
+  const coresCultura = {
+    'Milho':    'border-l-yellow-400',   // amarelo
+    'Feijão':   'border-l-green-500',    // verde
+    'Tomate':   'border-l-red-500',      // vermelho
+    'Mandioca': 'border-l-[#8B4513]'     // marrom
   };
 
   const metrica = (icone, valor, rotulo) => `
@@ -263,18 +288,19 @@
 
     $('lista').innerHTML = visiveis.map(p => {
       const c = cores[p.status];
+      const borda = coresCultura[p.cultura] || c.borda; 
       return `
-      <div class="relative overflow-hidden [&>:not(.fundo)]:relative flex items-center justify-between bg-white rounded-2xl border border-gray-100 border-l-4 ${c.borda} shadow-sm px-5 py-4" data-id="${p.id}">
+      <div class="relative overflow-hidden [&>:not(.fundo)]:relative flex items-center justify-between bg-white rounded-2xl border border-gray-100 border-l-4 ${borda} shadow-sm px-5 py-4 ${c.destaque}" data-id="${p.id}">
         <div class="fundo absolute inset-0 pointer-events-none">
           <div class="absolute inset-0 bg-cover bg-center opacity-33" style="background-image:url('${encodeURI(fotos[p.cultura] || '')}')"></div>
-          <div class="absolute inset-0 bg-gradient-to-r from-white from-45% to-white/55"></div>
+          <div class="absolute inset-0 bg-gradient-to-r ${c.gradiente} from-45% to-white/55"></div>
         </div>
         <div class="flex items-center gap-4 w-[300px]">
           <div class="w-[88px] h-[88px] shrink-0 rounded-2xl bg-white/90 shadow-sm flex items-center justify-center">
             <img src="${encodeURI(imagens[p.cultura] || '')}" alt="${p.cultura}" class="w-[68px] h-[68px] object-contain mix-blend-multiply">
           </div>
           <div>
-            <p class="text-[17px] font-bold text-black">🍃 ${p.nome}</p>
+            <p class="text-[17px] font-bold text-black"> ${p.nome}</p>
             <p class="text-[13px] text-[#817979] mt-1"><span class="text-green-500">●</span> Sensores: <span class="font-semibold text-black">${p.sensores} ${p.sensores == 1 ? 'Ativo' : 'Ativos'}</span></p>
             <p class="text-[13px] text-[#817979]">📅 Criado em: ${p.criado}</p>
           </div>
@@ -305,7 +331,7 @@
   $('busca').addEventListener('input', render);
   $('filtro').addEventListener('change', render);
 
-  // ---------- EXCLUIR (delegação de eventos) ----------
+  // ---------- EXCLUIR ----------
   const modalExcluir = $('modal-excluir');
   let idParaExcluir = null;
 
@@ -325,7 +351,7 @@
 
   $('confirmar-excluir').addEventListener('click', () => {
     plantacoes = plantacoes.filter(p => p.id != idParaExcluir);
-    // TODO - INTEGRAÇÃO COM BACKEND: DELETE /plantacao/:id
+    
     fecharExcluir();
     render();
   });

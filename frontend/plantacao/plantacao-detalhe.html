@@ -404,8 +404,7 @@ section.bg-white.px-6.py-5:hover {
   $('dia-semana').textContent = dia.charAt(0).toUpperCase() + dia.slice(1);
 
   // ---------- DADOS DA PLANTAÇÃO ----------
-  // Mesmos dados da lista (plantacoes.html).
-  // TODO - INTEGRAÇÃO COM BACKEND: GET /plantacao/:id
+  
   const plantacoes = {
     1: { nome: 'Milho - Lote A',    cultura: 'Milho',    sensores: 3, status: 'Ideal',   criado: '15/06/2025', umidade: 72, temp: 28, luz: 'Alta' },
     2: { nome: 'Feijão - Lote B',   cultura: 'Feijão',   sensores: 2, status: 'Ideal',   criado: '19/07/2025', umidade: 65, temp: 30, luz: 'Média' },
@@ -433,7 +432,7 @@ section.bg-white.px-6.py-5:hover {
   const p = plantacoes[id] || plantacoes[1];
   const lote = (p.nome.split(' - ')[1] || '').trim();
 
-  // Editar: leva para a tela de edição da mesma plantação
+  
   $('btn-editar').href = 'plantacao-editar.html?id=' + (plantacoes[id] ? id : 1);
 
   document.title = 'AgroSensor - ' + p.nome;
@@ -467,7 +466,7 @@ section.bg-white.px-6.py-5:hover {
   $('info-status').className = 'text-[18px] font-bold leading-tight ' + es.texto;
   $('info-status-icone').className = 'icone-caixa ic-status rounded-xl flex items-center justify-center shrink-0 overflow-hidden ' + es.caixa;
 
-  // Voltar: usa o histórico do navegador quando veio da lista
+  // Voltar: 
   $('btn-voltar').addEventListener('click', e => {
     if (document.referrer && document.referrer.includes(location.host)) {
       e.preventDefault();
@@ -530,8 +529,6 @@ section.bg-white.px-6.py-5:hover {
     </div>`).join('');
 
   // ---------- ALERTAS DA PLANTAÇÃO ----------
-  // Os alertas seguem o status da plantação.
-  // TODO - INTEGRAÇÃO COM BACKEND: GET /plantacao/:id/alertas
   ICONES.check = '<path d="M5 13l4 4L19 7"/>';
 
   const hojeCurta = hoje.toLocaleDateString('pt-BR');
@@ -578,7 +575,7 @@ section.bg-white.px-6.py-5:hover {
   }).join('');
 
   // ---------- HISTÓRICO DE LEITURAS ----------
-  // A leitura mais recente usa os mesmos valores da lista de plantações.
+  
   const luxBase = { 'Alta': 880, 'Média': 610, 'Baixa': 320 }[p.luz] || 600;
   const leituras = [
     { hora: '14:50', sensor: 'Sensor 01', temp: p.temp,     ar: 55, solo: p.umidade,     lux: luxBase },
@@ -597,7 +594,7 @@ section.bg-white.px-6.py-5:hover {
     </tr>`).join('');
 
   // ---------- GRÁFICO ----------
-  // TODO - INTEGRAÇÃO COM BACKEND: GET /plantacao/:id/leituras?periodo=24h|7d|30d
+ 
   const periodos = {
     '24h': {
       rotulo: '24h', titulo: 'Temperatura e Umidade - 24h',
@@ -619,12 +616,12 @@ section.bg-white.px-6.py-5:hover {
     }
   };
 
-  // O gráfico é criado quando a página termina de carregar, depois do ../script.js
+  
   window.addEventListener('load', () => {
     const corTemp = '#ef4444';
     const corUmid = '#3b82f6';
 
-    // Linha do gráfico com preenchimento em degradê
+    
     const estiloLinha = cor => ({
       borderColor: cor,
       backgroundColor: contexto => {
@@ -647,7 +644,7 @@ section.bg-white.px-6.py-5:hover {
       fill: true
     });
 
-    // Linha vertical que acompanha o mouse
+    
     const linhaGuia = {
       id: 'linhaGuia',
       afterDatasetsDraw(chart) {
@@ -669,7 +666,7 @@ section.bg-white.px-6.py-5:hover {
     };
 
     const canvasGrafico = $('graficoMonitoramento');
-    // o ../script.js também cria um gráfico neste canvas; remove o antigo para usar o novo
+    
     const graficoAntigo = Chart.getChart(canvasGrafico);
     if (graficoAntigo) graficoAntigo.destroy();
 

@@ -427,7 +427,7 @@
   const dataCurta = hoje.toLocaleDateString('pt-BR');
 
   // ---------- DADOS ----------
-  // TODO - INTEGRAÇÃO COM BACKEND: GET /dispositivo e GET /alerta (contagem de alertas ativos)
+  
   const ALERTAS_ATIVOS = 2;
 
   let dispositivos = [
@@ -442,7 +442,7 @@
 ];
 
   // ---------- IMAGENS ----------
-  // Os caminhos precisam corresponder aos nomes reais dos arquivos.
+ 
   const imagemPadrao = '../assets/arduino.svg';
   const imagemPlaca = '../assets/img/arduino.png';
 
@@ -678,16 +678,14 @@
       if (!d) return;
       Object.assign(d, dados);
 
-      // TODO - INTEGRAÇÃO COM BACKEND:
-      // PATCH/PUT /dispositivo/:id
+      
     } else {
       const novoId = dispositivos.length ? Math.max(...dispositivos.map(x => x.id)) + 1 : 1;
       const agora = new Date();
       const hora = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
       dispositivos.push({ id: novoId, ...dados, hora, rel: 'Agora' });
 
-      // TODO - INTEGRAÇÃO COM BACKEND:
-      // POST /dispositivo
+      
     }
 
     fecharForm();
@@ -704,7 +702,7 @@
     if (idParaExcluir === null) return;
     dispositivos = dispositivos.filter(d => d.id !== idParaExcluir);
 
-    // TODO - INTEGRAÇÃO COM BACKEND:
+    
     // DELETE /dispositivo/:id
 
     fecharExcluir();

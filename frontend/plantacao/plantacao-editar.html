@@ -172,7 +172,7 @@
             <input type="text" id="nome" required placeholder="Ex.: Milho Lote A" class="campo w-full h-[44px] rounded-xl border border-gray-300 px-4 text-[14px] focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
           </div>
 
-          <!-- CULTURA (dropdown com as fotos de cada cultura) -->
+          <!-- CULTURA -->
           <div class="relative">
             <label class="block text-[13px] font-semibold text-black mb-1">Cultura</label>
             <input type="hidden" id="cultura">
@@ -292,7 +292,7 @@
   ];
   const itemCultura = (c) => `<img src="${encodeURI(c.foto)}" alt="${c.nome}" class="w-8 h-8 object-contain mix-blend-multiply"><span>${c.nome}</span>`;
 
-  // Define a cultura selecionada (usado ao carregar e ao clicar na lista)
+  // ---------- SELEÇÃO DE CULTURA ----------
   function selecionarCultura(nome) {
     const c = culturas.find((x) => x.nome === nome);
     if (!c) return;
@@ -308,7 +308,7 @@
     li.addEventListener('click', () => {
       selecionarCultura(c.nome);
       fecharCultura();
-      preencherIdeais(c.nome); // só quando o usuário troca a cultura
+      preencherIdeais(c.nome); // 
     });
     $('cultura-lista').appendChild(li);
   });
@@ -343,7 +343,6 @@
   };
 
   // ---------- DADOS DA PLANTAÇÃO ----------
-  // TODO - INTEGRAÇÃO COM BACKEND: GET /plantacao/:id (substitui este mock)
   // ativos = [Temperatura, Umidade do Solo, Umidade do Ar, Luminosidade]
   const plantacoes = {
     1: {nome: 'Milho - Lote A',    cultura: 'Milho',    dataInicio: '2025-06-15', dataColheita: '2025-10-15', descricao: '', area: 2.5, unidade: 'ha', espacamento: 0.8, dispositivo: 'ESP32',             ativos: [true, true, false, true]},
@@ -358,7 +357,7 @@
   const entrada = 'w-[110px] h-[38px] rounded-lg border border-gray-300 px-3 text-[14px] focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]';
   const entradaIdeal = 'w-[68px] h-[38px] rounded-lg border border-gray-300 px-2 text-[14px] text-center focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]';
 
-  // Níveis ideais iniciais = os da cultura da plantação (ou o padrão do sensor)
+  
   const ideaisIniciais = ideaisPorCultura[p.cultura] || {};
 
   $('sensores').innerHTML = sensores.map((s, i) => {
@@ -385,7 +384,7 @@
     </div>`;
   }).join('');
 
-  // Preenche os níveis ideais de acordo com a cultura escolhida
+  
   function preencherIdeais(cultura) {
     const padroes = ideaisPorCultura[cultura];
     if (!padroes) return;
@@ -409,7 +408,7 @@
   $('espacamento').value = p.espacamento;
   $('dispositivo').value = p.dispositivo;
 
-  // Retorna a mensagem de erro, ou null se estiver tudo certo (valida só sensores ativos)
+  
   function validarIdeais() {
     for (let i = 0; i < sensores.length; i++) {
       const s = sensores[i];

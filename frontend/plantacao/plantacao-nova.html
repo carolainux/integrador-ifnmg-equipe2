@@ -172,7 +172,7 @@
             <input type="text" id="nome" required placeholder="Ex.: Milho Lote A" class="campo w-full h-[44px] rounded-xl border border-gray-300 px-4 text-[14px] focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
           </div>
 
-          <!-- CULTURA (dropdown com as fotos de cada cultura) -->
+          <!-- CULTURA -->
           <div class="relative">
             <label class="block text-[13px] font-semibold text-black mb-1">Cultura</label>
             <input type="hidden" id="cultura">
@@ -274,7 +274,7 @@
   document.getElementById('dia-semana').textContent = dia[0].toUpperCase() + dia.slice(1);
   const $ = (id) => document.getElementById(id);
 
-  // ---------- CULTURAS (ícones em assets/img) ----------
+  // ---------- CULTURAS  ----------
   const culturas = [
     {nome: 'Milho',     foto: '../assets/img/icone.milho.png'},
     {nome: 'Feijão',    foto: '../assets/img/icone.feijão.png'},
@@ -357,7 +357,7 @@
       <input type="text" value="${s.critico}" class="${entrada}">
     </div>`).join('');
 
-  // Preenche os níveis ideais de acordo com a cultura escolhida
+  
   function preencherIdeais(cultura) {
     const padroes = ideaisPorCultura[cultura];
     if (!padroes) return;
@@ -368,7 +368,7 @@
     });
   }
 
-  // Retorna a mensagem de erro, ou null se estiver tudo certo (valida só sensores ativos)
+  
   function validarIdeais() {
     for (let i = 0; i < sensores.length; i++) {
       const s = sensores[i];

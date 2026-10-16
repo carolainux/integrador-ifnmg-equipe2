@@ -236,7 +236,7 @@
           </div>
         </div>
 
-        <form id="dados-pessoais-edicao" class="hidden grid grid-cols-2 gap-6 mt-5 pb-5 border-b border-gray-100" onsubmit="event.preventDefault(); salvarDadosPessoais();">
+        <form id="dados-pessoais-edicao" class="hidden grid grid-cols-3 gap-6 mt-5 pb-5 border-b border-gray-100" onsubmit="event.preventDefault(); salvarDadosPessoais();">
           <div>
             <label for="edit-nome" class="block text-[13px] font-semibold mb-1">Nome completo</label>
             <input type="text" id="edit-nome" required class="w-full h-[44px] rounded-lg border border-gray-400 px-4 text-[14px] focus:outline-none focus:border-[#078607]">
@@ -245,6 +245,12 @@
             <label for="edit-email" class="block text-[13px] font-semibold mb-1">E-mail</label>
             <input type="email" id="edit-email" required class="w-full h-[44px] rounded-lg border border-gray-400 px-4 text-[14px] focus:outline-none focus:border-[#078607]">
           </div>
+          <div>
+            <label for="edit-telefone" class="block text-[13px] font-semibold mb-1">Telefone</label>
+            <input type="tel" id="edit-telefone" placeholder="(00) 00000-0000" class="w-full h-[44px] rounded-lg border border-gray-400 px-4 text-[14px] focus:outline-none focus:border-[#078607]">
+            <p id="edit-telefone-erro" class="hidden text-[12px] text-red-600 mt-1"></p>
+          </div>
+          <p class="col-span-3 -mt-2 text-[12px] text-[#817979]">O telefone é apenas para contato. As notificações no WhatsApp são configuradas separadamente, logo abaixo, e você pode usar o app sem ativá-las.</p>
         </form>
 
         <!-- WHATSAPP -->
@@ -288,6 +294,9 @@
               <button type="button" onclick="enviarCodigoWhatsapp()" class="whitespace-nowrap bg-[#078607] hover:bg-[#067306] text-white font-bold text-[14px] rounded-lg px-6 h-[44px] transition-colors">Enviar código</button>
             </div>
             <p id="whatsapp-numero-erro" class="hidden text-[12px] text-red-600 mt-1.5"></p>
+            <div class="flex justify-end mt-2">
+              <button type="button" onclick="cancelarEtapaWhatsapp()" class="text-[13px] text-[#817979] hover:underline">Cancelar</button>
+            </div>
           </div>
 
           <div id="whatsapp-etapa-codigo" class="hidden mt-4 pt-4 border-t border-gray-100">
@@ -490,9 +499,25 @@
   })();
 
   // ---------- DADOS PESSOAIS ----------
+  // Carrega nome, e-mail e telefone salvos (o telefone é independente do WhatsApp)
+  (function carregarDadosPessoaisSalvos() {
+    const nome = localStorage.getItem('agrosensor-nome');
+    const email = localStorage.getItem('agrosensor-email');
+    const telefone = localStorage.getItem('agrosensor-telefone');
+    if (nome) {
+      $('view-nome').textContent = nome;
+      $('nome-topo-perfil').textContent = nome;
+    }
+    if (email) $('view-email').textContent = email;
+    if (telefone) $('view-telefone').textContent = telefone;
+    sincronizarHero();
+  })();
+
   function editarDadosPessoais() {
     $('edit-nome').value = $('view-nome').textContent.trim();
     $('edit-email').value = $('view-email').textContent.trim();
+    $('edit-telefone').value = $('view-telefone').textContent.trim();
+    $('edit-telefone-erro').classList.add('hidden');
     $('dados-pessoais-visualizacao').classList.add('hidden');
     $('dados-pessoais-edicao').classList.remove('hidden');
     $('dados-pessoais-acoes-edicao').classList.remove('hidden');
@@ -507,16 +532,35 @@
 
   function salvarDadosPessoais() {
     if (!$('dados-pessoais-edicao').reportValidity()) return;
+
+    // Valida o telefone (DDD + número = pelo menos 10 dígitos)
+    const telefone = $('edit-telefone').value.trim();
+    const erroTel = $('edit-telefone-erro');
+    if (telefone.replace(/\D/g, '').length < 10) {
+      erroTel.textContent = 'Digite um telefone válido, com DDD.';
+      erroTel.classList.remove('hidden');
+      return;
+    }
+    erroTel.classList.add('hidden');
+
     const nome = $('edit-nome').value.trim();
+    const email = $('edit-email').value.trim();
+
+    localStorage.setItem('agrosensor-nome', nome);
+    localStorage.setItem('agrosensor-email', email);
+    localStorage.setItem('agrosensor-telefone', telefone);
+
     $('view-nome').textContent = nome;
-    $('view-email').textContent = $('edit-email').value.trim();
+    $('view-email').textContent = email;
+    $('view-telefone').textContent = telefone;
     $('nome-topo-perfil').textContent = nome;
     sincronizarHero();
     cancelarEdicaoDadosPessoais();
-    // TODO - INTEGRAÇÃO COM BACKEND: PATCH /usuario/:id
+    
   }
 
   // ---------- WHATSAPP ----------
+  
   const etapaNumero     = $('whatsapp-etapa-numero');
   const etapaCodigo     = $('whatsapp-etapa-codigo');
   const badgeVerificado = $('whatsapp-badge-verificado');
@@ -531,7 +575,8 @@
 
   function mostrarEtapaNumero() {
     esconderEtapas();
-    $('whatsapp-numero').value = viewTelefone.textContent.trim();
+    
+    $('whatsapp-numero').value = localStorage.getItem('agrosensor-whatsapp-numero') || viewTelefone.textContent.trim();
     $('whatsapp-numero-erro').classList.add('hidden');
     etapaNumero.classList.remove('hidden');
   }
@@ -554,7 +599,7 @@
     etapaNumero.classList.add('hidden');
     etapaCodigo.classList.remove('hidden');
     $('whatsapp-codigo').value = '';
-    // TODO - INTEGRAÇÃO COM BACKEND: POST /whatsapp/enviar-codigo
+    
   }
 
   function confirmarCodigoWhatsapp() {
@@ -569,21 +614,25 @@
     erro.classList.add('hidden');
     const numero = localStorage.getItem('agrosensor-whatsapp-numero-pendente');
 
-    localStorage.setItem('agrosensor-telefone', numero);
+    localStorage.setItem('agrosensor-whatsapp-numero', numero);
     localStorage.setItem('agrosensor-whatsapp-verificado', 'true');
     localStorage.setItem('agrosensor-whatsapp-notificacoes', 'true');
     localStorage.removeItem('agrosensor-whatsapp-numero-pendente');
 
-    viewTelefone.textContent = numero;
-    sincronizarHero();
     esconderEtapas();
     aplicarEstadoVerificado(true);
-    // TODO - INTEGRAÇÃO COM BACKEND: POST /whatsapp/confirmar-codigo
+    
+  }
+
+  function textoStatusWhatsapp(ativas) {
+    const numero = localStorage.getItem('agrosensor-whatsapp-numero');
+    if (!ativas) return 'Notificações no WhatsApp desativadas.';
+    return numero ? `Você receberá alertas no WhatsApp ${numero}.` : 'Você receberá alertas no WhatsApp.';
   }
 
   function alternarNotificacoesWhatsapp(ativado) {
     localStorage.setItem('agrosensor-whatsapp-notificacoes', ativado ? 'true' : 'false');
-    statusTexto.textContent = ativado ? 'Você receberá alertas no WhatsApp.' : 'Notificações no WhatsApp desativadas.';
+    statusTexto.textContent = textoStatusWhatsapp(ativado);
   }
 
   function aplicarEstadoVerificado(verificado) {
@@ -597,17 +646,14 @@
     if (verificado) {
       const ativas = localStorage.getItem('agrosensor-whatsapp-notificacoes') !== 'false';
       whatsappToggle.checked = ativas;
-      statusTexto.textContent = ativas ? 'Você receberá alertas no WhatsApp.' : 'Notificações no WhatsApp desativadas.';
+      statusTexto.textContent = textoStatusWhatsapp(ativas);
     } else {
       statusTexto.textContent = 'Ative para receber alertas direto no seu WhatsApp';
     }
   }
 
   (function carregarEstadoWhatsapp() {
-    const telefoneSalvo = localStorage.getItem('agrosensor-telefone');
-    if (telefoneSalvo) viewTelefone.textContent = telefoneSalvo;
     aplicarEstadoVerificado(localStorage.getItem('agrosensor-whatsapp-verificado') === 'true');
-    sincronizarHero();
   })();
 </script>
 

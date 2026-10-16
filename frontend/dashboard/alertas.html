@@ -196,7 +196,7 @@
   $('dia-semana').textContent = dia.charAt(0).toUpperCase() + dia.slice(1);
 
   // ---------- DADOS ----------
-  // TODO - INTEGRAÇÃO COM BACKEND (ver backend/src/routes/alerta.route.ts):
+  
   // GET /alertas/usuario/:usuario_id  → lista de alertas do usuário logado
   // GET /alertas/resumo/:plantacao_id → contadores dos botões de filtro
   const alertas = [
@@ -227,7 +227,7 @@
     atencao: { rotulo: 'Atenção',  card: 'bg-yellow-50/70 border-l-yellow-400', icone: 'bg-yellow-400', anel: 'ring-yellow-300', texto: 'text-yellow-500', badge: 'bg-yellow-100 text-yellow-700', chip: 'bg-yellow-100/80 text-yellow-700' }
   };
 
-  // Pasta das imagens (ajuste aqui se estiverem em outra pasta, ex: '../assets/img/')
+  
   const IMG_DIR = '../assets/';
 
   let filtroAtual = 'todos';
