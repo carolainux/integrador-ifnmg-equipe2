@@ -161,10 +161,15 @@
           <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.2-5.2m0 0A7.5 7.5 0 105.2 5.2a7.5 7.5 0 0010.6 10.6z"/></svg>
           <input id="busca" type="text" placeholder="Buscar plantação..." class="w-full h-[48px] rounded-full bg-white border border-gray-200 pl-12 pr-4 text-[14px] focus:outline-none focus:border-[#077C07] focus:ring-1 focus:ring-[#077C07]">
         </div>
-        <select id="filtro" class="h-[48px] rounded-full bg-white border border-gray-200 px-5 text-[14px] text-gray-600 focus:outline-none focus:border-[#077C07]">
-          <option value="">Todos os status</option>
-          <option>Ideal</option><option>Atenção</option><option>Crítico</option>
-        </select>
+        <div class="relative shrink-0">
+  <select id="filtro" class="appearance-none h-[48px] rounded-full bg-white border border-gray-200 pl-5 pr-10 text-[14px] text-gray-600 focus:outline-none focus:border-[#077C07]">
+    <option value="">Todos os status</option>
+    <option>Ideal</option><option>Atenção</option><option>Crítico</option>
+  </select>
+  <svg class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 9l6 6 6-6"/>
+  </svg>
+</div>
         <a href="plantacao-nova.html" class="flex items-center gap-2 shrink-0 h-[48px] bg-[#05452a] text-white font-bold text-[14px] rounded-full px-6 hover:bg-[#0a5a37] transition-colors">
           <span class="text-lg leading-none">+</span> Nova plantação
         </a>
@@ -290,7 +295,7 @@
       const c = cores[p.status];
       const borda = coresCultura[p.cultura] || c.borda; 
       return `
-      <div class="relative overflow-hidden [&>:not(.fundo)]:relative flex items-center justify-between bg-white rounded-2xl border border-gray-100 border-l-4 ${borda} shadow-sm px-5 py-4 ${c.destaque}" data-id="${p.id}">
+      <div class="relative overflow-hidden [&>:not(.fundo)]:relative flex items-center justify-between bg-white rounded-2xl border border-gray-100 border-l-4 ${borda} shadow-sm px-5 py-4 transition hover:-translate-y-0.5 hover:shadow-md ${c.destaque}" data-id="${p.id}">
         <div class="fundo absolute inset-0 pointer-events-none">
           <div class="absolute inset-0 bg-cover bg-center opacity-33" style="background-image:url('${encodeURI(fotos[p.cultura] || '')}')"></div>
           <div class="absolute inset-0 bg-gradient-to-r ${c.gradiente} from-45% to-white/55"></div>

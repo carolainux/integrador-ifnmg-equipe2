@@ -26,6 +26,43 @@
         @media (prefers-reduced-motion: reduce) {
             .anim-subir, .anim-aparecer { animation: none; opacity: 1; }
         }
+        /* ===== AGRICULTOR ===== */
+#agricultor { overflow: visible; }
+#fz-pupilas { transition: transform .12s ease-out; }
+
+#fz-chapeu { transform-origin: 60px 40px; transition: transform .35s cubic-bezier(.34, 1.4, .5, 1); }
+#agricultor.cobrindo #fz-chapeu { transform: translateY(19px); }
+#fz-chapeu.jogando { animation: fz-jogar .9s ease-in-out; }
+
+#fz-braco { transform-origin: 90px 116px; }
+#fz-braco.acenando { animation: fz-acenar 1.6s ease-in-out; }
+
+#fz-cabeca { transform-origin: 60px 92px; }
+#fz-cabeca.negando { animation: fz-negar .5s ease-in-out; }
+
+@keyframes fz-acenar {
+    0%, 100% { transform: rotate(0); }
+    20% { transform: rotate(-16deg); }
+    40% { transform: rotate(8deg); }
+    60% { transform: rotate(-14deg); }
+    80% { transform: rotate(6deg); }
+}
+@keyframes fz-negar {
+    0%, 100% { transform: rotate(0); }
+    20% { transform: rotate(-7deg); }
+    40% { transform: rotate(7deg); }
+    60% { transform: rotate(-5deg); }
+    80% { transform: rotate(4deg); }
+}
+@keyframes fz-jogar {
+    0%   { transform: translate(0, 0) rotate(0); }
+    45%  { transform: translate(6px, -95px) rotate(200deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #agricultor, #agricultor * { animation: none !important; transition: none !important; }
+}
     </style>
 </head>
 
