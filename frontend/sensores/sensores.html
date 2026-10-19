@@ -169,11 +169,16 @@
           <input id="busca" type="text" placeholder="Buscar sensor..." class="w-full h-[48px] rounded-full bg-white border border-gray-200 pl-12 pr-4 text-[14px] focus:outline-none focus:border-[#077C07] focus:ring-1 focus:ring-[#077C07]">
         </div>
 
-        <select id="filtro" class="h-[48px] rounded-full bg-white border border-gray-200 px-5 text-[14px] text-gray-600 focus:outline-none focus:border-[#077C07]">
-          <option value="">Todos os status</option>
-          <option>Ativo</option>
-          <option>Inativo</option>
-        </select>
+       <div class="relative shrink-0">
+  <select id="filtro" class="appearance-none h-[48px] rounded-full bg-white border border-gray-200 pl-5 pr-10 text-[14px] text-gray-600 focus:outline-none focus:border-[#077C07]">
+    <option value="">Todos os status</option>
+    <option>Ativo</option>
+    <option>Inativo</option>
+  </select>
+  <svg class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 9l6 6 6-6"/>
+  </svg>
+</div>
 
         <button type="button" id="btn-novo" class="flex items-center gap-2 shrink-0 h-[48px] bg-[#05452a] text-white font-bold text-[14px] rounded-full px-6 hover:bg-[#0a5a37] transition-colors">
           <span class="text-lg leading-none">+</span> Novo sensor
@@ -230,7 +235,7 @@
   </div>
 </div>
 
-<!-- MODAL NOVO / EDITAR (mesmo formulário) -->
+<!-- MODAL NOVO / EDITAR -->
 <div id="modal-form" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-[460px] p-6 relative shadow-xl">
     <button type="button" id="fechar-form" class="absolute top-4 right-4 text-gray-400 text-xl hover:text-gray-600">✕</button>
@@ -311,7 +316,7 @@
     { id: 7, nome: 'Sensor 07', tipo: 'Luminosidade',    status: 'Ativo',   leitura: 'Alta', ultima: 'Há 1 min',  plantacao: 'Tomate - Lote C' }
   ];
 
-  // Os caminhos precisam corresponder aos nomes reais dos arquivos.
+  
   const imagemPadrao = '../assets/img/favicon-agrosensor.png';
 
   const tipos = {
@@ -484,14 +489,12 @@
       if (!s) return;
       Object.assign(s, dados);
 
-      // TODO - INTEGRAÇÃO COM BACKEND:
-      // PATCH/PUT /sensor/:id com { nome, tipo, status }
+      
     } else {
       const novoId = sensores.length ? Math.max(...sensores.map(x => x.id)) + 1 : 1;
       sensores.push({ id: novoId, ...dados, leitura: '—', ultima: '—', plantacao: '—' });
 
-      // TODO - INTEGRAÇÃO COM BACKEND:
-      // POST /sensor com { nome, tipo, status }
+      
     }
 
     fecharForm();
@@ -508,7 +511,7 @@
     if (idParaExcluir === null) return;
     sensores = sensores.filter(s => s.id !== idParaExcluir);
 
-    // TODO - INTEGRAÇÃO COM BACKEND:
+  
     // DELETE /sensor/:id
 
     fecharExcluir();

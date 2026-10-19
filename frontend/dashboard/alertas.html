@@ -74,7 +74,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="currentColor" class="w-5 h-5">
               <path d="M20 3.33333C19.1159 3.33333 18.2681 3.68452 17.643 4.30964C17.0179 4.93476 16.6667 5.78261 16.6667 6.66666C16.655 6.82756 16.655 6.9891 16.6667 7.14999C11.8667 8.56666 8.33333 13.0333 8.33333 18.3333V28.3333L5 31.6667V33.3333H35V31.6667L31.6667 28.3333V18.3333C31.6667 13.0333 28.1333 8.56666 23.3333 7.14999C23.345 6.9891 23.345 6.82756 23.3333 6.66666C23.3333 5.78261 22.9821 4.93476 22.357 4.30964C21.7319 3.68452 20.8841 3.33333 20 3.33333ZM20 9.99999C22.2101 9.99999 24.3298 10.878 25.8926 12.4408C27.4554 14.0036 28.3333 16.1232 28.3333 18.3333V30H11.6667V18.3333C11.6667 16.1232 12.5446 14.0036 14.1074 12.4408C15.6702 10.878 17.7899 9.99999 20 9.99999ZM16.6667 35C16.6667 35.884 17.0179 36.7319 17.643 37.357C18.2681 37.9821 19.1159 38.3333 20 38.3333C20.8841 38.3333 21.7319 37.9821 22.357 37.357C22.9821 36.7319 23.3333 35.884 23.3333 35H16.6667Z"/>
             </svg>
-            <span class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">2</span>
+            <span class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">5</span>
           </span>
           Alertas
         </a>
@@ -196,14 +196,14 @@
   $('dia-semana').textContent = dia.charAt(0).toUpperCase() + dia.slice(1);
 
   // ---------- DADOS ----------
-  // TODO - INTEGRAÇÃO COM BACKEND (ver backend/src/routes/alerta.route.ts):
+  
   // GET /alertas/usuario/:usuario_id  → lista de alertas do usuário logado
   // GET /alertas/resumo/:plantacao_id → contadores dos botões de filtro
   const alertas = [
     { cat: 'critico', icone: 'temp',  img: 'termometro.png', titulo: 'Temperatura Alta',      desc: 'Temperatura acima de 33 °C detectada',        sensor: 'Sensor 01', lote: 'Lote A', cultura: 'Milho',  data: '25/06/2025', hora: '14:32' },
     { cat: 'atencao', icone: 'gota',  img: 'irrigação.png', titulo: 'Irrigação Necessária',  desc: 'Umidade do solo abaixo de 40%',               sensor: 'Sensor 02', lote: 'Lote A', cultura: 'Milho',  data: '25/06/2025', hora: '13:10' },
     { cat: 'critico', icone: 'wifi',  img: 'sensor.off.png', titulo: 'Sensor Offline',        desc: 'Sensor 05 sem comunicação há 3 horas',        sensor: 'Sensor 05', lote: 'Lote B', cultura: 'Feijão', data: '25/06/2025', hora: '11:45' },
-    { cat: 'atencao', icone: 'gota',  img: 'luminosidade.png', titulo: 'Umidade do Solo Baixa', desc: 'Umidade do solo abaixo de 35%',               sensor: 'Sensor 03', lote: 'Lote C', cultura: 'Tomate', data: '25/06/2025', hora: '10:20' },
+    { cat: 'atencao', icone: 'gota',  img: 'solo.png', titulo: 'Umidade do Solo Baixa', desc: 'Umidade do solo abaixo de 35%',               sensor: 'Sensor 03', lote: 'Lote C', cultura: 'Tomate', data: '25/06/2025', hora: '10:20' },
     { cat: 'atencao', icone: 'sol',   img: 'luminosidade.png', titulo: 'Luminosidade Baixa',    desc: 'Luminosidade abaixo do esperado para o período', sensor: 'Sensor 04', lote: 'Lote B', cultura: 'Feijão', data: '25/06/2025', hora: '09:05' }
   ];
 
@@ -227,7 +227,7 @@
     atencao: { rotulo: 'Atenção',  card: 'bg-yellow-50/70 border-l-yellow-400', icone: 'bg-yellow-400', anel: 'ring-yellow-300', texto: 'text-yellow-500', badge: 'bg-yellow-100 text-yellow-700', chip: 'bg-yellow-100/80 text-yellow-700' }
   };
 
-  // Pasta das imagens (ajuste aqui se estiverem em outra pasta, ex: '../assets/img/')
+  
   const IMG_DIR = '../assets/';
 
   let filtroAtual = 'todos';
@@ -288,7 +288,7 @@
             </div>
           </div>
 
-          <span class="text-gray-400">${svg(P.seta, 'w-5 h-5')}</span>
+        
         </div>`;
     }).join('') || `<p class="text-center text-[14px] text-[#817979] py-10">Nenhum alerta encontrado.</p>`;
 

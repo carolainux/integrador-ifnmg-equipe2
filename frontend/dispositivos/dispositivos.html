@@ -172,12 +172,17 @@
           <input id="busca" type="text" placeholder="Buscar dispositivo..." class="w-full h-[48px] rounded-full bg-white border border-gray-200 pl-12 pr-4 text-[14px] focus:outline-none focus:border-[#077C07] focus:ring-1 focus:ring-[#077C07]">
         </div>
 
-        <select id="filtro" class="h-[48px] rounded-full bg-white border border-gray-200 pl-4 pr-2 text-[14px] text-gray-600 focus:outline-none focus:border-[#077C07]">
-          <option value="">Todos os status</option>
-          <option>Ativo</option>
-          <option>Em manutenção</option>
-          <option>Offline</option>
-        </select>
+        <div class="relative shrink-0">
+  <select id="filtro" class="appearance-none h-[48px] rounded-full bg-white border border-gray-200 pl-5 pr-10 text-[14px] text-gray-600 focus:outline-none focus:border-[#077C07]">
+    <option value="">Todos os status</option>
+    <option>Ativo</option>
+    <option>Em manutenção</option>
+    <option>Offline</option>
+  </select>
+  <svg class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 9l6 6 6-6"/>
+  </svg>
+</div>
 
         <button type="button" id="btn-novo" class="flex items-center gap-2 shrink-0 h-[48px] bg-[#05452a] text-white font-bold text-[14px] rounded-full px-6 hover:bg-[#0a5a37] transition-colors">
           <span class="text-lg leading-none">+</span> Novo dispositivo
@@ -427,7 +432,7 @@
   const dataCurta = hoje.toLocaleDateString('pt-BR');
 
   // ---------- DADOS ----------
-  // TODO - INTEGRAÇÃO COM BACKEND: GET /dispositivo e GET /alerta (contagem de alertas ativos)
+  
   const ALERTAS_ATIVOS = 2;
 
   let dispositivos = [
@@ -442,7 +447,7 @@
 ];
 
   // ---------- IMAGENS ----------
-  // Os caminhos precisam corresponder aos nomes reais dos arquivos.
+ 
   const imagemPadrao = '../assets/arduino.svg';
   const imagemPlaca = '../assets/img/arduino.png';
 
@@ -678,16 +683,14 @@
       if (!d) return;
       Object.assign(d, dados);
 
-      // TODO - INTEGRAÇÃO COM BACKEND:
-      // PATCH/PUT /dispositivo/:id
+      
     } else {
       const novoId = dispositivos.length ? Math.max(...dispositivos.map(x => x.id)) + 1 : 1;
       const agora = new Date();
       const hora = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
       dispositivos.push({ id: novoId, ...dados, hora, rel: 'Agora' });
 
-      // TODO - INTEGRAÇÃO COM BACKEND:
-      // POST /dispositivo
+      
     }
 
     fecharForm();
@@ -704,7 +707,7 @@
     if (idParaExcluir === null) return;
     dispositivos = dispositivos.filter(d => d.id !== idParaExcluir);
 
-    // TODO - INTEGRAÇÃO COM BACKEND:
+    
     // DELETE /dispositivo/:id
 
     fecharExcluir();

@@ -132,7 +132,7 @@
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-xl">🌿</div>
             <div>
-              <h1 class="text-xl font-bold text-gray-900 leading-tight">Olá, Cida!</h1>
+              <h1 id="saudacao" class="text-xl font-bold text-gray-900 leading-tight">Olá, Usuário!</h1>
               <p class="text-sm text-gray-500">Confira o resumo das suas plantações e o status dos sensores.</p>
             </div>
           </div>
@@ -183,7 +183,7 @@
               <div class="min-w-0">
                 <p class="text-sm text-gray-500">Plantações ativas</p>
                 <div class="flex items-center gap-2">
-                  <p class="text-2xl font-bold text-gray-900 leading-tight">5</p>
+                  <p class="text-2xl font-bold text-gray-900 leading-tight">4</p>
                   <span class="rounded-full bg-green-50 px-2 py-0.5 text-[11px] font-semibold text-green-700">↑ 1 nova esta semana</span>
                 </div>
               </div>
@@ -273,20 +273,16 @@
 
   <script src="../script.js"></script>
   <script>
-    // Página de detalhes da plantação. Se o arquivo tiver outro nome, ajuste só esta linha.
-    // O id da plantação é enviado na URL (?id=1, ?id=2...) e lido pela página de detalhes.
+    
     const PAGINA_DETALHES = '../plantacao/plantacao-detalhe.html';
 
-    // 'id' = mesmo id usado na página de detalhes (1 = Milho, 2 = Feijão, 3 = Tomate, 4 = Mandioca).
-    // 'imagem' = foto de paisagem que fica de fundo no cabeçalho do card.
-    // 'iconeImg' = imagem que aparece dentro do círculo (no lugar do emoji).
-    // Se o arquivo não carregar, o gradiente ('fundo') aparece no lugar.
+    
     const plantacoes = [
       {
         id: 1,
-        nome: 'Milho - Lote A', fazenda: 'Fazenda Boa Vista', area: '12,5 ha', 
+        nome: 'Milho - Lote A', fazenda: 'Fazenda Boa Vista', area: '12,5 ha',
         iconeImg: '../assets/img/icone.milho.png',
-        imagem: '../assets/milho.teste.jpg', fundo: 'from-yellow-700 via-green-800 to-green-900', 
+        imagem: '../assets/milho.teste.jpg', fundo: 'from-yellow-700 via-green-800 to-green-900',
         icone: 'bg-white',
         umidade: { valor: '72%', status: 'Normal' },
         temperatura: { valor: '28 °C', status: 'Ideal' },
@@ -295,7 +291,7 @@
       },
       {
         id: 2,
-        nome: 'Feijão - Lote B', fazenda: 'Fazenda Boa Vista', area: '8,3 ha', 
+        nome: 'Feijão - Lote B', fazenda: 'Fazenda Boa Vista', area: '8,3 ha',
         iconeImg: '../assets/img/icone.feijão.png',
         imagem: '../assets/feijão.teste.jpg', fundo: 'from-green-700 via-green-800 to-green-950',
         icone: 'bg-white',
@@ -306,7 +302,7 @@
       },
       {
         id: 3,
-        nome: 'Tomate - Lote C', fazenda: 'Fazenda Boa Vista', area: '10,0 ha', 
+        nome: 'Tomate - Lote C', fazenda: 'Fazenda Boa Vista', area: '10,0 ha',
         iconeImg: '../assets/img/icone.tomate.png',
         imagem: '../assets/tomate.teste.jpg', fundo: 'from-red-800 via-red-900 to-green-900',
         icone: 'bg-white',
@@ -317,7 +313,7 @@
       },
       {
         id: 4,
-        nome: 'Mandioca - Lote D', fazenda: 'Fazenda Boa Vista', area: '6,7 ha', 
+        nome: 'Mandioca - Lote D', fazenda: 'Fazenda Boa Vista', area: '6,7 ha',
         iconeImg: '../assets/img/icone.mandioca.png',
         imagem: '../assets/mandioca.teste.jpg', fundo: 'from-amber-800 via-amber-900 to-stone-900',
         icone: 'bg-white',
@@ -353,20 +349,17 @@
         </div>`;
     }
 
-    const iconeEscudo = '<svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="currentColor"><path d="M12 2l8 3v6c0 5-3.4 9.3-8 11-4.6-1.7-8-6-8-11V5l8-3zm-1.2 13.4l5-5-1.4-1.4-3.6 3.6-1.6-1.6-1.4 1.4 3 3z"/></svg>';
-
     function cartaoPlantacao(p) {
-      // Camadas do cabeçalho (de baixo para cima):
-      // 1) gradiente do card  2) foto de fundo  3) escurecido do lado do texto
+      
       const fundoImagem = p.imagem
         ? `<div class="absolute inset-0 bg-cover bg-center" style="background-image: url('${p.imagem}');"></div>
            <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/25 to-transparent"></div>`
-        : `<span class="absolute right-6 top-1/2 -translate-y-1/2 text-6xl opacity-40 select-none">${p.emoji}</span>`;
+        : `<span class="absolute right-6 top-1/2 -translate-y-1/2 text-6xl opacity-40 select-none">${p.emoji || ''}</span>`;
 
-      // Ícone do círculo: usa a imagem se existir, senão cai no emoji
+      
       const conteudoIcone = p.iconeImg
         ? `<img src="${p.iconeImg}" alt="${p.nome}" class="w-full h-full object-cover" />`
-        : p.emoji;
+        : (p.emoji || '');
 
       return `
         <article class="flex flex-col min-h-[230px] xl:min-h-0 rounded-xl border border-gray-200 bg-white overflow-hidden shadow-sm">
@@ -374,13 +367,12 @@
           <div class="relative overflow-hidden flex-[0_0_42%] min-h-[78px] bg-gradient-to-r ${p.fundo} px-5 flex items-center gap-4">
             ${fundoImagem}
             <div class="relative w-11 h-11 rounded-full ${p.icone} flex items-center justify-center text-xl shrink-0 shadow-none ring-0 overflow-hidden">
-  ${conteudoIcone}
-</div>
+              ${conteudoIcone}
+            </div>
             <div class="relative">
               <h3 class="text-white font-bold text-base leading-tight drop-shadow">${p.nome}</h3>
               <p class="text-white/90 text-xs mt-0.5 drop-shadow">${p.fazenda} &nbsp;•&nbsp; ${p.area}</p>
             </div>
-            <span class="absolute top-2.5 right-3 inline-flex items-center gap-1 bg-white/90 text-green-800 text-[11px] font-semibold rounded-full px-3 py-0.5 shadow-sm">
           </div>
 
           <div class="flex-1 grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-100 items-center">
@@ -408,12 +400,20 @@
 
     document.getElementById('lista-plantacoes').innerHTML = plantacoes.map(cartaoPlantacao).join('');
 
+    // ---------- DATA ----------
     const agora = new Date();
     document.getElementById('data-atual').textContent =
       agora.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
     const diaSemana = agora.toLocaleDateString('pt-BR', { weekday: 'long' });
     document.getElementById('dia-semana').textContent =
       diaSemana.charAt(0).toUpperCase() + diaSemana.slice(1);
+
+    // ---------- SAUDAÇÃO COM O NOME DO PERFIL ----------
+    
+    let nomeSalvo = 'Sem Júnior Neymar';
+    try { nomeSalvo = localStorage.getItem('agrosensor-nome') || nomeSalvo; } catch (e) {}
+    document.getElementById('saudacao').textContent = `Olá, ${nomeSalvo}!`;
+    
   </script>
 </body>
 </html>
