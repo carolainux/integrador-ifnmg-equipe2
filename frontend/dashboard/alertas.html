@@ -196,9 +196,7 @@
   $('dia-semana').textContent = dia.charAt(0).toUpperCase() + dia.slice(1);
 
   // ---------- DADOS ----------
-  
-  // GET /alertas/usuario/:usuario_id  → lista de alertas do usuário logado
-  // GET /alertas/resumo/:plantacao_id → contadores dos botões de filtro
+
   const alertas = [
     { cat: 'critico', icone: 'temp',  img: 'termometro.png', titulo: 'Temperatura Alta',      desc: 'Temperatura acima de 33 °C detectada',        sensor: 'Sensor 01', lote: 'Lote A', cultura: 'Milho',  data: '25/06/2025', hora: '14:32' },
     { cat: 'atencao', icone: 'gota',  img: 'irrigação.png', titulo: 'Irrigação Necessária',  desc: 'Umidade do solo abaixo de 40%',               sensor: 'Sensor 02', lote: 'Lote A', cultura: 'Milho',  data: '25/06/2025', hora: '13:10' },
