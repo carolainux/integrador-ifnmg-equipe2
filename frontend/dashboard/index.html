@@ -7,6 +7,30 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="../style.css" />
   <link rel="shortcut icon" href="../assets/img/favicon-agrosensor.png" type="image/x-icon">
+  <style>
+    
+  
+    @keyframes brilhoAtencao {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(250,204,21,0), 0 1px 2px rgba(0,0,0,.06); }
+      50%      { box-shadow: 0 0 0 4px rgba(250,204,21,.40), 0 0 20px rgba(250,204,21,.45); }
+    }
+    @keyframes brilhoCritico {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0), 0 1px 2px rgba(0,0,0,.06); }
+      50%      { box-shadow: 0 0 0 4px rgba(239,68,68,.45), 0 0 24px rgba(239,68,68,.55); }
+    }
+    @keyframes tremer {
+      0%, 88%, 100% { transform: translateX(0); }
+      90% { transform: translateX(-3px); }
+      92% { transform: translateX(3px); }
+      94% { transform: translateX(-3px); }
+      96% { transform: translateX(3px); }
+    }
+    .card-atencao { animation: brilhoAtencao 2.6s ease-in-out infinite, tremer 5s ease-in-out infinite; }
+    .card-critico { animation: brilhoCritico 1.4s ease-in-out infinite, tremer 5s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) {
+      .card-atencao, .card-critico { animation: none; }
+    }
+  </style>
 </head>
 <body class="h-screen bg-white overflow-hidden">
   <div class="flex h-screen">
@@ -78,7 +102,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="currentColor" class="w-5 h-5">
                 <path d="M20 3.33333C19.1159 3.33333 18.2681 3.68452 17.643 4.30964C17.0179 4.93476 16.6667 5.78261 16.6667 6.66666C16.655 6.82756 16.655 6.9891 16.6667 7.14999C11.8667 8.56666 8.33333 13.0333 8.33333 18.3333V28.3333L5 31.6667V33.3333H35V31.6667L31.6667 28.3333V18.3333C31.6667 13.0333 28.1333 8.56666 23.3333 7.14999C23.345 6.9891 23.345 6.82756 23.3333 6.66666C23.3333 5.78261 22.9821 4.93476 22.357 4.30964C21.7319 3.68452 20.8841 3.33333 20 3.33333ZM20 9.99999C22.2101 9.99999 24.3298 10.878 25.8926 12.4408C27.4554 14.0036 28.3333 16.1232 28.3333 18.3333V30H11.6667V18.3333C11.6667 16.1232 12.5446 14.0036 14.1074 12.4408C15.6702 10.878 17.7899 9.99999 20 9.99999ZM16.6667 35C16.6667 35.884 17.0179 36.7319 17.643 37.357C18.2681 37.9821 19.1159 38.3333 20 38.3333C20.8841 38.3333 21.7319 37.9821 22.357 37.357C22.9821 36.7319 23.3333 35.884 23.3333 35H16.6667Z" />
               </svg>
-              <span class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">2</span>
+              <span class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">5</span>
             </span>
             Alertas
           </a>
@@ -110,17 +134,16 @@
             Ajuda
           </a>
 
-        </nav>
-      </div>
+          <!-- SAIR (mesmo estilo dos itens do menu, abaixo de Ajuda) -->
+          <a href="../user/login.html"
+             class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-white/90 font-medium hover:bg-red-500/30 hover:text-white transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+              <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H3" />
+            </svg>
+            Sair
+          </a>
 
-      <div class="px-3 pb-6 pt-4">
-        <a href="../user/login.html"
-           class="inline-flex items-center gap-3 px-5 py-2.5 rounded-xl border border-white/30 text-white/90 font-medium hover:bg-white/10 transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-            <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H3" />
-          </svg>
-          Sair
-        </a>
+        </nav>
       </div>
     </aside>
 
@@ -273,13 +296,13 @@
 
   <script src="../script.js"></script>
   <script>
-    
+
     const PAGINA_DETALHES = '../plantacao/plantacao-detalhe.html';
 
-    
+    // status = 'Ideal' | 'Atenção' | 'Crítico'  (o mesmo da página Plantações)
     const plantacoes = [
       {
-        id: 1,
+        id: 1, status: 'Ideal',
         nome: 'Milho - Lote A', fazenda: 'Fazenda Boa Vista', area: '12,5 ha',
         iconeImg: '../assets/img/icone.milho.png',
         imagem: '../assets/milho.teste.jpg', fundo: 'from-yellow-700 via-green-800 to-green-900',
@@ -290,7 +313,7 @@
         leitura: 'Hoje, 14:50'
       },
       {
-        id: 2,
+        id: 2, status: 'Ideal',
         nome: 'Feijão - Lote B', fazenda: 'Fazenda Boa Vista', area: '8,3 ha',
         iconeImg: '../assets/img/icone.feijão.png',
         imagem: '../assets/feijão.teste.jpg', fundo: 'from-green-700 via-green-800 to-green-950',
@@ -301,7 +324,7 @@
         leitura: 'Hoje, 14:50'
       },
       {
-        id: 3,
+        id: 3, status: 'Crítico',
         nome: 'Tomate - Lote C', fazenda: 'Fazenda Boa Vista', area: '10,0 ha',
         iconeImg: '../assets/img/icone.tomate.png',
         imagem: '../assets/tomate.teste.jpg', fundo: 'from-red-800 via-red-900 to-green-900',
@@ -312,7 +335,7 @@
         leitura: 'Hoje, 14:50'
       },
       {
-        id: 4,
+        id: 4, status: 'Atenção',
         nome: 'Mandioca - Lote D', fazenda: 'Fazenda Boa Vista', area: '6,7 ha',
         iconeImg: '../assets/img/icone.mandioca.png',
         imagem: '../assets/mandioca.teste.jpg', fundo: 'from-amber-800 via-amber-900 to-stone-900',
@@ -323,6 +346,35 @@
         leitura: 'Hoje, 14:50'
       }
     ];
+
+    // ---------- STATUS DE ALERTA ----------
+    const cores = {
+      'Ideal': {
+        borda: 'border border-gray-200', anim: '',
+        badge: 'bg-white/90 border-green-300 text-green-800', ponto: ''
+      },
+      'Atenção': {
+        borda: 'border-2 border-yellow-400', anim: 'card-atencao',
+        badge: 'bg-yellow-100 border-yellow-400 text-yellow-800', ponto: 'bg-yellow-500'
+      },
+      'Crítico': {
+        borda: 'border-2 border-red-500', anim: 'card-critico',
+        badge: 'bg-red-100 border-red-500 text-red-700', ponto: 'bg-red-500'
+      }
+    };
+
+    
+    const prioridade = { 'Crítico': 0, 'Atenção': 1, 'Ideal': 2 };
+
+    
+    const selo = (c, status) => c.ponto
+      ? `<span class="${c.badge} inline-flex items-center gap-2 border text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">
+           <span class="relative flex w-2 h-2">
+             <span class="absolute inline-flex w-full h-full rounded-full ${c.ponto} opacity-75 animate-ping"></span>
+             <span class="relative inline-flex w-2 h-2 rounded-full ${c.ponto}"></span>
+           </span>${status}
+         </span>`
+      : `<span class="${c.badge} border text-[11px] font-semibold px-3 py-1 rounded-full shadow-sm">✅ ${status}</span>`;
 
     function badge(status) {
       const atencao = ['Baixa', 'Moderada'];
@@ -350,19 +402,19 @@
     }
 
     function cartaoPlantacao(p) {
-      
+      const c = cores[p.status] || cores['Ideal'];
+
       const fundoImagem = p.imagem
         ? `<div class="absolute inset-0 bg-cover bg-center" style="background-image: url('${p.imagem}');"></div>
            <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/25 to-transparent"></div>`
         : `<span class="absolute right-6 top-1/2 -translate-y-1/2 text-6xl opacity-40 select-none">${p.emoji || ''}</span>`;
 
-      
       const conteudoIcone = p.iconeImg
         ? `<img src="${p.iconeImg}" alt="${p.nome}" class="w-full h-full object-cover" />`
         : (p.emoji || '');
 
       return `
-        <article class="flex flex-col min-h-[230px] xl:min-h-0 rounded-xl border border-gray-200 bg-white overflow-hidden shadow-sm">
+        <article class="flex flex-col min-h-[230px] xl:min-h-0 rounded-xl ${c.borda} bg-white overflow-hidden shadow-sm ${c.anim}">
 
           <div class="relative overflow-hidden flex-[0_0_42%] min-h-[78px] bg-gradient-to-r ${p.fundo} px-5 flex items-center gap-4">
             ${fundoImagem}
@@ -372,6 +424,9 @@
             <div class="relative">
               <h3 class="text-white font-bold text-base leading-tight drop-shadow">${p.nome}</h3>
               <p class="text-white/90 text-xs mt-0.5 drop-shadow">${p.fazenda} &nbsp;•&nbsp; ${p.area}</p>
+            </div>
+            <div class="absolute right-4 top-3">
+              ${selo(c, p.status)}
             </div>
           </div>
 
@@ -398,7 +453,10 @@
         </article>`;
     }
 
-    document.getElementById('lista-plantacoes').innerHTML = plantacoes.map(cartaoPlantacao).join('');
+    document.getElementById('lista-plantacoes').innerHTML =
+      [...plantacoes]
+        .sort((a, b) => prioridade[a.status] - prioridade[b.status])
+        .map(cartaoPlantacao).join('');
 
     // ---------- DATA ----------
     const agora = new Date();
@@ -409,11 +467,10 @@
       diaSemana.charAt(0).toUpperCase() + diaSemana.slice(1);
 
     // ---------- SAUDAÇÃO COM O NOME DO PERFIL ----------
-    
     let nomeSalvo = 'Sem Júnior Neymar';
     try { nomeSalvo = localStorage.getItem('agrosensor-nome') || nomeSalvo; } catch (e) {}
     document.getElementById('saudacao').textContent = `Olá, ${nomeSalvo}!`;
-    
+
   </script>
 </body>
 </html>

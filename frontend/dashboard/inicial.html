@@ -30,11 +30,11 @@
 
 <body class="h-screen overflow-hidden bg-[#022a16] bg-[url('../assets/copiateste.jpeg')] bg-cover bg-center bg-no-repeat">
 
-    <!-- DEGRADÊ VERDE À ESQUERDA (mesmas cores do menu lateral) -->
+    
     <div class="anim-aparecer absolute inset-0 pointer-events-none bg-gradient-to-r from-[#022a16]/95 via-[#05452a]/70 to-transparent"></div>
     <div class="anim-aparecer absolute inset-0 pointer-events-none bg-gradient-to-t from-[#022a16]/60 via-transparent to-transparent"></div>
 
-    <!-- DECORAÇÃO CANTO INFERIOR ESQUERDO (curva + folhas) -->
+    
     <svg class="anim-aparecer [animation-delay:400ms] absolute bottom-0 left-0 w-[560px] max-w-[60vw] h-auto pointer-events-none hidden md:block" viewBox="0 0 560 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M0 300 L0 70 C140 55 400 95 556 300 Z" fill="#05452a" fill-opacity="0.85"/>
         <path d="M0 70 C140 55 400 95 556 300" stroke="#1f9a55" stroke-opacity="0.8" stroke-width="1.5"/>
@@ -43,7 +43,7 @@
         <path d="M60 215 C55 165 85 125 130 112 C138 160 110 205 60 215 Z" fill="#0f8a2f" fill-opacity="0.55" stroke="#1f9a55" stroke-width="1.2"/>
     </svg>
 
-    <!-- AGRICULTOR 3D (animado com Three.js) -->
+    <!-- AGRICULTOR 3D -->
     <div id="agricultor-3d" class="anim-aparecer [animation-delay:600ms] absolute right-0 bottom-0 w-[50%] h-[85%] pointer-events-none hidden md:block"></div>
 
     <div class="relative z-10 h-screen flex flex-col justify-between px-8 md:px-14 py-8">
@@ -199,7 +199,7 @@
         function fecharModalSaibaMais() {
             document.getElementById("modal-saiba-mais").classList.add("hidden");
         }
-        // Fecha com a tecla ESC ou clicando fora do modal
+        
         document.addEventListener("keydown", (e) => { if (e.key === "Escape") fecharModalSaibaMais(); });
         document.getElementById("modal-saiba-mais").addEventListener("click", (e) => {
             if (e.target.id === "modal-saiba-mais") fecharModalSaibaMais();

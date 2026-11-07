@@ -22,47 +22,47 @@
         .anim-subir    { opacity: 0; animation: subir 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; }
         .anim-aparecer { opacity: 0; animation: aparecer 1.2s ease-out forwards; }
 
-        
         @media (prefers-reduced-motion: reduce) {
             .anim-subir, .anim-aparecer { animation: none; opacity: 1; }
         }
+
         /* ===== AGRICULTOR ===== */
-#agricultor { overflow: visible; }
-#fz-pupilas { transition: transform .12s ease-out; }
+        #agricultor { overflow: visible; }
+        #fz-pupilas { transition: transform .12s ease-out; }
 
-#fz-chapeu { transform-origin: 60px 40px; transition: transform .35s cubic-bezier(.34, 1.4, .5, 1); }
-#agricultor.cobrindo #fz-chapeu { transform: translateY(19px); }
-#fz-chapeu.jogando { animation: fz-jogar .9s ease-in-out; }
+        #fz-chapeu { transform-origin: 60px 40px; transition: transform .35s cubic-bezier(.34, 1.4, .5, 1); }
+        #agricultor.cobrindo #fz-chapeu { transform: translateY(19px); }
+        #fz-chapeu.jogando { animation: fz-jogar .9s ease-in-out; }
 
-#fz-braco { transform-origin: 90px 116px; }
-#fz-braco.acenando { animation: fz-acenar 1.6s ease-in-out; }
+        #fz-braco { transform-origin: 90px 116px; }
+        #fz-braco.acenando { animation: fz-acenar 1.6s ease-in-out; }
 
-#fz-cabeca { transform-origin: 60px 92px; }
-#fz-cabeca.negando { animation: fz-negar .5s ease-in-out; }
+        #fz-cabeca { transform-origin: 60px 92px; }
+        #fz-cabeca.negando { animation: fz-negar .5s ease-in-out; }
 
-@keyframes fz-acenar {
-    0%, 100% { transform: rotate(0); }
-    20% { transform: rotate(-16deg); }
-    40% { transform: rotate(8deg); }
-    60% { transform: rotate(-14deg); }
-    80% { transform: rotate(6deg); }
-}
-@keyframes fz-negar {
-    0%, 100% { transform: rotate(0); }
-    20% { transform: rotate(-7deg); }
-    40% { transform: rotate(7deg); }
-    60% { transform: rotate(-5deg); }
-    80% { transform: rotate(4deg); }
-}
-@keyframes fz-jogar {
-    0%   { transform: translate(0, 0) rotate(0); }
-    45%  { transform: translate(6px, -95px) rotate(200deg); }
-    100% { transform: translate(0, 0) rotate(360deg); }
-}
+        @keyframes fz-acenar {
+            0%, 100% { transform: rotate(0); }
+            20% { transform: rotate(-16deg); }
+            40% { transform: rotate(8deg); }
+            60% { transform: rotate(-14deg); }
+            80% { transform: rotate(6deg); }
+        }
+        @keyframes fz-negar {
+            0%, 100% { transform: rotate(0); }
+            20% { transform: rotate(-7deg); }
+            40% { transform: rotate(7deg); }
+            60% { transform: rotate(-5deg); }
+            80% { transform: rotate(4deg); }
+        }
+        @keyframes fz-jogar {
+            0%   { transform: translate(0, 0) rotate(0); }
+            45%  { transform: translate(6px, -95px) rotate(200deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
 
-@media (prefers-reduced-motion: reduce) {
-    #agricultor, #agricultor * { animation: none !important; transition: none !important; }
-}
+        @media (prefers-reduced-motion: reduce) {
+            #agricultor, #agricultor * { animation: none !important; transition: none !important; }
+        }
     </style>
 </head>
 
@@ -74,24 +74,74 @@
         <section class="anim-aparecer absolute inset-y-0 left-0 w-[54%] hidden md:block bg-[#022a16] bg-cover bg-center bg-no-repeat"
                  style="background-image: url('../assets/copiatestedeimagem2.jpeg');">
 
-            
             <div class="absolute inset-0 pointer-events-none bg-gradient-to-b from-white/35 via-transparent via-30% to-transparent"></div>
             <div class="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#022a16]/85 via-[#022a16]/30 via-50% to-transparent"></div>
 
             <!-- LOGO -->
             <div class="anim-aparecer [animation-delay:200ms] absolute top-8 left-12">
-                <img src="../assets/img/AgroSensor_versao3_folha_original.svg" alt="AgroSensor" class="max-w-none w-auto" style="height:130px;">
+                <img src="../assets/logo.svg" alt="AgroSensor" class="max-w-none w-auto" style="height:130px;">
             </div>
 
             
-            <div class="anim-subir [animation-delay:500ms] absolute left-12 right-28 bottom-[200px] text-white">
-                <h2 class="text-4xl xl:text-5xl font-bold leading-tight drop-shadow-[0_4px_4px_rgba(0,0,0,0.60)]">Crie sua conta</h2>
-                <p class="mt-2 text-lg xl:text-xl text-white/90 max-w-md drop-shadow-[0_2px_4px_rgba(0,0,0,0.60)]">
-                    Faça parte da nossa plataforma e aproveite todos os recursos.
-                </p>
-            </div>
 
-            
+            <!-- AGRICULTOR (fica antes da curva, que cobre os pés dele) -->
+            <svg id="agricultor" class="hidden xl:block absolute right-32 bottom-[68px] w-[120px] h-auto" viewBox="0 0 120 150" fill="none" aria-hidden="true">
+                <defs>
+                    <pattern id="fz-xadrez" width="8" height="8" patternUnits="userSpaceOnUse">
+                        <rect width="8" height="8" fill="#c0392b"/>
+                        <path d="M0 4H8M4 0V8" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.5"/>
+                    </pattern>
+                </defs>
+
+                <!-- braço esquerdo (parado) -->
+                <path d="M28 116 Q18 130 20 148" stroke="url(#fz-xadrez)" stroke-width="13" stroke-linecap="round"/>
+
+                <!-- corpo -->
+                <path d="M18 150 C18 112 34 100 60 100 C86 100 102 112 102 150 Z" fill="url(#fz-xadrez)"/>
+                <path d="M50 100 Q60 116 70 100 Z" fill="#e0a96d"/>
+                <path d="M40 150 V124 Q40 120 44 120 H76 Q80 120 80 124 V150 Z" fill="#2f5d8a"/>
+                <path d="M44 120 L38 103 M76 120 L82 103" stroke="#2f5d8a" stroke-width="7" stroke-linecap="round"/>
+                <circle cx="44" cy="121" r="2" fill="#f4c430"/>
+                <circle cx="76" cy="121" r="2" fill="#f4c430"/>
+
+                <!-- braço direito (acena) -->
+                <g id="fz-braco">
+                    <path d="M90 116 Q108 108 104 80" stroke="url(#fz-xadrez)" stroke-width="13" stroke-linecap="round"/>
+                    <circle cx="104" cy="72" r="8" fill="#f0c08a"/>
+                </g>
+
+                <!-- pescoço -->
+                <rect x="52" y="88" width="16" height="16" fill="#e0a96d"/>
+
+                <!-- cabeça -->
+                <g id="fz-cabeca">
+                    <circle cx="35" cy="66" r="5.5" fill="#e5b077"/>
+                    <circle cx="85" cy="66" r="5.5" fill="#e5b077"/>
+                    <ellipse id="fz-rosto" cx="60" cy="64" rx="25" ry="28" fill="#f0c08a"/>
+                    <circle cx="44" cy="74" r="4.5" fill="#f08a7a" fill-opacity="0.35"/>
+                    <circle cx="76" cy="74" r="4.5" fill="#f08a7a" fill-opacity="0.35"/>
+
+                    <circle cx="50" cy="62" r="6" fill="#ffffff"/>
+                    <circle cx="70" cy="62" r="6" fill="#ffffff"/>
+                    <g id="fz-pupilas" fill="#2b1d12">
+                        <circle cx="50" cy="62" r="3"/>
+                        <circle cx="70" cy="62" r="3"/>
+                    </g>
+                    <path d="M43 52 Q50 48 57 52 M63 52 Q70 48 77 52" stroke="#6b4423" stroke-width="2.4" stroke-linecap="round"/>
+                    <path d="M60 64 Q57 71 61 72" stroke="#d79a5f" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M46 75 Q53 70 60 74 Q67 70 74 75 Q67 80 60 76 Q53 80 46 75 Z" fill="#7a4b24"/>
+                    <path d="M53 82 Q60 89 67 82" stroke="#7c2d12" stroke-width="2.4" stroke-linecap="round"/>
+
+                    <!-- chapéu de palha -->
+                    <g id="fz-chapeu">
+                        <ellipse cx="60" cy="46" rx="40" ry="9" fill="#e5c06a"/>
+                        <path d="M36 45 C36 14 84 14 84 45 Q60 53 36 45 Z" fill="#f2d98a"/>
+                        <path d="M46 24 L48 42 M60 19 L60 46 M74 24 L72 42" stroke="#e0bd63" stroke-width="1.5" stroke-opacity="0.7"/>
+                        <path d="M36.5 40 Q60 48 83.5 40 L84 45 Q60 53 36 45 Z" fill="#0f8a2f"/>
+                    </g>
+                </g>
+            </svg>
+
             <svg class="anim-aparecer [animation-delay:400ms] absolute bottom-0 left-0 w-full h-[170px] pointer-events-none" viewBox="0 0 800 170" preserveAspectRatio="none" fill="none" aria-hidden="true">
                 <path d="M0 170 V80 C120 30 260 20 400 50 C540 80 680 100 800 60 V170 Z" fill="#05452a"/>
                 <path d="M0 80 C120 30 260 20 400 50 C540 80 680 100 800 60" stroke="#34d399" stroke-opacity="0.8" stroke-width="2" vector-effect="non-scaling-stroke"/>
@@ -135,25 +185,21 @@
             <!-- Decorações -->
             <div class="anim-aparecer [animation-delay:300ms] absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
 
-                
                 <svg class="absolute -top-2 -right-6 w-[120px] h-auto" viewBox="0 0 120 130" fill="none">
                     <path d="M120 70 C110 30 75 8 25 4 C28 50 65 80 120 70 Z" fill="#bbf7d0" fill-opacity="0.8"/>
                     <path d="M120 110 C105 70 70 52 20 50 C22 92 62 120 120 110 Z" fill="#86efac" fill-opacity="0.55"/>
                 </svg>
 
-                
                 <svg class="absolute bottom-4 -right-8 w-[110px] h-auto" viewBox="0 0 110 150" fill="none">
                     <path d="M110 10 C70 20 40 55 34 110 C70 105 102 70 110 10 Z" fill="#bbf7d0" fill-opacity="0.8"/>
                     <path d="M110 80 C80 85 58 105 50 140 C80 138 104 118 110 80 Z" fill="#86efac" fill-opacity="0.55"/>
                 </svg>
             </div>
 
-            
             <svg class="hidden md:block absolute top-0 -left-[79px] w-[80px] h-full pointer-events-none" viewBox="0 0 80 100" preserveAspectRatio="none" aria-hidden="true">
                 <path d="M80 0H10C55 30 58 68 25 100H80Z" fill="#ffffff"/>
             </svg>
 
-            
             <div class="relative z-10 h-full overflow-y-auto flex">
                 <div class="m-auto w-full max-w-[460px] px-8 py-4 [@media(max-height:680px)]:[zoom:0.85]">
 
@@ -428,7 +474,6 @@
             document.body.classList.remove('overflow-hidden');
         }
 
-        
         document.addEventListener('keydown', (evento) => {
             if (evento.key === 'Escape') fecharTermos();
         });
@@ -519,6 +564,96 @@
         });
     </script>
 
+    
+    <script>
+        (function () {
+            const fz = document.getElementById('agricultor');
+            if (!fz) return;
+
+            const rosto = document.getElementById('fz-rosto');
+            const pupilas = document.getElementById('fz-pupilas');
+            const braco = document.getElementById('fz-braco');
+            const cabeca = document.getElementById('fz-cabeca');
+            const chapeu = document.getElementById('fz-chapeu');
+            const form = document.getElementById('formCadastro');
+            const textos = ['nome', 'email', 'telefone'].map(id => document.getElementById(id));
+            const senhas = ['senha', 'confirmarSenha'].map(id => document.getElementById(id));
+            const reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let digitando = false;
+
+            
+            function olharPara(x, y) {
+                const r = rosto.getBoundingClientRect();
+                const dx = x - (r.left + r.width / 2);
+                const dy = y - (r.top + r.height / 2);
+                const dist = Math.hypot(dx, dy) || 1;
+                const forca = Math.min(dist / 150, 1) * 2.6;
+                pupilas.style.transform = `translate(${(dx / dist) * forca}px, ${(dy / dist) * forca}px)`;
+            }
+
+            document.addEventListener('pointermove', e => { if (!digitando) olharPara(e.clientX, e.clientY); });
+
+            
+            function olharCampo(campo) {
+                const r = campo.getBoundingClientRect();
+                const avanco = Math.min(campo.value.length * 9, r.width - 70);
+                olharPara(r.left + 50 + avanco, r.top + r.height / 2);
+            }
+            textos.forEach(campo => {
+                campo.addEventListener('focus', () => { digitando = true; olharCampo(campo); });
+                campo.addEventListener('input', () => olharCampo(campo));
+                campo.addEventListener('blur', () => { digitando = false; });
+            });
+
+            
+            function atualizarChapeu() {
+                const cobrir = senhas.some(c => document.activeElement === c && c.type === 'password');
+                fz.classList.toggle('cobrindo', cobrir);
+            }
+            senhas.forEach(campo => {
+                campo.addEventListener('focus', atualizarChapeu);
+                campo.addEventListener('blur', atualizarChapeu);
+                new MutationObserver(atualizarChapeu).observe(campo, { attributes: true, attributeFilter: ['type'] });
+            });
+
+            
+            if (!reduzido) {
+                setTimeout(() => braco.classList.add('acenando'), 1400);
+                braco.addEventListener('animationend', () => braco.classList.remove('acenando'));
+            }
+
+            
+            function reagir(tipo) {
+                if (reduzido) return;
+                if (tipo === 'sucesso') {
+                    fz.classList.remove('cobrindo');
+                    chapeu.classList.add('jogando');
+                } else {
+                    cabeca.classList.remove('negando');
+                    void cabeca.getBoundingClientRect();
+                    cabeca.classList.add('negando');
+                }
+            }
+
+            
+            if (typeof mostrarFeedback === 'function') {
+                const original = mostrarFeedback;
+                window.mostrarFeedback = function (mensagem, tipo) {
+                    original(mensagem, tipo);
+                    reagir(tipo);
+                };
+            }
+
+            
+            let ultimoErro = 0;
+            form.addEventListener('invalid', () => {
+                const agora = Date.now();
+                if (agora - ultimoErro > 700) { ultimoErro = agora; reagir('erro'); }
+            }, true);
+        })();
+    </script>
+
 </body>
 
 </html>
+</document_content>

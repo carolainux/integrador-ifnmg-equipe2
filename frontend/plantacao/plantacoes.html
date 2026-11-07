@@ -7,6 +7,30 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="../style.css">
   <link rel="shortcut icon" href="../assets/img/favicon-agrosensor.png" type="image/x-icon">
+  <style>
+    
+    @keyframes brilhoAtencao {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(250,204,21,0), 0 1px 2px rgba(0,0,0,.06); }
+      50%      { box-shadow: 0 0 0 4px rgba(250,204,21,.40), 0 0 20px rgba(250,204,21,.45); }
+    }
+    
+    @keyframes brilhoCritico {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0), 0 1px 2px rgba(0,0,0,.06); }
+      50%      { box-shadow: 0 0 0 4px rgba(239,68,68,.45), 0 0 24px rgba(239,68,68,.55); }
+    }
+    @keyframes tremer {
+      0%, 88%, 100% { transform: translateX(0); }
+      90% { transform: translateX(-3px); }
+      92% { transform: translateX(3px); }
+      94% { transform: translateX(-3px); }
+      96% { transform: translateX(3px); }
+    }
+    .card-atencao { animation: brilhoAtencao 2.6s ease-in-out infinite; }
+    .card-critico { animation: brilhoCritico 1.4s ease-in-out infinite, tremer 5s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) {
+      .card-atencao, .card-critico { animation: none; }
+    }
+  </style>
 </head>
 
 <body class="h-screen bg-[#f4f7f5] overflow-hidden">
@@ -80,7 +104,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="currentColor" class="w-5 h-5">
               <path d="M20 3.33333C19.1159 3.33333 18.2681 3.68452 17.643 4.30964C17.0179 4.93476 16.6667 5.78261 16.6667 6.66666C16.655 6.82756 16.655 6.9891 16.6667 7.14999C11.8667 8.56666 8.33333 13.0333 8.33333 18.3333V28.3333L5 31.6667V33.3333H35V31.6667L31.6667 28.3333V18.3333C31.6667 13.0333 28.1333 8.56666 23.3333 7.14999C23.345 6.9891 23.345 6.82756 23.3333 6.66666C23.3333 5.78261 22.9821 4.93476 22.357 4.30964C21.7319 3.68452 20.8841 3.33333 20 3.33333ZM20 9.99999C22.2101 9.99999 24.3298 10.878 25.8926 12.4408C27.4554 14.0036 28.3333 16.1232 28.3333 18.3333V30H11.6667V18.3333C11.6667 16.1232 12.5446 14.0036 14.1074 12.4408C15.6702 10.878 17.7899 9.99999 20 9.99999ZM16.6667 35C16.6667 35.884 17.0179 36.7319 17.643 37.357C18.2681 37.9821 19.1159 38.3333 20 38.3333C20.8841 38.3333 21.7319 37.9821 22.357 37.357C22.9821 36.7319 23.3333 35.884 23.3333 35H16.6667Z" />
             </svg>
-            <span class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">2</span>
+            <span class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">5</span>
           </span>
           Alertas
         </a>
@@ -112,18 +136,17 @@
           Ajuda
         </a>
 
+        <a href="../user/login.html"
+           class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-white/90 font-medium hover:bg-red-500/30 hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+            <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H3" />
+          </svg>
+          Sair
+        </a>
+
       </nav>
     </div>
 
-    <div class="px-3 pb-6 pt-4">
-      <a href="../user/login.html"
-         class="inline-flex items-center gap-3 px-5 py-2.5 rounded-xl border border-white/30 text-white/90 font-medium hover:bg-white/10 transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-          <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H3" />
-        </svg>
-        Sair
-      </a>
-    </div>
   </aside>
 
   <!-- CONTEÚDO -->
@@ -162,14 +185,14 @@
           <input id="busca" type="text" placeholder="Buscar plantação..." class="w-full h-[48px] rounded-full bg-white border border-gray-200 pl-12 pr-4 text-[14px] focus:outline-none focus:border-[#077C07] focus:ring-1 focus:ring-[#077C07]">
         </div>
         <div class="relative shrink-0">
-  <select id="filtro" class="appearance-none h-[48px] rounded-full bg-white border border-gray-200 pl-5 pr-10 text-[14px] text-gray-600 focus:outline-none focus:border-[#077C07]">
-    <option value="">Todos os status</option>
-    <option>Ideal</option><option>Atenção</option><option>Crítico</option>
-  </select>
-  <svg class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M6 9l6 6 6-6"/>
-  </svg>
-</div>
+          <select id="filtro" class="appearance-none h-[48px] rounded-full bg-white border border-gray-200 pl-5 pr-10 text-[14px] text-gray-600 focus:outline-none focus:border-[#077C07]">
+            <option value="">Todos os status</option>
+            <option>Ideal</option><option>Atenção</option><option>Crítico</option>
+          </select>
+          <svg class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </div>
         <a href="plantacao-nova.html" class="flex items-center gap-2 shrink-0 h-[48px] bg-[#05452a] text-white font-bold text-[14px] rounded-full px-6 hover:bg-[#0a5a37] transition-colors">
           <span class="text-lg leading-none">+</span> Nova plantação
         </a>
@@ -235,45 +258,45 @@
   };
 
   // ---------- DADOS ----------
-  // TODO - INTEGRAÇÃO COM BACKEND: GET /plantacao
+  
   let plantacoes = [
     {id: 1, nome: 'Milho - Lote A',    cultura: 'Milho',    sensores: 3, status: 'Ideal',   criado: '15/06/2025', umidade: 72, temp: 28, luz: 'Alta'},
     {id: 2, nome: 'Feijão - Lote B',   cultura: 'Feijão',   sensores: 2, status: 'Ideal',   criado: '19/07/2025', umidade: 65, temp: 30, luz: 'Média'},
-    {id: 3, nome: 'Tomate - Lote C',   cultura: 'Tomate',   sensores: 2, status: 'Ideal',   criado: '28/09/2025', umidade: 68, temp: 24, luz: 'Média'},
+    {id: 3, nome: 'Tomate - Lote C',   cultura: 'Tomate',   sensores: 2, status: 'Crítico',   criado: '28/09/2025', umidade: 68, temp: 24, luz: 'Média'},
     {id: 4, nome: 'Mandioca - Lote D', cultura: 'Mandioca', sensores: 2, status: 'Atenção', criado: '28/09/2025', umidade: 30, temp: 30, luz: 'Alta'}
   ];
 
+  // ---------- ESTILO POR STATUS ----------
   const cores = {
     'Ideal': {
-      borda: 'border-l-green-500',
-      badge: 'bg-white border-gray-400 text-black shadow-sm hover:bg-gray-50',
-      icone: '✅',
-      destaque: '',
-      gradiente: 'from-white'
+      borda: 'border-l-green-500', espessura: 'border-l-4',
+      gradiente: 'from-white',
+      anim: '',
+      badge: 'bg-white border-gray-400 text-black',
+      ponto: ''
     },
     'Atenção': {
-      borda: 'border-l-yellow-400',
-      badge: 'bg-yellow-100 border-yellow-400 text-yellow-800 shadow-sm',
-      icone: '⚠️',
-      destaque: 'ring-2 ring-yellow-300 shadow-md shadow-yellow-100',
-      gradiente: 'from-yellow-50'
+      borda: 'border-l-yellow-400', espessura: 'border-l-[6px]',
+      gradiente: 'from-yellow-50',
+      anim: 'card-atencao',
+      badge: 'bg-yellow-100 border-yellow-400 text-yellow-800',
+      ponto: 'bg-yellow-500'
     },
     'Crítico': {
-      borda: 'border-l-red-500',
-      badge: 'bg-red-100 border-red-500 text-red-700 shadow-sm animate-pulse',
-      icone: '🚨',
-      destaque: 'ring-2 ring-red-400 shadow-lg shadow-red-100',
-      gradiente: 'from-red-50'
+      borda: 'border-l-red-500', espessura: 'border-l-[6px]',
+      gradiente: 'from-red-50',
+      anim: 'card-critico',
+      badge: 'bg-red-100 border-red-500 text-red-700',
+      ponto: 'bg-red-500'
     }
   };
 
-  // ---------- COR DA BORDA LATERAL POR CULTURA ----------
-
+  // ---------- COR DA BORDA LATERAL POR CULTURA (só quando o status é Ideal) ----------
   const coresCultura = {
-    'Milho':    'border-l-yellow-400',   // amarelo
-    'Feijão':   'border-l-green-500',    // verde
-    'Tomate':   'border-l-red-500',      // vermelho
-    'Mandioca': 'border-l-[#8B4513]'     // marrom
+    'Milho':    'border-l-yellow-400',
+    'Feijão':   'border-l-green-500',
+    'Tomate':   'border-l-red-500',
+    'Mandioca': 'border-l-[#8B4513]'
   };
 
   const metrica = (icone, valor, rotulo) => `
@@ -284,20 +307,34 @@
 
   const btn = 'flex items-center gap-1.5 border text-[13px] font-semibold rounded-lg px-3.5 py-2 transition-colors';
 
+  // Selo de status: Ideal fixo; Atenção/Crítico com bolinha "radar" pulsando
+  const selo = (c, status) => c.ponto
+    ? `<span class="${c.badge} inline-flex items-center gap-2 border text-[13px] font-bold px-4 py-1.5 rounded-full">
+         <span class="relative flex w-2.5 h-2.5">
+           <span class="absolute inline-flex w-full h-full rounded-full ${c.ponto} opacity-75 animate-ping"></span>
+           <span class="relative inline-flex w-2.5 h-2.5 rounded-full ${c.ponto}"></span>
+         </span>${status}
+       </span>`
+    : `<span class="${c.badge} border text-[13px] font-semibold px-4 py-1.5 rounded-full">✅ ${status}</span>`;
+
+  // ---------- ORDEM: Crítico, depois Atenção, depois Ideal ----------
+  const prioridade = { 'Crítico': 0, 'Atenção': 1, 'Ideal': 2 };
+
   // ---------- RENDER ----------
   function render() {
     const termo = $('busca').value.toLowerCase().trim();
     const filtro = $('filtro').value;
     const visiveis = plantacoes.filter(p =>
-      (p.nome + ' ' + p.cultura).toLowerCase().includes(termo) && (!filtro || p.status === filtro));
+      (p.nome + ' ' + p.cultura).toLowerCase().includes(termo) && (!filtro || p.status === filtro))
+      .sort((x, y) => prioridade[x.status] - prioridade[y.status]);  // alertas sempre no topo
 
     $('lista').innerHTML = visiveis.map(p => {
       const c = cores[p.status];
-      const borda = coresCultura[p.cultura] || c.borda; 
+      const borda = p.status === 'Ideal' ? (coresCultura[p.cultura] || c.borda) : c.borda;
       return `
-      <div class="relative overflow-hidden [&>:not(.fundo)]:relative flex items-center justify-between bg-white rounded-2xl border border-gray-100 border-l-4 ${borda} shadow-sm px-5 py-4 transition hover:-translate-y-0.5 hover:shadow-md ${c.destaque}" data-id="${p.id}">
+      <div class="relative overflow-hidden [&>:not(.fundo)]:relative flex items-center justify-between bg-white rounded-2xl border border-gray-100 ${c.espessura} ${borda} shadow-sm px-5 py-4 transition-colors hover:shadow-md ${c.anim}" data-id="${p.id}">
         <div class="fundo absolute inset-0 pointer-events-none">
-          <div class="absolute inset-0 bg-cover bg-center opacity-33" style="background-image:url('${encodeURI(fotos[p.cultura] || '')}')"></div>
+          <div class="absolute inset-0 bg-cover bg-center opacity-[0.33]" style="background-image:url('${encodeURI(fotos[p.cultura] || '')}')"></div>
           <div class="absolute inset-0 bg-gradient-to-r ${c.gradiente} from-45% to-white/55"></div>
         </div>
         <div class="flex items-center gap-4 w-[300px]">
@@ -305,7 +342,7 @@
             <img src="${encodeURI(imagens[p.cultura] || '')}" alt="${p.cultura}" class="w-[68px] h-[68px] object-contain mix-blend-multiply">
           </div>
           <div>
-            <p class="text-[17px] font-bold text-black"> ${p.nome}</p>
+            <p class="text-[17px] font-bold text-black">${p.nome}</p>
             <p class="text-[13px] text-[#817979] mt-1"><span class="text-green-500">●</span> Sensores: <span class="font-semibold text-black">${p.sensores} ${p.sensores == 1 ? 'Ativo' : 'Ativos'}</span></p>
             <p class="text-[13px] text-[#817979]">📅 Criado em: ${p.criado}</p>
           </div>
@@ -317,7 +354,7 @@
           ${metrica('☀️', p.luz, 'Luminosidade')}
         </div>
 
-        <span class="${c.badge} text-[13px] font-semibold px-4 py-1.5 rounded-full">${c.icone} ${p.status}</span>
+        ${selo(c, p.status)}
 
         <div class="flex items-center gap-2">
           <a href="plantacao-detalhe.html?id=${p.id}" class="${btn} bg-white border-gray-400 text-black shadow-sm hover:bg-gray-50">👁 Ver</a>
@@ -356,7 +393,6 @@
 
   $('confirmar-excluir').addEventListener('click', () => {
     plantacoes = plantacoes.filter(p => p.id != idParaExcluir);
-    
     fecharExcluir();
     render();
   });
