@@ -20,10 +20,11 @@ export const AlertaModel = {
     });
   },
 
-  async buscarPorPlantacao(plantacao_id: string) {
+  async buscarPorPlantacao(plantacao_id: string, limite?: number) {
     return await prisma.alerta.findMany({
       where: { leitura: { plantacao_id } },
       orderBy: { gerado_em: 'desc' },
+      take: limite,
     });
   },
 
@@ -31,6 +32,15 @@ export const AlertaModel = {
     return await prisma.alerta.findMany({
       where: { usuario_id },
       orderBy: { gerado_em: 'desc' },
+      include: {
+        leitura: {
+          select: {
+            id: true,
+            data_hora: true,
+            plantacao: { select: { id: true, nome: true, tipo: true } },
+          },
+        },
+      },
     });
   },
 

@@ -17,6 +17,17 @@ const tipoParaCampo: Record<tipoSensor, keyof CamposLeitura> = {
   [tipoSensor.luminosidade]: 'luminosidade',
 };
 
+const periodos = {
+  '24h': { horas: 24, bucketSegundos: 10 * 60 },
+  '7d': { horas: 7 * 24, bucketSegundos: 60 * 60 },
+  '30d': { horas: 30 * 24, bucketSegundos: 6 * 60 * 60 },
+  '90d': { horas: 90 * 24, bucketSegundos: 24 * 60 * 60 },
+  '180d': { horas: 180 * 24, bucketSegundos: 2 * 24 * 60 * 60 },
+  '365d': { horas: 365 * 24, bucketSegundos: 7 * 24 * 60 * 60 },
+} as const;
+
+type Periodo = keyof typeof periodos;
+
 export const LeituraService = {
   async criar(payload: CriarLeituraDados) {
     const vinculos = await PlantacaoSensorModel.buscarPorPlantacao(payload.plantacao_id);
@@ -54,11 +65,22 @@ export const LeituraService = {
   },
 
   async obterDadosDashboard(plantacao_id: string) {
-    const dados = await LeituraModel.buscarDadosDashboard(plantacao_id);
-    if (!dados.ultima) {
-      throw new Error('Nenhuma leitura encontrada para esta plantação.');
+    return await LeituraModel.buscarDadosDashboard(plantacao_id);
+  },
+
+  async obterHistorico(plantacao_id: string, periodo: string, limite: number) {
+    const config = periodos[periodo as Periodo];
+    if (!config) {
+      throw Object.assign(new Error('Período inválido. Use 24h, 7d, 30d, 90d, 180d ou 365d.'), { status: 400 });
     }
-    return dados;
+
+    const desde = new Date(Date.now() - config.horas * 60 * 60 * 1000);
+    const [{ leituras, total }, grafico] = await Promise.all([
+      LeituraModel.buscarHistorico(plantacao_id, limite),
+      LeituraModel.buscarSerieGrafico(plantacao_id, desde, config.bucketSegundos),
+    ]);
+
+    return { periodo, leituras, grafico, total_leituras: total };
   },
 
   async atualizar(id: string, dados: Prisma.LeituraUpdateInput) {

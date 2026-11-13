@@ -8,6 +8,19 @@ export const AuthController = {
     return res.status(200).json(resultado);
   },
 
+  async esqueciSenha(req: Request, res: Response, _next: NextFunction) {
+    await AuthService.esqueciSenha(req.body.email);
+    return res.status(200).json({
+      mensagem: 'Se o e-mail estiver cadastrado, enviaremos as instruções de recuperação.',
+    });
+  },
+
+  async redefinirSenha(req: Request, res: Response, _next: NextFunction) {
+    const { token, nova_senha } = req.body;
+    const resultado = await AuthService.redefinirSenha(token, nova_senha);
+    return res.status(200).json(resultado);
+  },
+
   async perfil(req: Request, res: Response, _next: NextFunction) {
     const { UsuarioService } = await import('../services/usuario.service.js');
     const usuario = await UsuarioService.buscarPorId(req.usuario!.id);

@@ -25,6 +25,14 @@ export const LeituraController = {
     return res.status(200).json(dashboardDados);
   },
 
+  async obterHistorico(req: Request, res: Response, _next: NextFunction) {
+    const plantacao_id = parseId(req, 'plantacao_id');
+    const periodo = typeof req.query.periodo === 'string' ? req.query.periodo : '24h';
+    const limite = Math.min(Math.max(Number(req.query.limite) || 20, 1), 200);
+    const historico = await LeituraService.obterHistorico(plantacao_id, periodo, limite);
+    return res.status(200).json(historico);
+  },
+
   async buscarPorId(req: Request, res: Response, _next: NextFunction) {
     const id = parseId(req);
     const leitura = await LeituraService.buscarPorId(id);

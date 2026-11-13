@@ -1,4 +1,4 @@
-# 🌱 AgroSensor
+     # 🌱 AgroSensor
 
 <p align="center">
 
@@ -586,13 +586,53 @@ Entre seus principais diferenciais destacam-se:
 
 ---
 
+# 🖥 Status do Frontend
+
+O desenvolvimento da interface web (frontend) está em andamento. Das 20 telas e estados previstos nos protótipos (`design-ux-ui/prototipos/`), o status atual é:
+
+## ✅ Telas implementadas (7/20)
+
+| Tela | Arquivo |
+|---|---|
+| Login | `frontend/login.html` |
+| Cadastro | `frontend/cadastro.html` |
+| Dashboard | `frontend/index.html` |
+| Lista de Plantações | `frontend/plantacoes.html` |
+| Nova Plantação | `frontend/plantacao-nova.html` |
+| Detalhe da Plantação (com gráfico Chart.js) | `frontend/plantacao-detalhe.html` |
+| Sensores | `frontend/sensores.html` |
+
+As telas acima estão implementadas em HTML5, Tailwind CSS e JavaScript, com dados mockados para fins de demonstração. Encontram-se em fase de revisão pela equipe de QA.
+
+## 🔧 Telas e estados pendentes (13/20)
+
+| Item | Responsável |
+|---|---|
+| Tela Inicial (splash) | Sandy |
+| Tela de Dispositivos + estado vazio | Sandy |
+| Tela de Configurações | Sandy |
+| Tela de Ajuda | Sandy |
+| Tela de Alertas | Carolaine |
+| Tela de Perfil + Editar Perfil | Carolaine |
+| Estado vazio - Minhas Plantações | A definir |
+| Modais de sucesso (Nova Plantação e Editar Perfil) | A definir |
+| Estados globais de Carregamento e Erro | A definir |
+
+## 🔌 Integração com API (próxima etapa)
+
+Com o backend já finalizado no semestre anterior, a próxima etapa após a conclusão das telas visuais é a integração real com a API REST já existente:
+
+- Login e Cadastro → `POST /auth/login`, `POST /usuarios`
+- Dashboard e Plantações → `GET /plantacoes/usuario/:usuario_id`
+- Gráfico e Alertas → `GET /leituras/dashboard/:plantacao_id`, `GET /alertas/plantacao/:plantacao_id`
+
+---
+
 # 🔮 Trabalhos Futuros
 
-Embora o sistema possua sua arquitetura principal implementada, algumas funcionalidades permanecem previstas para continuidade do projeto:
-
-- implementação completa da interface web;
-- construção de dashboards com gráficos históricos;
-- disponibilização de indicadores estatísticos;
+- conclusão das telas restantes do frontend;
+- integração completa entre frontend e API;
+- validação de responsividade e usabilidade (QA);
 - implantação em ambiente de produção;
 - realização de testes em propriedades rurais;
 - integração com novos sensores ambientais;

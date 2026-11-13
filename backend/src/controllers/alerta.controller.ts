@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import { AlertaService } from '../services/alerta.service';
-import { enviarWhatsApp } from '../services/whatsapp.service';
 import { parseId } from '../utils/parse-id';
 
 export const AlertaController = {
@@ -20,7 +19,8 @@ export const AlertaController = {
 
   async buscarPorPlantacao(req: Request, res: Response, _next: NextFunction) {
     const plantacao_id = parseId(req, 'plantacao_id');
-    const alertas = await AlertaService.buscarPorPlantacao(plantacao_id);
+    const limite = Math.min(Math.max(Number(req.query.limite) || 0, 0), 200) || undefined;
+    const alertas = await AlertaService.buscarPorPlantacao(plantacao_id, limite);
     return res.status(200).json(alertas);
   },
 
@@ -56,7 +56,9 @@ export const AlertaController = {
       return res.status(400).json({ erro: 'plantacao_id e mensagem são obrigatórios.' });
     }
 
-    await enviarWhatsApp(mensagem);
-    return res.status(200).json({ mensagem: 'Notificação offline enviada com sucesso.' });
+    const enviada = await AlertaService.notificarDispositivoOffline(plantacao_id, mensagem);
+    return res.status(200).json({
+      mensagem: enviada ? 'Notificação offline enviada com sucesso.' : 'Notificação offline desativada para este usuário.',
+    });
   },
 };
