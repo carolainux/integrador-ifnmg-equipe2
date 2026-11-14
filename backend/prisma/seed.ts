@@ -39,12 +39,16 @@ async function main() {
     data: { id: "c3d4e5f6-a7b8-4c9d-ae1f-2a3b4c5d6e7f", nome: "DHT22 - Sensor de Temperatura", tipo: tipoSensor.temperatura, unidade: "°C", status: true, direcao: direcaoAlerta.ACIMA },
   });
 
+  const sTemp2 = await prisma.sensor.create({
+    data: { id: "c3d4e5f6-a7b8-4c9d-ae1f-2a3b4c5d6e70", nome: "DHT22 - Sensor de Temperatura (Lote A)", tipo: tipoSensor.temperatura, unidade: "°C", status: true, direcao: direcaoAlerta.ACIMA },
+  });
+
   const sSolo = await prisma.sensor.create({
-    data: { id: "d4e5f6a7-b8c9-4dae-8f2a-3b4c5d6e7f8a", nome: "HL-69 - Sensor de Umidade do solo", tipo: tipoSensor.umidade_solo, unidade: "%", status: false },
+    data: { id: "d4e5f6a7-b8c9-4dae-8f2a-3b4c5d6e7f8a", nome: "HL-69 - Sensor de Umidade do solo", tipo: tipoSensor.umidade_solo, unidade: "%", status: true },
   });
 
   const sAr = await prisma.sensor.create({
-    data: { id: "e5f6a7b8-c9d0-4eaf-9b3c-4d5e6f7a8b9c", nome: "DHT22 - Sensor de Umidade do Ar", tipo: tipoSensor.umidade_ar, unidade: "%", status: false },
+    data: { id: "e5f6a7b8-c9d0-4eaf-9b3c-4d5e6f7a8b9c", nome: "DHT22 - Sensor de Umidade do Ar", tipo: tipoSensor.umidade_ar, unidade: "%", status: true },
   });
 
   const sLuz = await prisma.sensor.create({
@@ -67,19 +71,22 @@ async function main() {
       usuario_id: user1.id,
       dispositivo_id: disp01.id,
       nome: "Lote B - Morango 🍓",
-      tipo: "Fruticultura",
+      tipo: "Morango",
       data_inicio: new Date("2026-06-01T10:00:00Z"),
+      tamanho_area: 2.5,
+      unidade_area: "ha",
+      espacamento_plantas: 0.8,
       descricao: "A vida não é um morango",
     },
   });
 
-  await prisma.plantacaoSensor.create({
-    data: {
-      plantacao_id: plantacao1.id,
-      sensor_id: sLuz.id,
-      limite_atencao: 25.0,
-      limite_critico: 10.0,
-    },
+  await prisma.plantacaoSensor.createMany({
+    data: [
+      { plantacao_id: plantacao1.id, sensor_id: sLuz.id, limite_atencao: 25.0, limite_critico: 10.0 },
+      { plantacao_id: plantacao1.id, sensor_id: sTemp.id, limite_atencao: 35.0, limite_critico: 40.0 },
+      { plantacao_id: plantacao1.id, sensor_id: sSolo.id, limite_atencao: 20.0, limite_critico: 10.0 },
+      { plantacao_id: plantacao1.id, sensor_id: sAr.id, limite_atencao: 40.0, limite_critico: 30.0 },
+    ],
   });
 
   const plantacao2 = await prisma.plantacao.create({
@@ -88,8 +95,11 @@ async function main() {
       usuario_id: user2.id,
       dispositivo_id: disp02.id,
       nome: "Lote A - Cereja 🍒",
-      tipo: "Fruticultura",
+      tipo: "Cereja",
       data_inicio: new Date("2026-05-15T08:00:00Z"),
+      tamanho_area: 1.2,
+      unidade_area: "ha",
+      espacamento_plantas: 0.5,
       descricao: "Área experimental de cultivo monitorada",
     },
   });
@@ -97,7 +107,7 @@ async function main() {
   await prisma.plantacaoSensor.create({
     data: {
       plantacao_id: plantacao2.id,
-      sensor_id: sTemp.id,
+      sensor_id: sTemp2.id,
       limite_atencao: 30.0,
       limite_critico: 35.0,
     },

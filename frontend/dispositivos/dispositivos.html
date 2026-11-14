@@ -175,9 +175,8 @@
         <div class="relative shrink-0">
   <select id="filtro" class="appearance-none h-[48px] rounded-full bg-white border border-gray-200 pl-5 pr-10 text-[14px] text-gray-600 focus:outline-none focus:border-[#077C07]">
     <option value="">Todos os status</option>
-    <option>Ativo</option>
-    <option>Em manutenção</option>
-    <option>Offline</option>
+    <option value="true">Ativo</option>
+    <option value="false">Inativo</option>
   </select>
   <svg class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M6 9l6 6 6-6"/>
@@ -190,12 +189,12 @@
       </div>
 
       <!-- RESUMO -->
-      <div class="mt-5 grid grid-cols-4 gap-4">
+      <div class="mt-5 grid grid-cols-3 gap-4">
 
         <div class="flex items-center gap-4 bg-white rounded-2xl border border-gray-100 shadow-sm px-5 py-4 transition hover:-translate-y-0.5 hover:shadow-md">
           <div class="w-14 h-14 flex items-center justify-center">
             <img
-  src="../assets/dispositivo.conectado.png"
+  src="../assets/arduino-art.png"
   alt="Dispositivos conectados"
   class="w-16 h-16 object-contain"
 />
@@ -237,21 +236,6 @@
           </div>
         </a>
 
-        <div class="flex items-center gap-4 bg-white rounded-2xl border border-gray-100 shadow-sm px-5 py-4 transition hover:-translate-y-0.5 hover:shadow-md">
-          <div class="w-14 h-14 flex items-center justify-center">
-            <img
-  src="../assets/sistema.operacional.png"
-  alt="Sistema operacional"
-  class="w-18 h-18 object-contain"
-/>
-          </div>
-          <div>
-            <p id="res-operacional" class="text-[26px] font-bold leading-none text-black">0%</p>
-            <p class="text-[13px] text-[#817979] mt-1">Sistema operacional</p>
-            <p id="res-operacional-nota" class="text-[11px] mt-1"></p>
-          </div>
-        </div>
-
       </div>
 
       <!-- TABELA -->
@@ -265,9 +249,9 @@
       <div class="mt-3 bg-white rounded-2xl border border-gray-100 shadow-sm">
         <div class="grid grid-cols-[2.3fr_1.1fr_1.2fr_1.5fr_1.7fr] items-center px-6 py-3 text-[13px] font-semibold text-[#817979] border-b border-gray-100">
           <span>Dispositivo</span>
+          <span>Tipo</span>
           <span>Status</span>
-          <span>Conexão</span>
-          <span>Última atualização</span>
+          <span>Plantação</span>
           <span class="text-right pr-2">Ações</span>
         </div>
         <div id="lista" class="divide-y divide-gray-100"></div>
@@ -301,16 +285,12 @@
         <span id="det-id" class="font-semibold text-black"></span>
       </div>
       <div class="flex items-center justify-between border-b border-gray-100 pb-2">
-        <span class="text-[#817979]">Conexão</span>
-        <span id="det-conexao" class="font-semibold text-black"></span>
-      </div>
-      <div class="flex items-center justify-between border-b border-gray-100 pb-2">
-        <span class="text-[#817979]">Última atualização</span>
-        <span id="det-ultima" class="font-semibold text-black"></span>
+        <span class="text-[#817979]">Plantação</span>
+        <span id="det-plantacao" class="font-semibold text-black"></span>
       </div>
       <div class="flex items-center justify-between">
-        <span id="det-vinculo-rotulo" class="text-[#817979]"></span>
-        <span id="det-vinculo" class="font-semibold text-black"></span>
+        <span class="text-[#817979]">Cadastrado em</span>
+        <span id="det-cadastro" class="font-semibold text-black"></span>
       </div>
     </div>
 
@@ -341,59 +321,16 @@
         </datalist>
       </div>
 
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label for="form-tipo" class="block text-[14px] font-semibold mb-1">Tipo</label>
-          <select id="form-tipo" class="w-full h-[44px] rounded-lg border border-gray-400 px-4 text-[14px]">
-            <option value="placa">Placa controladora</option>
-            <option value="sensor">Sensor</option>
-          </select>
-        </div>
-        <div>
-          <label for="form-conexao" class="block text-[14px] font-semibold mb-1">Conexão</label>
-          <select id="form-conexao" class="w-full h-[44px] rounded-lg border border-gray-400 px-4 text-[14px]">
-            <option>Wi-Fi</option>
-            <option>Rede móvel</option>
-            <option>USB</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- campos de placa -->
-      <div id="campo-placa">
-        <label for="form-sensores" class="block text-[14px] font-semibold mb-1">Sensores conectados</label>
-        <input type="number" id="form-sensores" min="0" value="0" class="w-full h-[44px] rounded-lg border border-gray-400 px-4 text-[14px] focus:outline-none focus:border-[#078607]">
-      </div>
-
-      <!-- campos de sensor -->
-      <div id="campo-sensor" class="hidden grid grid-cols-2 gap-4">
-        <div>
-          <label for="form-sensor-tipo" class="block text-[14px] font-semibold mb-1">Tipo de sensor</label>
-          <select id="form-sensor-tipo" class="w-full h-[44px] rounded-lg border border-gray-400 px-4 text-[14px]">
-            <option>Temperatura</option>
-            <option>Umidade do Solo</option>
-            <option>Umidade do Ar</option>
-            <option>Luminosidade</option>
-          </select>
-        </div>
-        <div>
-          <label for="form-lote" class="block text-[14px] font-semibold mb-1">Plantação</label>
-          <select id="form-lote" class="w-full h-[44px] rounded-lg border border-gray-400 px-4 text-[14px]">
-            <option value="">Nenhuma</option>
-            <option>Lote A - Milho</option>
-            <option>Lote B - Feijão</option>
-            <option>Lote C - Tomate</option>
-            <option>Lote D - Mandioca</option>
-          </select>
-        </div>
-      </div>
-
       <div>
-        <label for="form-status" class="block text-[14px] font-semibold mb-1">Status</label>
-        <select id="form-status" class="w-full h-[44px] rounded-lg border border-gray-400 px-4 text-[14px]">
-          <option>Ativo</option>
-          <option>Em manutenção</option>
-          <option>Offline</option>
+        <label for="form-tipo" class="block text-[14px] font-semibold mb-1">Tipo</label>
+        <select id="form-tipo" class="w-full h-[44px] rounded-lg border border-gray-400 px-4 text-[14px]">
+          <option value="Arduino_Mega">Arduino Mega</option>
+          <option value="Arduino_Micro">Arduino Micro</option>
+          <option value="Arduino_Nano">Arduino Nano</option>
+          <option value="Arduino_Uno">Arduino Uno</option>
+          <option value="Arduino_Leonardo">Arduino Leonardo</option>
+          <option value="ESP32">ESP32</option>
+          <option value="ESP8266">ESP8266</option>
         </select>
       </div>
 
@@ -419,7 +356,7 @@
   </div>
 </div>
 
-<script src="../script.js"></script>
+<script src="../script.js?v=20261113"></script>
 <script>
   const $ = id => document.getElementById(id);
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -429,74 +366,78 @@
   $('data-hoje').textContent = hoje.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
   const dia = hoje.toLocaleDateString('pt-BR', { weekday: 'long' });
   $('dia-semana').textContent = dia.charAt(0).toUpperCase() + dia.slice(1);
-  const dataCurta = hoje.toLocaleDateString('pt-BR');
+
+  const formatarData = valor => valor ? new Date(valor).toLocaleDateString('pt-BR') : '—';
 
   // ---------- DADOS ----------
-  
-  const ALERTAS_ATIVOS = 2;
-
-  let dispositivos = [
-  { id: 1, nome: 'Arduino Mega 2560', tipo: 'placa', sensores: 3, conexao: 'Wi-Fi',      status: 'Ativo',         hora: '14:32', rel: 'Há 2 horas' },
-  { id: 2, nome: 'Arduino Uno',       tipo: 'placa', sensores: 2, conexao: 'Wi-Fi',      status: 'Ativo',         hora: '14:28', rel: 'Há 2 horas' },
-  { id: 3, nome: 'Arduino Mega 2560', tipo: 'placa', sensores: 4, conexao: 'Wi-Fi',      status: 'Ativo',         hora: '14:24', rel: 'Há 3 horas' },
-  { id: 4, nome: 'ESP32',             tipo: 'placa', sensores: 2, conexao: 'Rede móvel', status: 'Ativo',         hora: '14:20', rel: 'Há 3 horas' },
-  { id: 5, nome: 'Arduino Uno',       tipo: 'placa', sensores: 1, conexao: 'Wi-Fi',      status: 'Ativo',         hora: '14:18', rel: 'Há 4 horas' },
-  { id: 6, nome: 'ESP32',             tipo: 'placa', sensores: 3, conexao: 'Rede móvel', status: 'Em manutenção', hora: '14:15', rel: 'Há 4 horas' },
-  { id: 7, nome: 'Arduino Mega 2560', tipo: 'placa', sensores: 2, conexao: 'Wi-Fi',      status: 'Ativo',         hora: '14:15', rel: 'Há 4 horas' },
-  { id: 8, nome: 'Arduino Uno',       tipo: 'placa', sensores: 1, conexao: 'Rede móvel', status: 'Ativo',         hora: '14:12', rel: 'Há 5 horas' }
-];
-
-  // ---------- IMAGENS ----------
- 
-  const imagemPadrao = '../assets/arduino.svg';
-  const imagemPlaca = '../assets/img/arduino.png';
-
-  const imagensSensor = {
-    'Temperatura':     '../assets/img/termometro.png',
-    'Umidade do Solo': '../assets/img/plantacao.ativa.png',
-    'Umidade do Ar':   '../assets/img/gota.png',
-    'Luminosidade':    '../assets/img/sol.png'
+  const TIPOS = {
+    Arduino_Mega: 'Arduino Mega',
+    Arduino_Micro: 'Arduino Micro',
+    Arduino_Nano: 'Arduino Nano',
+    Arduino_Uno: 'Arduino Uno',
+    Arduino_Leonardo: 'Arduino Leonardo',
+    ESP32: 'ESP32',
+    ESP8266: 'ESP8266'
   };
+
+  let dispositivos = [];
+  let alertasAtivos = 0;
 
   const imagemDe = () => '../assets/arduino.svg';
-  
+
   const cores = {
-    'Ativo':         { badge: 'bg-green-100 text-green-700',   ponto: 'bg-green-500' },
-    'Em manutenção': { badge: 'bg-yellow-100 text-yellow-700', ponto: 'bg-yellow-500' },
-    'Offline':       { badge: 'bg-gray-100 text-gray-600',     ponto: 'bg-gray-400' }
+    'Ativo':   { badge: 'bg-green-100 text-green-700', ponto: 'bg-green-500' },
+    'Inativo': { badge: 'bg-gray-100 text-gray-600',   ponto: 'bg-gray-400' }
   };
 
-  const iconeWifi = cls => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 ${cls}"><path d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0"/><circle cx="12" cy="18.5" r="0.8" fill="currentColor"/></svg>`;
-  const iconeSinal = cls => `<svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 ${cls}"><rect x="3" y="15" width="3.5" height="6" rx="1"/><rect x="8.5" y="11" width="3.5" height="10" rx="1"/><rect x="14" y="7" width="3.5" height="14" rx="1"/><rect x="19.5" y="3" width="3.5" height="18" rx="1"/></svg>`;
-  const iconeUsb = cls => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 ${cls}"><circle cx="12" cy="19" r="2.5"/><path d="M12 16.5V3.5M10 5.5l2-2 2 2"/><path d="M12 13l-4-2.5V9"/><rect x="6.5" y="6" width="3" height="3"/><path d="M12 10.5l4-2.5V7"/><circle cx="16" cy="5.5" r="1.5"/></svg>`;
+  function mapearDispositivo(d) {
+    return {
+      id: d.id,
+      nome: d.nome,
+      tipo: d.tipo,
+      tipoLabel: TIPOS[d.tipo] || d.tipo,
+      ativo: !!d.status,
+      status: d.status ? 'Ativo' : 'Inativo',
+      plantacao: d.plantacao || null,
+      criado_em: d.criado_em
+    };
+  }
 
-  const subtitulo = d => d.tipo === 'placa'
-    ? `Sensores conectados: <span class="font-semibold text-gray-700">${d.sensores}</span>`
-    : (d.lote ? esc(d.lote) : 'Sem plantação vinculada');
+  async function carregarDispositivos() {
+    try {
+      const lista = await apiFetch('/dispositivos');
+      dispositivos = lista.map(mapearDispositivo);
+      render();
+    } catch (erro) {
+      $('lista').innerHTML = `<p class="text-center text-[14px] text-[#817979] py-10">${esc(erro.message)}</p>`;
+    }
+  }
 
-  const pino = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3 inline -mt-0.5 mr-0.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>`;
+  async function carregarAlertasAtivos() {
+    try {
+      const usuario = usuarioAtual() || await apiFetch('/auth/me');
+      const alertas = await apiFetch(`/alertas/usuario/${usuario.id}`);
+      alertasAtivos = alertas.length;
+      atualizarBadgeAlertas(alertas, usuario.id);
+      atualizarResumo();
+    } catch {}
+  }
 
   // ---------- RESUMO ----------
   function atualizarResumo() {
     const total = dispositivos.length;
-    const online = dispositivos.filter(d => d.status === 'Ativo').length;
+    const online = dispositivos.filter(d => d.ativo).length;
     const offline = total - online;
-    const manut = dispositivos.filter(d => d.status === 'Em manutenção').length;
-    const pct = total ? Math.round(online / total * 100) : 0;
 
     $('res-conectados').textContent = online;
     $('res-conectados-rotulo').textContent = online === 1 ? 'Dispositivo conectado' : 'Dispositivos conectados';
     $('res-conectados-nota').textContent = `de ${total} cadastrados`;
 
     $('res-offline').textContent = offline;
-    $('res-offline-rotulo').textContent = offline === 1 ? 'Dispositivo offline' : 'Dispositivos offline';
-    $('res-offline-nota').textContent = manut ? `${manut} em manutenção` : 'Sem alterações';
+    $('res-offline-rotulo').textContent = offline === 1 ? 'Dispositivo inativo' : 'Dispositivos inativos';
+    $('res-offline-nota').textContent = 'Status desativado no sistema';
 
-    $('res-alertas').textContent = ALERTAS_ATIVOS;
-
-    $('res-operacional').textContent = pct + '%';
-    $('res-operacional-nota').textContent = offline === 0 ? 'Sem falhas' : `${offline} fora de operação`;
-    $('res-operacional-nota').className = 'text-[11px] mt-1 ' + (offline === 0 ? 'text-green-700' : 'text-yellow-700');
+    $('res-alertas').textContent = alertasAtivos;
   }
 
   // ---------- RENDERIZAR ----------
@@ -505,49 +446,36 @@
     const filtro = $('filtro').value;
 
     const visiveis = dispositivos.filter(d =>
-      (d.nome + ' ' + (d.lote || '') + ' ' + (d.sensorTipo || '')).toLowerCase().includes(termo) &&
-      (!filtro || d.status === filtro)
+      (d.nome + ' ' + d.tipoLabel + ' ' + (d.plantacao ? d.plantacao.nome : '')).toLowerCase().includes(termo) &&
+      (!filtro || String(d.ativo) === filtro)
     );
 
     $('lista').innerHTML = visiveis.map(d => {
-      const c = cores[d.status] || cores['Ativo'];
-      const online = d.status === 'Ativo';
-      const iconeConexao = { 'Wi-Fi': iconeWifi, 'Rede móvel': iconeSinal, 'USB': iconeUsb }[d.conexao] || iconeSinal;
-      const corConexao = online ? 'text-blue-500' : 'text-gray-300';
+      const c = cores[d.status];
 
       return `
         <div class="grid grid-cols-[2.3fr_1.1fr_1.2fr_1.5fr_1.7fr] items-center px-6 py-3 transition-colors hover:bg-green-50/50" data-id="${d.id}">
 
           <div class="flex items-center gap-4">
             <div class="relative w-[52px] h-[52px] shrink-0">
-              <img src="${imagemDe(d)}" alt="${esc(d.nome)}" class="w-full h-full object-contain scale-125"
-                   onerror="this.onerror=null; this.src='${imagemPadrao}';">
+              <img src="${imagemDe(d)}" alt="${esc(d.nome)}" class="w-full h-full object-contain scale-125">
               <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${c.ponto}"></span>
             </div>
             <div>
               <p class="text-[16px] font-bold text-black">${esc(d.nome)}</p>
-              <p class="text-[12px] text-[#817979] mt-0.5">${d.tipo === 'sensor' ? pino : ''}${subtitulo(d)}</p>
+              <p class="text-[12px] text-[#817979] mt-0.5">#${esc(d.id)}</p>
             </div>
           </div>
+
+          <div class="text-[13px] font-semibold text-black">${esc(d.tipoLabel)}</div>
 
           <div>
             <span class="${c.badge} text-[13px] font-semibold px-3 py-1 rounded-full whitespace-nowrap">
-              ${online ? '● ' : ''}${d.status}
+              ${d.ativo ? '● ' : ''}${d.status}
             </span>
           </div>
 
-          <div class="flex items-center gap-2">
-            ${iconeConexao(corConexao)}
-            <div>
-              <p class="text-[13px] font-semibold text-black leading-tight">${online ? 'Online' : 'Offline'}</p>
-              <p class="text-[12px] text-[#817979] leading-tight">${d.conexao}</p>
-            </div>
-          </div>
-
-          <div>
-            <p class="text-[13px] text-gray-700">${dataCurta} - ${d.hora}</p>
-            <p class="text-[12px] text-[#817979]">${d.rel}</p>
-          </div>
+          <div class="text-[13px] text-gray-700">${d.plantacao ? esc(d.plantacao.nome) : '—'}</div>
 
           <div class="flex items-center justify-end gap-3 relative">
             <button type="button" data-acao="ver" class="flex items-center gap-1.5 border border-green-300 text-green-700 text-[13px] font-semibold rounded-full px-4 py-1.5 hover:bg-green-50 transition-colors">
@@ -585,23 +513,15 @@
   // Detalhes
   function abrirDetalhes(d) {
     idDetalhes = d.id;
-    const c = cores[d.status] || cores['Ativo'];
+    const c = cores[d.status];
 
     $('det-nome').textContent = d.nome;
-    $('det-tipo').textContent = d.tipo === 'placa' ? 'Placa controladora' : 'Sensor - ' + d.sensorTipo;
+    $('det-tipo').textContent = d.tipoLabel;
     $('det-id').textContent = '#' + d.id;
-    $('det-conexao').textContent = (d.status === 'Ativo' ? 'Online' : 'Offline') + ' (' + d.conexao + ')';
-    $('det-ultima').textContent = `${dataCurta} - ${d.hora} (${d.rel})`;
+    $('det-plantacao').textContent = d.plantacao ? d.plantacao.nome : 'Nenhuma';
+    $('det-cadastro').textContent = formatarData(d.criado_em);
 
-    if (d.tipo === 'placa') {
-      $('det-vinculo-rotulo').textContent = 'Sensores conectados';
-      $('det-vinculo').textContent = d.sensores;
-    } else {
-      $('det-vinculo-rotulo').textContent = 'Plantação vinculada';
-      $('det-vinculo').textContent = d.lote || '—';
-    }
-
-    $('det-icone').innerHTML = `<img src="${imagemDe(d)}" alt="" class="w-11 h-11 object-contain" onerror="this.onerror=null; this.src='${imagemPadrao}';">`;
+    $('det-icone').innerHTML = `<img src="${imagemDe(d)}" alt="" class="w-11 h-11 object-contain">`;
     $('det-status').className = `text-[13px] font-semibold px-3 py-1 rounded-full ${c.badge}`;
     $('det-status').textContent = d.status;
 
@@ -621,14 +541,6 @@
   });
 
   // Novo / Editar
-  function alternarCamposTipo() {
-    const placa = $('form-tipo').value === 'placa';
-    $('campo-placa').classList.toggle('hidden', !placa);
-    $('campo-sensor').classList.toggle('hidden', placa);
-  }
-
-  $('form-tipo').addEventListener('change', alternarCamposTipo);
-
   function abrirForm(d) {
     const editando = !!d;
     $('form-titulo').textContent = editando ? 'Editar dispositivo' : 'Novo dispositivo';
@@ -637,14 +549,8 @@
 
     $('form-id').value = editando ? d.id : '';
     $('form-nome').value = editando ? d.nome : '';
-    $('form-tipo').value = editando ? d.tipo : 'placa';
-    $('form-conexao').value = editando ? d.conexao : 'Wi-Fi';
-    $('form-sensores').value = editando && d.tipo === 'placa' ? d.sensores : 0;
-    $('form-sensor-tipo').value = editando && d.sensorTipo ? d.sensorTipo : 'Temperatura';
-    $('form-lote').value = editando && d.lote ? d.lote : '';
-    $('form-status').value = editando ? d.status : 'Ativo';
+    $('form-tipo').value = editando ? d.tipo : 'Arduino_Uno';
 
-    alternarCamposTipo();
     modalForm.classList.remove('hidden');
   }
 
@@ -655,46 +561,27 @@
   $('cancelar-form').addEventListener('click', fecharForm);
   modalForm.addEventListener('click', e => { if (e.target === modalForm) fecharForm(); });
 
-  $('form').addEventListener('submit', e => {
+  $('form').addEventListener('submit', async e => {
     e.preventDefault();
 
     const id = $('form-id').value;
-    const tipo = $('form-tipo').value;
-
     const dados = {
       nome: $('form-nome').value.trim(),
-      tipo,
-      conexao: $('form-conexao').value,
-      status: $('form-status').value
+      tipo: $('form-tipo').value
     };
 
-    if (tipo === 'placa') {
-      dados.sensores = Number($('form-sensores').value) || 0;
-      dados.sensorTipo = undefined;
-      dados.lote = undefined;
-    } else {
-      dados.sensorTipo = $('form-sensor-tipo').value;
-      dados.lote = $('form-lote').value;
-      dados.sensores = undefined;
+    try {
+      if (id) {
+        await apiFetch(`/dispositivos/${id}`, { method: 'PUT', body: JSON.stringify(dados) });
+      } else {
+        await apiFetch('/dispositivos', { method: 'POST', body: JSON.stringify(dados) });
+      }
+
+      fecharForm();
+      await carregarDispositivos();
+    } catch (erro) {
+      alert(erro.message);
     }
-
-    if (id) {
-      const d = dispositivos.find(x => x.id == id);
-      if (!d) return;
-      Object.assign(d, dados);
-
-      
-    } else {
-      const novoId = dispositivos.length ? Math.max(...dispositivos.map(x => x.id)) + 1 : 1;
-      const agora = new Date();
-      const hora = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-      dispositivos.push({ id: novoId, ...dados, hora, rel: 'Agora' });
-
-      
-    }
-
-    fecharForm();
-    render();
   });
 
   // Excluir
@@ -703,14 +590,16 @@
   $('cancelar-excluir').addEventListener('click', fecharExcluir);
   modalExcluir.addEventListener('click', e => { if (e.target === modalExcluir) fecharExcluir(); });
 
-  $('confirmar-excluir').addEventListener('click', () => {
+  $('confirmar-excluir').addEventListener('click', async () => {
     if (idParaExcluir === null) return;
-    dispositivos = dispositivos.filter(d => d.id !== idParaExcluir);
 
-    
-    
-    fecharExcluir();
-    render();
+    try {
+      await apiFetch(`/dispositivos/${idParaExcluir}`, { method: 'DELETE' });
+      fecharExcluir();
+      await carregarDispositivos();
+    } catch (erro) {
+      alert(erro.message);
+    }
   });
 
   // ---------- AÇÕES DAS LINHAS ----------
@@ -722,7 +611,7 @@
     if (!botao) { fecharMenus(); return; }
 
     const linha = botao.closest('[data-id]');
-    const d = linha && dispositivos.find(x => x.id == linha.dataset.id);
+    const d = linha && dispositivos.find(x => x.id === linha.dataset.id);
     if (!d) return;
 
     const acao = botao.dataset.acao;
@@ -748,6 +637,9 @@
 
   // ---------- INICIALIZAR ----------
   render();
+  carregarDispositivos();
+  carregarAlertasAtivos();
+
 </script>
 
 </body>

@@ -74,7 +74,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="currentColor" class="w-5 h-5">
               <path d="M20 3.33333C19.1159 3.33333 18.2681 3.68452 17.643 4.30964C17.0179 4.93476 16.6667 5.78261 16.6667 6.66666C16.655 6.82756 16.655 6.9891 16.6667 7.14999C11.8667 8.56666 8.33333 13.0333 8.33333 18.3333V28.3333L5 31.6667V33.3333H35V31.6667L31.6667 28.3333V18.3333C31.6667 13.0333 28.1333 8.56666 23.3333 7.14999C23.345 6.9891 23.345 6.82756 23.3333 6.66666C23.3333 5.78261 22.9821 4.93476 22.357 4.30964C21.7319 3.68452 20.8841 3.33333 20 3.33333ZM20 9.99999C22.2101 9.99999 24.3298 10.878 25.8926 12.4408C27.4554 14.0036 28.3333 16.1232 28.3333 18.3333V30H11.6667V18.3333C11.6667 16.1232 12.5446 14.0036 14.1074 12.4408C15.6702 10.878 17.7899 9.99999 20 9.99999ZM16.6667 35C16.6667 35.884 17.0179 36.7319 17.643 37.357C18.2681 37.9821 19.1159 38.3333 20 38.3333C20.8841 38.3333 21.7319 37.9821 22.357 37.357C22.9821 36.7319 23.3333 35.884 23.3333 35H16.6667Z"/>
             </svg>
-            <span class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">5</span>
+            <span id="badge-alertas-nav" class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">5</span>
           </span>
           Alertas
         </a>
@@ -184,10 +184,16 @@
   </main>
 </div>
 
-<script src="../script.js"></script>
+<script src="../script.js?v=20261113"></script>
 <script>
   const $ = id => document.getElementById(id);
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  const usuarioSessao = usuarioAtual();
+  if (usuarioSessao && usuarioSessao.id) marcarAlertasVistos(usuarioSessao.id);
+
+  const badgeNav = $('badge-alertas-nav');
+  if (badgeNav) badgeNav.classList.add('hidden');
 
   // ---------- DATA ----------
   const hoje = new Date();
@@ -195,49 +201,66 @@
   const dia = hoje.toLocaleDateString('pt-BR', { weekday: 'long' });
   $('dia-semana').textContent = dia.charAt(0).toUpperCase() + dia.slice(1);
 
-  // ---------- DADOS ----------
-
-  const alertas = [
-    { cat: 'critico', icone: 'temp',  img: 'termometro.png', titulo: 'Temperatura Alta',      desc: 'Temperatura acima de 33 °C detectada',        sensor: 'Sensor 01', lote: 'Lote A', cultura: 'Milho',  data: '25/06/2025', hora: '14:32' },
-    { cat: 'atencao', icone: 'gota',  img: 'irrigação.png', titulo: 'Irrigação Necessária',  desc: 'Umidade do solo abaixo de 40%',               sensor: 'Sensor 02', lote: 'Lote A', cultura: 'Milho',  data: '25/06/2025', hora: '13:10' },
-    { cat: 'critico', icone: 'wifi',  img: 'sensor.off.png', titulo: 'Sensor Offline',        desc: 'Sensor 05 sem comunicação há 3 horas',        sensor: 'Sensor 05', lote: 'Lote B', cultura: 'Feijão', data: '25/06/2025', hora: '11:45' },
-    { cat: 'atencao', icone: 'gota',  img: 'solo.png', titulo: 'Umidade do Solo Baixa', desc: 'Umidade do solo abaixo de 35%',               sensor: 'Sensor 03', lote: 'Lote C', cultura: 'Tomate', data: '25/06/2025', hora: '10:20' },
-    { cat: 'atencao', icone: 'sol',   img: 'luminosidade.png', titulo: 'Luminosidade Baixa',    desc: 'Luminosidade abaixo do esperado para o período', sensor: 'Sensor 04', lote: 'Lote B', cultura: 'Feijão', data: '25/06/2025', hora: '09:05' }
-  ];
-
   const svg = (p, c = 'w-6 h-6') => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${c}">${p}</svg>`;
   const P = {
-    temp: '<path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z"/>',
-    gota: '<path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/>',
-    wifi: '<path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01"/>',
-    sol:  '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
     alerta: '<path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/>',
     sino: '<path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/>',
     pino: '<path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>',
     folha: '<path d="M11 20A7 7 0 019.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10zM2 21c0-3 1.85-5.36 5.08-6"/>',
-    radio: '<circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 010 8.49M7.76 16.24a6 6 0 010-8.49M19.07 4.93a10 10 0 010 14.14M4.93 19.07a10 10 0 010-14.14"/>',
-    cal: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
-    seta: '<path d="M9 18l6-6-6-6"/>'
+    cal: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>'
   };
 
   const estilo = {
-    critico: { rotulo: 'Crítico',  card: 'bg-red-50/60 border-l-red-500',      icone: 'bg-red-500', anel: 'ring-red-300', texto: 'text-red-500',    badge: 'bg-red-100 text-red-700',       chip: 'bg-red-100/70 text-red-700' },
-    atencao: { rotulo: 'Atenção',  card: 'bg-yellow-50/70 border-l-yellow-400', icone: 'bg-yellow-400', anel: 'ring-yellow-300', texto: 'text-yellow-500', badge: 'bg-yellow-100 text-yellow-700', chip: 'bg-yellow-100/80 text-yellow-700' }
+    critico: { rotulo: 'Crítico', card: 'bg-red-50/60 border-l-red-500', icone: 'bg-red-500', anel: 'ring-red-300', texto: 'text-red-500', badge: 'bg-red-100 text-red-700', chip: 'bg-red-100/70 text-red-700' },
+    atencao: { rotulo: 'Atenção', card: 'bg-yellow-50/70 border-l-yellow-400', icone: 'bg-yellow-400', anel: 'ring-yellow-300', texto: 'text-yellow-500', badge: 'bg-yellow-100 text-yellow-700', chip: 'bg-yellow-100/80 text-yellow-700' }
   };
 
-  
-  const IMG_DIR = '../assets/';
-
+  let alertas = [];
   let filtroAtual = 'todos';
+
+  function formatarAlerta(a) {
+    const data = new Date(a.gerado_em);
+    const plantacao = a.leitura && a.leitura.plantacao;
+    const critico = a.tipo === 'Critico';
+
+    return {
+      id: a.id,
+      cat: critico ? 'critico' : 'atencao',
+      titulo: critico ? 'Alerta crítico' : 'Alerta de atenção',
+      desc: a.mensagem.replace(/^Alerta (Crítico|de Atenção):\s*/, ''),
+      plantacao: plantacao ? plantacao.nome : 'Plantação',
+      cultura: plantacao ? rotuloCultura(plantacao.tipo) : '',
+      data: data.toLocaleDateString('pt-BR'),
+      hora: data.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+    };
+  }
+
+  async function carregarAlertas() {
+    $('lista-alertas').innerHTML = '<p class="text-center text-[14px] text-[#817979] py-10">Carregando alertas...</p>';
+
+    try {
+      const usuario = usuarioAtual() || await apiFetch('/auth/me');
+      const lista = await apiFetch(`/alertas/usuario/${usuario.id}`);
+      alertas = lista.map(formatarAlerta);
+      marcarAlertasVistos(usuario.id, lista);
+
+      if (badgeNav) badgeNav.classList.add('hidden');
+
+      render();
+    } catch (erro) {
+      $('lista-alertas').innerHTML = `<p class="text-center text-[14px] text-red-600 py-10">${esc(erro.message)}</p>`;
+    }
+  }
 
   // ---------- FILTROS ----------
   function renderFiltros() {
     const n = c => c === 'todos' ? alertas.length : alertas.filter(a => a.cat === c).length;
     const defs = {
-      todos:   { icone: P.sino,   cor: '',                 txt: 'Todos' },
-      critico: { icone: P.alerta, cor: 'text-red-500',     txt: 'Crítico' },
-      atencao: { icone: P.alerta, cor: 'text-yellow-500',  txt: 'Atenção' }
+      todos:   { icone: P.sino,   cor: '',                txt: 'Todos' },
+      critico: { icone: P.alerta, cor: 'text-red-500',    txt: 'Crítico' },
+      atencao: { icone: P.alerta, cor: 'text-yellow-500', txt: 'Atenção' }
     };
+
     document.querySelectorAll('.filtro-btn').forEach(b => {
       const f = b.dataset.filtro, d = defs[f], ativo = f === filtroAtual;
       b.className = 'filtro-btn flex items-center gap-2 h-[44px] rounded-full px-5 text-[14px] transition-colors border ' +
@@ -253,7 +276,7 @@
 
     const visiveis = alertas.filter(a =>
       (filtroAtual === 'todos' || a.cat === filtroAtual) &&
-      [a.titulo, a.desc, a.sensor, a.lote, a.cultura].join(' ').toLowerCase().includes(termo)
+      [a.titulo, a.desc, a.plantacao, a.cultura].join(' ').toLowerCase().includes(termo)
     );
 
     $('lista-alertas').innerHTML = visiveis.map(a => {
@@ -261,9 +284,7 @@
       return `
         <div class="flex items-center gap-5 rounded-2xl border border-gray-100 border-l-4 shadow-sm px-5 py-4 transition hover:-translate-y-0.5 hover:shadow-md ${s.card}">
           <div class="w-[54px] h-[54px] shrink-0 rounded-full bg-white ring-2 ${s.anel} ${s.texto} flex items-center justify-center shadow-sm">
-            <img src="${IMG_DIR}${encodeURI(a.img)}" alt="${esc(a.titulo)}" class="w-16 h-16 object-contain"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <span style="display:none">${svg(P[a.icone], 'w-6 h-6')}</span>
+            ${svg(P.alerta, 'w-6 h-6')}
           </div>
 
           <span class="${s.badge} w-[78px] shrink-0 text-center text-[12px] font-bold px-3 py-1 rounded-full self-start mt-1">${s.rotulo}</span>
@@ -272,9 +293,8 @@
             <p class="text-[17px] font-bold text-black">${esc(a.titulo)}</p>
             <p class="text-[14px] text-[#817979] mt-0.5">${esc(a.desc)}</p>
             <div class="flex items-center gap-5 mt-2 text-[12px] text-[#817979]">
-              <span class="flex items-center gap-1.5">${svg(P.radio, 'w-4 h-4')}${esc(a.sensor)}</span>
-              <span class="flex items-center gap-1.5">${svg(P.pino, 'w-4 h-4')}${esc(a.lote)}</span>
-              <span class="flex items-center gap-1.5">${svg(P.folha, 'w-4 h-4')}${esc(a.cultura)}</span>
+              <span class="flex items-center gap-1.5">${svg(P.pino, 'w-4 h-4')}${esc(a.plantacao)}</span>
+              ${a.cultura ? `<span class="flex items-center gap-1.5">${svg(P.folha, 'w-4 h-4')}${esc(a.cultura)}</span>` : ''}
             </div>
           </div>
 
@@ -285,10 +305,8 @@
               <p class="font-bold">${a.hora}</p>
             </div>
           </div>
-
-        
         </div>`;
-    }).join('') || `<p class="text-center text-[14px] text-[#817979] py-10">Nenhum alerta encontrado.</p>`;
+    }).join('') || `<p class="text-center text-[14px] text-[#817979] py-10">${alertas.length ? 'Nenhum alerta encontrado na busca.' : 'Nenhum alerta registrado até agora.'}</p>`;
 
     $('contador').textContent = `Mostrando ${visiveis.length} de ${alertas.length} alertas`;
     renderFiltros();
@@ -299,7 +317,7 @@
   );
   $('busca').addEventListener('input', render);
 
-  render();
+  carregarAlertas();
 </script>
 
 </body>

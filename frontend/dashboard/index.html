@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="../style.css" />
   <link rel="shortcut icon" href="../assets/img/favicon-agrosensor.png" type="image/x-icon">
   <style>
-    
-  
+
+
     @keyframes brilhoAtencao {
       0%, 100% { box-shadow: 0 0 0 0 rgba(250,204,21,0), 0 1px 2px rgba(0,0,0,.06); }
       50%      { box-shadow: 0 0 0 4px rgba(250,204,21,.40), 0 0 20px rgba(250,204,21,.45); }
@@ -102,7 +102,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="currentColor" class="w-5 h-5">
                 <path d="M20 3.33333C19.1159 3.33333 18.2681 3.68452 17.643 4.30964C17.0179 4.93476 16.6667 5.78261 16.6667 6.66666C16.655 6.82756 16.655 6.9891 16.6667 7.14999C11.8667 8.56666 8.33333 13.0333 8.33333 18.3333V28.3333L5 31.6667V33.3333H35V31.6667L31.6667 28.3333V18.3333C31.6667 13.0333 28.1333 8.56666 23.3333 7.14999C23.345 6.9891 23.345 6.82756 23.3333 6.66666C23.3333 5.78261 22.9821 4.93476 22.357 4.30964C21.7319 3.68452 20.8841 3.33333 20 3.33333ZM20 9.99999C22.2101 9.99999 24.3298 10.878 25.8926 12.4408C27.4554 14.0036 28.3333 16.1232 28.3333 18.3333V30H11.6667V18.3333C11.6667 16.1232 12.5446 14.0036 14.1074 12.4408C15.6702 10.878 17.7899 9.99999 20 9.99999ZM16.6667 35C16.6667 35.884 17.0179 36.7319 17.643 37.357C18.2681 37.9821 19.1159 38.3333 20 38.3333C20.8841 38.3333 21.7319 37.9821 22.357 37.357C22.9821 36.7319 23.3333 35.884 23.3333 35H16.6667Z" />
               </svg>
-              <span class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">5</span>
+              <span id="badge-alertas-nav" class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">5</span>
             </span>
             Alertas
           </a>
@@ -195,7 +195,7 @@
 
         <div class="flex-1 flex flex-col gap-4 px-6 py-4">
 
-          <section class="grid grid-cols-2 xl:grid-cols-4 gap-3">
+          <section class="grid grid-cols-2 xl:grid-cols-3 gap-3">
 
             <!-- Plantações ativas -->
             <a href="../plantacao/plantacoes.html"
@@ -205,10 +205,7 @@
               </div>
               <div class="min-w-0">
                 <p class="text-sm text-gray-500">Plantações ativas</p>
-                <div class="flex items-center gap-2">
-                  <p class="text-2xl font-bold text-gray-900 leading-tight">4</p>
-                  <span class="rounded-full bg-green-50 px-2 py-0.5 text-[11px] font-semibold text-green-700">↑ 1 nova esta semana</span>
-                </div>
+                <p id="total-plantacoes" class="text-2xl font-bold text-gray-900 leading-tight">—</p>
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="absolute right-3 top-3 w-4 h-4 text-gray-300 transition group-hover:text-gray-500">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
@@ -219,14 +216,11 @@
             <a href="../dispositivos/dispositivos.html"
                class="group relative flex items-center gap-4 rounded-2xl border border-gray-100 bg-white px-4 py-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
               <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100 flex items-center justify-center shrink-0">
-                <img src="../assets/dispositivo.conectado.png" alt="" class="w-10 h-10 object-contain" />
+                <img src="../assets/arduino-art.png" alt="" class="w-10 h-10 object-contain" />
               </div>
               <div class="min-w-0">
                 <p class="text-sm text-gray-500">Dispositivos conectados</p>
-                <div class="flex items-center gap-2">
-                  <p class="text-2xl font-bold text-gray-900 leading-tight">12</p>
-                  <span class="rounded-full bg-blue-50 px-2 py-0.5 text-[11px] font-semibold text-blue-700">↑ 2 online</span>
-                </div>
+                <p id="total-dispositivos" class="text-2xl font-bold text-gray-900 leading-tight">—</p>
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="absolute right-3 top-3 w-4 h-4 text-gray-300 transition group-hover:text-gray-500">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
@@ -240,36 +234,13 @@
                 <img src="../assets/alerta.ativo.png" alt="" class="w-22 h-22 object-contain" />
               </div>
               <div class="min-w-0">
-                <p class="text-sm text-gray-500">Alertas ativos</p>
-                <div class="flex items-center gap-2">
-                  <p class="text-2xl font-bold text-gray-900 leading-tight">5</p>
-                  <span class="rounded-full bg-green-50 px-2 py-0.5 text-[11px] font-semibold text-green-700">↓ 3 resolvidos hoje</span>
-                </div>
+                <p class="text-sm text-gray-500">Alertas registrados</p>
+                <p id="total-alertas" class="text-2xl font-bold text-gray-900 leading-tight">—</p>
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="absolute right-3 top-3 w-4 h-4 text-gray-300 transition group-hover:text-gray-500">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
               </svg>
             </a>
-
-            <!-- Sistema operacional -->
-            <div class="relative flex items-center gap-4 rounded-2xl border border-gray-100 bg-white px-4 py-3 shadow-sm">
-              <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100 flex items-center justify-center shrink-0">
-                <img src="../assets/sistema.operacional.png" alt="" class="w-12 h-12 object-contain" />
-              </div>
-              <div class="min-w-0">
-                <p class="text-sm text-gray-500">Sistema operacional</p>
-                <div class="flex items-center gap-2">
-                  <p class="text-2xl font-bold text-gray-900 leading-tight">100%</p>
-                  <span class="inline-flex items-center gap-1.5 rounded-full bg-green-50 px-2 py-0.5 text-[11px] font-semibold text-green-700">
-                    <span class="relative flex h-1.5 w-1.5">
-                      <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-                      <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-500"></span>
-                    </span>
-                    Sem falhas
-                  </span>
-                </div>
-              </div>
-            </div>
 
           </section>
 
@@ -294,60 +265,49 @@
     </main>
   </div>
 
-  <script src="../script.js"></script>
+  <script src="../script.js?v=20261113"></script>
   <script>
 
     const PAGINA_DETALHES = '../plantacao/plantacao-detalhe.html';
 
-    // status = 'Ideal' | 'Atenção' | 'Crítico'  (o mesmo da página Plantações)
-    const plantacoes = [
-      {
-        id: 1, status: 'Ideal',
-        nome: 'Milho - Lote A', fazenda: 'Fazenda Boa Vista', area: '12,5 ha',
-        iconeImg: '../assets/img/icone.milho.png',
-        imagem: '../assets/milho.teste.jpg', fundo: 'from-yellow-700 via-green-800 to-green-900',
-        icone: 'bg-white',
-        umidade: { valor: '72%', status: 'Normal' },
-        temperatura: { valor: '28 °C', status: 'Ideal' },
-        luz: { valor: 'Alta', status: 'Boa' },
-        leitura: 'Hoje, 14:50'
-      },
-      {
-        id: 2, status: 'Ideal',
-        nome: 'Feijão - Lote B', fazenda: 'Fazenda Boa Vista', area: '8,3 ha',
-        iconeImg: '../assets/img/icone.feijão.png',
-        imagem: '../assets/feijão.teste.jpg', fundo: 'from-green-700 via-green-800 to-green-950',
-        icone: 'bg-white',
-        umidade: { valor: '65%', status: 'Normal' },
-        temperatura: { valor: '30 °C', status: 'Ideal' },
-        luz: { valor: 'Média', status: 'Moderada' },
-        leitura: 'Hoje, 14:50'
-      },
-      {
-        id: 3, status: 'Crítico',
-        nome: 'Tomate - Lote C', fazenda: 'Fazenda Boa Vista', area: '10,0 ha',
-        iconeImg: '../assets/img/icone.tomate.png',
-        imagem: '../assets/tomate.teste.jpg', fundo: 'from-red-800 via-red-900 to-green-900',
-        icone: 'bg-white',
-        umidade: { valor: '68%', status: 'Normal' },
-        temperatura: { valor: '24 °C', status: 'Ideal' },
-        luz: { valor: 'Média', status: 'Boa' },
-        leitura: 'Hoje, 14:50'
-      },
-      {
-        id: 4, status: 'Atenção',
-        nome: 'Mandioca - Lote D', fazenda: 'Fazenda Boa Vista', area: '6,7 ha',
-        iconeImg: '../assets/img/icone.mandioca.png',
-        imagem: '../assets/mandioca.teste.jpg', fundo: 'from-amber-800 via-amber-900 to-stone-900',
-        icone: 'bg-white',
-        umidade: { valor: '30%', status: 'Baixa' },
-        temperatura: { valor: '30 °C', status: 'Ideal' },
-        luz: { valor: 'Alta', status: 'Boa' },
-        leitura: 'Hoje, 14:50'
-      }
-    ];
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const numero = n => n.toLocaleString('pt-BR', { maximumFractionDigits: 1 });
 
-    // ---------- STATUS DE ALERTA ----------
+    const imagens = {
+      'Milho': '../assets/img/icone.milho.png',
+      'Feijao': '../assets/img/icone.feijão.png',
+      'Mandioca': '../assets/img/icone.mandioca.png',
+      'Tomate': '../assets/img/icone.tomate.png',
+      'Abobora': '../assets/img/icone.abobora.png',
+      'Alface': '../assets/img/icone.alface.png',
+      'Couve': '../assets/img/icone.couve.png',
+      'Cebolinha': '../assets/img/icone.cebolinha.png',
+      'Coentro': '../assets/img/icone.coentro.png',
+      'Rucula': '../assets/img/icone.rucula.png'
+    };
+
+    const fotos = {
+      'Milho': '../assets/milho.teste.jpg',
+      'Feijao': '../assets/feijão.teste.jpg',
+      'Mandioca': '../assets/mandioca.teste.jpg',
+      'Tomate': '../assets/tomate.teste.jpg',
+      'Abobora': '../assets/abobora.jpg',
+      'Alface': '../assets/alface.jpg',
+      'Couve': '../assets/couve.jpg',
+      'Cebolinha': '../assets/cebolinha.jpg',
+      'Coentro': '../assets/coentro.jpg',
+      'Rucula': '../assets/rucula.jpg',
+      'Morango': '../assets/morango-cover.jpg',
+      'Cereja': '../assets/cereja-cover.jpg'
+    };
+
+    const fundos = {
+      'Milho': 'from-yellow-700 via-green-800 to-green-900',
+      'Feijao': 'from-green-700 via-green-800 to-green-950',
+      'Tomate': 'from-red-800 via-red-900 to-green-900',
+      'Mandioca': 'from-amber-800 via-amber-900 to-stone-900'
+    };
+
     const cores = {
       'Ideal': {
         borda: 'border border-gray-200', anim: '',
@@ -363,10 +323,8 @@
       }
     };
 
-    
     const prioridade = { 'Crítico': 0, 'Atenção': 1, 'Ideal': 2 };
 
-    
     const selo = (c, status) => c.ponto
       ? `<span class="${c.badge} inline-flex items-center gap-2 border text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">
            <span class="relative flex w-2 h-2">
@@ -376,54 +334,57 @@
          </span>`
       : `<span class="${c.badge} border text-[11px] font-semibold px-3 py-1 rounded-full shadow-sm">✅ ${status}</span>`;
 
-    function badge(status) {
-      const atencao = ['Baixa', 'Moderada'];
-      const cor = atencao.includes(status)
-        ? 'bg-orange-100 text-orange-700'
-        : 'bg-green-100 text-green-700';
-      return `<span class="inline-block text-[10px] font-semibold rounded-full px-2.5 py-0.5 ${cor}">${status}</span>`;
-    }
-
     const iconeGota = '<svg viewBox="0 0 24 24" class="w-4 h-4 text-blue-500 shrink-0" fill="currentColor"><path d="M12 3s6 6.5 6 11a6 6 0 11-12 0c0-4.5 6-11 6-11z"/></svg>';
     const iconeTermometro = '<svg viewBox="0 0 24 24" class="w-4 h-4 text-red-500 shrink-0" fill="currentColor"><path d="M10 4a2 2 0 114 0v9.2a4 4 0 11-4 0V4z"/></svg>';
     const iconeSol = '<svg viewBox="0 0 24 24" class="w-4 h-4 text-yellow-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>';
     const iconeRelogio = '<svg viewBox="0 0 24 24" class="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
 
-    function metrica(icone, valor, rotulo, status) {
+    function metrica(icone, valor, rotulo) {
       return `
         <div class="px-3 py-2 first:pl-5">
           <div class="flex items-center gap-1.5">
             ${icone}
             <span class="text-sm font-bold text-gray-900">${valor}</span>
           </div>
-          <p class="text-[11px] text-gray-500 mt-0.5 mb-1.5">${rotulo}</p>
-          ${badge(status)}
+          <p class="text-[11px] text-gray-500 mt-0.5">${rotulo}</p>
         </div>`;
+    }
+
+    function formatarLeitura(iso) {
+      if (!iso) return 'Sem leitura';
+      const data = new Date(iso);
+      const hoje = new Date();
+      const hora = data.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+      if (data.toDateString() === hoje.toDateString()) return `Hoje, ${hora}`;
+      return `${data.toLocaleDateString('pt-BR')} ${hora}`;
     }
 
     function cartaoPlantacao(p) {
       const c = cores[p.status] || cores['Ideal'];
+      const area = p.tamanho_area != null ? `${numero(p.tamanho_area)} ${p.unidade_area || ''}`.trim() : '';
+      const subtitulo = [p.dispositivo, area].filter(Boolean).join(' • ') || 'Sem dispositivo';
 
       const fundoImagem = p.imagem
         ? `<div class="absolute inset-0 bg-cover bg-center" style="background-image: url('${p.imagem}');"></div>
            <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/25 to-transparent"></div>`
-        : `<span class="absolute right-6 top-1/2 -translate-y-1/2 text-6xl opacity-40 select-none">${p.emoji || ''}</span>`;
+        : '';
 
       const conteudoIcone = p.iconeImg
-        ? `<img src="${p.iconeImg}" alt="${p.nome}" class="w-full h-full object-cover" />`
-        : (p.emoji || '');
+        ? `<img src="${p.iconeImg}" alt="${esc(p.culturaNome)}" class="w-full h-full object-cover" />`
+        : '🌿';
 
       return `
         <article class="flex flex-col min-h-[230px] xl:min-h-0 rounded-xl ${c.borda} bg-white overflow-hidden shadow-sm ${c.anim}">
 
           <div class="relative overflow-hidden flex-[0_0_42%] min-h-[78px] bg-gradient-to-r ${p.fundo} px-5 flex items-center gap-4">
             ${fundoImagem}
-            <div class="relative w-11 h-11 rounded-full ${p.icone} flex items-center justify-center text-xl shrink-0 shadow-none ring-0 overflow-hidden">
+            <div class="relative w-11 h-11 rounded-full bg-white flex items-center justify-center text-xl shrink-0 shadow-none ring-0 overflow-hidden">
               ${conteudoIcone}
             </div>
             <div class="relative">
-              <h3 class="text-white font-bold text-base leading-tight drop-shadow">${p.nome}</h3>
-              <p class="text-white/90 text-xs mt-0.5 drop-shadow">${p.fazenda} &nbsp;•&nbsp; ${p.area}</p>
+              <h3 class="text-white font-bold text-base leading-tight drop-shadow">${esc(p.nome)}</h3>
+              <p class="text-white/90 text-xs mt-0.5 drop-shadow">${esc(subtitulo)}</p>
             </div>
             <div class="absolute right-4 top-3">
               ${selo(c, p.status)}
@@ -431,16 +392,16 @@
           </div>
 
           <div class="flex-1 grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-100 items-center">
-            ${metrica(iconeGota, p.umidade.valor, 'Umidade do Solo', p.umidade.status)}
-            ${metrica(iconeTermometro, p.temperatura.valor, 'Temperatura', p.temperatura.status)}
-            ${metrica(iconeSol, p.luz.valor, 'Luminosidade', p.luz.status)}
+            ${metrica(iconeGota, p.umidade != null ? `${numero(p.umidade)}%` : '—', 'Umidade do Solo')}
+            ${metrica(iconeTermometro, p.temperatura != null ? `${numero(p.temperatura)}°C` : '—', 'Temperatura')}
+            ${metrica(iconeSol, p.luminosidade != null ? numero(p.luminosidade) : '—', 'Luminosidade')}
 
             <div class="px-3 py-2">
               <div class="flex items-center gap-1.5 mb-2">
                 ${iconeRelogio}
                 <div class="leading-tight">
                   <p class="text-[10px] text-gray-400">Última leitura</p>
-                  <p class="text-xs font-semibold text-gray-700">${p.leitura}</p>
+                  <p class="text-xs font-semibold text-gray-700">${formatarLeitura(p.ultimaLeitura)}</p>
                 </div>
               </div>
               <a href="${PAGINA_DETALHES}?id=${p.id}"
@@ -453,10 +414,68 @@
         </article>`;
     }
 
-    document.getElementById('lista-plantacoes').innerHTML =
-      [...plantacoes]
-        .sort((a, b) => prioridade[a.status] - prioridade[b.status])
-        .map(cartaoPlantacao).join('');
+    function render(plantacoes) {
+      document.getElementById('lista-plantacoes').innerHTML = plantacoes.length
+        ? [...plantacoes].sort((a, b) => prioridade[a.status] - prioridade[b.status]).map(cartaoPlantacao).join('')
+        : `<p class="text-center text-[14px] text-[#817979] py-10 xl:col-span-2">
+             Nenhuma plantação cadastrada ainda.
+             <a href="../plantacao/plantacao-nova.html" class="font-semibold text-[#077C07] hover:underline">Criar plantação</a>
+           </p>`;
+    }
+
+    let carregandoDashboard = false;
+
+    async function carregarDashboard() {
+      if (carregandoDashboard) return;
+      carregandoDashboard = true;
+
+      try {
+        const usuario = usuarioAtual() || await apiFetch('/auth/me');
+        const [lista, dispositivos, alertas] = await Promise.all([
+          apiFetch(`/plantacoes/usuario/${usuario.id}`),
+          apiFetch('/dispositivos'),
+          apiFetch(`/alertas/usuario/${usuario.id}`)
+        ]);
+
+        const plantacoes = await Promise.all(lista.map(async p => {
+          const resumo = await carregarResumoPlantacao(p.id);
+          return {
+            id: p.id,
+            nome: p.nome,
+            cultura: p.tipo,
+            culturaNome: rotuloCultura(p.tipo),
+            dispositivo: p.dispositivo ? p.dispositivo.nome : '',
+            tamanho_area: p.tamanho_area,
+            unidade_area: p.unidade_area,
+            status: resumo.status,
+            umidade: resumo.umidade,
+            temperatura: resumo.temperatura,
+            luminosidade: resumo.luminosidade,
+            ultimaLeitura: resumo.ultimaLeitura,
+            iconeImg: imagens[p.tipo] || null,
+            imagem: fotos[p.tipo] || null,
+            fundo: fundos[p.tipo] || 'from-green-700 via-green-800 to-green-950'
+          };
+        }));
+
+        const dispositivosDaConta = new Set(lista.map(p => p.dispositivo_id));
+        const conectados = dispositivos.filter(d => dispositivosDaConta.has(d.id) && d.status).length;
+
+        document.getElementById('saudacao').textContent = `Olá, ${usuario.nome || 'Usuário'}!`;
+        document.getElementById('total-plantacoes').textContent = lista.length;
+        document.getElementById('total-dispositivos').textContent = conectados;
+        document.getElementById('total-alertas').textContent = alertas.length;
+
+        atualizarBadgeAlertas(alertas, usuario.id);
+
+        render(plantacoes);
+      } catch (erro) {
+        document.getElementById('lista-plantacoes').innerHTML =
+          `<p class="text-center text-[14px] text-red-600 py-10 xl:col-span-2">${esc(erro.message)}</p>`;
+      } finally {
+        carregandoDashboard = false;
+      }
+    }
 
     // ---------- DATA ----------
     const agora = new Date();
@@ -466,10 +485,9 @@
     document.getElementById('dia-semana').textContent =
       diaSemana.charAt(0).toUpperCase() + diaSemana.slice(1);
 
-    // ---------- SAUDAÇÃO COM O NOME DO PERFIL ----------
-    let nomeSalvo = 'Sem Júnior Neymar';
-    try { nomeSalvo = localStorage.getItem('agrosensor-nome') || nomeSalvo; } catch (e) {}
-    document.getElementById('saudacao').textContent = `Olá, ${nomeSalvo}!`;
+    carregarDashboard();
+    // ponytail: polling simples; trocar por SSE/WebSocket se a escala exigir.
+    setInterval(carregarDashboard, 5000);
 
   </script>
 </body>

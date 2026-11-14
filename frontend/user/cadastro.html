@@ -82,7 +82,7 @@
                 <img src="../assets/logo.svg" alt="AgroSensor" class="max-w-none w-auto" style="height:130px;">
             </div>
 
-            
+
 
             <!-- AGRICULTOR (fica antes da curva, que cobre os pés dele) -->
             <svg id="agricultor" class="hidden xl:block absolute right-32 bottom-[68px] w-[120px] h-auto" viewBox="0 0 120 150" fill="none" aria-hidden="true">
@@ -289,9 +289,9 @@
                                 type="password"
                                 id="senha"
                                 name="senha"
-                                placeholder="Senha (mínimo de 8 caracteres)"
+                                placeholder="Senha (mínimo de 6 caracteres)"
                                 required
-                                minlength="8"
+                                minlength="6"
                                 class="w-full h-[46px] rounded-xl border border-gray-300 bg-white shadow-sm pl-12 pr-14 text-[16px] text-[#5f5959] placeholder-[#5f5959] focus:outline-none focus:border-[#077C07] focus:ring-1 focus:ring-[#077C07]">
                             <button type="button" onclick="mostrarSenha('senha', 'iconeSenha')" class="absolute right-5 top-1/2 -translate-y-1/2">
                                 <svg id="iconeSenha" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-black">
@@ -313,7 +313,7 @@
                                 name="confirmarSenha"
                                 placeholder="Confirmar Senha"
                                 required
-                                minlength="8"
+                                minlength="6"
                                 class="w-full h-[46px] rounded-xl border border-gray-300 bg-white shadow-sm pl-12 pr-14 text-[16px] text-[#5f5959] placeholder-[#5f5959] focus:outline-none focus:border-[#077C07] focus:ring-1 focus:ring-[#077C07]">
                             <button type="button" onclick="mostrarSenha('confirmarSenha', 'iconeConfirmarSenha')" class="absolute right-5 top-1/2 -translate-y-1/2">
                                 <svg id="iconeConfirmarSenha" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-black">
@@ -458,7 +458,7 @@
 
 
     <!-- JAVASCRIPT -->
-    <script src="../script.js"></script>
+    <script src="../script.js?v=20261113"></script>
     <script>
         // ============================================= //
         // MODAL - TERMOS DE USO                           //
@@ -510,7 +510,7 @@
             caixa.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
-        document.getElementById('formCadastro').addEventListener('submit', function (e) {
+        document.getElementById('formCadastro').addEventListener('submit', async function (e) {
             e.preventDefault();
 
             if (!this.checkValidity()) {
@@ -526,45 +526,38 @@
                 return;
             }
 
+            const nome = document.getElementById('nome').value.trim();
             const email = document.getElementById('email').value.trim().toLowerCase();
-            const telefone = document.getElementById('telefone').value.trim();
+            const telefone = document.getElementById('telefone').value.replace(/\D/g, '');
+            const botao = this.querySelector('button[type="submit"]');
+            botao.disabled = true;
 
             try {
-                const usuarios = JSON.parse(localStorage.getItem('agrosensor_usuarios') || '[]');
-
-                const emailExiste = usuarios.some(u => u.email === email);
-                const telefoneExiste = usuarios.some(u => u.telefone === telefone);
-
-                if (emailExiste) {
-                    mostrarFeedback('Este e-mail já está cadastrado. Faça login ou use outro e-mail.', 'erro');
-                    return;
-                }
-
-                if (telefoneExiste) {
-                    mostrarFeedback('Este telefone já está cadastrado. Use outro número.', 'erro');
-                    return;
-                }
-
-                usuarios.push({
-                    nome: document.getElementById('nome').value.trim(),
-                    email: email,
-                    telefone: telefone
+                await apiFetch('/usuarios', {
+                    method: 'POST',
+                    body: JSON.stringify({ nome, email, telefone, senha })
                 });
-                localStorage.setItem('agrosensor_usuarios', JSON.stringify(usuarios));
 
-                mostrarFeedback('Conta criada com sucesso! Redirecionando para o login...', 'sucesso');
+                const sessao = await apiFetch('/auth/login', {
+                    method: 'POST',
+                    body: JSON.stringify({ email, senha })
+                });
+
+                salvarSessao(sessao.token, sessao.usuario);
+                mostrarFeedback('Conta criada com sucesso! Redirecionando...', 'sucesso');
 
                 setTimeout(() => {
                     window.location.href = '../plantacao/primeiraplantacao.html';
                 }, 1800);
-
             } catch (erro) {
-                mostrarFeedback('Não foi possível criar sua conta agora. Tente novamente.', 'erro');
+                mostrarFeedback(erro.message || 'Não foi possível criar sua conta agora. Tente novamente.', 'erro');
+            } finally {
+                botao.disabled = false;
             }
         });
     </script>
 
-    
+
     <script>
         (function () {
             const fz = document.getElementById('agricultor');
@@ -581,7 +574,7 @@
             const reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             let digitando = false;
 
-            
+
             function olharPara(x, y) {
                 const r = rosto.getBoundingClientRect();
                 const dx = x - (r.left + r.width / 2);
@@ -593,7 +586,7 @@
 
             document.addEventListener('pointermove', e => { if (!digitando) olharPara(e.clientX, e.clientY); });
 
-            
+
             function olharCampo(campo) {
                 const r = campo.getBoundingClientRect();
                 const avanco = Math.min(campo.value.length * 9, r.width - 70);
@@ -605,7 +598,7 @@
                 campo.addEventListener('blur', () => { digitando = false; });
             });
 
-            
+
             function atualizarChapeu() {
                 const cobrir = senhas.some(c => document.activeElement === c && c.type === 'password');
                 fz.classList.toggle('cobrindo', cobrir);
@@ -616,13 +609,13 @@
                 new MutationObserver(atualizarChapeu).observe(campo, { attributes: true, attributeFilter: ['type'] });
             });
 
-            
+
             if (!reduzido) {
                 setTimeout(() => braco.classList.add('acenando'), 1400);
                 braco.addEventListener('animationend', () => braco.classList.remove('acenando'));
             }
 
-            
+
             function reagir(tipo) {
                 if (reduzido) return;
                 if (tipo === 'sucesso') {
@@ -635,7 +628,7 @@
                 }
             }
 
-            
+
             if (typeof mostrarFeedback === 'function') {
                 const original = mostrarFeedback;
                 window.mostrarFeedback = function (mensagem, tipo) {
@@ -644,7 +637,7 @@
                 };
             }
 
-            
+
             let ultimoErro = 0;
             form.addEventListener('invalid', () => {
                 const agora = Date.now();
@@ -656,4 +649,3 @@
 </body>
 
 </html>
-</document_content>

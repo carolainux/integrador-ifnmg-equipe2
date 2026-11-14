@@ -425,7 +425,7 @@
   </div>
 </div>
 
-<script src="../script.js"></script>
+<script src="../script.js?v=20261113"></script>
 <script>
   const $ = id => document.getElementById(id);
 
@@ -444,10 +444,19 @@
   // ---------- MODAIS ----------
   function abrirModalExcluirConta() { $('modal-excluir-conta').classList.remove('hidden'); }
   function fecharModalExcluirConta() { $('modal-excluir-conta').classList.add('hidden'); }
-  function confirmarExclusaoConta() {
-    fecharModalExcluirConta();
-    $('modal-conta-excluida').classList.remove('hidden');
-    // TODO - INTEGRAÇÃO COM BACKEND: DELETE /usuario/:id
+  async function confirmarExclusaoConta() {
+    const usuario = usuarioAtual();
+    if (!usuario) return;
+
+    try {
+      await apiFetch(`/usuarios/${usuario.id}`, { method: 'DELETE' });
+      limparSessao();
+      fecharModalExcluirConta();
+      $('modal-conta-excluida').classList.remove('hidden');
+      setTimeout(() => { window.location.href = 'login.html'; }, 1500);
+    } catch (erro) {
+      alert(erro.message);
+    }
   }
 
   function abrirModalAlterarSenha() {
@@ -466,7 +475,7 @@
     }
     fecharModalAlterarSenha();
     $('modal-senha-alterada').classList.remove('hidden');
-    // TODO - INTEGRAÇÃO COM BACKEND: PATCH /usuario/:id/senha
+    // Pendente: o backend não possui endpoint de troca de senha.
   }
   function fecharModalSenhaAlterada() { $('modal-senha-alterada').classList.add('hidden'); }
 
@@ -499,18 +508,22 @@
   })();
 
   // ---------- DADOS PESSOAIS ----------
-  // Carrega nome, e-mail e telefone salvos (o telefone é independente do WhatsApp)
-  (function carregarDadosPessoaisSalvos() {
-    const nome = localStorage.getItem('agrosensor-nome');
-    const email = localStorage.getItem('agrosensor-email');
-    const telefone = localStorage.getItem('agrosensor-telefone');
-    if (nome) {
-      $('view-nome').textContent = nome;
-      $('nome-topo-perfil').textContent = nome;
-    }
-    if (email) $('view-email').textContent = email;
-    if (telefone) $('view-telefone').textContent = telefone;
+  function aplicarDadosPessoais(usuario) {
+    $('view-nome').textContent = usuario.nome;
+    $('view-email').textContent = usuario.email;
+    $('view-telefone').textContent = usuario.telefone;
+    $('nome-topo-perfil').textContent = usuario.nome;
     sincronizarHero();
+  }
+
+  (async function carregarDadosPessoais() {
+    try {
+      const usuario = await apiFetch('/auth/me');
+      salvarSessao(tokenAtual(), usuario);
+      aplicarDadosPessoais(usuario);
+    } catch (erro) {
+      console.warn('Não foi possível carregar o perfil:', erro);
+    }
   })();
 
   function editarDadosPessoais() {
@@ -530,7 +543,7 @@
     $('dados-pessoais-visualizacao').classList.remove('hidden');
   }
 
-  function salvarDadosPessoais() {
+  async function salvarDadosPessoais() {
     if (!$('dados-pessoais-edicao').reportValidity()) return;
 
     // Valida o telefone (DDD + número = pelo menos 10 dígitos)
@@ -545,22 +558,25 @@
 
     const nome = $('edit-nome').value.trim();
     const email = $('edit-email').value.trim();
+    const usuario = usuarioAtual();
+    if (!usuario) return;
 
-    localStorage.setItem('agrosensor-nome', nome);
-    localStorage.setItem('agrosensor-email', email);
-    localStorage.setItem('agrosensor-telefone', telefone);
+    try {
+      const resposta = await apiFetch(`/usuarios/${usuario.id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ nome, email, telefone: telefone.replace(/\D/g, '') })
+      });
 
-    $('view-nome').textContent = nome;
-    $('view-email').textContent = email;
-    $('view-telefone').textContent = telefone;
-    $('nome-topo-perfil').textContent = nome;
-    sincronizarHero();
-    cancelarEdicaoDadosPessoais();
-    
+      salvarSessao(tokenAtual(), { ...usuario, nome: resposta.dados.nome, email: resposta.dados.email });
+      aplicarDadosPessoais(resposta.dados);
+      cancelarEdicaoDadosPessoais();
+    } catch (erro) {
+      alert(erro.message);
+    }
   }
 
   // ---------- WHATSAPP ----------
-  
+
   const etapaNumero     = $('whatsapp-etapa-numero');
   const etapaCodigo     = $('whatsapp-etapa-codigo');
   const badgeVerificado = $('whatsapp-badge-verificado');
@@ -575,7 +591,7 @@
 
   function mostrarEtapaNumero() {
     esconderEtapas();
-    
+
     $('whatsapp-numero').value = localStorage.getItem('agrosensor-whatsapp-numero') || viewTelefone.textContent.trim();
     $('whatsapp-numero-erro').classList.add('hidden');
     etapaNumero.classList.remove('hidden');
@@ -599,7 +615,7 @@
     etapaNumero.classList.add('hidden');
     etapaCodigo.classList.remove('hidden');
     $('whatsapp-codigo').value = '';
-    
+
   }
 
   function confirmarCodigoWhatsapp() {
@@ -621,7 +637,7 @@
 
     esconderEtapas();
     aplicarEstadoVerificado(true);
-    
+
   }
 
   function textoStatusWhatsapp(ativas) {
