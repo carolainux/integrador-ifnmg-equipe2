@@ -190,8 +190,7 @@
             <p class="text-[14px] text-gray-600 leading-relaxed mx-6 pt-4 pb-5 pl-[72px] border-t border-gray-100">
               Verifique se o e-mail e a senha foram digitados corretamente (sem espaços extras).
               Se o problema persistir, confira sua conexão com a internet ou tente redefinir a
-              senha. Contas bloqueadas por tentativas incorretas são liberadas automaticamente
-              após 15 minutos.
+              senha pelo link “Esqueci minha senha” na tela de login.
             </p>
           </div>
         </div>
@@ -281,7 +280,7 @@
   </main>
 </div>
 
-<script src="../script.js"></script>
+<script src="../script.js?v=20261113"></script>
 <script>
   const $ = id => document.getElementById(id);
 
@@ -298,11 +297,11 @@
     const seta = botao.querySelector('.icone-seta');
     const jaAberto = resposta.classList.contains('max-h-96');
 
-    
+
     document.querySelectorAll('.resposta-ajuda').forEach(r => r.classList.remove('max-h-96'));
     document.querySelectorAll('.icone-seta').forEach(s => s.classList.remove('rotate-180'));
 
-    
+
     if (!jaAberto) {
       resposta.classList.add('max-h-96');
       seta.classList.add('rotate-180');

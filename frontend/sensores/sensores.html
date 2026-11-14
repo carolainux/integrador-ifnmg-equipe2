@@ -253,23 +253,24 @@
       <div>
         <label for="form-tipo" class="block text-[14px] font-semibold mb-1">Tipo de sensor</label>
         <select id="form-tipo" class="w-full h-[44px] rounded-lg border border-gray-400 px-4 text-[14px]">
-          <option>Temperatura</option>
-          <option>Umidade do Solo</option>
-          <option>Umidade do Ar</option>
-          <option>Luminosidade</option>
+          <option value="temperatura">Temperatura</option>
+          <option value="umidade_solo">Umidade do Solo</option>
+          <option value="umidade_ar">Umidade do Ar</option>
+          <option value="luminosidade">Luminosidade</option>
         </select>
       </div>
 
       <div>
-        <label class="block text-[14px] font-semibold mb-2">Status</label>
-        <div class="flex items-center gap-3">
-          <label class="relative inline-flex items-center cursor-pointer">
-            <input type="checkbox" id="form-ativo" class="sr-only peer" checked>
-            <div class="w-11 h-6 bg-gray-300 rounded-full peer-checked:bg-green-600 transition-colors"></div>
-            <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
-          </label>
-          <span id="form-ativo-texto" class="text-[13px] text-[#817979]">Ativo</span>
-        </div>
+        <label for="form-unidade" class="block text-[14px] font-semibold mb-1">Unidade</label>
+        <input id="form-unidade" required placeholder="Ex: °C, %, Lux" class="w-full h-[44px] rounded-lg border border-gray-400 px-4 text-[14px] focus:outline-none focus:border-[#078607]">
+      </div>
+
+      <div>
+        <label for="form-direcao" class="block text-[14px] font-semibold mb-1">Direção do alerta</label>
+        <select id="form-direcao" class="w-full h-[44px] rounded-lg border border-gray-400 px-4 text-[14px]">
+          <option value="ACIMA">Acima do limite</option>
+          <option value="ABAIXO">Abaixo do limite</option>
+        </select>
       </div>
 
       <div class="flex justify-end gap-3 pt-2">
@@ -294,7 +295,7 @@
   </div>
 </div>
 
-<script src="../script.js"></script>
+<script src="../script.js?v=20261113"></script>
 <script>
   const $ = id => document.getElementById(id);
 
@@ -305,18 +306,41 @@
   $('dia-semana').textContent = dia.charAt(0).toUpperCase() + dia.slice(1);
 
   // ---------- DADOS ----------
-  
-  let sensores = [
-    { id: 1, nome: 'Sensor 01', tipo: 'Temperatura',     status: 'Ativo',   leitura: '28°C', ultima: 'Há 2 min',  plantacao: 'Milho - Lote A' },
-    { id: 2, nome: 'Sensor 02', tipo: 'Umidade do Solo', status: 'Ativo',   leitura: '72%',  ultima: 'Há 2 min',  plantacao: 'Milho - Lote A' },
-    { id: 3, nome: 'Sensor 03', tipo: 'Luminosidade',    status: 'Inativo', leitura: '—',    ultima: '—',         plantacao: '—' },
-    { id: 4, nome: 'Sensor 04', tipo: 'Umidade do Ar',   status: 'Ativo',   leitura: '58%',  ultima: 'Há 5 min',  plantacao: 'Feijão - Lote B' },
-    { id: 5, nome: 'Sensor 05', tipo: 'Temperatura',     status: 'Inativo', leitura: '—',    ultima: '—',         plantacao: '—' },
-    { id: 6, nome: 'Sensor 06', tipo: 'Umidade do Solo', status: 'Ativo',   leitura: '65%',  ultima: 'Há 3 min',  plantacao: 'Feijão - Lote B' },
-    { id: 7, nome: 'Sensor 07', tipo: 'Luminosidade',    status: 'Ativo',   leitura: 'Alta', ultima: 'Há 1 min',  plantacao: 'Tomate - Lote C' }
-  ];
+  const rotulos = {
+    temperatura: 'Temperatura',
+    umidade_solo: 'Umidade do Solo',
+    umidade_ar: 'Umidade do Ar',
+    luminosidade: 'Luminosidade'
+  };
 
-  
+  let sensores = [];
+
+  function mapearSensor(s) {
+    return {
+      id: s.id,
+      nome: s.nome,
+      tipo: rotulos[s.tipo] || s.tipo,
+      tipoEnum: s.tipo,
+      unidade: s.unidade,
+      direcao: s.direcao,
+      status: s.status ? 'Ativo' : 'Inativo',
+      leitura: '—',
+      ultima: '—',
+      plantacao: '—'
+    };
+  }
+
+  async function carregarSensores() {
+    try {
+      const lista = await apiFetch('/sensores');
+      sensores = lista.map(mapearSensor);
+      render();
+    } catch (erro) {
+      $('lista').innerHTML = `<p class="text-center text-[14px] text-[#817979] py-10">${erro.message}</p>`;
+    }
+  }
+
+
   const imagemPadrao = '../assets/img/favicon-agrosensor.png';
 
   const tipos = {
@@ -449,16 +473,14 @@
   function abrirForm(s) {
     const editando = !!s;
     $('form-titulo').textContent = editando ? 'Editar sensor' : 'Novo sensor';
-    $('form-sub').textContent = editando ? 'Atualize as informações e o status do sensor' : 'Cadastre um novo sensor no sistema';
+    $('form-sub').textContent = editando ? 'Atualize as informações do sensor' : 'Cadastre um novo sensor no sistema';
     $('form-enviar').textContent = editando ? 'Salvar alterações' : 'Cadastrar sensor';
 
     $('form-id').value = editando ? s.id : '';
     $('form-nome').value = editando ? s.nome : '';
-    $('form-tipo').value = editando ? s.tipo : 'Temperatura';
-
-    const ativo = editando ? s.status === 'Ativo' : true;
-    $('form-ativo').checked = ativo;
-    $('form-ativo-texto').textContent = ativo ? 'Ativo' : 'Inativo';
+    $('form-tipo').value = editando ? s.tipoEnum : 'temperatura';
+    $('form-unidade').value = editando ? s.unidade : '';
+    $('form-direcao').value = editando ? s.direcao : 'ABAIXO';
 
     modalForm.classList.remove('hidden');
   }
@@ -470,35 +492,38 @@
   $('cancelar-form').addEventListener('click', fecharForm);
   modalForm.addEventListener('click', e => { if (e.target === modalForm) fecharForm(); });
 
-  $('form-ativo').addEventListener('change', e => {
-    $('form-ativo-texto').textContent = e.target.checked ? 'Ativo' : 'Inativo';
-  });
-
-  $('form').addEventListener('submit', e => {
+  $('form').addEventListener('submit', async e => {
     e.preventDefault();
 
     const id = $('form-id').value;
     const dados = {
       nome: $('form-nome').value.trim(),
       tipo: $('form-tipo').value,
-      status: $('form-ativo').checked ? 'Ativo' : 'Inativo'
+      unidade: $('form-unidade').value.trim(),
+      direcao: $('form-direcao').value
     };
 
-    if (id) {
-      const s = sensores.find(x => x.id == id);
-      if (!s) return;
-      Object.assign(s, dados);
+    try {
+      if (id) {
+        const resposta = await apiFetch(`/sensores/${id}`, {
+          method: 'PUT',
+          body: JSON.stringify(dados)
+        });
+        const s = sensores.find(x => x.id === id);
+        if (s) Object.assign(s, mapearSensor(resposta.dados));
+      } else {
+        const resposta = await apiFetch('/sensores', {
+          method: 'POST',
+          body: JSON.stringify(dados)
+        });
+        sensores.push(mapearSensor(resposta.dados));
+      }
 
-      
-    } else {
-      const novoId = sensores.length ? Math.max(...sensores.map(x => x.id)) + 1 : 1;
-      sensores.push({ id: novoId, ...dados, leitura: '—', ultima: '—', plantacao: '—' });
-
-      
+      fecharForm();
+      render();
+    } catch (erro) {
+      alert(erro.message);
     }
-
-    fecharForm();
-    render();
   });
 
   // Excluir
@@ -507,15 +532,17 @@
   $('cancelar-excluir').addEventListener('click', fecharExcluir);
   modalExcluir.addEventListener('click', e => { if (e.target === modalExcluir) fecharExcluir(); });
 
-  $('confirmar-excluir').addEventListener('click', () => {
+  $('confirmar-excluir').addEventListener('click', async () => {
     if (idParaExcluir === null) return;
-    sensores = sensores.filter(s => s.id !== idParaExcluir);
 
-  
-    // DELETE /sensor/:id
-
-    fecharExcluir();
-    render();
+    try {
+      await apiFetch(`/sensores/${idParaExcluir}`, { method: 'DELETE' });
+      sensores = sensores.filter(s => s.id !== idParaExcluir);
+      fecharExcluir();
+      render();
+    } catch (erro) {
+      alert(erro.message);
+    }
   });
 
   // ---------- AÇÕES DOS CARTÕES ----------
@@ -524,7 +551,7 @@
     if (!botao) return;
 
     const cartao = botao.closest('[data-id]');
-    const s = cartao && sensores.find(x => x.id == cartao.dataset.id);
+    const s = cartao && sensores.find(x => x.id === cartao.dataset.id);
     if (!s) return;
 
     if (botao.dataset.acao === 'ver') abrirDetalhes(s);
@@ -537,7 +564,7 @@
   });
 
   // ---------- INICIALIZAR ----------
-  render();
+  carregarSensores();
 </script>
 
 </body>

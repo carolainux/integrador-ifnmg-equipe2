@@ -8,12 +8,12 @@
   <link rel="stylesheet" href="../style.css">
   <link rel="shortcut icon" href="../assets/img/favicon-agrosensor.png" type="image/x-icon">
   <style>
-    
+
     @keyframes brilhoAtencao {
       0%, 100% { box-shadow: 0 0 0 0 rgba(250,204,21,0), 0 1px 2px rgba(0,0,0,.06); }
       50%      { box-shadow: 0 0 0 4px rgba(250,204,21,.40), 0 0 20px rgba(250,204,21,.45); }
     }
-    
+
     @keyframes brilhoCritico {
       0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0), 0 1px 2px rgba(0,0,0,.06); }
       50%      { box-shadow: 0 0 0 4px rgba(239,68,68,.45), 0 0 24px rgba(239,68,68,.55); }
@@ -219,7 +219,7 @@
   </div>
 </div>
 
-<script src="../script.js"></script>
+<script src="../script.js?v=20261113"></script>
 <script>
   // ---------- DATA ----------
   const hoje = new Date();
@@ -232,39 +232,62 @@
   // ---------- IMAGENS DAS CULTURAS ----------
   const imagens = {
     'Milho':     '../assets/img/icone.milho.png',
-    'Feijão':    '../assets/img/icone.feijão.png',
+    'Feijao':    '../assets/img/icone.feijão.png',
     'Mandioca':  '../assets/img/icone.mandioca.png',
     'Tomate':    '../assets/img/icone.tomate.png',
-    'Abóbora':   '../assets/img/icone.abobora.png',
+    'Abobora':   '../assets/img/icone.abobora.png',
     'Alface':    '../assets/img/icone.alface.png',
     'Couve':     '../assets/img/icone.couve.png',
     'Cebolinha': '../assets/img/icone.cebolinha.png',
     'Coentro':   '../assets/img/icone.coentro.png',
-    'Rúcula':    '../assets/img/icone.rucula.png'
+    'Rucula':    '../assets/img/icone.rucula.png'
   };
 
   // ---------- FOTOS DE FUNDO DO CARD (mesmas culturas) ----------
   const fotos = {
     'Milho':     '../assets/milho.teste.jpg',
-    'Feijão':    '../assets/feijão.teste.jpg',
+    'Feijao':    '../assets/feijão.teste.jpg',
     'Mandioca':  '../assets/mandioca.teste.jpg',
     'Tomate':    '../assets/tomate.teste.jpg',
-    'Abóbora':   '../assets/abobora.jpg',
+    'Abobora':   '../assets/abobora.jpg',
     'Alface':    '../assets/alface.jpg',
     'Couve':     '../assets/couve.jpg',
     'Cebolinha': '../assets/cebolinha.jpg',
     'Coentro':   '../assets/coentro.jpg',
-    'Rúcula':    '../assets/rucula.jpg'
+    'Rucula':    '../assets/rucula.jpg',
+    'Morango':   '../assets/morango-cover.jpg',
+    'Cereja':    '../assets/cereja-cover.jpg'
   };
 
   // ---------- DADOS ----------
-  
-  let plantacoes = [
-    {id: 1, nome: 'Milho - Lote A',    cultura: 'Milho',    sensores: 3, status: 'Ideal',   criado: '15/06/2025', umidade: 72, temp: 28, luz: 'Alta'},
-    {id: 2, nome: 'Feijão - Lote B',   cultura: 'Feijão',   sensores: 2, status: 'Ideal',   criado: '19/07/2025', umidade: 65, temp: 30, luz: 'Média'},
-    {id: 3, nome: 'Tomate - Lote C',   cultura: 'Tomate',   sensores: 2, status: 'Crítico',   criado: '28/09/2025', umidade: 68, temp: 24, luz: 'Média'},
-    {id: 4, nome: 'Mandioca - Lote D', cultura: 'Mandioca', sensores: 2, status: 'Atenção', criado: '28/09/2025', umidade: 30, temp: 30, luz: 'Alta'}
-  ];
+  let plantacoes = [];
+
+  async function carregarPlantacoes() {
+    try {
+      const usuario = usuarioAtual() || await apiFetch('/auth/me');
+      const lista = await apiFetch(`/plantacoes/usuario/${usuario.id}`);
+
+      plantacoes = await Promise.all(lista.map(async p => {
+        const resumo = await carregarResumoPlantacao(p.id);
+        return {
+          id: p.id,
+          nome: p.nome,
+          cultura: p.tipo,
+          culturaNome: rotuloCultura(p.tipo),
+          sensores: p.sensores ? p.sensores.length : 0,
+          status: resumo.status,
+          criado: new Date(p.criado_em).toLocaleDateString('pt-BR'),
+          umidade: resumo.umidade,
+          temp: resumo.temperatura,
+          luz: resumo.luminosidade
+        };
+      }));
+
+      render();
+    } catch (erro) {
+      $('lista').innerHTML = `<p class="text-center text-[14px] text-[#817979] py-10">${erro.message}</p>`;
+    }
+  }
 
   // ---------- ESTILO POR STATUS ----------
   const cores = {
@@ -294,10 +317,12 @@
   // ---------- COR DA BORDA LATERAL POR CULTURA (só quando o status é Ideal) ----------
   const coresCultura = {
     'Milho':    'border-l-yellow-400',
-    'Feijão':   'border-l-green-500',
+    'Feijao':   'border-l-green-500',
     'Tomate':   'border-l-red-500',
     'Mandioca': 'border-l-[#8B4513]'
   };
+
+  const numero = n => n.toLocaleString('pt-BR', { maximumFractionDigits: 1 });
 
   const metrica = (icone, valor, rotulo) => `
     <div class="text-center w-[110px]">
@@ -308,7 +333,9 @@
   const btn = 'flex items-center gap-1.5 border text-[13px] font-semibold rounded-lg px-3.5 py-2 transition-colors';
 
   // Selo de status: Ideal fixo; Atenção/Crítico com bolinha "radar" pulsando
-  const selo = (c, status) => c.ponto
+  const selo = (c, status) => !status
+    ? `<span class="${c.badge} border text-[13px] font-semibold px-4 py-1.5 rounded-full">—</span>`
+    : c.ponto
     ? `<span class="${c.badge} inline-flex items-center gap-2 border text-[13px] font-bold px-4 py-1.5 rounded-full">
          <span class="relative flex w-2.5 h-2.5">
            <span class="absolute inline-flex w-full h-full rounded-full ${c.ponto} opacity-75 animate-ping"></span>
@@ -325,12 +352,12 @@
     const termo = $('busca').value.toLowerCase().trim();
     const filtro = $('filtro').value;
     const visiveis = plantacoes.filter(p =>
-      (p.nome + ' ' + p.cultura).toLowerCase().includes(termo) && (!filtro || p.status === filtro))
-      .sort((x, y) => prioridade[x.status] - prioridade[y.status]);  // alertas sempre no topo
+      (p.nome + ' ' + p.culturaNome).toLowerCase().includes(termo) && (!filtro || p.status === filtro))
+      .sort((x, y) => (prioridade[x.status] ?? 3) - (prioridade[y.status] ?? 3));  // alertas sempre no topo
 
     $('lista').innerHTML = visiveis.map(p => {
-      const c = cores[p.status];
-      const borda = p.status === 'Ideal' ? (coresCultura[p.cultura] || c.borda) : c.borda;
+      const c = cores[p.status] || cores.Ideal;
+      const borda = (p.status === 'Ideal' || !p.status) ? (coresCultura[p.cultura] || c.borda) : c.borda;
       return `
       <div class="relative overflow-hidden [&>:not(.fundo)]:relative flex items-center justify-between bg-white rounded-2xl border border-gray-100 ${c.espessura} ${borda} shadow-sm px-5 py-4 transition-colors hover:shadow-md ${c.anim}" data-id="${p.id}">
         <div class="fundo absolute inset-0 pointer-events-none">
@@ -339,7 +366,7 @@
         </div>
         <div class="flex items-center gap-4 w-[300px]">
           <div class="w-[88px] h-[88px] shrink-0 rounded-2xl bg-white/90 shadow-sm flex items-center justify-center">
-            <img src="${encodeURI(imagens[p.cultura] || '')}" alt="${p.cultura}" class="w-[68px] h-[68px] object-contain mix-blend-multiply">
+            <img src="${encodeURI(imagens[p.cultura] || '../assets/img/favicon-agrosensor.png')}" alt="${p.culturaNome}" class="w-[68px] h-[68px] object-contain mix-blend-multiply">
           </div>
           <div>
             <p class="text-[17px] font-bold text-black">${p.nome}</p>
@@ -349,9 +376,9 @@
         </div>
 
         <div class="flex items-center border-l border-gray-200 pl-4">
-          ${metrica('💧', p.umidade + '%', 'Umidade do Solo')}
-          ${metrica('🌡️', p.temp + '°C', 'Temperatura')}
-          ${metrica('☀️', p.luz, 'Luminosidade')}
+          ${metrica('💧', p.umidade != null ? numero(p.umidade) + '%' : '—', 'Umidade do Solo')}
+          ${metrica('🌡️', p.temp != null ? numero(p.temp) + '°C' : '—', 'Temperatura')}
+          ${metrica('☀️', p.luz != null ? numero(p.luz) : '—', 'Luminosidade')}
         </div>
 
         ${selo(c, p.status)}
@@ -380,7 +407,7 @@
   $('lista').addEventListener('click', (e) => {
     const b = e.target.closest('button[data-acao="excluir"]');
     if (!b) return;
-    const p = plantacoes.find(x => x.id == b.closest('[data-id]').dataset.id);
+    const p = plantacoes.find(x => x.id === b.closest('[data-id]').dataset.id);
     idParaExcluir = p.id;
     $('excluir-nome').textContent = p.nome;
     modalExcluir.classList.remove('hidden');
@@ -391,13 +418,19 @@
   $('cancelar-excluir').onclick = fecharExcluir;
   modalExcluir.onclick = (e) => { if (e.target === modalExcluir) fecharExcluir(); };
 
-  $('confirmar-excluir').addEventListener('click', () => {
-    plantacoes = plantacoes.filter(p => p.id != idParaExcluir);
-    fecharExcluir();
-    render();
+  $('confirmar-excluir').addEventListener('click', async () => {
+    if (!idParaExcluir) return;
+    try {
+      await apiFetch(`/plantacoes/${idParaExcluir}`, { method: 'DELETE' });
+      plantacoes = plantacoes.filter(p => p.id !== idParaExcluir);
+      fecharExcluir();
+      render();
+    } catch (erro) {
+      alert(erro.message);
+    }
   });
 
-  render();
+  carregarPlantacoes();
 </script>
 </body>
 </html>

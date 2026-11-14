@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { tipoDispositivo, tipoSensor, tipoAlerta, direcaoAlerta } from '../../generated/prisma/client';
+import { tipoDispositivo, tipoSensor, tipoAlerta, tipoCultura, direcaoAlerta } from '../../generated/prisma/client';
 
 export const criarUsuarioSchema = z.object({
   nome: z.string().min(3, 'Nome deve ter no mínimo 3 caracteres'),
@@ -8,7 +8,13 @@ export const criarUsuarioSchema = z.object({
   telefone: z.string(),
 });
 
-export const atualizarUsuarioSchema = criarUsuarioSchema.partial();
+export const atualizarUsuarioSchema = criarUsuarioSchema.partial().extend({
+  notif_temperatura: z.boolean().optional(),
+  notif_umidade_solo: z.boolean().optional(),
+  notif_umidade_ar: z.boolean().optional(),
+  notif_luminosidade: z.boolean().optional(),
+  notif_sensor_offline: z.boolean().optional(),
+});
 
 export const criarDispositivoSchema = z.object({
   nome: z.string(),
@@ -22,14 +28,24 @@ export const criarPlantacaoSchema = z.object({
   usuario_id: z.uuid(),
   dispositivo_id: z.uuid(),
   nome: z.string(),
-  tipo: z.string(),
+  tipo: z.enum(tipoCultura),
   data_inicio: z.coerce.date(),
   data_colheita: z.coerce.date().optional(),
   data_proximo_plantio: z.coerce.date().optional(),
+  tamanho_area: z.number().nonnegative().optional(),
+  unidade_area: z.enum(['ha', 'm²', 'alq']).optional(),
+  espacamento_plantas: z.number().nonnegative().optional(),
   descricao: z.string().optional(),
 });
 
-export const atualizarPlantacaoSchema = criarPlantacaoSchema.partial();
+export const atualizarPlantacaoSchema = criarPlantacaoSchema.partial().extend({
+  data_colheita: z.coerce.date().nullable().optional(),
+  data_proximo_plantio: z.coerce.date().nullable().optional(),
+  tamanho_area: z.number().nonnegative().nullable().optional(),
+  unidade_area: z.enum(['ha', 'm²', 'alq']).nullable().optional(),
+  espacamento_plantas: z.number().nonnegative().nullable().optional(),
+  descricao: z.string().nullable().optional(),
+});
 
 export const criarSensorSchema = z.object({
   nome: z.string(),

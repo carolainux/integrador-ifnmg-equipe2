@@ -3,6 +3,7 @@ import { AlertaModel } from '../models/alerta.model';
 import { LeituraModel } from '../models/leitura.model';
 import { PlantacaoModel } from '../models/plantacao.model';
 import { PlantacaoSensorModel } from '../models/plantacao-sensor.model';
+import { UsuarioModel } from '../models/usuario.model';
 import { findOrThrow } from '../utils/find-or-throw';
 import { enviarWhatsApp } from './whatsapp.service';
 
@@ -30,8 +31,8 @@ export const AlertaService = {
     return await findOrThrow(AlertaModel, id, 'alerta');
   },
 
-  async buscarPorPlantacao(plantacao_id: string) {
-    return await AlertaModel.buscarPorPlantacao(plantacao_id);
+  async buscarPorPlantacao(plantacao_id: string, limite?: number) {
+    return await AlertaModel.buscarPorPlantacao(plantacao_id, limite);
   },
 
   async buscarPorUsuario(usuario_id: string) {
@@ -61,7 +62,8 @@ export const AlertaService = {
 
     if (!leitura || !plantacao) return [];
 
-    const alertasParaCriar: { tipo: tipoAlerta; mensagem: string }[] = [];
+    const preferencias = await UsuarioModel.buscarPreferenciasNotificacao(plantacao.usuario_id);
+    const alertasParaCriar: { tipo: tipoAlerta; mensagem: string; sensor_tipo: string }[] = [];
 
     for (const vinculo of vinculos) {
       const valor = leitura[vinculo.sensor.tipo as keyof typeof leitura];
@@ -82,11 +84,13 @@ export const AlertaService = {
         alertasParaCriar.push({
           tipo: tipoAlerta.Critico,
           mensagem: `Alerta Crítico: ${vinculo.sensor.nome} atingiu ${valor}. Limite crítico: ${vinculo.limite_critico}.`,
+          sensor_tipo: vinculo.sensor.tipo,
         });
       } else if (excedeuAtencao) {
         alertasParaCriar.push({
           tipo: tipoAlerta.Atencao,
           mensagem: `Alerta de Atenção: ${vinculo.sensor.nome} atingiu ${valor}. Limite de atenção: ${vinculo.limite_atencao}.`,
+          sensor_tipo: vinculo.sensor.tipo,
         });
       }
     }
@@ -102,8 +106,31 @@ export const AlertaService = {
       }))
     );
 
-    alertasParaCriar.forEach(a => enviarWhatsApp(a.mensagem).catch(erro => console.error('WhatsApp error:', erro)));
+    const preferenciaPorTipo: Record<string, boolean | undefined> = {
+      temperatura: preferencias?.notif_temperatura,
+      umidade_solo: preferencias?.notif_umidade_solo,
+      umidade_ar: preferencias?.notif_umidade_ar,
+      luminosidade: preferencias?.notif_luminosidade,
+    };
 
-    return alertasParaCriar;
+    alertasParaCriar.forEach(a => {
+      if (preferenciaPorTipo[a.sensor_tipo] === false) return;
+      enviarWhatsApp(a.mensagem).catch(erro => console.error('WhatsApp error:', erro));
+    });
+
+    return alertasParaCriar.map(alerta => ({ tipo: alerta.tipo, mensagem: alerta.mensagem }));
+  },
+
+  async notificarDispositivoOffline(plantacao_id: string, mensagem: string) {
+    const plantacao = await PlantacaoModel.buscarPorId(plantacao_id);
+    if (!plantacao) {
+      throw Object.assign(new Error('Plantação não encontrada.'), { status: 404 });
+    }
+
+    const preferencias = await UsuarioModel.buscarPreferenciasNotificacao(plantacao.usuario_id);
+    if (preferencias?.notif_sensor_offline === false) return false;
+
+    await enviarWhatsApp(mensagem);
+    return true;
   },
 };

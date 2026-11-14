@@ -238,12 +238,28 @@
         <h2 class="flex items-center gap-3 text-[17px] font-bold text-black">
           <span class="w-9 h-9 rounded-full bg-green-100 flex items-center justify-center"><img src="../assets/sensor.png" alt="" class="w-8 h-8 object-contain"></span> Sensores
         </h2>
-        <p class="mt-1 mb-3 text-[13px] text-[#817979]">Ative ou desative os sensores que deseja monitorar e defina os níveis ideal, de alerta e crítico de cada um. Ao escolher a cultura, os níveis ideais são preenchidos automaticamente e podem ser ajustados.</p>
-        <div class="grid grid-cols-[2fr_1fr_1.6fr_1fr_1fr] items-center border-b border-gray-200 pb-2 text-[13px] font-bold text-black">
-          <p>Sensor</p><p>Ativo</p><p>Nível ideal (mín – máx)</p><p>Nível de alerta</p><p>Nível crítico</p>
+        <p class="mt-1 mb-3 text-[13px] text-[#817979]">Selecione um sensor disponível e informe os limites de atenção e crítico para esta plantação.</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_auto] gap-4 items-end">
+          <div>
+            <label for="sensor-select" class="block text-[13px] font-semibold text-black mb-1">Sensor disponível</label>
+            <select id="sensor-select" class="w-full h-[44px] rounded-xl border border-gray-300 bg-white px-4 text-[14px] focus:outline-none focus:border-[#078607]">
+              <option value="">Carregando sensores...</option>
+            </select>
+          </div>
+          <div>
+            <label for="sensor-atencao" class="block text-[13px] font-semibold text-black mb-1">Limite de atenção <span id="sensor-atencao-unidade" class="font-normal text-[#817979]"></span></label>
+            <input type="number" id="sensor-atencao" min="0" step="0.01" disabled placeholder="Ex.: 30" class="w-full h-[44px] rounded-xl border border-gray-300 px-4 text-[14px] disabled:bg-gray-50 focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+          </div>
+          <div>
+            <label for="sensor-critico" class="block text-[13px] font-semibold text-black mb-1">Limite crítico <span id="sensor-critico-unidade" class="font-normal text-[#817979]"></span></label>
+            <input type="number" id="sensor-critico" min="0" step="0.01" disabled placeholder="Ex.: 35" class="w-full h-[44px] rounded-xl border border-gray-300 px-4 text-[14px] disabled:bg-gray-50 focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+          </div>
+          <button type="button" id="btn-adicionar-sensor" disabled class="h-[44px] rounded-xl bg-[#078607] px-6 text-[14px] font-bold text-white transition-colors hover:bg-[#067306] disabled:cursor-not-allowed disabled:bg-gray-300">Adicionar</button>
         </div>
-        <div id="sensores"></div>
-        <p id="ideais-erro" class="hidden mt-3 text-[13px] text-red-600 font-semibold"></p>
+
+        <p id="sensor-erro" class="hidden mt-3 text-[13px] font-semibold text-red-600"></p>
+        <div id="sensores-selecionados" class="mt-4 space-y-2"></div>
       </section>
 
       <!-- DISPOSITIVO + BOTÃO -->
@@ -251,21 +267,21 @@
         <div class="flex-1 max-w-[560px]">
           <label class="flex items-center gap-3 text-[15px] font-bold text-black mb-2">
             <span class="w-9 h-9 rounded-full bg-green-100 flex items-center justify-center"><img src="../assets/dispositivo.associado.png" alt="" class="w-8 h-8 object-contain"></span>
-            Dispositivo associado <span class="text-[12px] font-normal text-[#817979]">(opcional)</span>
+            Dispositivo associado <span class="text-[12px] font-normal text-[#817979]">(obrigatório)</span>
           </label>
-          <select id="dispositivo" class="w-full h-[44px] rounded-xl border border-gray-300 bg-white px-4 text-[14px] focus:outline-none focus:border-[#078607]">
-            <option value="">Selecione um dispositivo</option>
-            <option>Arduino Mega 2560</option><option>Arduino Uno</option><option>ESP32</option>
+          <select id="dispositivo" required class="w-full h-[44px] rounded-xl border border-gray-300 bg-white px-4 text-[14px] focus:outline-none focus:border-[#078607]">
+            <option value="">Carregando dispositivos...</option>
           </select>
+          <p id="form-erro" class="hidden mt-2 text-[13px] font-semibold text-red-600"></p>
         </div>
-        <button type="submit" class="shrink-0 h-[48px] bg-[#05452a] text-white font-bold text-[14px] rounded-xl px-7 hover:bg-[#0a5a37] transition-colors"> Cadastrar Plantação</button>
+        <button id="btn-submit" type="submit" class="shrink-0 h-[48px] bg-[#05452a] text-white font-bold text-[14px] rounded-xl px-7 hover:bg-[#0a5a37] transition-colors disabled:cursor-not-allowed disabled:bg-gray-400"> Cadastrar Plantação</button>
       </section>
 
     </form>
   </main>
 </div>
 
-<script src="../script.js"></script>
+<script src="../script.js?v=20261113"></script>
 <script>
   // ---------- DATA ----------
   const hoje = new Date();
@@ -276,29 +292,32 @@
 
   // ---------- CULTURAS  ----------
   const culturas = [
+    {nome: 'Morango',   emoji: '🍓'},
+    {nome: 'Cereja',    emoji: '🍒'},
     {nome: 'Milho',     foto: '../assets/img/icone.milho.png'},
-    {nome: 'Feijão',    foto: '../assets/img/icone.feijão.png'},
+    {nome: 'Feijão',    valor: 'Feijao', foto: '../assets/img/icone.feijão.png'},
     {nome: 'Mandioca',  foto: '../assets/img/icone.mandioca.png'},
     {nome: 'Tomate',    foto: '../assets/img/icone.tomate.png'},
-    {nome: 'Abóbora',   foto: '../assets/img/icone.abobora.png'},
+    {nome: 'Abóbora',   valor: 'Abobora', foto: '../assets/img/icone.abobora.png'},
     {nome: 'Alface',    foto: '../assets/img/icone.alface.png'},
     {nome: 'Couve',     foto: '../assets/img/icone.couve.png'},
     {nome: 'Cebolinha', foto: '../assets/img/icone.cebolinha.png'},
     {nome: 'Coentro',   foto: '../assets/img/icone.coentro.png'},
-    {nome: 'Rúcula',    foto: '../assets/img/icone.rucula.png'}
+    {nome: 'Rúcula',    valor: 'Rucula', foto: '../assets/img/icone.rucula.png'}
   ];
-  const itemCultura = (c) => `<img src="${encodeURI(c.foto)}" alt="${c.nome}" class="w-8 h-8 object-contain mix-blend-multiply"><span>${c.nome}</span>`;
+  const itemCultura = (c) => c.emoji
+    ? `<span class="w-8 h-8 flex items-center justify-center text-xl">${c.emoji}</span><span>${c.nome}</span>`
+    : `<img src="${encodeURI(c.foto)}" alt="${c.nome}" class="w-8 h-8 object-contain mix-blend-multiply"><span>${c.nome}</span>`;
 
   culturas.forEach((c) => {
     const li = document.createElement('li');
     li.className = 'flex items-center gap-3 px-4 py-2 text-[14px] text-black cursor-pointer hover:bg-green-50';
     li.innerHTML = itemCultura(c);
     li.addEventListener('click', () => {
-      $('cultura').value = c.nome;
+      $('cultura').value = c.valor || c.nome;
       $('cultura-selecionada').innerHTML = `<span class="flex items-center gap-3 text-black">${itemCultura(c)}</span>`;
       $('cultura-erro').classList.add('hidden');
       fecharCultura();
-      preencherIdeais(c.nome);
     });
     $('cultura-lista').appendChild(li);
   });
@@ -316,89 +335,247 @@
   $('unidade').addEventListener('change', () => $('area-sufixo').textContent = $('unidade').value);
 
   // ---------- SENSORES ----------
-  // ideal = [mín, máx] padrão | lim = limites aceitos na validação | un = unidade exibida
-  
-  const sensores = [
-    {nome: 'Temperatura',     desc: 'Em graus Celsius (°C)', icone: 'termometro.png',   bg: 'bg-green-100',  alerta: '30°C', critico: '35°C', ideal: [20, 30], lim: [0, 50],  un: '°C'},
-    {nome: 'Umidade do Solo', desc: 'Em porcentagem (%)',    icone: 'solo.png',         bg: 'bg-orange-100', alerta: '30%',  critico: '20%',  ideal: [60, 80], lim: [0, 100], un: '%'},
-    {nome: 'Umidade do Ar',   desc: 'Em porcentagem (%)',    icone: 'gota.png',         bg: 'bg-blue-100',   alerta: '70%',  critico: '50%',  ideal: [60, 80], lim: [0, 100], un: '%'},
-    {nome: 'Luminosidade',    desc: 'Em porcentagem (%)',    icone: 'luminosidade.png', bg: 'bg-yellow-100', alerta: '60%',  critico: '80%',  ideal: [40, 70], lim: [0, 100], un: '%'}
-  ];
-
-  // TODO - INTEGRAÇÃO COM BACKEND: GET /plantacao/niveis-ideais?cultura=X (substitui este mock)
-  const ideaisPorCultura = {
-    'Milho':    {'Temperatura': [20, 30], 'Umidade do Solo': [60, 80], 'Umidade do Ar': [55, 75], 'Luminosidade': [70, 100]},
-    'Feijão':   {'Temperatura': [18, 30], 'Umidade do Solo': [55, 75], 'Umidade do Ar': [60, 80], 'Luminosidade': [50, 80]},
-    'Tomate':   {'Temperatura': [20, 27], 'Umidade do Solo': [60, 80], 'Umidade do Ar': [60, 70], 'Luminosidade': [50, 80]},
-    'Mandioca': {'Temperatura': [20, 30], 'Umidade do Solo': [50, 70], 'Umidade do Ar': [60, 80], 'Luminosidade': [70, 100]}
+  const tiposSensor = {
+    temperatura:   { rotulo: 'Temperatura',     icone: 'termometro.png',      bg: 'bg-green-100' },
+    umidade_solo:  { rotulo: 'Umidade do Solo', icone: 'solo.png',            bg: 'bg-orange-100' },
+    umidade_ar:    { rotulo: 'Umidade do Ar',   icone: 'gota.png',            bg: 'bg-blue-100' },
+    luminosidade:  { rotulo: 'Luminosidade',    icone: 'luminosidade.png',    bg: 'bg-yellow-100' }
   };
 
-  const entrada = 'w-[110px] h-[38px] rounded-lg border border-gray-300 px-3 text-[14px] focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]';
-  const entradaIdeal = 'w-[68px] h-[38px] rounded-lg border border-gray-300 px-2 text-[14px] text-center focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]';
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-  $('sensores').innerHTML = sensores.map((s, i) => `
-    <div class="grid grid-cols-[2fr_1fr_1.6fr_1fr_1fr] items-center border-b border-gray-100 py-3 last:border-0">
-      <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-lg ${s.bg} flex items-center justify-center"><img src="../assets/${s.icone}" alt="${s.nome}" class="w-12 h-12 object-contain"></div>
-        <div><p class="text-[15px] font-bold text-black">${s.nome}</p><p class="text-[12px] text-[#817979]">${s.desc}</p></div>
-      </div>
-      <label class="relative inline-flex items-center cursor-pointer">
-        <input type="checkbox" id="ativo-${i}" class="sr-only peer" checked>
-        <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-600 transition-colors"></div>
-        <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
-      </label>
-      <div class="flex items-center gap-1.5">
-        <input type="number" id="ideal-min-${i}" value="${s.ideal[0]}" aria-label="${s.nome} - ideal mínimo" class="${entradaIdeal}">
-        <span class="text-gray-400">–</span>
-        <input type="number" id="ideal-max-${i}" value="${s.ideal[1]}" aria-label="${s.nome} - ideal máximo" class="${entradaIdeal}">
-        <span class="text-[12px] text-gray-500">${s.un}</span>
-      </div>
-      <input type="text" value="${s.alerta}" class="${entrada}">
-      <input type="text" value="${s.critico}" class="${entrada}">
-    </div>`).join('');
+  let sensoresDisponiveis = [];
+  const sensoresSelecionados = [];
 
-  
-  function preencherIdeais(cultura) {
-    const padroes = ideaisPorCultura[cultura];
-    if (!padroes) return;
-    sensores.forEach((s, i) => {
-      const [min, max] = padroes[s.nome] || s.ideal;
-      $(`ideal-min-${i}`).value = min;
-      $(`ideal-max-${i}`).value = max;
-    });
-  }
+  const tipoDispositivo = {
+    Arduino_Mega: 'Arduino Mega',
+    Arduino_Micro: 'Arduino Micro',
+    Arduino_Nano: 'Arduino Nano',
+    Arduino_Uno: 'Arduino Uno',
+    Arduino_Leonardo: 'Arduino Leonardo',
+    ESP32: 'ESP32',
+    ESP8266: 'ESP8266'
+  };
 
-  
-  function validarIdeais() {
-    for (let i = 0; i < sensores.length; i++) {
-      const s = sensores[i];
-      if (!$(`ativo-${i}`).checked) continue;
-      const minTxt = $(`ideal-min-${i}`).value, maxTxt = $(`ideal-max-${i}`).value;
-      if (minTxt === '' || maxTxt === '') return `${s.nome}: informe o nível ideal mínimo e máximo.`;
-      const min = Number(minTxt), max = Number(maxTxt);
-      if (min < s.lim[0] || max > s.lim[1]) return `${s.nome}: os valores devem estar entre ${s.lim[0]} e ${s.lim[1]} ${s.un}.`;
-      if (min >= max) return `${s.nome}: o mínimo deve ser menor que o máximo.`;
+  const sensorSelecionado = () => sensoresDisponiveis.find(s => s.id === $('sensor-select').value);
+
+  function renderSelectSensores() {
+    const select = $('sensor-select');
+    const restantes = sensoresDisponiveis.filter(s => !sensoresSelecionados.some(v => v.sensor_id === s.id));
+
+    if (restantes.length === 0) {
+      select.innerHTML = '<option value="">Nenhum sensor disponível</option>';
+      select.disabled = true;
+    } else {
+      select.innerHTML = '<option value="">Selecione um sensor</option>' + restantes.map(s => {
+        const t = tiposSensor[s.tipo] || { rotulo: s.tipo };
+        return `<option value="${s.id}">${esc(s.nome)} — ${esc(t.rotulo)} (${esc(s.unidade)})</option>`;
+      }).join('');
+      select.disabled = false;
     }
-    return null;
+
+    atualizarCamposSensor();
   }
 
-  // ---------- ENVIO ----------
-  $('form-plantacao').addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (!$('cultura').value) { $('cultura-erro').classList.remove('hidden'); $('cultura-btn').focus(); return; }
-    if ($('dataColheita').value <= $('dataInicio').value) { $('data-erro').classList.remove('hidden'); return; }
-    $('data-erro').classList.add('hidden');
+  function atualizarCamposSensor() {
+    const s = sensorSelecionado();
+    const atencao = $('sensor-atencao');
+    const critico = $('sensor-critico');
+    const botao = $('btn-adicionar-sensor');
 
-    const erroIdeais = validarIdeais();
-    const elErro = $('ideais-erro');
-    if (erroIdeais) {
-      elErro.textContent = erroIdeais;
-      elErro.classList.remove('hidden');
-      elErro.scrollIntoView({behavior: 'smooth', block: 'center'});
+    atencao.value = '';
+    critico.value = '';
+    $('sensor-atencao-unidade').textContent = s ? `(${s.unidade})` : '';
+    $('sensor-critico-unidade').textContent = s ? `(${s.unidade})` : '';
+    atencao.disabled = !s;
+    critico.disabled = !s;
+    botao.disabled = true;
+  }
+
+  function atualizarBotaoSensor() {
+    const s = sensorSelecionado();
+    $('btn-adicionar-sensor').disabled = !s || $('sensor-atencao').value === '' || $('sensor-critico').value === '';
+  }
+
+  function renderSensoresSelecionados() {
+    const lista = $('sensores-selecionados');
+
+    if (sensoresSelecionados.length === 0) {
+      lista.innerHTML = '<p class="rounded-xl border border-dashed border-gray-200 px-4 py-3 text-[13px] text-[#817979]">Nenhum sensor adicionado.</p>';
       return;
     }
-    elErro.classList.add('hidden');
-    window.location.href = 'plantacao-sucesso.html?cultura=' + encodeURIComponent($('cultura').value);
+
+    lista.innerHTML = sensoresSelecionados.map(s => {
+      const t = tiposSensor[s.tipo] || { rotulo: s.tipo, icone: 'sensor.png', bg: 'bg-gray-100' };
+      return `
+        <div class="flex items-center justify-between gap-4 rounded-xl border border-gray-100 bg-[#fafbfa] px-4 py-3" data-sensor-id="${esc(s.sensor_id)}">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg ${t.bg} flex items-center justify-center"><img src="../assets/${t.icone}" alt="${esc(t.rotulo)}" class="w-9 h-9 object-contain"></div>
+            <div>
+              <p class="text-[14px] font-bold text-black">${esc(s.nome)}</p>
+              <p class="text-[12px] text-[#817979]">${esc(t.rotulo)} • Atenção: ${s.limite_atencao} ${esc(s.unidade)} • Crítico: ${s.limite_critico} ${esc(s.unidade)}</p>
+            </div>
+          </div>
+          <button type="button" data-remover-sensor class="text-[13px] font-semibold text-red-600 hover:text-red-700">Remover</button>
+        </div>`;
+    }).join('');
+  }
+
+  $('sensor-select').addEventListener('change', () => {
+    $('sensor-erro').classList.add('hidden');
+    atualizarCamposSensor();
+  });
+
+  $('sensor-atencao').addEventListener('input', atualizarBotaoSensor);
+  $('sensor-critico').addEventListener('input', atualizarBotaoSensor);
+
+  $('btn-adicionar-sensor').addEventListener('click', () => {
+    const s = sensorSelecionado();
+    if (!s) return;
+
+    const limite_atencao = Number($('sensor-atencao').value);
+    const limite_critico = Number($('sensor-critico').value);
+    const erro = $('sensor-erro');
+
+    if (!Number.isFinite(limite_atencao) || !Number.isFinite(limite_critico) || limite_atencao <= 0 || limite_critico <= 0) {
+      erro.textContent = 'Informe limites maiores que zero.';
+      erro.classList.remove('hidden');
+      return;
+    }
+
+    if ((s.direcao === 'ACIMA' && limite_critico <= limite_atencao) || (s.direcao === 'ABAIXO' && limite_critico >= limite_atencao)) {
+      erro.textContent = s.direcao === 'ACIMA'
+        ? 'Para este sensor, o limite crítico deve ser maior que o de atenção.'
+        : 'Para este sensor, o limite crítico deve ser menor que o de atenção.';
+      erro.classList.remove('hidden');
+      return;
+    }
+
+    sensoresSelecionados.push({
+      sensor_id: s.id,
+      nome: s.nome,
+      tipo: s.tipo,
+      unidade: s.unidade,
+      direcao: s.direcao,
+      limite_atencao,
+      limite_critico
+    });
+
+    erro.classList.add('hidden');
+    renderSelectSensores();
+    renderSensoresSelecionados();
+  });
+
+  $('sensores-selecionados').addEventListener('click', e => {
+    const botao = e.target.closest('[data-remover-sensor]');
+    if (!botao) return;
+
+    const id = botao.closest('[data-sensor-id]').dataset.sensorId;
+    const indice = sensoresSelecionados.findIndex(s => s.sensor_id === id);
+    if (indice >= 0) sensoresSelecionados.splice(indice, 1);
+
+    renderSelectSensores();
+    renderSensoresSelecionados();
+  });
+
+  async function carregarSensoresDisponiveis() {
+    try {
+      const lista = await apiFetch('/sensores');
+      sensoresDisponiveis = lista.filter(s => !s.status);
+      renderSelectSensores();
+      renderSensoresSelecionados();
+    } catch (erro) {
+      $('sensor-select').innerHTML = '<option value="">Não foi possível carregar os sensores</option>';
+      $('sensor-select').disabled = true;
+      $('sensor-erro').textContent = erro.message;
+      $('sensor-erro').classList.remove('hidden');
+    }
+  }
+
+  carregarSensoresDisponiveis();
+
+  async function carregarDispositivosDisponiveis() {
+    const select = $('dispositivo');
+    try {
+      const lista = await apiFetch('/dispositivos');
+      const disponiveis = lista.filter(d => !d.plantacao);
+      select.innerHTML = disponiveis.length
+        ? '<option value="">Selecione um dispositivo</option>' + disponiveis.map(d =>
+            `<option value="${esc(d.id)}">${esc(d.nome)} — ${esc(tipoDispositivo[d.tipo] || d.tipo)}</option>`
+          ).join('')
+        : '<option value="">Nenhum dispositivo disponível</option>';
+      select.disabled = disponiveis.length === 0;
+    } catch (erro) {
+      select.innerHTML = '<option value="">Não foi possível carregar os dispositivos</option>';
+      select.disabled = true;
+      $('form-erro').textContent = erro.message;
+      $('form-erro').classList.remove('hidden');
+    }
+  }
+
+  carregarDispositivosDisponiveis();
+
+  // ---------- ENVIO ----------
+  $('form-plantacao').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const erroForm = $('form-erro');
+    erroForm.classList.add('hidden');
+
+    if (!$('nome').value.trim()) { $('nome').focus(); return; }
+    if (!$('cultura').value) { $('cultura-erro').classList.remove('hidden'); $('cultura-btn').focus(); return; }
+    if ($('dataColheita').value <= $('dataInicio').value) { $('data-erro').classList.remove('hidden'); return; }
+    if (!$('dispositivo').value) {
+      erroForm.textContent = 'Selecione um dispositivo disponível. Cadastre um dispositivo se não houver nenhum.';
+      erroForm.classList.remove('hidden');
+      return;
+    }
+    $('data-erro').classList.add('hidden');
+
+    const botao = $('btn-submit');
+    const textoBotao = botao.textContent;
+    botao.disabled = true;
+    botao.textContent = 'Cadastrando...';
+
+    try {
+      const usuario = usuarioAtual() || await apiFetch('/auth/me');
+      const area = $('area').value === '' ? undefined : Number($('area').value);
+      const espacamento = $('espacamento').value === '' ? undefined : Number($('espacamento').value);
+
+      const resposta = await apiFetch('/plantacoes', {
+        method: 'POST',
+        body: JSON.stringify({
+          usuario_id: usuario.id,
+          dispositivo_id: $('dispositivo').value,
+          nome: $('nome').value.trim(),
+          tipo: $('cultura').value,
+          data_inicio: $('dataInicio').value,
+          data_colheita: $('dataColheita').value,
+          tamanho_area: area,
+          unidade_area: area === undefined ? undefined : $('unidade').value,
+          espacamento_plantas: espacamento,
+          descricao: $('descricao').value.trim() || undefined
+        })
+      });
+
+      for (const sensor of sensoresSelecionados) {
+        await apiFetch('/plantacoes-sensores', {
+          method: 'POST',
+          body: JSON.stringify({
+            plantacao_id: resposta.dados.id,
+            sensor_id: sensor.sensor_id,
+            limite_atencao: sensor.limite_atencao,
+            limite_critico: sensor.limite_critico
+          })
+        });
+      }
+
+      window.location.href = 'plantacao-sucesso.html?cultura=' + encodeURIComponent($('cultura').value);
+    } catch (erro) {
+      erroForm.textContent = erro.message;
+      erroForm.classList.remove('hidden');
+      botao.disabled = false;
+      botao.textContent = textoBotao;
+    }
   });
 </script>
 </body>

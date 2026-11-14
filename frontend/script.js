@@ -17,108 +17,173 @@ function mostrarSenha(idCampo, idIcone) {
     }
 }
 
-const ctxGrafico = document.getElementById('graficoMonitoramento');
+const API_BASE = localStorage.getItem('agrosensor_api_base')
+    || `http://${location.hostname || 'localhost'}:3000/api`;
 
-if (ctxGrafico) {
-    new Chart(ctxGrafico, {
-        type: 'line',
-        data: {
-            labels: ['08:00', '10:00', '12:00', '14:00', '16:00'],
-            datasets: [
-                {
-                    label: 'Umidade do Solo (%)',
-                    data: [70, 68, 65, 72, 69],
-                    borderColor: '#078607',
-                    backgroundColor: 'rgba(7, 134, 7, 0.1)',
-                    tension: 0.3
-                },
-                {
-                    label: 'Temperatura (°C)',
-                    data: [22, 25, 28, 30, 27],
-                    borderColor: '#e11d48',
-                    backgroundColor: 'rgba(225, 29, 72, 0.1)',
-                    tension: 0.3
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { position: 'bottom' }
-            }
-        }
-    });
+const rotulosCultura = { Feijao: 'Feijão', Abobora: 'Abóbora', Rucula: 'Rúcula' };
+const rotuloCultura = valor => rotulosCultura[valor] || valor;
+
+function tokenAtual() {
+    return localStorage.getItem('agrosensor_token');
 }
 
-const ctxPlantacao = document.getElementById('graficoMonitoramento');
+function usuarioAtual() {
+    try {
+        return JSON.parse(localStorage.getItem('agrosensor_usuario'));
+    } catch {
+        return null;
+    }
+}
 
-if (ctxPlantacao) {
-    new Chart(ctxPlantacao, {
-        type: 'line',
-        data: {
-            labels: ['00h', '02h', '04h', '06h', '08h', '10h', '12h', '14h', '16h', '18h'],
-            datasets: [
-                {
-                    label: 'Temperatura (°C)',
-                    data: [22, 35, 45, 38, 42, 15, 28, 25, 12, 45],
-                    borderColor: '#e11d48',
-                    backgroundColor: 'rgba(225, 29, 72, 0.1)',
-                    tension: 0.3
-                },
-                {
-                    label: 'Umidade (%)',
-                    data: [5, 30, 48, 45, 52, 35, 45, 50, 32, 50],
-                    borderColor: '#1e293b',
-                    backgroundColor: 'rgba(30, 41, 59, 0.1)',
-                    tension: 0.3
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { position: 'bottom' }
-            },
-            scales: {
-                y: { min: 0, max: 60 }
-            }
+function salvarSessao(token, usuario) {
+    localStorage.setItem('agrosensor_token', token);
+    localStorage.setItem('agrosensor_usuario', JSON.stringify(usuario));
+}
+
+function limparSessao() {
+    localStorage.removeItem('agrosensor_token');
+    localStorage.removeItem('agrosensor_usuario');
+}
+
+function caminhoLogin() {
+    return location.pathname.includes('/user/') ? 'login.html' : '../user/login.html';
+}
+
+async function apiFetch(caminho, opcoes = {}) {
+    const headers = { ...(opcoes.headers || {}) };
+    if (opcoes.body && !headers['Content-Type']) {
+        headers['Content-Type'] = 'application/json';
+    }
+
+    const token = tokenAtual();
+    if (token) {
+        headers.Authorization = `Bearer ${token}`;
+    }
+
+    const resposta = await fetch(`${API_BASE}${caminho}`, { ...opcoes, headers });
+    const texto = await resposta.text();
+    let dados = null;
+
+    if (texto) {
+        try {
+            dados = JSON.parse(texto);
+        } catch {
+            dados = texto;
+        }
+    }
+
+    if (resposta.status === 401 && caminho !== '/auth/login') {
+        limparSessao();
+        window.location.href = caminhoLogin();
+    }
+
+    if (!resposta.ok) {
+        const erro = new Error((dados && dados.erro) || 'Não foi possível conectar ao servidor.');
+        erro.status = resposta.status;
+        throw erro;
+    }
+
+    return dados;
+}
+
+function chaveAlertasVistos(usuarioId) {
+    return `agrosensor_alertas_vistos:${usuarioId}`;
+}
+
+function alertasVistosEm(usuarioId) {
+    return Number(localStorage.getItem(chaveAlertasVistos(usuarioId))) || 0;
+}
+
+function marcarAlertasVistos(usuarioId, alertas = []) {
+    if (!usuarioId) return;
+
+    const agora = Date.now();
+    const maisRecente = alertas.reduce((max, alerta) => {
+        const data = new Date(alerta.gerado_em).getTime();
+        return Number.isFinite(data) && data > max ? data : max;
+    }, 0);
+
+    localStorage.setItem(chaveAlertasVistos(usuarioId), String(Math.max(agora, maisRecente)));
+}
+
+function atualizarBadgeAlertas(alertas, usuarioId) {
+    const vistoEm = alertasVistosEm(usuarioId);
+    const naoLidos = alertas.filter(alerta => {
+        const data = new Date(alerta.gerado_em).getTime();
+        return Number.isFinite(data) && data > vistoEm;
+    }).length;
+
+    document.querySelectorAll('a[href$="alertas.html"] span.absolute').forEach(badge => {
+        badge.textContent = naoLidos;
+        badge.classList.toggle('hidden', naoLidos === 0);
+    });
+
+    return naoLidos;
+}
+
+async function sincronizarBadgeAlertas() {
+    const usuario = usuarioAtual();
+    if (!usuario || !usuario.id) return;
+
+    try {
+        const alertas = await apiFetch(`/alertas/usuario/${usuario.id}`);
+        atualizarBadgeAlertas(alertas, usuario.id);
+    } catch {}
+}
+
+document.querySelectorAll('a[href$="alertas.html"] span.absolute').forEach(badge => {
+    badge.classList.add('hidden');
+});
+
+async function carregarResumoPlantacao(plantacao_id) {
+    const [dashboard, alertas] = await Promise.all([
+        apiFetch(`/leituras/dashboard/${plantacao_id}`).catch(() => null),
+        apiFetch(`/alertas/resumo/${plantacao_id}`).catch(() => null)
+    ]);
+
+    const ultima = dashboard && dashboard.ultima;
+    const tipo = alertas && alertas.ultimo_alerta && alertas.ultimo_alerta.tipo;
+    // ponytail: status derivado do último alerta; criar status/resolução no backend se isso importar.
+    const status = tipo === 'Critico' ? 'Crítico' : tipo === 'Atencao' ? 'Atenção' : 'Ideal';
+
+    return {
+        status,
+        umidade: ultima ? ultima.umidade_solo : null,
+        temperatura: ultima ? ultima.temperatura : null,
+        luminosidade: ultima ? ultima.luminosidade : null,
+        ultimaLeitura: ultima ? ultima.data_hora : null,
+        totalAlertas: alertas ? alertas.total : 0
+    };
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const pagina = location.pathname.split('/').pop();
+    const publicas = ['login.html', 'cadastro.html', 'senha.html', 'redefinir-senha.html'];
+
+    if (!publicas.includes(pagina) && !tokenAtual()) {
+        window.location.href = caminhoLogin();
+        return;
+    }
+
+    if (!publicas.includes(pagina) && !['index.html', 'alertas.html', 'dispositivos.html'].includes(pagina)) {
+        sincronizarBadgeAlertas();
+    }
+
+    document.querySelectorAll('a').forEach((link) => {
+        if (link.textContent.trim() === 'Sair') {
+            link.addEventListener('click', limparSessao);
         }
     });
-}
-// --- Dashboard: carregando dados ---
-document.addEventListener("DOMContentLoaded", () => {
-  const secaoCarregando = document.getElementById("secao-carregando");
-  const secaoDashboard = document.getElementById("secao-dashboard");
-
-  if (secaoCarregando && secaoDashboard) {
-    setTimeout(() => {
-      secaoCarregando.classList.add("hidden");
-      secaoDashboard.classList.remove("hidden");
-    }, 2000);
-  }
 });
 
 /* ==========================================================
-   TODO - INTEGRAÇÃO COM BACKEND (API já pronta, ver backend/src/routes)
+   Integração pendente
 
-   LOGIN (login.html):
-   POST /auth/login
-   Body: { email, senha }
-   → Substituir o submit do form por fetch() enviando os dados
-     e salvando o token retornado.
-
-   CADASTRO (cadastro.html):
-   POST /usuarios
-   Body: { nome, email, telefone, senha }
-   → Substituir o submit do form por fetch() enviando os dados.
-
-   DASHBOARD (index.html):
-   GET /plantacoes/usuario/:usuario_id
-   → Buscar lista de plantações do usuário logado e gerar os
-     cards dinamicamente, em vez dos 4 cards fixos no HTML.
-
-   DETALHE DA PLANTAÇÃO (plantacao-detalhe.html):
-   GET /plantacoes/:id                    → dados do card (Cultura, Início, Status)
-   GET /leituras/dashboard/:plantacao_id  → dados do gráfico Chart.js (temperatura/umidade)
-   GET /alertas/plantacao/:plantacao_id   → lista de alertas exibida na tela
+   DASHBOARD (index.html): GET /plantacoes/usuario/:usuario_id
+   DETALHE (plantacao-detalhe.html): GET /plantacoes/:id,
+     GET /leituras/dashboard/:plantacao_id e GET /alertas/plantacao/:plantacao_id
+   NOVA/EDITAR (plantacao-nova.html, plantacao-editar.html): POST/PUT /plantacoes
+   ALERTAS (alertas.html): GET /alertas/usuario/:usuario_id
+   DISPOSITIVOS (dispositivos.html): CRUD /dispositivos
+   CONFIGURAÇÕES (configuracoes.html): sem endpoints no backend
    ========================================================== */

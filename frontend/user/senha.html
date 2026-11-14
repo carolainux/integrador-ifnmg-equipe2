@@ -224,12 +224,13 @@
 
     </main>
 
-    <script src="../script.js"></script>
+    <script src="../script.js?v=20261113"></script>
     <script>
         const $ = id => document.getElementById(id);
         const formSenha = $('formSenha');
         const campoEmail = $('email');
         const erroEmail = $('erroEmail');
+        let emailRecuperacao = '';
 
         function mostrarErro(mostrar) {
             erroEmail.classList.toggle('hidden', !mostrar);
@@ -237,30 +238,51 @@
             campoEmail.classList.toggle('border-gray-300', !mostrar);
         }
 
-        campoEmail.addEventListener('input', () => mostrarErro(false));
+        campoEmail.addEventListener('input', () => {
+            erroEmail.textContent = 'Digite um e-mail válido, como nome@email.com.';
+            mostrarErro(false);
+        });
 
-        formSenha.addEventListener('submit', e => {
+        async function solicitarLink(email) {
+            await apiFetch('/auth/esqueci-senha', {
+                method: 'POST',
+                body: JSON.stringify({ email })
+            });
+        }
+
+        formSenha.addEventListener('submit', async e => {
             e.preventDefault();
 
             if (!campoEmail.checkValidity() || !campoEmail.value.trim()) {
+                erroEmail.textContent = 'Digite um e-mail válido, como nome@email.com.';
                 mostrarErro(true);
                 campoEmail.focus();
                 return;
             }
 
-            // TODO - INTEGRAÇÃO COM BACKEND: POST /auth/esqueci-senha { email }
-            $('emailEnviado').textContent = campoEmail.value.trim();
-            $('estadoForm').classList.add('hidden');
-            $('estadoSucesso').classList.remove('hidden');
+            const botao = formSenha.querySelector('button[type="submit"]');
+            const texto = botao.textContent;
+            botao.disabled = true;
+            botao.textContent = 'Enviando...';
+
+            try {
+                emailRecuperacao = campoEmail.value.trim();
+                await solicitarLink(emailRecuperacao);
+                $('emailEnviado').textContent = emailRecuperacao;
+                $('estadoForm').classList.add('hidden');
+                $('estadoSucesso').classList.remove('hidden');
+            } catch (erro) {
+                erroEmail.textContent = erro.message;
+                mostrarErro(true);
+            } finally {
+                botao.disabled = false;
+                botao.textContent = texto;
+            }
         });
 
-        // Reenviar: bloqueia o botão por 30 segundos para evitar cliques repetidos
-        $('btnReenviar').addEventListener('click', () => {
+        function iniciarCooldown() {
             const botao = $('btnReenviar');
             let restante = 30;
-
-            // TODO - INTEGRAÇÃO COM BACKEND: reenviar o mesmo POST /auth/esqueci-senha
-            $('msgReenvio').textContent = 'Link reenviado. Confira seu e-mail.';
             botao.disabled = true;
             botao.textContent = `Reenviar link (${restante}s)`;
 
@@ -274,12 +296,29 @@
                     botao.textContent = `Reenviar link (${restante}s)`;
                 }
             }, 1000);
+        }
+
+        $('btnReenviar').addEventListener('click', async () => {
+            if (!emailRecuperacao) return;
+
+            const botao = $('btnReenviar');
+            botao.disabled = true;
+
+            try {
+                await solicitarLink(emailRecuperacao);
+                $('msgReenvio').textContent = 'Link reenviado. Confira seu e-mail.';
+                iniciarCooldown();
+            } catch (erro) {
+                $('msgReenvio').textContent = erro.message;
+                botao.disabled = false;
+            }
         });
 
         $('btnTrocarEmail').addEventListener('click', () => {
             $('estadoSucesso').classList.add('hidden');
             $('estadoForm').classList.remove('hidden');
             $('msgReenvio').textContent = '';
+            emailRecuperacao = '';
             campoEmail.focus();
             campoEmail.select();
         });

@@ -164,103 +164,6 @@
         <div id="lista-notificacoes" class="mt-4 rounded-xl border border-gray-100 px-4 divide-y divide-gray-100"></div>
       </section>
 
-      <!-- SENSORES -->
-      <section class="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-5 transition hover:-translate-y-0.5 hover:shadow-md">
-        <div class="flex items-center gap-4">
-          <div class="w-14 h-14 rounded-xl bg-green-100 text-[#0f8a2f] flex items-center justify-center"><i data-ic="radio" class="w-9 h-9"></i></div>
-          <div>
-            <h2 class="text-[18px] font-bold text-black leading-tight">Sensores</h2>
-            <p class="text-[13px] text-[#817979]">Configure a frequência e os limites de leitura.</p>
-          </div>
-        </div>
-
-        <div class="mt-4 rounded-xl border border-gray-100 bg-[#fafbfa] p-4 grid grid-cols-2 gap-x-6 gap-y-4">
-          <div>
-            <label for="intervalo-leitura" class="block text-[13px] font-semibold mb-1.5">Intervalo de leitura</label>
-            <div class="flex items-center gap-3">
-              <span class="w-12 h-12 rounded-full bg-green-100 text-[#0f8a2f] flex items-center justify-center shrink-0"><i data-ic="clock" class="w-8 h-8"></i></span>
-              <select id="intervalo-leitura" class="campo flex-1">
-                <option>A cada 5 minutos</option>
-                <option selected>A cada 15 minutos</option>
-                <option>A cada 30 minutos</option>
-                <option>A cada 1 hora</option>
-              </select>
-            </div>
-          </div>
-          <div>
-            <label for="temp-limite" class="block text-[13px] font-semibold mb-1.5">Limite de temperatura (°C)</label>
-            <div class="flex items-center gap-3">
-              <span class="w-12 h-12 rounded-full bg-green-100 text-[#0f8a2f] flex items-center justify-center shrink-0"><i data-ic="temp" class="w-8 h-8"></i></span>
-              <input type="number" id="temp-limite" value="35" class="campo flex-1">
-            </div>
-          </div>
-          <div>
-            <label for="umidade-limite" class="block text-[13px] font-semibold mb-1.5">Limite mínimo de umidade do solo (%)</label>
-            <div class="flex items-center gap-3">
-              <span class="w-12 h-12 rounded-full bg-green-100 text-[#0f8a2f] flex items-center justify-center shrink-0"><i data-ic="drop" class="w-8 h-8"></i></span>
-              <input type="number" id="umidade-limite" value="40" class="campo flex-1">
-            </div>
-          </div>
-          <div>
-            <label for="lux-limite" class="block text-[13px] font-semibold mb-1.5">Limite de luminosidade (lux)</label>
-            <div class="flex items-center gap-3">
-              <span class="w-12 h-12 rounded-full bg-green-100 text-[#0f8a2f] flex items-center justify-center shrink-0"><i data-ic="sun" class="w-8 h-8"></i></span>
-              <input type="number" id="lux-limite" value="900" class="campo flex-1">
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- PREFERÊNCIAS DO SISTEMA -->
-      <section class="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-5 transition hover:-translate-y-0.5 hover:shadow-md">
-        <div class="flex items-center gap-4">
-          <div class="w-14 h-14 rounded-xl bg-green-100 text-[#0f8a2f] flex items-center justify-center"><i data-ic="globe" class="w-9 h-9"></i></div>
-          <div>
-            <h2 class="text-[18px] font-bold text-black leading-tight">Preferências do Sistema</h2>
-            <p class="text-[13px] text-[#817979]">Idioma, fuso horário e unidades de medida.</p>
-          </div>
-        </div>
-
-        <div class="mt-4 rounded-xl border border-gray-100 bg-[#fafbfa] p-4 grid grid-cols-2 gap-x-6 gap-y-4">
-          <div>
-            <label for="idioma" class="block text-[13px] font-semibold mb-1.5">Idioma</label>
-            <div class="flex items-center gap-3">
-              <span class="w-12 h-12 rounded-full bg-green-100 text-[#0f8a2f] flex items-center justify-center shrink-0"><i data-ic="globe" class="w-8 h-8"></i></span>
-              <select id="idioma" class="campo flex-1">
-                <option selected>Português (Brasil)</option>
-                <option>English</option>
-                <option>Español</option>
-              </select>
-            </div>
-          </div>
-          <div>
-            <label for="fuso" class="block text-[13px] font-semibold mb-1.5">Fuso horário</label>
-            <div class="flex items-center gap-3">
-              <span class="w-12 h-12 rounded-full bg-green-100 text-[#0f8a2f] flex items-center justify-center shrink-0"><i data-ic="clock" class="w-8 h-8"></i></span>
-              <select id="fuso" class="campo flex-1">
-                <option selected>(GMT-03:00) Brasília</option>
-                <option>(GMT-04:00) Manaus</option>
-                <option>(GMT-05:00) Rio Branco</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-4 flex items-center justify-between rounded-xl border border-gray-100 px-4 py-3">
-          <div class="flex items-center gap-4">
-            <span class="w-12 h-12 rounded-xl bg-green-100 text-[#0f8a2f] flex items-center justify-center shrink-0"><i data-ic="temp" class="w-8 h-8"></i></span>
-            <div>
-              <p class="text-[14px] font-bold text-black">Unidade de temperatura</p>
-              <p class="text-[12px] text-[#817979]">Escolha entre Celsius ou Fahrenheit.</p>
-            </div>
-          </div>
-          <div id="unidade-temp" class="flex items-center gap-1 rounded-full border border-gray-200 p-1">
-            <button type="button" data-un="C" class="un-btn"></button>
-            <button type="button" data-un="F" class="un-btn"></button>
-          </div>
-        </div>
-      </section>
-
       <!-- DADOS E PRIVACIDADE -->
       <section class="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-5 transition hover:-translate-y-0.5 hover:shadow-md">
         <div class="flex items-center gap-4">
@@ -313,7 +216,7 @@
   .campo:focus { outline: none; border-color: #078607; }
 </style>
 
-<script src="../script.js"></script>
+<script src="../script.js?v=20261113"></script>
 <script>
   const $ = id => document.getElementById(id);
 
@@ -330,12 +233,8 @@
     temp:   'termometro',    // temperatura (alerta, limite e unidade)
     drop:   'gota',          // umidade do solo
     lum:    'luminosidade',  // alerta de luminosidade elevada
-    sun:    'sol',           // limite de luminosidade
     wifi:   'sensor.off',    // sensor offline
-    mail:   'email',         // notificações por e-mail
     radio:  'sensor',        // seção Sensores
-    clock:  'horario',       // intervalo de leitura e fuso horário
-    globe:  'mundo',         // preferências do sistema e idioma
     shield: 'protecao',      // dados e privacidade
     db:     'relatorio',     // retenção do histórico
     down:   'baixar'         // exportar dados (e botões CSV/PDF)
@@ -344,13 +243,12 @@
   const aplicarIcones = () => document.querySelectorAll('i[data-ic]').forEach(el => { el.outerHTML = img(el.dataset.ic, el.className); });
 
   // ---------- NOTIFICAÇÕES ----------
-
   const notificacoes = [
-    { ic: 'temp', cor: 'bg-green-100 text-green-700',   titulo: 'Temperatura fora da faixa ideal', desc: 'Alerta quando a temperatura ultrapassar o limite configurado', ativo: true },
-    { ic: 'drop', cor: 'bg-teal-100 text-teal-700',     titulo: 'Umidade do solo baixa',           desc: 'Avisar quando for necessário irrigar',                         ativo: true },
-    { ic: 'lum',  cor: 'bg-yellow-100 text-yellow-600', titulo: 'Luminosidade elevada',            desc: 'Avisar sobre excesso de exposição solar',                      ativo: true },
-    { ic: 'wifi', cor: 'bg-blue-100 text-blue-600',     titulo: 'Sensor offline',                  desc: 'Avisar quando um sensor perder conexão',                       ativo: true },
-    { ic: 'mail', cor: 'bg-green-100 text-green-700',   titulo: 'Notificações por e-mail',         desc: 'Receber um resumo diário por e-mail',                          ativo: false }
+    { chave: 'notif_temperatura',    ic: 'temp', cor: 'bg-green-100 text-green-700',   titulo: 'Temperatura fora da faixa ideal', desc: 'Alerta quando a temperatura ultrapassar o limite configurado' },
+    { chave: 'notif_umidade_solo',   ic: 'drop', cor: 'bg-teal-100 text-teal-700',     titulo: 'Umidade do solo baixa',           desc: 'Avisar quando for necessário irrigar' },
+    { chave: 'notif_umidade_ar',     ic: 'drop', cor: 'bg-blue-100 text-blue-600',     titulo: 'Umidade do ar fora da faixa ideal', desc: 'Avisar quando a umidade do ar sair do limite configurado' },
+    { chave: 'notif_luminosidade',   ic: 'lum',  cor: 'bg-yellow-100 text-yellow-600', titulo: 'Luminosidade elevada',            desc: 'Avisar sobre excesso de exposição solar' },
+    { chave: 'notif_sensor_offline', ic: 'wifi', cor: 'bg-blue-100 text-blue-600',     titulo: 'Sensor offline',                  desc: 'Avisar quando um sensor perder conexão' }
   ];
 
   $('lista-notificacoes').innerHTML = notificacoes.map(n => `
@@ -363,26 +261,47 @@
         </div>
       </div>
       <label class="relative inline-flex items-center cursor-pointer">
-        <input type="checkbox" class="sr-only peer" ${n.ativo ? 'checked' : ''}>
+        <input type="checkbox" data-chave="${n.chave}" class="sr-only peer" checked>
         <div class="w-12 h-7 bg-gray-300 rounded-full peer peer-checked:bg-[#0f8a2f] transition-colors"></div>
         <div class="absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
       </label>
     </div>`).join('');
 
-  // ---------- UNIDADE DE TEMPERATURA ----------
-  let unidade = 'C';
-  function renderUnidade() {
-    document.querySelectorAll('.un-btn').forEach(b => {
-      const ativo = b.dataset.un === unidade;
-      b.textContent = '°' + b.dataset.un;
-      b.className = 'un-btn h-[34px] px-5 rounded-full text-[13px] font-semibold transition-colors ' +
-        (ativo ? 'bg-[#0f8a2f] text-white' : 'text-gray-600 hover:bg-gray-50');
-    });
-  }
-  document.querySelectorAll('.un-btn').forEach(b => b.addEventListener('click', () => { unidade = b.dataset.un; renderUnidade(); }));
-  renderUnidade();
+  let usuarioNotificacoes = usuarioAtual();
 
-  // TODO - INTEGRAÇÃO COM BACKEND: exportação de dados (CSV / PDF)
+  async function salvarPreferencia(input) {
+    if (!usuarioNotificacoes) return;
+
+    const valor = input.checked;
+    input.disabled = true;
+    try {
+      await apiFetch(`/usuarios/${usuarioNotificacoes.id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ [input.dataset.chave]: valor })
+      });
+    } catch (erro) {
+      input.checked = !valor;
+      alert(erro.message);
+    } finally {
+      input.disabled = false;
+    }
+  }
+
+  (async function carregarPreferencias() {
+    try {
+      const usuario = await apiFetch('/auth/me');
+      usuarioNotificacoes = usuario;
+    } catch (erro) {
+      console.warn('Não foi possível carregar as preferências de notificação:', erro);
+    }
+
+    document.querySelectorAll('#lista-notificacoes input[data-chave]').forEach(input => {
+      if (usuarioNotificacoes) input.checked = usuarioNotificacoes[input.dataset.chave] !== false;
+      input.addEventListener('change', () => salvarPreferencia(input));
+    });
+  })();
+
+  // Pendente: não existe endpoint de exportação de dados.
   $('exportar-csv').addEventListener('click', () => {});
   $('exportar-pdf').addEventListener('click', () => {});
 

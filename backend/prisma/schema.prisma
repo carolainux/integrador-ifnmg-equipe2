@@ -17,6 +17,15 @@ model Usuario {
   telefone  String   @unique
   criado_em DateTime @default(now())
 
+  reset_token_hash      String?
+  reset_token_expira_em DateTime?
+
+  notif_temperatura    Boolean @default(true)
+  notif_umidade_solo   Boolean @default(true)
+  notif_umidade_ar     Boolean @default(true)
+  notif_luminosidade   Boolean @default(true)
+  notif_sensor_offline Boolean @default(true)
+
   plantacoes Plantacao[]
   alertas    Alerta[]
 
@@ -50,12 +59,28 @@ enum tipoDispositivo {
   ESP8266
 }
 
+enum tipoCultura {
+  Milho
+  Feijao
+  Mandioca
+  Tomate
+  Abobora
+  Alface
+  Couve
+  Cebolinha
+  Coentro
+  Rucula
+  Fruticultura
+  Morango
+  Cereja
+}
+
 model Dispositivo {
-  id        String            @id @default(uuid())
+  id        String          @id @default(uuid())
   nome      String // Ex: "Arduino Mega 2560 - Kit 01"
   tipo      tipoDispositivo
-  status    Boolean @default(false)
-  criado_em DateTime          @default(now())
+  status    Boolean         @default(false)
+  criado_em DateTime        @default(now())
 
   plantacao Plantacao?
 
@@ -63,16 +88,19 @@ model Dispositivo {
 }
 
 model Plantacao {
-  id                   String    @id @default(uuid())
+  id                   String      @id @default(uuid())
   usuario_id           String
-  dispositivo_id       String    @unique
+  dispositivo_id       String      @unique
   nome                 String
-  tipo                 String
+  tipo                 tipoCultura
   data_inicio          DateTime
   data_colheita        DateTime?
   data_proximo_plantio DateTime?
+  tamanho_area         Float?
+  unidade_area         String? // ha, m², alq
+  espacamento_plantas  Float? // metros
   descricao            String?
-  criado_em            DateTime  @default(now())
+  criado_em            DateTime    @default(now())
 
   usuario     Usuario           @relation(fields: [usuario_id], references: [id], onDelete: Cascade)
   dispositivo Dispositivo       @relation(fields: [dispositivo_id], references: [id])
@@ -87,7 +115,7 @@ model Sensor {
   nome      String // Ex: "Sensor de Temperatura DHT11"
   tipo      tipoSensor
   unidade   String // Ex: "°C", "%", "Lux"
-  status    Boolean @default(false)
+  status    Boolean       @default(false)
   direcao   direcaoAlerta @default(ABAIXO)
   criado_em DateTime      @default(now())
 

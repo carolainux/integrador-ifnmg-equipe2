@@ -20,7 +20,7 @@
         .anim-subir    { opacity: 0; animation: subir 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; }
         .anim-aparecer { opacity: 0; animation: aparecer 1.2s ease-out forwards; }
 
-        
+
         @media (prefers-reduced-motion: reduce) {
             .anim-subir, .anim-aparecer { animation: none; opacity: 1; }
         }
@@ -132,7 +132,7 @@
         <!-- ================= LADO ESQUERDO: FORMULÁRIO ================= -->
         <section class="relative z-10 w-full md:w-[46%] h-screen bg-white">
 
-             
+
             <div class="anim-aparecer [animation-delay:300ms] absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
 
                 <!-- Folhas no canto superior esquerdo -->
@@ -240,6 +240,8 @@
                         <p class="mt-0.5 text-[16px] text-[#817979]">Faça login para continuar</p>
                     </div>
 
+                    <p id="erroLogin" class="hidden mb-2 px-3 py-2 rounded-xl bg-red-100 text-red-700 text-[14px] font-medium"></p>
+
                     <form id="formLogin" class="space-y-3">
 
                         <div class="anim-subir [animation-delay:450ms] relative">
@@ -260,7 +262,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a1.5 1.5 0 001.5-1.5v-8.25a1.5 1.5 0 00-1.5-1.5H6.75a1.5 1.5 0 00-1.5 1.5v8.25a1.5 1.5 0 001.5 1.5z" />
                                     </svg>
                                 </span>
-                                <input type="password" id="senha" name="senha" placeholder="Senha" required minlength="8"
+                                <input type="password" id="senha" name="senha" placeholder="Senha" required minlength="6"
                                     class="w-full h-[48px] rounded-xl border border-gray-300 bg-white shadow-sm pl-12 pr-14 text-[17px] text-[#5f5959] placeholder-[#5f5959] focus:outline-none focus:border-[#077C07] focus:ring-1 focus:ring-[#077C07]">
                                 <button type="button" onclick="mostrarSenha('senha', 'iconeSenha')" class="absolute right-5 top-1/2 -translate-y-1/2">
                                     <svg id="iconeSenha" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-black">
@@ -310,7 +312,7 @@
 
     </main>
 
-    <script src="../script.js"></script>
+    <script src="../script.js?v=20261113"></script>
     <script>
     (function () {
         const fz = document.getElementById('agricultor');
@@ -364,21 +366,47 @@
         }
 
         // ---------- ENVIO DO FORMULÁRIO ----------
-        form.addEventListener('submit', function (e) {
+        form.addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            if (this.checkValidity()) {
-                // TODO - INTEGRAÇÃO COM BACKEND: POST /auth/login
-                if (fz) fz.classList.remove('cobrindo');
-                if (chapeu && !reduzido) chapeu.classList.add('jogando');
-                setTimeout(() => { window.location.href = '../dashboard/index.html'; }, reduzido || !fz ? 0 : 1000);
-            } else {
+            if (!this.checkValidity()) {
                 if (cabeca && !reduzido) {
                     cabeca.classList.remove('negando');
                     void cabeca.getBoundingClientRect();
                     cabeca.classList.add('negando');
                 }
                 this.reportValidity();
+                return;
+            }
+
+            const botao = this.querySelector('button[type="submit"]');
+            const erroLogin = document.getElementById('erroLogin');
+            erroLogin.classList.add('hidden');
+            botao.disabled = true;
+
+            try {
+                const dados = await apiFetch('/auth/login', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        email: campoEmail.value.trim().toLowerCase(),
+                        senha: campoSenha.value
+                    })
+                });
+
+                salvarSessao(dados.token, dados.usuario);
+                if (fz) fz.classList.remove('cobrindo');
+                if (chapeu && !reduzido) chapeu.classList.add('jogando');
+                setTimeout(() => { window.location.href = '../dashboard/index.html'; }, reduzido || !fz ? 0 : 1000);
+            } catch (erro) {
+                erroLogin.textContent = erro.message;
+                erroLogin.classList.remove('hidden');
+                if (cabeca && !reduzido) {
+                    cabeca.classList.remove('negando');
+                    void cabeca.getBoundingClientRect();
+                    cabeca.classList.add('negando');
+                }
+            } finally {
+                botao.disabled = false;
             }
         });
     })();
