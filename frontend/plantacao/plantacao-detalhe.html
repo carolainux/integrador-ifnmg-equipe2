@@ -546,7 +546,8 @@ section.bg-white.px-6.py-5:hover {
       pointBackgroundColor: '#ffffff',
       pointBorderColor: cor,
       pointBorderWidth: 2,
-      pointRadius: 2.5,
+      // Com muitas leituras, as bolinhas escondem a linha; ficam só ao passar o mouse.
+      pointRadius: ctx => ctx.chart.data.labels.length > 48 ? 0 : 2.5,
       pointHoverRadius: 6,
       borderWidth: 2.5,
       tension: 0.35,
