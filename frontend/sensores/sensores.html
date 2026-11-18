@@ -119,7 +119,7 @@
   <main class="flex-1 overflow-y-auto">
 
     <!-- CABEÇALHO -->
-    <header class="flex items-center justify-between bg-white border-b border-gray-100 px-8 py-4">
+    <header class="flex flex-wrap lg:flex-nowrap items-center justify-between gap-3 lg:gap-0 bg-white border-b border-gray-100 px-4 py-3 lg:px-8 lg:py-4">
       <div class="flex items-center gap-4">
         <svg viewBox="0 0 42 34" fill="none" stroke="#0f8a2f" stroke-width="2.4" stroke-linecap="square" class="w-12 h-12">
           <path d="M5.63638 1.39106C2.63541 5.73836 0.994064 11.2256 1.00002 16.8911C1.00002 22.79 2.74183 28.1936 5.63638 32.3911M12.6182 25.3476C10.9814 22.9748 10.0867 19.9802 10.0909 16.8889C10.0909 13.6731 11.04 10.7258 12.6182 8.43451M36.3636 32.3889C39.3638 28.0427 41.0051 22.5572 41 16.8933C41 10.9966 39.2582 5.59292 36.3636 1.39326M29.3818 25.3454C31.0174 22.9743 31.912 19.9824 31.9091 16.8933C31.9129 13.8026 31.0182 10.8089 29.3818 8.43671M20.9982 19.0943C20.516 19.0943 20.0535 18.8624 19.7125 18.4497C19.3716 18.0369 19.18 17.477 19.18 16.8933C19.18 16.3095 19.3716 15.7496 19.7125 15.3369C20.0535 14.9241 20.516 14.6922 20.9982 14.6922C21.4804 14.6922 21.9429 14.9241 22.2838 15.3369C22.6248 15.7496 22.8164 16.3095 22.8164 16.8933C22.8164 17.477 22.6248 18.0369 22.2838 18.4497C21.9429 18.8624 21.4804 19.0943 20.9982 19.0943Z"/>
@@ -130,7 +130,7 @@
         </div>
       </div>
 
-      <div class="flex items-center gap-6 text-[12px] text-[#817979]">
+      <div class="flex items-center gap-4 lg:gap-6 text-[12px] text-[#817979]">
         <div class="flex items-center gap-3">
           <svg viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.6" class="w-7 h-7">
             <rect x="3" y="5" width="18" height="16" rx="2"/>
@@ -158,11 +158,11 @@
       </div>
     </header>
 
-    <div class="px-8 py-5">
+    <div class="px-4 py-4 lg:px-8 lg:py-5">
 
       <!-- BUSCA + FILTRO + BOTÃO -->
-      <div class="flex items-center gap-4">
-        <div class="relative flex-1">
+      <div class="flex flex-wrap lg:flex-nowrap items-center gap-3 lg:gap-4">
+        <div class="relative flex-1 basis-full lg:basis-auto">
           <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.2-5.2m0 0A7.5 7.5 0 105.2 5.2a7.5 7.5 0 0010.6 10.6z"/>
           </svg>
@@ -295,7 +295,7 @@
   </div>
 </div>
 
-<script src="../script.js?v=20261113"></script>
+<script src="../script.js?v=20261118"></script>
 <script>
   const $ = id => document.getElementById(id);
 
@@ -381,7 +381,7 @@
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
   const metrica = (rotulo, valor) => `
-    <div class="text-center w-[130px]">
+    <div class="text-center w-1/3 xl:w-[130px]">
       <p class="text-[14px] font-semibold text-black">${esc(valor)}</p>
       <p class="text-[12px] text-[#817979]">${rotulo}</p>
     </div>
@@ -404,18 +404,18 @@
       const t = tipos[s.tipo] || tipos['Temperatura'];
 
       return `
-        <div class="flex items-center justify-between bg-white rounded-2xl border border-gray-100 border-l-4 ${c.borda} shadow-sm px-5 py-4 transition hover:-translate-y-0.5 hover:shadow-md" data-id="${s.id}">
+        <div class="flex flex-wrap xl:flex-nowrap items-center justify-between gap-3 xl:gap-0 bg-white rounded-2xl border border-gray-100 border-l-4 ${c.borda} shadow-sm px-5 py-4 transition hover:-translate-y-0.5 hover:shadow-md" data-id="${s.id}">
 
-          <div class="flex items-center gap-4 w-[280px]">
+          <div class="flex items-center gap-4 w-full xl:w-[280px]">
             <div class="w-[64px] h-[64px] rounded-xl ${t.bg} flex items-center justify-center shrink-0">${iconeImg(t, s.tipo, 'w-14 h-14')}</div>
             <div>
               <p class="text-[17px] font-bold text-black">${esc(s.nome)}</p>
               <p class="text-[13px] text-[#817979] mt-1">${esc(s.tipo)}</p>
-              <p class="text-[13px] text-[#817979]">#${s.id}</p>
+              <p class="text-[13px] text-[#817979] break-all xl:break-normal">#${s.id}</p>
             </div>
           </div>
 
-          <div class="flex items-center border-l border-gray-200 pl-4">
+          <div class="flex items-center w-full xl:w-auto border-t xl:border-t-0 xl:border-l border-gray-200 pt-3 xl:pt-0 xl:pl-4">
             ${metrica('Leitura atual', s.leitura)}
             ${metrica('Última leitura', s.ultima)}
             ${metrica('Plantação', s.plantacao)}
@@ -425,7 +425,7 @@
             ${c.icone} ${s.status}
           </span>
 
-          <div class="flex items-center gap-2">
+          <div class="flex flex-wrap xl:flex-nowrap items-center gap-2">
             <button type="button" data-acao="ver" class="${btn} border-green-300 text-green-700 hover:bg-green-50">👁 Ver</button>
             <button type="button" data-acao="editar" class="${btn} border-gray-300 text-black hover:bg-gray-50">✏️ Editar</button>
             <button type="button" data-acao="excluir" class="${btn} border-red-200 text-red-600 bg-red-50/50 hover:bg-red-50">🗑 Excluir</button>
