@@ -157,10 +157,11 @@ model Alerta {
   id          String     @id @default(uuid())
   leitura_id  String
   usuario_id  String
-  tipo        tipoAlerta
-  mensagem    String
-  notificacao Boolean    @default(false)
-  gerado_em   DateTime   @default(now())
+  tipo         tipoAlerta
+  mensagem     String
+  notificacao  Boolean    @default(false)
+  gerado_em    DateTime   @default(now())
+  resolvido_em DateTime?
 
   leitura Leitura @relation(fields: [leitura_id], references: [id], onDelete: Cascade)
   usuario Usuario @relation(fields: [usuario_id], references: [id], onDelete: Cascade)

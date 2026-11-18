@@ -8,15 +8,17 @@ export const LeituraModel = {
     });
   },
 
-  async buscarTodos(pagina: number = 1, limite: number = 50) {
+  async buscarTodos(pagina: number = 1, limite: number = 50, usuario_id?: string) {
+    const where: Prisma.LeituraWhereInput = usuario_id ? { plantacao: { usuario_id } } : {};
     const [dados, total] = await Promise.all([
       prisma.leitura.findMany({
+        where,
         skip: (pagina - 1) * limite,
         take: limite,
         orderBy: { data_hora: 'desc' },
         include: { plantacao: { select: { id: true, nome: true } } },
       }),
-      prisma.leitura.count(),
+      prisma.leitura.count({ where }),
     ]);
     return { dados, total, pagina, totalPaginas: Math.ceil(total / limite) };
   },
@@ -24,7 +26,15 @@ export const LeituraModel = {
   async buscarPorId(id: string) {
     return await prisma.leitura.findUnique({
       where: { id },
-      include: { plantacao: { select: { id: true, nome: true } } },
+      include: { plantacao: { select: { id: true, nome: true, usuario_id: true } } },
+    });
+  },
+
+  async buscarParaExportacao(usuario_id: string) {
+    return await prisma.leitura.findMany({
+      where: { plantacao: { usuario_id } },
+      orderBy: { data_hora: 'desc' },
+      include: { plantacao: { select: { nome: true } } },
     });
   },
 

@@ -231,7 +231,8 @@
       plantacao: plantacao ? plantacao.nome : 'Plantação',
       cultura: plantacao ? rotuloCultura(plantacao.tipo) : '',
       data: data.toLocaleDateString('pt-BR'),
-      hora: data.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+      hora: data.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+      resolvido: Boolean(a.resolvido_em)
     };
   }
 
@@ -281,13 +282,14 @@
 
     $('lista-alertas').innerHTML = visiveis.map(a => {
       const s = estilo[a.cat];
+      const resolvido = a.resolvido;
       return `
-        <div class="flex items-center gap-5 rounded-2xl border border-gray-100 border-l-4 shadow-sm px-5 py-4 transition hover:-translate-y-0.5 hover:shadow-md ${s.card}">
-          <div class="w-[54px] h-[54px] shrink-0 rounded-full bg-white ring-2 ${s.anel} ${s.texto} flex items-center justify-center shadow-sm">
+        <div class="flex items-center gap-5 rounded-2xl border border-gray-100 border-l-4 shadow-sm px-5 py-4 transition hover:-translate-y-0.5 hover:shadow-md ${resolvido ? 'bg-gray-50/80 border-l-gray-300 opacity-70' : s.card}">
+          <div class="w-[54px] h-[54px] shrink-0 rounded-full bg-white ring-2 ${resolvido ? 'ring-gray-200 text-gray-400' : `${s.anel} ${s.texto}`} flex items-center justify-center shadow-sm">
             ${svg(P.alerta, 'w-6 h-6')}
           </div>
 
-          <span class="${s.badge} w-[78px] shrink-0 text-center text-[12px] font-bold px-3 py-1 rounded-full self-start mt-1">${s.rotulo}</span>
+          <span class="${resolvido ? 'bg-gray-100 text-gray-600' : s.badge} min-w-[78px] shrink-0 text-center text-[12px] font-bold px-3 py-1 rounded-full self-start mt-1">${resolvido ? 'Resolvido' : s.rotulo}</span>
 
           <div class="flex-1 min-w-0">
             <p class="text-[17px] font-bold text-black">${esc(a.titulo)}</p>
@@ -298,12 +300,15 @@
             </div>
           </div>
 
-          <div class="${s.chip} shrink-0 flex items-center gap-2 rounded-xl px-4 py-2 text-[12px]">
-            ${svg(P.cal, 'w-4 h-4')}
-            <div>
-              <p class="font-medium">${a.data}</p>
-              <p class="font-bold">${a.hora}</p>
+          <div class="flex items-center gap-3 shrink-0">
+            <div class="${resolvido ? 'bg-gray-100 text-gray-600' : s.chip} flex items-center gap-2 rounded-xl px-4 py-2 text-[12px]">
+              ${svg(P.cal, 'w-4 h-4')}
+              <div>
+                <p class="font-medium">${a.data}</p>
+                <p class="font-bold">${a.hora}</p>
+              </div>
             </div>
+            ${resolvido ? '' : `<button type="button" data-resolver="${a.id}" class="border border-green-300 text-green-700 text-[12px] font-semibold rounded-full px-4 py-1.5 hover:bg-green-50 transition-colors">Resolver</button>`}
           </div>
         </div>`;
     }).join('') || `<p class="text-center text-[14px] text-[#817979] py-10">${alertas.length ? 'Nenhum alerta encontrado na busca.' : 'Nenhum alerta registrado até agora.'}</p>`;
@@ -316,6 +321,23 @@
     b.addEventListener('click', () => { filtroAtual = b.dataset.filtro; render(); })
   );
   $('busca').addEventListener('input', render);
+
+  $('lista-alertas').addEventListener('click', async evento => {
+    const botao = evento.target.closest('[data-resolver]');
+    if (!botao) return;
+
+    const id = botao.dataset.resolver;
+    botao.disabled = true;
+    try {
+      await apiFetch(`/alertas/${id}/resolver`, { method: 'PATCH' });
+      const alerta = alertas.find(a => a.id === id);
+      if (alerta) alerta.resolvido = true;
+      render();
+    } catch (erro) {
+      botao.disabled = false;
+      alert(erro.message);
+    }
+  });
 
   carregarAlertas();
 </script>

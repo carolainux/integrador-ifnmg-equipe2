@@ -3,6 +3,7 @@ import { PlantacaoModel } from '../models/plantacao.model';
 import { DispositivoModel } from '../models/dispositivo.model';
 import { SensorModel } from '../models/sensor.model';
 import { findOrThrow } from '../utils/find-or-throw';
+import { verificarDono } from '../utils/authz';
 
 interface CriarPlantacaoDados {
   usuario_id: string;
@@ -54,20 +55,22 @@ export const PlantacaoService = {
     return resultado;
   },
 
-  async buscarPorId(id: string) {
-    return await findOrThrow(PlantacaoModel, id, 'plantação', true);
+  async buscarPorId(id: string, usuario_id?: string) {
+    const plantacao = await findOrThrow(PlantacaoModel, id, 'plantação', true);
+    if (usuario_id) verificarDono(plantacao.usuario_id, usuario_id);
+    return plantacao;
   },
 
-  async buscarTodos() {
-    return await PlantacaoModel.buscarTodos();
+  async buscarTodos(usuario_id: string) {
+    return await PlantacaoModel.buscarPorUsuario(usuario_id);
   },
 
   async buscarPorUsuario(usuario_id: string) {
     return await PlantacaoModel.buscarPorUsuario(usuario_id);
   },
 
-  async atualizar(id: string, dados: AtualizarPlantacaoDados) {
-    const plantacao = await PlantacaoService.buscarPorId(id);
+  async atualizar(id: string, dados: AtualizarPlantacaoDados, usuario_id: string) {
+    const plantacao = await PlantacaoService.buscarPorId(id, usuario_id);
     const atualizada = await PlantacaoModel.atualizar(id, dados);
 
     if (dados.dispositivo_id && dados.dispositivo_id !== plantacao.dispositivo_id) {
@@ -78,8 +81,8 @@ export const PlantacaoService = {
     return atualizada;
   },
 
-  async deletar(id: string) {
-    const plantacao = await PlantacaoService.buscarPorId(id);
+  async deletar(id: string, usuario_id: string) {
+    const plantacao = await PlantacaoService.buscarPorId(id, usuario_id);
     const sensores = plantacao.sensores;
     await PlantacaoModel.deletar(id);
     for (const vinculo of sensores) {

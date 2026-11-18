@@ -44,34 +44,50 @@ export const AlertaModel = {
     });
   },
 
-  async buscarTodos(pagina: number = 1, limite: number = 50) {
+  async buscarTodos(pagina: number = 1, limite: number = 50, usuario_id?: string) {
+    const where: Prisma.AlertaWhereInput = usuario_id ? { usuario_id } : {};
     const [dados, total] = await Promise.all([
       prisma.alerta.findMany({
+        where,
         skip: (pagina - 1) * limite,
         take: limite,
         orderBy: { gerado_em: 'desc' },
       }),
-      prisma.alerta.count(),
+      prisma.alerta.count({ where }),
     ]);
     return { dados, total, pagina, totalPaginas: Math.ceil(total / limite) };
   },
 
   async buscarResumo(plantacao_id: string) {
-    const [total, atencao, critico, ultimos7Dias, ultimo] = await Promise.all([
-      prisma.alerta.count({ where: { leitura: { plantacao_id } } }),
-      prisma.alerta.count({ where: { leitura: { plantacao_id }, tipo: 'Atencao' } }),
-      prisma.alerta.count({ where: { leitura: { plantacao_id }, tipo: 'Critico' } }),
+    const where = { leitura: { plantacao_id } };
+    const [total, abertos, resolvidos, atencao, critico, ultimos7Dias, ultimo] = await Promise.all([
+      prisma.alerta.count({ where }),
+      prisma.alerta.count({ where: { ...where, resolvido_em: null } }),
+      prisma.alerta.count({ where: { ...where, resolvido_em: { not: null } } }),
+      prisma.alerta.count({ where: { ...where, tipo: 'Atencao', resolvido_em: null } }),
+      prisma.alerta.count({ where: { ...where, tipo: 'Critico', resolvido_em: null } }),
       prisma.alerta.count({
-        where: { leitura: { plantacao_id }, gerado_em: { gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) } },
+        where: {
+          ...where,
+          resolvido_em: null,
+          gerado_em: { gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) },
+        },
       }),
       prisma.alerta.findFirst({
-        where: { leitura: { plantacao_id } },
+        where: { ...where, resolvido_em: null },
         orderBy: { gerado_em: 'desc' },
         select: { tipo: true, mensagem: true, gerado_em: true },
       }),
     ]);
 
-    return { total, atencao, critico, ultimos_7_dias: ultimos7Dias, ultimo_alerta: ultimo };
+    return { total, abertos, resolvidos, atencao, critico, ultimos_7_dias: ultimos7Dias, ultimo_alerta: ultimo };
+  },
+
+  async resolver(id: string) {
+    return await prisma.alerta.update({
+      where: { id },
+      data: { resolvido_em: new Date() },
+    });
   },
 
   async deletar(id: string) {

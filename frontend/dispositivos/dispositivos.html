@@ -280,6 +280,10 @@
         <span class="text-[#817979]">Status</span>
         <span id="det-status" class="text-[13px] font-semibold px-3 py-1 rounded-full"></span>
       </div>
+      <div id="det-conexao-linha" class="flex items-center justify-between border-b border-gray-100 pb-2">
+        <span class="text-[#817979]">Conexão</span>
+        <span id="det-conexao" class="text-[13px] font-semibold px-3 py-1 rounded-full"></span>
+      </div>
       <div class="flex items-center justify-between border-b border-gray-100 pb-2">
         <span class="text-[#817979]">Identificador</span>
         <span id="det-id" class="font-semibold text-black"></span>
@@ -400,6 +404,8 @@
       ativo: !!d.status,
       status: d.status ? 'Ativo' : 'Inativo',
       plantacao: d.plantacao || null,
+      online: d.online === true,
+      ultimaComunicacao: d.ultima_comunicacao || null,
       criado_em: d.criado_em
     };
   }
@@ -418,7 +424,7 @@
     try {
       const usuario = usuarioAtual() || await apiFetch('/auth/me');
       const alertas = await apiFetch(`/alertas/usuario/${usuario.id}`);
-      alertasAtivos = alertas.length;
+      alertasAtivos = alertas.filter(a => !a.resolvido_em).length;
       atualizarBadgeAlertas(alertas, usuario.id);
       atualizarResumo();
     } catch {}
@@ -426,17 +432,17 @@
 
   // ---------- RESUMO ----------
   function atualizarResumo() {
-    const total = dispositivos.length;
-    const online = dispositivos.filter(d => d.ativo).length;
-    const offline = total - online;
+    const vinculados = dispositivos.filter(d => d.plantacao).length;
+    const online = dispositivos.filter(d => d.online).length;
+    const offline = dispositivos.filter(d => d.plantacao && !d.online).length;
 
     $('res-conectados').textContent = online;
-    $('res-conectados-rotulo').textContent = online === 1 ? 'Dispositivo conectado' : 'Dispositivos conectados';
-    $('res-conectados-nota').textContent = `de ${total} cadastrados`;
+    $('res-conectados-rotulo').textContent = online === 1 ? 'Dispositivo online' : 'Dispositivos online';
+    $('res-conectados-nota').textContent = `de ${vinculados} vinculados`;
 
     $('res-offline').textContent = offline;
-    $('res-offline-rotulo').textContent = offline === 1 ? 'Dispositivo inativo' : 'Dispositivos inativos';
-    $('res-offline-nota').textContent = 'Status desativado no sistema';
+    $('res-offline-rotulo').textContent = offline === 1 ? 'Dispositivo offline' : 'Dispositivos offline';
+    $('res-offline-nota').textContent = 'Sem leitura recente';
 
     $('res-alertas').textContent = alertasAtivos;
   }
@@ -470,10 +476,11 @@
 
           <div class="text-[13px] font-semibold text-black">${esc(d.tipoLabel)}</div>
 
-          <div>
+          <div class="flex flex-col items-start gap-1">
             <span class="${c.badge} text-[13px] font-semibold px-3 py-1 rounded-full whitespace-nowrap">
               ${d.ativo ? '● ' : ''}${d.status}
             </span>
+            ${d.plantacao ? `<span class="${d.online ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'} text-[11px] font-semibold px-2.5 py-0.5 rounded-full whitespace-nowrap">${d.online ? 'Online' : 'Offline'}</span>` : ''}
           </div>
 
           <div class="text-[13px] text-gray-700">${d.plantacao ? esc(d.plantacao.nome) : '—'}</div>
@@ -525,6 +532,14 @@
     $('det-icone').innerHTML = `<img src="${imagemDe(d)}" alt="" class="w-11 h-11 object-contain">`;
     $('det-status').className = `text-[13px] font-semibold px-3 py-1 rounded-full ${c.badge}`;
     $('det-status').textContent = d.status;
+
+    if (d.plantacao) {
+      $('det-conexao-linha').classList.remove('hidden');
+      $('det-conexao').className = `text-[13px] font-semibold px-3 py-1 rounded-full ${d.online ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`;
+      $('det-conexao').textContent = d.online ? 'Online' : 'Offline';
+    } else {
+      $('det-conexao-linha').classList.add('hidden');
+    }
 
     modalDetalhes.classList.remove('hidden');
   }

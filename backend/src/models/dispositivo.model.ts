@@ -16,6 +16,12 @@ export const DispositivoModel = {
           select: {
             id: true,
             nome: true,
+            usuario_id: true,
+            leituras: {
+              orderBy: { data_hora: 'desc' },
+              take: 1,
+              select: { data_hora: true },
+            },
           },
         },
       },
@@ -29,6 +35,12 @@ export const DispositivoModel = {
           select: {
             id: true,
             nome: true,
+            usuario_id: true,
+            leituras: {
+              orderBy: { data_hora: 'desc' },
+              take: 1,
+              select: { data_hora: true },
+            },
           },
         },
       },

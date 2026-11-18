@@ -38,14 +38,17 @@ export const criarPlantacaoSchema = z.object({
   descricao: z.string().optional(),
 });
 
-export const atualizarPlantacaoSchema = criarPlantacaoSchema.partial().extend({
-  data_colheita: z.coerce.date().nullable().optional(),
-  data_proximo_plantio: z.coerce.date().nullable().optional(),
-  tamanho_area: z.number().nonnegative().nullable().optional(),
-  unidade_area: z.enum(['ha', 'm²', 'alq']).nullable().optional(),
-  espacamento_plantas: z.number().nonnegative().nullable().optional(),
-  descricao: z.string().nullable().optional(),
-});
+export const atualizarPlantacaoSchema = criarPlantacaoSchema
+  .omit({ usuario_id: true })
+  .partial()
+  .extend({
+    data_colheita: z.coerce.date().nullable().optional(),
+    data_proximo_plantio: z.coerce.date().nullable().optional(),
+    tamanho_area: z.number().nonnegative().nullable().optional(),
+    unidade_area: z.enum(['ha', 'm²', 'alq']).nullable().optional(),
+    espacamento_plantas: z.number().nonnegative().nullable().optional(),
+    descricao: z.string().nullable().optional(),
+  });
 
 export const criarSensorSchema = z.object({
   nome: z.string(),
@@ -64,7 +67,9 @@ export const criarPlantacaoSensorSchema = z.object({
   limite_critico: z.number().positive('Limite crítico deve ser positivo'),
 });
 
-export const atualizarPlantacaoSensorSchema = criarPlantacaoSensorSchema.partial();
+export const atualizarPlantacaoSensorSchema = criarPlantacaoSensorSchema
+  .omit({ plantacao_id: true, sensor_id: true })
+  .partial();
 
 export const criarLeituraSchema = z.object({
   plantacao_id: z.uuid('ID da plantação deve ser um UUID válido'),
@@ -74,7 +79,9 @@ export const criarLeituraSchema = z.object({
   luminosidade: z.number().min(0).max(100).optional(),
 });
 
-export const atualizarLeituraSchema = criarLeituraSchema.partial();
+export const atualizarLeituraSchema = criarLeituraSchema
+  .omit({ plantacao_id: true })
+  .partial();
 
 export const criarAlertaSchema = z.object({
   leitura_id: z.uuid(),

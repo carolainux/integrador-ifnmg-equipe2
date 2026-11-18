@@ -234,7 +234,7 @@
                 <img src="../assets/alerta.ativo.png" alt="" class="w-22 h-22 object-contain" />
               </div>
               <div class="min-w-0">
-                <p class="text-sm text-gray-500">Alertas registrados</p>
+                <p class="text-sm text-gray-500">Alertas ativos</p>
                 <p id="total-alertas" class="text-2xl font-bold text-gray-900 leading-tight">—</p>
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="absolute right-3 top-3 w-4 h-4 text-gray-300 transition group-hover:text-gray-500">
@@ -458,13 +458,12 @@
           };
         }));
 
-        const dispositivosDaConta = new Set(lista.map(p => p.dispositivo_id));
-        const conectados = dispositivos.filter(d => dispositivosDaConta.has(d.id) && d.status).length;
+        const conectados = dispositivos.filter(d => d.online === true).length;
 
         document.getElementById('saudacao').textContent = `Olá, ${usuario.nome || 'Usuário'}!`;
         document.getElementById('total-plantacoes').textContent = lista.length;
         document.getElementById('total-dispositivos').textContent = conectados;
-        document.getElementById('total-alertas').textContent = alertas.length;
+        document.getElementById('total-alertas').textContent = alertas.filter(a => !a.resolvido_em).length;
 
         atualizarBadgeAlertas(alertas, usuario.id);
 

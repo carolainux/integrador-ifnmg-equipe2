@@ -497,7 +497,7 @@ section.bg-white.px-6.py-5:hover {
           <span class="icone-caixa ic-alerta-verde rounded-full bg-green-100 text-green-700 flex items-center justify-center shrink-0">${svg(ICONES.check, '')}</span>
           <div class="flex-1">
             <p class="text-[13px] font-bold text-black leading-tight">Tudo sob controle</p>
-            <p class="text-[11px] text-[#817979] leading-tight mt-0.5">Nenhum alerta registrado para esta plantação.</p>
+            <p class="text-[11px] text-[#817979] leading-tight mt-0.5">Nenhum alerta ativo para esta plantação.</p>
           </div>
         </div>`;
       return;
@@ -737,7 +737,8 @@ section.bg-white.px-6.py-5:hover {
       ]);
 
       const ultima = dashboard ? dashboard.ultima : null;
-      const status = alertas.length ? (alertas[0].tipo === 'Critico' ? 'Crítico' : 'Atenção') : 'Ideal';
+      const alertasAbertos = alertas.filter(a => !a.resolvido_em);
+      const status = alertasAbertos.length ? (alertasAbertos[0].tipo === 'Critico' ? 'Crítico' : 'Atenção') : 'Ideal';
       const cultura = plantacao.tipo;
       const culturaNome = rotuloCultura(cultura);
       const img = imagens[cultura] || imagemPadrao;
@@ -772,7 +773,7 @@ section.bg-white.px-6.py-5:hover {
         : svg(ICONES.alerta, '');
 
       renderSensores(vinculos, ultima);
-      renderAlertas(alertas);
+      renderAlertas(alertasAbertos);
       carregarHistorico();
     } catch (erro) {
       $('titulo').textContent = 'Plantação não encontrada';

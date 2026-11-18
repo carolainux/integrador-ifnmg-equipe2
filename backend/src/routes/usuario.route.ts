@@ -7,9 +7,12 @@ import { criarUsuarioSchema, atualizarUsuarioSchema } from '../schemas/index';
 const router = Router();
 
 router.post('/', validate(criarUsuarioSchema), UsuarioController.criar);
+
+router.use(auth);
+
 router.get('/', UsuarioController.buscarTodos);
 router.get('/:id', UsuarioController.buscarPorId);
-router.put('/:id', auth, validate(atualizarUsuarioSchema), UsuarioController.atualizar);
-router.delete('/:id', auth, UsuarioController.deletar);
+router.put('/:id', validate(atualizarUsuarioSchema), UsuarioController.atualizar);
+router.delete('/:id', UsuarioController.deletar);
 
 export default router;

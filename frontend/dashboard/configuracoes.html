@@ -177,22 +177,6 @@
         <div class="mt-4 rounded-xl border border-gray-100 px-4 divide-y divide-gray-100">
           <div class="flex items-center justify-between py-3">
             <div class="flex items-center gap-4">
-              <span class="w-12 h-12 rounded-xl bg-green-100 text-[#0f8a2f] flex items-center justify-center shrink-0"><i data-ic="db" class="w-8 h-8"></i></span>
-              <div>
-                <p class="text-[14px] font-bold text-black">Retenção do histórico de leituras</p>
-                <p class="text-[12px] text-[#817979]">Por quanto tempo manter os dados dos sensores.</p>
-              </div>
-            </div>
-            <select id="retencao" class="campo w-[160px]">
-              <option>30 dias</option>
-              <option selected>90 dias</option>
-              <option>6 meses</option>
-              <option>1 ano</option>
-            </select>
-          </div>
-
-          <div class="flex items-center justify-between py-3">
-            <div class="flex items-center gap-4">
               <span class="w-12 h-12 rounded-xl bg-green-100 text-[#0f8a2f] flex items-center justify-center shrink-0"><i data-ic="down" class="w-8 h-8"></i></span>
               <div>
                 <p class="text-[14px] font-bold text-black">Exportar dados</p>
@@ -201,7 +185,6 @@
             </div>
             <div class="flex items-center gap-3">
               <button type="button" id="exportar-csv" class="flex items-center gap-2 h-[40px] border border-green-300 text-green-700 text-[13px] font-semibold rounded-full px-5 hover:bg-green-50 transition-colors"><i data-ic="down" class="w-5 h-5"></i>CSV</button>
-              <button type="button" id="exportar-pdf" class="flex items-center gap-2 h-[40px] border border-green-300 text-green-700 text-[13px] font-semibold rounded-full px-5 hover:bg-green-50 transition-colors"><i data-ic="down" class="w-5 h-5"></i>PDF</button>
             </div>
           </div>
         </div>
@@ -210,11 +193,6 @@
     </div>
   </main>
 </div>
-
-<style>
-  .campo { height: 44px; border-radius: 8px; border: 1px solid #9ca3af; background: #fff; padding: 0 16px; font-size: 14px; }
-  .campo:focus { outline: none; border-color: #078607; }
-</style>
 
 <script src="../script.js?v=20261113"></script>
 <script>
@@ -236,8 +214,7 @@
     wifi:   'sensor.off',    // sensor offline
     radio:  'sensor',        // seção Sensores
     shield: 'protecao',      // dados e privacidade
-    db:     'relatorio',     // retenção do histórico
-    down:   'baixar'         // exportar dados (e botões CSV/PDF)
+    down:   'baixar'         // exportar dados (CSV)
   };
   const img = (n, c) => `<img src="../assets/${IMG[n]}.png" alt="" class="${c} object-contain">`;
   const aplicarIcones = () => document.querySelectorAll('i[data-ic]').forEach(el => { el.outerHTML = img(el.dataset.ic, el.className); });
@@ -301,9 +278,41 @@
     });
   })();
 
-  // Pendente: não existe endpoint de exportação de dados.
-  $('exportar-csv').addEventListener('click', () => {});
-  $('exportar-pdf').addEventListener('click', () => {});
+  $('exportar-csv').addEventListener('click', async () => {
+    const botao = $('exportar-csv');
+    botao.disabled = true;
+
+    try {
+      const resposta = await fetch(`${API_BASE}/leituras/exportar`, {
+        headers: { Authorization: `Bearer ${tokenAtual()}` }
+      });
+
+      if (resposta.status === 401) {
+        limparSessao();
+        window.location.href = caminhoLogin();
+        return;
+      }
+
+      if (!resposta.ok) {
+        const erro = await resposta.json().catch(() => null);
+        throw new Error(erro?.erro || 'Não foi possível exportar os dados.');
+      }
+
+      const blob = await resposta.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'agrosensor-leituras.csv';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 0);
+    } catch (erro) {
+      alert(erro.message);
+    } finally {
+      botao.disabled = false;
+    }
+  });
 
   aplicarIcones();
 </script>

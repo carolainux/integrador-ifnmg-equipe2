@@ -27,6 +27,9 @@ Este documento descreve as principais regras de negócio implementadas no AgroSe
 | RN15 | As operações protegidas da API somente podem ser executadas mediante autenticação utilizando JSON Web Token (JWT). |
 | RN16 | O sistema deve manter separadas as responsabilidades entre controladores, serviços, modelos, rotas, middlewares e utilitários, conforme a arquitetura modular adotada. |
 | RN17 | O histórico de leituras ambientais não deve ser alterado após seu armazenamento, garantindo a integridade das informações registradas. |
+| RN18 | Cada usuário autenticado só pode acessar, alterar ou excluir suas próprias plantações, leituras, alertas e vínculos. Sensores e dispositivos livres podem ser compartilhados, mas os vinculados a uma plantação pertencem ao dono dela. |
+| RN19 | Um alerta pode ser marcado como resolvido; alertas resolvidos não contam como ativos e não influenciam o status da plantação. |
+| RN20 | O status de conexão de um dispositivo vinculado é derivado da última leitura da sua plantação; sem leitura nos últimos 10 minutos, o dispositivo é considerado offline. |
 
 ---
 

@@ -111,18 +111,6 @@ export const UsuarioModel = {
     });
   },
 
-  async buscarTodos() {
-    return await prisma.usuario.findMany({
-      select: {
-        id: true,
-        nome: true,
-        email: true,
-        telefone: true,
-        criado_em: true,
-      },
-    });
-  },
-
   async atualizar(id: string, data: Prisma.UsuarioUpdateInput) {
     return await prisma.usuario.update({
       where: { id },

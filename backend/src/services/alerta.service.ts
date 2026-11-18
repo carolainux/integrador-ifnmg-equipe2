@@ -4,6 +4,7 @@ import { LeituraModel } from '../models/leitura.model';
 import { PlantacaoModel } from '../models/plantacao.model';
 import { PlantacaoSensorModel } from '../models/plantacao-sensor.model';
 import { UsuarioModel } from '../models/usuario.model';
+import { exigirPlantacao, verificarDono } from '../utils/authz';
 import { findOrThrow } from '../utils/find-or-throw';
 import { enviarWhatsApp } from './whatsapp.service';
 
@@ -27,11 +28,14 @@ export const AlertaService = {
     return await AlertaModel.criar(alertaDados);
   },
 
-  async buscarPorId(id: string) {
-    return await findOrThrow(AlertaModel, id, 'alerta');
+  async buscarPorId(id: string, usuario_id?: string) {
+    const alerta = await findOrThrow(AlertaModel, id, 'alerta');
+    if (usuario_id) verificarDono(alerta.usuario_id, usuario_id);
+    return alerta;
   },
 
-  async buscarPorPlantacao(plantacao_id: string, limite?: number) {
+  async buscarPorPlantacao(plantacao_id: string, limite?: number, usuario_id?: string) {
+    if (usuario_id) await exigirPlantacao(plantacao_id, usuario_id);
     return await AlertaModel.buscarPorPlantacao(plantacao_id, limite);
   },
 
@@ -39,16 +43,23 @@ export const AlertaService = {
     return await AlertaModel.buscarPorUsuario(usuario_id);
   },
 
-  async buscarTodos(pagina?: number, limite?: number) {
-    return await AlertaModel.buscarTodos(pagina, limite);
+  async buscarTodos(pagina?: number, limite?: number, usuario_id?: string) {
+    return await AlertaModel.buscarTodos(pagina, limite, usuario_id);
   },
 
-  async buscarResumo(plantacao_id: string) {
+  async buscarResumo(plantacao_id: string, usuario_id?: string) {
+    if (usuario_id) await exigirPlantacao(plantacao_id, usuario_id);
     return await AlertaModel.buscarResumo(plantacao_id);
   },
 
-  async deletar(id: string) {
-    await AlertaService.buscarPorId(id);
+  async resolver(id: string, usuario_id: string) {
+    const alerta = await AlertaService.buscarPorId(id, usuario_id);
+    if (alerta.resolvido_em) return alerta;
+    return await AlertaModel.resolver(id);
+  },
+
+  async deletar(id: string, usuario_id?: string) {
+    await AlertaService.buscarPorId(id, usuario_id);
     await AlertaModel.deletar(id);
     return { mensagem: 'Alerta removido com sucesso.' };
   },

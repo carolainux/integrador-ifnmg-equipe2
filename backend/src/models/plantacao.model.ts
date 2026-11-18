@@ -44,30 +44,6 @@ export const PlantacaoModel = {
     });
   },
 
-  async buscarTodos() {
-    return await prisma.plantacao.findMany({
-      include: {
-        usuario: {
-          select: {
-            id: true,
-            nome: true,
-          },
-        },
-        dispositivo: {
-          select: {
-            id: true,
-            nome: true,
-          },
-        },
-        sensores: {
-          include: {
-            sensor: true,
-          },
-        },
-      },
-    });
-  },
-
   async buscarPorUsuario(usuario_id: string) {
     return await prisma.plantacao.findMany({
       where: { usuario_id },
