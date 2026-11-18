@@ -39,7 +39,13 @@ export const DispositivoController = {
 
   async deletar(req: Request, res: Response, _next: NextFunction) {
     const id = parseId(req);
-    await findOrThrow(DispositivoModel, id, 'dispositivo');
+    const dispositivo = await findOrThrow(DispositivoModel, id, 'dispositivo');
+    if (dispositivo.plantacao) {
+      throw Object.assign(
+        new Error(`Dispositivo vinculado à plantação "${dispositivo.plantacao.nome}". Desvincule-o antes de excluir.`),
+        { status: 409 }
+      );
+    }
     await DispositivoModel.deletar(id);
     return res.status(200).json({ mensagem: 'Dispositivo removido com sucesso.' });
   },

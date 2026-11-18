@@ -82,6 +82,17 @@ export const LeituraModel = {
     `;
   },
 
+  async buscarMaxTemperatura(plantacao_id: string, desde: Date) {
+    const agregado = await prisma.leitura.aggregate({
+      where: {
+        plantacao_id,
+        data_hora: { gte: desde },
+      },
+      _max: { temperatura: true },
+    });
+    return agregado._max.temperatura;
+  },
+
   async atualizar(id: string, data: Prisma.LeituraUpdateInput) {
     return await prisma.leitura.update({
       where: { id },

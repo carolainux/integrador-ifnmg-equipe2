@@ -75,12 +75,13 @@ export const LeituraService = {
     }
 
     const desde = new Date(Date.now() - config.horas * 60 * 60 * 1000);
-    const [{ leituras, total }, grafico] = await Promise.all([
+    const [{ leituras, total }, grafico, maxTemperatura] = await Promise.all([
       LeituraModel.buscarHistorico(plantacao_id, limite),
       LeituraModel.buscarSerieGrafico(plantacao_id, desde, config.bucketSegundos),
+      LeituraModel.buscarMaxTemperatura(plantacao_id, desde),
     ]);
 
-    return { periodo, leituras, grafico, total_leituras: total };
+    return { periodo, leituras, grafico, total_leituras: total, max_temperatura: maxTemperatura };
   },
 
   async atualizar(id: string, dados: Prisma.LeituraUpdateInput) {

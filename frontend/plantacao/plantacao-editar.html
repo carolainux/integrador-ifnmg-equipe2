@@ -249,11 +249,11 @@
           </div>
           <div>
             <label for="sensor-atencao" class="block text-[13px] font-semibold text-black mb-1">Limite de atenção <span id="sensor-atencao-unidade" class="font-normal text-[#817979]"></span></label>
-            <input type="number" id="sensor-atencao" min="0" step="0.01" disabled placeholder="Ex.: 30" class="w-full h-[44px] rounded-xl border border-gray-300 px-4 text-[14px] disabled:bg-gray-50 focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+            <input type="number" id="sensor-atencao" min="0" step="0.01" onwheel="this.blur()" disabled placeholder="Ex.: 30" class="w-full h-[44px] rounded-xl border border-gray-300 px-4 text-[14px] disabled:bg-gray-50 focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
           </div>
           <div>
             <label for="sensor-critico" class="block text-[13px] font-semibold text-black mb-1">Limite crítico <span id="sensor-critico-unidade" class="font-normal text-[#817979]"></span></label>
-            <input type="number" id="sensor-critico" min="0" step="0.01" disabled placeholder="Ex.: 35" class="w-full h-[44px] rounded-xl border border-gray-300 px-4 text-[14px] disabled:bg-gray-50 focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
+            <input type="number" id="sensor-critico" min="0" step="0.01" onwheel="this.blur()" disabled placeholder="Ex.: 35" class="w-full h-[44px] rounded-xl border border-gray-300 px-4 text-[14px] disabled:bg-gray-50 focus:outline-none focus:border-[#078607] focus:ring-1 focus:ring-[#078607]">
           </div>
           <button type="button" id="btn-adicionar-sensor" disabled class="h-[44px] rounded-xl bg-[#078607] px-6 text-[14px] font-bold text-white transition-colors hover:bg-[#067306] disabled:cursor-not-allowed disabled:bg-gray-300">Adicionar</button>
         </div>
@@ -586,6 +586,11 @@
     if (!$('dispositivo').value) {
       erroForm.textContent = 'Selecione um dispositivo disponível.';
       erroForm.classList.remove('hidden');
+      return;
+    }
+    if ($('sensor-select').value && !sensoresSelecionados.some(s => s.sensor_id === $('sensor-select').value)) {
+      $('sensor-erro').textContent = 'Clique em Adicionar para incluir o sensor selecionado.';
+      $('sensor-erro').classList.remove('hidden');
       return;
     }
     $('data-erro').classList.add('hidden');
