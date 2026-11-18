@@ -156,6 +156,50 @@ async function carregarResumoPlantacao(plantacao_id) {
     };
 }
 
+
+/* Responsividade: em telas menores que 1024 px o menu lateral vira uma gaveta,
+   aberta pelo botão da barra superior. Os estilos ficam no style.css. */
+function prepararMenuResponsivo() {
+    const menu = document.querySelector('aside[class*="w-[260px]"]');
+    if (!menu) return;
+
+    const barra = document.createElement('div');
+    barra.className = 'menu-topo';
+    barra.innerHTML = `
+        <button type="button" aria-label="Abrir menu" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+                <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+        <span>AgroSensor</span>`;
+
+    const fundo = document.createElement('div');
+    fundo.className = 'menu-fundo';
+
+    document.body.appendChild(barra);
+    document.body.appendChild(fundo);
+    document.body.classList.add('tem-menu-topo');
+
+    const botao = barra.querySelector('button');
+    const fechar = () => {
+        document.body.classList.remove('menu-aberto');
+        botao.setAttribute('aria-expanded', 'false');
+    };
+
+    botao.addEventListener('click', () => {
+        const aberto = document.body.classList.toggle('menu-aberto');
+        botao.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+    });
+    fundo.addEventListener('click', fechar);
+    menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', fechar));
+    document.addEventListener('keydown', (evento) => {
+        if (evento.key === 'Escape') fechar();
+    });
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024) fechar();
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const pagina = location.pathname.split('/').pop();
     const publicas = ['login.html', 'cadastro.html', 'senha.html', 'redefinir-senha.html'];
@@ -164,6 +208,8 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = caminhoLogin();
         return;
     }
+
+    prepararMenuResponsivo();
 
     if (!publicas.includes(pagina) && !['index.html', 'alertas.html', 'dispositivos.html'].includes(pagina)) {
         sincronizarBadgeAlertas();

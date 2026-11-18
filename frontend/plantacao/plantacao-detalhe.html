@@ -119,7 +119,7 @@
   <main class="flex-1 overflow-y-auto">
 
     <!-- CABEÇALHO -->
-    <header class="flex items-center justify-between bg-white border-b border-gray-100 px-8 py-4">
+    <header class="flex flex-wrap lg:flex-nowrap items-center justify-between gap-3 lg:gap-0 bg-white border-b border-gray-100 px-4 py-3 lg:px-8 lg:py-4">
       <div class="flex items-center gap-4">
         <div class="icone-caixa ic-header rounded-xl bg-green-100 flex items-center justify-center overflow-hidden shrink-0">
           <img id="img-cultura" src="" alt="">
@@ -135,7 +135,7 @@
         </div>
       </div>
 
-      <div class="flex items-center gap-6 text-[12px] text-[#817979]">
+      <div class="flex items-center gap-4 lg:gap-6 text-[12px] text-[#817979]">
         <div class="flex items-center gap-3">
           <svg viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.6" class="w-7 h-7"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
           <div>
@@ -156,10 +156,10 @@
       </div>
     </header>
 
-    <div class="px-8 py-5 space-y-5">
+    <div class="px-4 py-4 lg:px-8 lg:py-5 space-y-5">
 
       <!-- VOLTAR + BREADCRUMB + EDITAR -->
-      <div class="flex items-center justify-between">
+      <div class="flex flex-wrap lg:flex-nowrap items-center justify-between gap-3 lg:gap-0">
         <div class="flex items-center gap-4">
           <a href="plantacoes.html" id="btn-voltar" class="inline-flex items-center gap-2 h-[40px] bg-white border border-gray-200 rounded-xl px-5 text-[13px] font-semibold text-gray-700 shadow-sm hover:bg-gray-50 transition-colors">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
@@ -179,7 +179,7 @@
       </div>
 
       <!-- CARDS DE INFORMAÇÃO -->
-      <div class="grid grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
         <div class="flex items-center gap-4 bg-white rounded-2xl border border-gray-100 shadow-sm px-5 py-4">
           <span class="icone-caixa ic-cultura rounded-xl bg-green-100 flex items-center justify-center shrink-0 overflow-hidden"><img id="img-cultura-card" src="" alt=""></span>
@@ -216,7 +216,7 @@
       </div>
 
       <!-- LEITURAS ATUAIS (mesmas da lista de plantações) -->
-      <div class="grid grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
         <div class="flex items-center gap-4 bg-white rounded-2xl border border-gray-100 shadow-sm px-5 py-4">
           <span class="w-12 h-12 rounded-xl bg-green-100 text-2xl flex items-center justify-center shrink-0">💧</span>
@@ -252,7 +252,7 @@
             <span class="icone-caixa ic-graf rounded-xl bg-green-100 flex items-center justify-center shrink-0 overflow-hidden"><img src="../assets/graf.png" alt=""></span>
             <h2 id="titulo-grafico" class="text-[18px] font-bold text-black leading-tight">Temperatura e Umidade - 24h</h2>
           </div>
-          <div id="abas-periodo" class="flex flex-wrap items-center gap-1 rounded-full border border-gray-200 p-1">
+          <div id="abas-periodo" class="flex flex-wrap items-center gap-1 rounded-2xl lg:rounded-full border border-gray-200 p-1">
             <button type="button" data-periodo="24h" class="aba-periodo">24h</button>
             <button type="button" data-periodo="7d" class="aba-periodo">7 dias</button>
             <button type="button" data-periodo="30d" class="aba-periodo">30 dias</button>
@@ -283,7 +283,7 @@
       </section>
 
       <!-- SENSORES E ALERTAS -->
-      <div class="grid grid-cols-2 gap-5">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
         <!-- SENSORES ASSOCIADOS -->
         <section class="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-5">
@@ -325,7 +325,7 @@
           <h2 class="text-[18px] font-bold text-black leading-tight">Histórico de Leituras</h2>
         </div>
 
-        <div class="mt-4 rounded-xl border border-gray-100 overflow-hidden">
+        <div class="mt-4 rounded-xl border border-gray-100 overflow-x-auto lg:overflow-hidden">
           <table class="w-full text-[13px] text-left">
             <thead>
               <tr class="bg-[#fafbfa] text-[#817979] border-b border-gray-100">
@@ -393,7 +393,7 @@ section.bg-white.px-6.py-5:hover {
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="../script.js?v=20261113"></script>
+<script src="../script.js?v=20261118"></script>
 <script>
   const $ = id => document.getElementById(id);
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));

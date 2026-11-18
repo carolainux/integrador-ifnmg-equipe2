@@ -1,0 +1,73 @@
+
+/* ==========================================================
+   Responsividade — menu lateral recolhível em telas menores que 1024 px.
+   Em telas maiores nada muda: as regras abaixo só valem dentro do @media.
+   O botão e o fundo escuro são criados pelo script.js (prepararMenuResponsivo).
+   ========================================================== */
+.menu-topo,
+.menu-fundo {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  aside[class*="w-[260px]"] {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100% !important;
+    z-index: 60;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+  }
+
+  body.menu-aberto aside[class*="w-[260px]"] {
+    transform: translateX(0);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .menu-fundo {
+    position: fixed;
+    inset: 0;
+    z-index: 55;
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  body.menu-aberto .menu-fundo {
+    display: block;
+  }
+
+  .menu-topo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    padding: 0 16px;
+    z-index: 50;
+    background: linear-gradient(90deg, #05452a, #022a16);
+    color: #fff;
+  }
+
+  .menu-topo button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .menu-topo span {
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  body.tem-menu-topo main {
+    padding-top: 56px;
+  }
+}
