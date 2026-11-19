@@ -215,14 +215,20 @@ document.addEventListener('DOMContentLoaded', () => {
         sincronizarBadgeAlertas();
     }
 
-    document.querySelectorAll('a').forEach((link) => {
+        document.querySelectorAll('a').forEach((link) => {
         if (link.textContent.trim() === 'Sair') {
-            link.addEventListener('click', limparSessao);
+            link.addEventListener('click', (evento) => {
+                if (!confirm('Tem certeza que deseja sair?')) {
+                    evento.preventDefault(); // cancela: continua na tela atual
+                    return;
+                }
+                limparSessao(); // confirmou: apaga a sessão e segue para o login
+            });
         }
     });
 });
 // ---------- CLIMA (compartilhado entre todas as telas) ----------
-const CLIMA_CIDADE_PADRAO = { lat: -17.2, lon: -42.4 }; // troque pela cidade da sua plantação
+const CLIMA_CIDADE_PADRAO = { lat: -16.85, lon: -42.06 }; // Araçuaí - MG
 const CLIMA_CACHE_MIN = 30;
 
 const codigosClima = {

@@ -313,12 +313,12 @@
     luminosidade: 'Luminosidade'
   };
     // ---------- UNIDADES POR TIPO DE SENSOR ----------
-  const unidadesPorTipo = {
-    temperatura: ['°C', '°F'],
-    umidade_solo: ['%'],
-    umidade_ar: ['%'],
-    luminosidade: ['Lux']
-  };
+ const unidadesPorTipo = {
+  temperatura: ['°C'],
+  umidade_solo: ['%'],
+  umidade_ar: ['%'],
+  luminosidade: ['%']
+};
 
   function preencherUnidades(tipo, unidadeAtual) {
     const select = $('form-unidade');
