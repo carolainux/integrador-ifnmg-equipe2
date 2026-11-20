@@ -670,14 +670,13 @@ estático com Tailwind via CDN e JavaScript centralizado em `frontend/script.js`
   `frontend/dispositivos/dispositivos.html`
 
 A sessão, o `fetch` autenticado, o redirecionamento em 401 e o badge de alertas não vistos ficam em
-`frontend/script.js`. Nesta branch o clima ainda é simulado; o PR #126 implementa Open-Meteo. A
-verificação de WhatsApp também é simulada.
+`frontend/script.js`. O clima usa Open-Meteo, com cache de 30 min e fallback para Araçuaí. A
+verificação de WhatsApp ainda é simulada.
 
 ---
 
 # 🔮 Trabalhos Futuros
 
-- integração de clima real (ou remoção do bloco simulado);
 - configuração de API por ambiente, CORS e HTTPS quando houver deploy;
 - testes automatizados, lint e CI;
 - validação de responsividade e usabilidade (QA);
