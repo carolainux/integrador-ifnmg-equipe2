@@ -3,11 +3,13 @@ import { prisma } from "../src/lib/prisma";
 import { tipoSensor, tipoDispositivo, tipoAlerta, direcaoAlerta} from "../generated/prisma/client";
 
 async function main() {
+  console.warn("⚠️  ATENÇÃO: este seed apaga TODOS os dados e recria o cenário de demonstração.");
   console.log("🌱 Iniciando o seeding do banco de dados...");
 
   await prisma.alerta.deleteMany();
   await prisma.leitura.deleteMany();
   await prisma.plantacaoSensor.deleteMany();
+  await prisma.plantacao.deleteMany();
 
   await prisma.usuario.deleteMany();
   await prisma.dispositivo.deleteMany();
