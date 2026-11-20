@@ -421,8 +421,19 @@ npx tsc --noEmit
 
 Além disso, sobem-se backend e frontend e testam-se os fluxos com `curl` e pelo navegador.
 
-Os testes funcionais já cobriram autenticação, cadastro, plantações, sensores, dispositivos,
-leituras, alertas, resolução de alertas, exportação CSV, comunicação Gateway/Backend e notificações.
+Testes realizados pela equipe, em ambiente local e controlado:
+
+- **Projeto Integrador I:** geração de alertas a partir de leituras fora dos limites, registro no
+  banco e envio de notificações por WhatsApp (CallMeBot).
+- **Casos de teste da interface:** autenticação, cadastro de plantações, sensores e dispositivos,
+  exibição de leituras e alertas e uso dos limites.
+- **Ensaio com o kit de sensores (19 e 20/11/2026):** cerca de 18 horas de funcionamento contínuo,
+  Arduino → Gateway → API → banco → interface.
+- **Reteste das correções do PR #130 (20/11/2026):** proteção das rotas por *token*, isolamento
+  dos dados por usuário, resolução de alertas, status online/offline e exportação CSV.
+
+Ainda não testados: a recuperação de senha por e-mail e o aviso por WhatsApp de dispositivo
+offline. O sistema não foi testado em campo nem com agricultores.
 
 ---
 
@@ -469,7 +480,7 @@ Instale as dependências com a versão do Node fixada:
 npm install
 ```
 
-Não existe `backend/.env.exemplo` nesta branch; crie `backend/.env` manualmente. O contrato está em
+O backend não tem arquivo `.env.exemplo`; crie `backend/.env` manualmente. O contrato está em
 `backend/src/env/index.ts`:
 
 ```bash
