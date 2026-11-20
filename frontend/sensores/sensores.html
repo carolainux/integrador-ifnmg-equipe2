@@ -102,17 +102,17 @@
           </svg>
           Ajuda
         </a>
+              <a href="../user/login.html"
+           class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-white/90 font-medium hover:bg-red-500/30 hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+            <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H3" />
+          </svg>
+          Sair
+        </a>
+
       </nav>
     </div>
 
-    <div class="px-3 pb-6 pt-4">
-      <a href="../user/login.html" class="inline-flex items-center gap-3 px-5 py-2.5 rounded-xl border border-white/30 text-white/90 font-medium hover:bg-white/10 transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-          <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H3"/>
-        </svg>
-        Sair
-      </a>
-    </div>
   </aside>
 
   <!-- CONTEÚDO -->
@@ -143,12 +143,12 @@
         </div>
 
         <div class="flex items-center gap-3">
-          <span class="text-3xl">☀️</span>
-          <div>
-            <p class="text-[16px] font-bold text-black">26°C</p>
-            <p>Céu limpo</p>
-          </div>
-        </div>
+  <span id="clima-icone" class="text-3xl">⛅</span>
+  <div>
+    <p id="clima-temp" class="text-[16px] font-bold text-black">--°C</p>
+    <p id="clima-desc">Carregando...</p>
+  </div>
+</div>
 
         <div class="w-10 h-10 rounded-full bg-[#05452a] text-white flex items-center justify-center">
           <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
@@ -262,7 +262,7 @@
 
       <div>
         <label for="form-unidade" class="block text-[14px] font-semibold mb-1">Unidade</label>
-        <input id="form-unidade" required placeholder="Ex: °C, %, Lux" class="w-full h-[44px] rounded-lg border border-gray-400 px-4 text-[14px] focus:outline-none focus:border-[#078607]">
+        <select id="form-unidade" required class="w-full h-[44px] rounded-lg border border-gray-400 px-4 text-[14px]"></select>
       </div>
 
       <div>
@@ -312,6 +312,24 @@
     umidade_ar: 'Umidade do Ar',
     luminosidade: 'Luminosidade'
   };
+    // ---------- UNIDADES POR TIPO DE SENSOR ----------
+ const unidadesPorTipo = {
+  temperatura: ['°C'],
+  umidade_solo: ['%'],
+  umidade_ar: ['%'],
+  luminosidade: ['%']
+};
+
+  function preencherUnidades(tipo, unidadeAtual) {
+    const select = $('form-unidade');
+    const opcoes = [...(unidadesPorTipo[tipo] || [])];
+
+    // Se o sensor já tem uma unidade que não está na lista (cadastro antigo), mantém para não perder o dado
+    if (unidadeAtual && !opcoes.includes(unidadeAtual)) opcoes.push(unidadeAtual);
+
+    select.innerHTML = opcoes.map(u => `<option value="${esc(u)}">${esc(u)}</option>`).join('');
+    select.value = unidadeAtual && opcoes.includes(unidadeAtual) ? unidadeAtual : opcoes[0];
+  }
 
   let sensores = [];
 
@@ -479,13 +497,15 @@
     $('form-id').value = editando ? s.id : '';
     $('form-nome').value = editando ? s.nome : '';
     $('form-tipo').value = editando ? s.tipoEnum : 'temperatura';
-    $('form-unidade').value = editando ? s.unidade : '';
+    preencherUnidades($('form-tipo').value, editando ? s.unidade : '');
     $('form-direcao').value = editando ? s.direcao : 'ABAIXO';
 
     modalForm.classList.remove('hidden');
   }
 
   const fecharForm = () => modalForm.classList.add('hidden');
+  
+  $('form-tipo').addEventListener('change', () => preencherUnidades($('form-tipo').value));
 
   $('btn-novo').addEventListener('click', () => abrirForm(null));
   $('fechar-form').addEventListener('click', fecharForm);
