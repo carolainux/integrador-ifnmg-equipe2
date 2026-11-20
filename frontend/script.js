@@ -213,12 +213,93 @@ document.addEventListener('DOMContentLoaded', () => {
         sincronizarBadgeAlertas();
     }
 
-    document.querySelectorAll('a').forEach((link) => {
+        document.querySelectorAll('a').forEach((link) => {
         if (link.textContent.trim() === 'Sair') {
-            link.addEventListener('click', limparSessao);
+            link.addEventListener('click', (evento) => {
+                if (!confirm('Tem certeza que deseja sair?')) {
+                    evento.preventDefault(); // cancela: continua na tela atual
+                    return;
+                }
+                limparSessao(); // confirmou: apaga a sessão e segue para o login
+            });
         }
     });
 });
+// ---------- CLIMA (compartilhado entre todas as telas) ----------
+const CLIMA_CIDADE_PADRAO = { lat: -16.85, lon: -42.06 }; // Araçuaí - MG
+const CLIMA_CACHE_MIN = 30;
+
+const codigosClima = {
+  0:  ['Céu limpo', '☀️'],
+  1:  ['Predomínio de sol', '🌤️'],
+  2:  ['Parcialmente nublado', '⛅'],
+  3:  ['Nublado', '☁️'],
+  45: ['Neblina', '🌫️'],
+  48: ['Neblina', '🌫️'],
+  51: ['Garoa leve', '🌦️'],
+  53: ['Garoa', '🌦️'],
+  55: ['Garoa forte', '🌦️'],
+  61: ['Chuva leve', '🌧️'],
+  63: ['Chuva', '🌧️'],
+  65: ['Chuva forte', '🌧️'],
+  80: ['Pancadas de chuva', '🌦️'],
+  81: ['Pancadas de chuva', '🌦️'],
+  82: ['Pancadas fortes', '⛈️'],
+  95: ['Tempestade', '⛈️'],
+  96: ['Tempestade com granizo', '⛈️'],
+  99: ['Tempestade com granizo', '⛈️']
+};
+
+function mostrarClima({ temp, codigo }) {
+  const [descricao, icone] = codigosClima[codigo] || ['—', '🌡️'];
+  const t = document.getElementById('clima-temp');
+  const d = document.getElementById('clima-desc');
+  const i = document.getElementById('clima-icone');
+  if (t) t.textContent = `${Math.round(temp)}°C`;
+  if (d) d.textContent = descricao;
+  if (i) i.textContent = icone;
+}
+
+function obterPosicao() {
+  return new Promise(resolve => {
+    if (!navigator.geolocation) return resolve(CLIMA_CIDADE_PADRAO);
+    navigator.geolocation.getCurrentPosition(
+      p => resolve({ lat: p.coords.latitude, lon: p.coords.longitude }),
+      () => resolve(CLIMA_CIDADE_PADRAO),
+      { timeout: 5000, maximumAge: 3600000 }
+    );
+  });
+}
+
+async function carregarClima() {
+  if (!document.getElementById('clima-temp')) return; // tela sem widget
+
+  // 1) usa o cache se ainda for recente
+  try {
+    const cache = JSON.parse(localStorage.getItem('clima-cache'));
+    if (cache && Date.now() - cache.hora < CLIMA_CACHE_MIN * 60000) {
+      mostrarClima(cache.dados);
+      return;
+    }
+  } catch (_) {}
+
+  // 2) busca na API
+  try {
+    const { lat, lon } = await obterPosicao();
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&timezone=auto`;
+    const resp = await fetch(url);
+    const json = await resp.json();
+
+    const dados = { temp: json.current.temperature_2m, codigo: json.current.weather_code };
+    localStorage.setItem('clima-cache', JSON.stringify({ hora: Date.now(), dados }));
+    mostrarClima(dados);
+  } catch (erro) {
+    const d = document.getElementById('clima-desc');
+    if (d) d.textContent = 'Clima indisponível';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', carregarClima);
 
 /* ==========================================================
    Integração pendente
