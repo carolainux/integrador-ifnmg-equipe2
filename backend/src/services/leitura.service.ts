@@ -2,6 +2,7 @@ import { Prisma, tipoSensor } from '../../generated/prisma/client';
 import { AlertaService } from './alerta.service';
 import { LeituraModel } from '../models/leitura.model';
 import { PlantacaoSensorModel } from '../models/plantacao-sensor.model';
+import { exigirPlantacao, verificarDono } from '../utils/authz';
 import { findOrThrow } from '../utils/find-or-throw';
 
 type CamposLeitura = Pick<Prisma.LeituraCreateInput, 'temperatura' | 'umidade_ar' | 'umidade_solo' | 'luminosidade'>;
@@ -27,6 +28,11 @@ const periodos = {
 } as const;
 
 type Periodo = keyof typeof periodos;
+
+function csvValor(valor: string | number | null | undefined): string {
+  const texto = valor == null ? '' : String(valor);
+  return /[",\r\n]/.test(texto) ? `"${texto.replace(/"/g, '""')}"` : texto;
+}
 
 export const LeituraService = {
   async criar(payload: CriarLeituraDados) {
@@ -56,40 +62,62 @@ export const LeituraService = {
     return resultado;
   },
 
-  async buscarTodos(pagina?: number, limite?: number) {
-    return await LeituraModel.buscarTodos(pagina, limite);
+  async buscarTodos(pagina?: number, limite?: number, usuario_id?: string) {
+    return await LeituraModel.buscarTodos(pagina, limite, usuario_id);
   },
 
-  async buscarPorId(id: string) {
-    return await findOrThrow(LeituraModel, id, 'leitura', true);
+  async exportarCsv(usuario_id: string) {
+    const leituras = await LeituraModel.buscarParaExportacao(usuario_id);
+    const cabecalho = ['plantacao', 'data_hora', 'umidade_solo', 'umidade_ar', 'temperatura', 'luminosidade'];
+    const linhas = leituras.map(leitura => [
+      leitura.plantacao.nome,
+      leitura.data_hora.toISOString(),
+      leitura.umidade_solo,
+      leitura.umidade_ar,
+      leitura.temperatura,
+      leitura.luminosidade,
+    ]);
+
+    return [cabecalho, ...linhas]
+      .map(linha => linha.map(csvValor).join(','))
+      .join('\r\n');
   },
 
-  async obterDadosDashboard(plantacao_id: string) {
+  async buscarPorId(id: string, usuario_id?: string) {
+    const leitura = await findOrThrow(LeituraModel, id, 'leitura', true);
+    if (usuario_id) verificarDono(leitura.plantacao.usuario_id, usuario_id);
+    return leitura;
+  },
+
+  async obterDadosDashboard(plantacao_id: string, usuario_id?: string) {
+    if (usuario_id) await exigirPlantacao(plantacao_id, usuario_id);
     return await LeituraModel.buscarDadosDashboard(plantacao_id);
   },
 
-  async obterHistorico(plantacao_id: string, periodo: string, limite: number) {
+  async obterHistorico(plantacao_id: string, periodo: string, limite: number, usuario_id?: string) {
+    if (usuario_id) await exigirPlantacao(plantacao_id, usuario_id);
     const config = periodos[periodo as Periodo];
     if (!config) {
       throw Object.assign(new Error('Período inválido. Use 24h, 7d, 30d, 90d, 180d ou 365d.'), { status: 400 });
     }
 
     const desde = new Date(Date.now() - config.horas * 60 * 60 * 1000);
-    const [{ leituras, total }, grafico] = await Promise.all([
+    const [{ leituras, total }, grafico, maxTemperatura] = await Promise.all([
       LeituraModel.buscarHistorico(plantacao_id, limite),
       LeituraModel.buscarSerieGrafico(plantacao_id, desde, config.bucketSegundos),
+      LeituraModel.buscarMaxTemperatura(plantacao_id, desde),
     ]);
 
-    return { periodo, leituras, grafico, total_leituras: total };
+    return { periodo, leituras, grafico, total_leituras: total, max_temperatura: maxTemperatura };
   },
 
-  async atualizar(id: string, dados: Prisma.LeituraUpdateInput) {
-    await LeituraService.buscarPorId(id);
+  async atualizar(id: string, dados: Prisma.LeituraUpdateInput, usuario_id?: string) {
+    await LeituraService.buscarPorId(id, usuario_id);
     return await LeituraModel.atualizar(id, dados);
   },
 
-  async deletar(id: string) {
-    await LeituraService.buscarPorId(id);
+  async deletar(id: string, usuario_id?: string) {
+    await LeituraService.buscarPorId(id, usuario_id);
     await LeituraModel.deletar(id);
     return { mensagem: 'Leitura removida com sucesso.' };
   },

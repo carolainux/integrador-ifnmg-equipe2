@@ -143,7 +143,6 @@ async function carregarResumoPlantacao(plantacao_id) {
 
     const ultima = dashboard && dashboard.ultima;
     const tipo = alertas && alertas.ultimo_alerta && alertas.ultimo_alerta.tipo;
-    // ponytail: status derivado do último alerta; criar status/resolução no backend se isso importar.
     const status = tipo === 'Critico' ? 'Crítico' : tipo === 'Atencao' ? 'Atenção' : 'Ideal';
 
     return {
@@ -151,8 +150,7 @@ async function carregarResumoPlantacao(plantacao_id) {
         umidade: ultima ? ultima.umidade_solo : null,
         temperatura: ultima ? ultima.temperatura : null,
         luminosidade: ultima ? ultima.luminosidade : null,
-        ultimaLeitura: ultima ? ultima.data_hora : null,
-        totalAlertas: alertas ? alertas.total : 0
+        ultimaLeitura: ultima ? ultima.data_hora : null
     };
 }
 

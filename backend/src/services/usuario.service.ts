@@ -22,10 +22,6 @@ export const UsuarioService = {
     return await findOrThrow(UsuarioModel, id, 'usuário');
   },
 
-  async buscarTodos() {
-    return await UsuarioModel.buscarTodos();
-  },
-
   async atualizar(id: string, dados: Prisma.UsuarioUpdateInput) {
     await UsuarioService.buscarPorId(id);
 

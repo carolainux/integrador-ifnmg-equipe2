@@ -1,9 +1,12 @@
 import { Router } from 'express';
 import { PlantacaoController } from '../controllers/plantacao.controller';
+import { auth } from '../middlewares/auth';
 import { validate } from '../middlewares/validate';
 import { criarPlantacaoSchema, atualizarPlantacaoSchema } from '../schemas/index';
 
 const router = Router();
+
+router.use(auth);
 
 router.post('/', validate(criarPlantacaoSchema), PlantacaoController.criar);
 router.get('/', PlantacaoController.buscarTodos);

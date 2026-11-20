@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { UsuarioService } from '../services/usuario.service';
+import { verificarDono, usuarioId } from '../utils/authz';
 import { parseId } from '../utils/parse-id';
 
 export const UsuarioController = {
@@ -13,12 +14,13 @@ export const UsuarioController = {
 
   async buscarPorId(req: Request, res: Response, _next: NextFunction) {
     const id = parseId(req);
+    verificarDono(id, usuarioId(req));
     const usuario = await UsuarioService.buscarPorId(id);
     return res.status(200).json(usuario);
   },
 
-  async buscarTodos(_req: Request, res: Response, _next: NextFunction) {
-    const usuarios = await UsuarioService.buscarTodos();
+  async buscarTodos(req: Request, res: Response, _next: NextFunction) {
+    const usuarios = [await UsuarioService.buscarPorId(usuarioId(req))];
     return res.status(200).json(usuarios);
   },
 

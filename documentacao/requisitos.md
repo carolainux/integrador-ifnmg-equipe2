@@ -29,6 +29,9 @@ O AgroSensor é um sistema de monitoramento climático desenvolvido para apoiar 
 | RF17 | O sistema deve enviar notificações via WhatsApp quando configurado para alertas críticos. |
 | RF18 | O sistema deve disponibilizar operações REST para gerenciamento de usuários, plantações, sensores, dispositivos, leituras e alertas. |
 | RF19 | O usuário deve poder visualizar a lista de dispositivos e sensores disponíveis no momento do cadastro de uma plantação. |
+| RF20 | O sistema deve permitir marcar alertas como resolvidos. |
+| RF21 | O sistema deve exibir o status online/offline dos dispositivos vinculados, com base na última leitura da plantação. |
+| RF22 | O sistema deve permitir exportar o histórico de leituras do usuário autenticado em formato CSV. |
 
 ---
 
@@ -49,3 +52,4 @@ O AgroSensor é um sistema de monitoramento climático desenvolvido para apoiar 
 | RNF11 | O sistema deve registrar automaticamente data e horário de todas as leituras armazenadas. |
 | RNF12 | A arquitetura deve permitir a inclusão de novos sensores e dispositivos sem necessidade de alterações significativas na estrutura da aplicação. |
 | RNF13 | O sistema deve ser executado localmente, necessitando de acesso à internet apenas para o envio de notificações via WhatsApp. |
+| RNF14 | A API deve isolar os dados por usuário, permitindo acesso apenas aos recursos vinculados ao usuário autenticado. |

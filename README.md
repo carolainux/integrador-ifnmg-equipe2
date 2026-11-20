@@ -1,4 +1,4 @@
-     # 🌱 AgroSensor
+# 🌱 AgroSensor
 
 <p align="center">
 
@@ -122,7 +122,11 @@ O funcionamento do AgroSensor ocorre conforme as etapas abaixo:
 - Recebimento automático das leituras ambientais;
 - Armazenamento das leituras em banco de dados;
 - Geração automática de alertas;
+- Resolução de alertas;
 - Notificações via WhatsApp;
+- Recuperação de senha por e-mail;
+- Status online/offline dos dispositivos;
+- Exportação do histórico em CSV;
 - API REST para gerenciamento completo do sistema;
 - Arquitetura modular baseada em camadas;
 - Validação automática dos dados recebidos;
@@ -280,6 +284,7 @@ Entre eles destacam-se:
 - armazenamento criptografado das senhas utilizando **bcrypt**;
 - validação automática dos dados recebidos utilizando **Zod**;
 - middleware de autenticação para proteção das rotas privadas;
+- isolamento de plantações, leituras, alertas, sensores e dispositivos por usuário;
 - middleware global para tratamento centralizado de erros.
 
 Esses mecanismos contribuem para aumentar a confiabilidade da aplicação e reduzir riscos relacionados ao processamento de informações inválidas ou acessos não autorizados.
@@ -381,6 +386,10 @@ Entre os principais recursos encontram-se:
 - leituras ambientais;
 - alertas.
 
+A API é montada em `/api` e usa JWT no cabeçalho `Authorization: Bearer <token>`. As exceções
+públicas são cadastro, login, recuperação de senha, `POST /api/leituras` e
+`POST /api/alertas/dispositivo-offline` (estes dois para o gateway).
+
 Todas as operações seguem o padrão REST adotado durante o desenvolvimento do projeto.
 
 ---
@@ -402,20 +411,20 @@ Entre as possibilidades destacam-se:
 
 # 🧪 Testes
 
-Durante o desenvolvimento foram realizados testes funcionais envolvendo:
+Não há test runner, linter, script de typecheck nem CI configurados no repositório. A verificação é
+manual:
 
-- autenticação;
-- cadastro de usuários;
-- cadastro de plantações;
-- cadastro de sensores;
-- associação entre sensores e plantações;
-- recebimento das leituras;
-- persistência dos dados;
-- geração automática de alertas;
-- comunicação entre Gateway e Backend;
-- integração com o serviço de notificações.
+```bash
+cd backend
+npx tsc --noEmit
+```
 
-Os testes confirmaram o correto funcionamento dos principais módulos implementados.
+Além disso, sobem-se backend e frontend e testam-se os fluxos com `curl` e pelo navegador.
+
+Os testes funcionais já cobriram autenticação, cadastro, plantações, sensores, dispositivos,
+leituras, alertas, resolução de alertas, exportação CSV, comunicação Gateway/Backend e notificações.
+
+---
 
 # 🚀 Como Executar o Projeto
 
@@ -423,10 +432,11 @@ Os testes confirmaram o correto funcionamento dos principais módulos implementa
 
 Antes de executar o projeto, certifique-se de possuir instalado:
 
-- Node.js 24.x
+- Node.js 24.16.0 (versão fixada em `backend/.nvmrc` e `gateway/.nvmrc`)
 - npm
 - Git
-- Arduino IDE
+- Python 3 (para servir o frontend estático)
+- Arduino IDE (opcional, apenas para gravar o firmware)
 - Visual Studio Code (recomendado)
 
 ---
@@ -453,22 +463,69 @@ Acesse a pasta:
 cd backend
 ```
 
-Instale as dependências:
+Instale as dependências com a versão do Node fixada:
 
 ```bash
 npm install
 ```
 
-Crie o arquivo `.env` a partir do modelo disponível:
+Não existe `backend/.env.exemplo` nesta branch; crie `backend/.env` manualmente. O contrato está em
+`backend/src/env/index.ts`:
 
-```text
-.env.exemplo
+```bash
+DATABASE_URL="file:./prisma/dev.db"
+JWT_SECRET="uma-string-aleatoria-com-32-caracteres-ou-mais"
+CALLMEBOT_PHONE="5533999999999"
+CALLMEBOT_APIKEY="sua-chave-callmebot"
+PORT=3000
+
+# Opcionais (descomente se for usar)
+# BREVO_API_KEY="sua-chave-brevo"
+# EMAIL_FROM="no-reply@exemplo.com"
+FRONTEND_URL="http://localhost:8081"
 ```
+
+Sem `BREVO_API_KEY` e `EMAIL_FROM`, o e-mail de recuperação de senha não é enviado; o backend apenas
+registra um warning.
+
+Aplique as migrações e gere o client do Prisma:
+
+```bash
+npx prisma migrate deploy
+npx prisma generate
+```
+
+O `prisma generate` é obrigatório após um clone limpo; a saída fica em `backend/generated/prisma`.
 
 Execute o servidor:
 
 ```bash
 npm run dev
+```
+
+A API sobe em `http://localhost:3000/api`.
+
+> **Seed destrutivo:** `npx prisma db seed` apaga todas as tabelas e recria um cenário de
+> demonstração. Não rode contra o banco de trabalho. `npm run db-perf` também é destrutivo.
+
+---
+
+# 🖥 Configuração do Frontend
+
+O frontend é estático, sem build e sem `package.json`. Em outro terminal:
+
+```bash
+cd frontend
+python3 -m http.server 8081
+```
+
+Abra `http://127.0.0.1:8081/user/login.html`.
+
+O `frontend/script.js` usa `http://<hostname>:3000/api` por padrão e aceita override em
+`localStorage`:
+
+```js
+localStorage.setItem('agrosensor_api_base', 'http://localhost:3000/api');
 ```
 
 ---
@@ -487,17 +544,23 @@ Instale as dependências:
 npm install
 ```
 
-Crie o arquivo `.env` utilizando o modelo:
+Crie o arquivo `.env` a partir do modelo:
 
-```text
-.env.exemplo
+```bash
+cp .env.exemplo .env
 ```
+
+Ajuste `SERIAL_PORT` para a porta do Arduino (`/dev/ttyUSB0` no Linux, `COM3` no Windows) e
+`BACKEND_URL` se o backend não estiver em `http://localhost:3000/api/leituras`.
 
 Inicie o Gateway:
 
 ```bash
 npm start
 ```
+
+O Gateway usa 115200 bauds e exige linhas com exatamente 5 campos:
+`plantacao_id,umidade_solo,umidade_ar,temperatura,luminosidade`.
 
 ---
 
@@ -516,7 +579,11 @@ Utilizando a **Arduino IDE**, selecione:
 
 Realize o upload do programa para a placa.
 
-Após a inicialização, o Arduino começará a enviar automaticamente as leituras dos sensores para o Gateway.
+Após a inicialização, o Arduino começará a enviar automaticamente as leituras dos sensores para o
+Gateway a cada 120 segundos.
+
+Para testar sem hardware, renomeie `arduino/main/main.test` para `.ino` e grave esse sketch. O
+`plantacao_id` é fixo no firmware e precisa existir no banco.
 
 ---
 
@@ -586,54 +653,33 @@ Entre seus principais diferenciais destacam-se:
 
 ---
 
-# 🖥 Status do Frontend
+# 🖥 Frontend
 
-O desenvolvimento da interface web (frontend) está em andamento. Das 20 telas e estados previstos nos protótipos (`design-ux-ui/prototipos/`), o status atual é:
+O frontend está integrado à API e cobre as 20 telas/estados previstos nos protótipos. É HTML
+estático com Tailwind via CDN e JavaScript centralizado em `frontend/script.js`.
 
-## ✅ Telas implementadas (7/20)
+- Entrada e autenticação: `frontend/inicial.html`, `frontend/user/login.html`,
+  `frontend/user/cadastro.html`, `frontend/user/senha.html`, `frontend/user/redefinir-senha.html`
+- Dashboard e conta: `frontend/dashboard/index.html`, `frontend/dashboard/inicial.html`,
+  `frontend/dashboard/alertas.html`, `frontend/dashboard/configuracoes.html`,
+  `frontend/dashboard/ajuda.html`, `frontend/dashboard/error.html`, `frontend/user/perfil.html`
+- Plantações: `frontend/plantacao/plantacoes.html`, `frontend/plantacao/primeiraplantacao.html`,
+  `frontend/plantacao/plantacao-nova.html`, `frontend/plantacao/plantacao-editar.html`,
+  `frontend/plantacao/plantacao-detalhe.html`, `frontend/plantacao/plantacao-sucesso.html`
+- Sensores e dispositivos: `frontend/sensores/sensores.html`,
+  `frontend/dispositivos/dispositivos.html`
 
-| Tela | Arquivo |
-|---|---|
-| Login | `frontend/login.html` |
-| Cadastro | `frontend/cadastro.html` |
-| Dashboard | `frontend/index.html` |
-| Lista de Plantações | `frontend/plantacoes.html` |
-| Nova Plantação | `frontend/plantacao-nova.html` |
-| Detalhe da Plantação (com gráfico Chart.js) | `frontend/plantacao-detalhe.html` |
-| Sensores | `frontend/sensores.html` |
-
-As telas acima estão implementadas em HTML5, Tailwind CSS e JavaScript, com dados mockados para fins de demonstração. Encontram-se em fase de revisão pela equipe de QA.
-
-## 🔧 Telas e estados pendentes (13/20)
-
-| Item | Responsável |
-|---|---|
-| Tela Inicial (splash) | Sandy |
-| Tela de Dispositivos + estado vazio | Sandy |
-| Tela de Configurações | Sandy |
-| Tela de Ajuda | Sandy |
-| Tela de Alertas | Carolaine |
-| Tela de Perfil + Editar Perfil | Carolaine |
-| Estado vazio - Minhas Plantações | A definir |
-| Modais de sucesso (Nova Plantação e Editar Perfil) | A definir |
-| Estados globais de Carregamento e Erro | A definir |
-
-## 🔌 Integração com API (próxima etapa)
-
-Com o backend já finalizado no semestre anterior, a próxima etapa após a conclusão das telas visuais é a integração real com a API REST já existente:
-
-- Login e Cadastro → `POST /auth/login`, `POST /usuarios`
-- Dashboard e Plantações → `GET /plantacoes/usuario/:usuario_id`
-- Gráfico e Alertas → `GET /leituras/dashboard/:plantacao_id`, `GET /alertas/plantacao/:plantacao_id`
+A sessão, o `fetch` autenticado, o redirecionamento em 401 e o badge de alertas não vistos ficam em
+`frontend/script.js`. O clima usa Open-Meteo, com cache de 30 min e fallback para Araçuaí. A
+verificação de WhatsApp ainda é simulada.
 
 ---
 
 # 🔮 Trabalhos Futuros
 
-- conclusão das telas restantes do frontend;
-- integração completa entre frontend e API;
+- configuração de API por ambiente, CORS e HTTPS quando houver deploy;
+- testes automatizados, lint e CI;
 - validação de responsividade e usabilidade (QA);
-- implantação em ambiente de produção;
 - realização de testes em propriedades rurais;
 - integração com novos sensores ambientais;
 - suporte a múltiplos usuários simultâneos;

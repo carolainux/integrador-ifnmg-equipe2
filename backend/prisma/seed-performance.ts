@@ -12,6 +12,7 @@ function gerarValorMetricoAleatorio(min: number, max: number): number {
 }
 
 async function main() {
+  console.warn("⚠️  ATENÇÃO: este seed apaga TODOS os dados antes de gerar as leituras de performance.");
   console.log("🌱 Iniciando seeding de performance...");
 
   await prisma.alerta.deleteMany();

@@ -1,9 +1,12 @@
 import { Router } from 'express';
 import { PlantacaoSensorController } from '../controllers/plantacao-sensor.controller';
+import { auth } from '../middlewares/auth';
 import { validate } from '../middlewares/validate';
 import { criarPlantacaoSensorSchema, atualizarPlantacaoSensorSchema } from '../schemas/index';
 
 const router = Router();
+
+router.use(auth);
 
 router.post('/', validate(criarPlantacaoSensorSchema), PlantacaoSensorController.criar);
 router.get('/:id', PlantacaoSensorController.buscarPorId);

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { LeituraService } from '../services/leitura.service';
+import { usuarioId } from '../utils/authz';
 import { parseId } from '../utils/parse-id';
 
 export const LeituraController = {
@@ -15,13 +16,20 @@ export const LeituraController = {
   async buscarTodos(req: Request, res: Response, _next: NextFunction) {
     const pagina = Number(req.query.pagina) || undefined;
     const limite = Number(req.query.limite) || undefined;
-    const leituras = await LeituraService.buscarTodos(pagina, limite);
+    const leituras = await LeituraService.buscarTodos(pagina, limite, usuarioId(req));
     return res.status(200).json(leituras);
+  },
+
+  async exportarCsv(req: Request, res: Response, _next: NextFunction) {
+    const csv = await LeituraService.exportarCsv(usuarioId(req));
+    res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+    res.setHeader('Content-Disposition', 'attachment; filename="agrosensor-leituras.csv"');
+    return res.status(200).send('\uFEFF' + csv);
   },
 
   async obterDadosDashboard(req: Request, res: Response, _next: NextFunction) {
     const plantacao_id = parseId(req, 'plantacao_id');
-    const dashboardDados = await LeituraService.obterDadosDashboard(plantacao_id);
+    const dashboardDados = await LeituraService.obterDadosDashboard(plantacao_id, usuarioId(req));
     return res.status(200).json(dashboardDados);
   },
 
@@ -29,19 +37,19 @@ export const LeituraController = {
     const plantacao_id = parseId(req, 'plantacao_id');
     const periodo = typeof req.query.periodo === 'string' ? req.query.periodo : '24h';
     const limite = Math.min(Math.max(Number(req.query.limite) || 20, 1), 200);
-    const historico = await LeituraService.obterHistorico(plantacao_id, periodo, limite);
+    const historico = await LeituraService.obterHistorico(plantacao_id, periodo, limite, usuarioId(req));
     return res.status(200).json(historico);
   },
 
   async buscarPorId(req: Request, res: Response, _next: NextFunction) {
     const id = parseId(req);
-    const leitura = await LeituraService.buscarPorId(id);
+    const leitura = await LeituraService.buscarPorId(id, usuarioId(req));
     return res.status(200).json(leitura);
   },
 
   async atualizar(req: Request, res: Response, _next: NextFunction) {
     const id = parseId(req);
-    const leituraAtualizada = await LeituraService.atualizar(id, req.body);
+    const leituraAtualizada = await LeituraService.atualizar(id, req.body, usuarioId(req));
     return res.status(200).json({
       mensagem: 'Leitura atualizada com sucesso.',
       dados: leituraAtualizada,
@@ -50,7 +58,7 @@ export const LeituraController = {
 
   async deletar(req: Request, res: Response, _next: NextFunction) {
     const id = parseId(req);
-    const resultado = await LeituraService.deletar(id);
+    const resultado = await LeituraService.deletar(id, usuarioId(req));
     return res.status(200).json(resultado);
   },
 };
