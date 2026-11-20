@@ -11,6 +11,10 @@ const timeoutOfflineMs = 1_500_000; // TEST: 20_000 pra debugar
 let ultimaPlantacaoId = '';
 let timerOffline: NodeJS.Timeout | null = null;
 let ultimaLinhaProcessada = '';
+let ultimaLinhaRecebidaEm = 0;
+// O Arduino envia uma leitura a cada 120 s. Uma linha igual que chega em menos de 5 s
+// é repetição do parser; depois disso é uma leitura nova que só tem os mesmos valores.
+const janelaLinhaRepetidaMs = 5_000;
 
 async function enviarParaBackend(dadosSensor: any): Promise<void> {
   try {
@@ -118,8 +122,12 @@ function conectarSerial(): void {
 
   parser.on('data', async (linha: string) => {
     // FIXME: hotfix temporário pra um bug q não sei a causa exata: serialport v13 ReadlineParser emite a mesma linha multiplas vezes
-    if (linha === ultimaLinhaProcessada) return;
+    // Só descarta a repetição imediata: com o ambiente estável, leituras seguidas podem ter os mesmos valores
+    // e antes eram descartadas sem aviso (ensaio de 19 e 20/11/2026).
+    const agora = Date.now();
+    if (linha === ultimaLinhaProcessada && agora - ultimaLinhaRecebidaEm < janelaLinhaRepetidaMs) return;
     ultimaLinhaProcessada = linha;
+    ultimaLinhaRecebidaEm = agora;
 
     const dadosSensor = processarDadosArduino(linha);
 
