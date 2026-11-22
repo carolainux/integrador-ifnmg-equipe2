@@ -469,8 +469,13 @@ Instale as dependências com a versão do Node fixada:
 npm install
 ```
 
-Não existe `backend/.env.exemplo` nesta branch; crie `backend/.env` manualmente. O contrato está em
-`backend/src/env/index.ts`:
+Crie o `backend/.env` a partir do modelo e substitua os `XXXXXX`:
+
+```bash
+cp .env.exemplo .env
+```
+
+O contrato real está em `backend/src/env/index.ts`:
 
 ```bash
 DATABASE_URL="file:./prisma/dev.db"
@@ -480,13 +485,17 @@ CALLMEBOT_APIKEY="sua-chave-callmebot"
 PORT=3000
 
 # Opcionais (descomente se for usar)
-# BREVO_API_KEY="sua-chave-brevo"
-# EMAIL_FROM="no-reply@exemplo.com"
+# RESEND_API_KEY="sua-chave-resend"
+# EMAIL_FROM="onboarding@resend.dev"
+# EMAIL_DESTINO_TESTE="seu-email@gmail.com"
 FRONTEND_URL="http://localhost:8081"
 ```
 
-Sem `BREVO_API_KEY` e `EMAIL_FROM`, o e-mail de recuperação de senha não é enviado; o backend apenas
-registra um warning.
+Sem `RESEND_API_KEY` e `EMAIL_FROM`, nenhum e-mail é enviado. Fora de produção, o link de recuperação
+é impresso no terminal; em produção, o backend apenas registra um warning. O remetente
+`onboarding@resend.dev` só entrega no e-mail dono da conta Resend; para outros destinatários, verifique
+um domínio e troque `EMAIL_FROM`. Em desenvolvimento, `EMAIL_DESTINO_TESTE` redireciona todos os
+e-mails de recuperação para esse endereço, mantendo o destinatário original no corpo.
 
 Aplique as migrações e gere o client do Prisma:
 
