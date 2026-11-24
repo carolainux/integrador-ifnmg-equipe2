@@ -117,7 +117,7 @@ As rotas definem os *endpoints* e as validações; os *controllers* tratam requi
 | Proteção de todas as rotas da API por *token* e isolamento por usuário | ✅ Implementados e testados |
 | Resolução de alertas, conexão dos dispositivos e exportação CSV | ✅ Implementadas e testadas |
 | Ensaio com o kit de sensores em vasos de plantas (18 horas) | ✅ Realizado em 19 e 20/11/2026 |
-| Recuperação de senha por e-mail | ⚠️ Implementada, ainda não testada |
+| Recuperação de senha | ✅ Implementada e testada em 24/11/2026 com o link exibido no terminal; o envio do e-mail pelo Resend ainda não foi testado |
 | Aviso de dispositivo *offline* por WhatsApp | ⚠️ Implementado, ainda não testado |
 | Verificação do número de WhatsApp no perfil | ⚠️ Simulada na interface |
 | Testes em campo e com agricultores | ⏳ Não realizados |
@@ -178,6 +178,7 @@ Todos os testes foram feitos pela equipe, manualmente, em ambiente local. O repo
 | **Casos de teste da interface** | 9 casos: *login*, cadastros, exclusões, leituras, alertas, gráfico e limites | 4 problemas encontrados, depois corrigidos |
 | **Ensaio com o kit (19 e 20/11/2026)** | Arduino → *gateway* → API → banco → interface, com sensores em vasos de plantas | 18 h de funcionamento contínuo, 370 leituras e 237 alertas; coleta retomada após desconectar o cabo |
 | **Reteste das correções (20/11/2026)** | Proteção das rotas, isolamento por usuário, resolução de alertas, conexão dos dispositivos, exportação CSV e casos corrigidos | 11 verificações aprovadas |
+| **Recuperação de senha (24/11/2026)** | Pedido do link, redefinição, *login* com a senha nova, recusa da senha antiga e do link já usado | Funcionou; o teste levou à recusa de senha igual à atual e ao aviso de link já usado (PR #137) |
 
 <p align="center">
   <img src="documentacao/imagens/ensaio-18h.png" alt="Leituras de umidade do solo, luminosidade e temperatura durante o ensaio de 18 horas" width="85%">
