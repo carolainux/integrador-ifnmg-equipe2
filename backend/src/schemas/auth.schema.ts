@@ -9,6 +9,10 @@ export const esqueciSenhaSchema = z.object({
   email: z.email({ error: 'Email inválido' }),
 });
 
+export const validarTokenRecuperacaoSchema = z.object({
+  token: z.string().min(1, 'Token é obrigatório'),
+});
+
 export const redefinirSenhaSchema = z.object({
   token: z.string().min(1, 'Token é obrigatório'),
   nova_senha: z.string()

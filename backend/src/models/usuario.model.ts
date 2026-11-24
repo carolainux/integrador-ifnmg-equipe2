@@ -95,6 +95,7 @@ export const UsuarioModel = {
       where: { reset_token_hash: token_hash },
       select: {
         id: true,
+        senha: true,
         reset_token_expira_em: true,
       },
     });

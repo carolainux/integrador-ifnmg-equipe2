@@ -230,9 +230,24 @@
             erroSenha.classList.toggle('hidden', !mensagem);
         }
 
-        if (!token) {
-            mostrarErro('Link de recuperação inválido. Solicite um novo link.');
+        function bloquearFormulario(mensagem) {
+            mostrarErro(mensagem);
             $('btnRedefinir').disabled = true;
+            $('novaSenha').disabled = true;
+            $('confirmarSenha').disabled = true;
+        }
+
+        if (!token) {
+            bloquearFormulario('Link de recuperação inválido. Solicite um novo link.');
+        } else {
+            apiFetch('/auth/redefinir-senha/validar', {
+                method: 'POST',
+                body: JSON.stringify({ token })
+            }).catch(erro => {
+                if (erro.status === 400) {
+                    bloquearFormulario('Este link já foi usado ou expirou. Solicite um novo link.');
+                }
+            });
         }
 
         $('novaSenha').addEventListener('input', () => mostrarErro(''));
