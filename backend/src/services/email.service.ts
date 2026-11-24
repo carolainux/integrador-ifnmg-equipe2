@@ -8,26 +8,34 @@ interface EnviarRecuperacaoSenhaDados {
 
 export const EmailService = {
   async enviarRecuperacaoSenha({ destinatario, nome, link }: EnviarRecuperacaoSenhaDados) {
-    if (!env.BREVO_API_KEY || !env.EMAIL_FROM) {
-      console.warn('Recuperação de senha indisponível: BREVO_API_KEY e EMAIL_FROM não configurados.');
+    if (!env.RESEND_API_KEY || !env.EMAIL_FROM) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.info(`[dev] Link de recuperação de senha para ${destinatario}: ${link}`);
+      } else {
+        console.warn('Recuperação de senha indisponível: RESEND_API_KEY e EMAIL_FROM não configurados.');
+      }
       return false;
     }
 
-    const resposta = await fetch('https://api.brevo.com/v3/smtp/email', {
+    const destinatarioFinal = process.env.NODE_ENV !== 'production' && env.EMAIL_DESTINO_TESTE
+      ? env.EMAIL_DESTINO_TESTE
+      : destinatario;
+
+    const resposta = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        'api-key': env.BREVO_API_KEY,
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        sender: { name: env.EMAIL_FROM_NAME, email: env.EMAIL_FROM },
-        to: [{ email: destinatario, name: nome }],
+        from: `${env.EMAIL_FROM_NAME} <${env.EMAIL_FROM}>`,
+        to: [destinatarioFinal],
         subject: 'Redefinição de senha - AgroSensor',
-        textContent: [
+        text: [
           `Olá, ${nome}!`,
-          '',
+          ...(destinatarioFinal !== destinatario ? [`Destinatário original: ${destinatario}`, ''] : []),
           'Recebemos um pedido para redefinir sua senha no AgroSensor.',
-          `Acesse o link abaixo para criar uma nova senha:`,
+          'Acesse o link abaixo para criar uma nova senha:',
           link,
           '',
           'O link expira em 30 minutos e só pode ser usado uma vez.',
@@ -39,7 +47,7 @@ export const EmailService = {
 
     if (!resposta.ok) {
       const detalhe = await resposta.text();
-      throw new Error(`Brevo respondeu ${resposta.status}: ${detalhe}`);
+      throw new Error(`Resend respondeu ${resposta.status}: ${detalhe}`);
     }
 
     return true;

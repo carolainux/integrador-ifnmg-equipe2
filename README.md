@@ -134,7 +134,7 @@ Os requisitos funcionais e não funcionais, com a situação de cada um, estão 
 | *Gateway* | Node.js 24 · TypeScript · SerialPort · Zod |
 | *Backend* | Node.js 24 · Express 5 · TypeScript · Prisma ORM 7 · SQLite · JWT · bcryptjs · Zod |
 | Interface | HTML5 · Tailwind CSS · JavaScript · Chart.js (Tailwind e Chart.js carregados por CDN) |
-| Serviços externos | CallMeBot (WhatsApp) · Open-Meteo (clima) · Brevo (e-mail, opcional) |
+| Serviços externos | CallMeBot (WhatsApp) · Open-Meteo (clima) · Resend (e-mail, opcional) |
 | Ferramentas | Git e GitHub · Visual Studio Code · Arduino IDE · Figma · brModelo · Draw.io |
 
 ---
@@ -220,7 +220,11 @@ cd backend
 npm install
 ```
 
-Crie o arquivo `backend/.env` (as variáveis são validadas em `backend/src/env/index.ts`):
+Crie o arquivo `backend/.env` a partir do modelo e troque os valores de exemplo (as variáveis são validadas em `backend/src/env/index.ts`):
+
+```bash
+cp .env.exemplo .env
+```
 
 ```env
 DATABASE_URL="file:./dev.db"
@@ -228,12 +232,16 @@ JWT_SECRET="troque-por-uma-frase-secreta-com-32-caracteres-ou-mais"
 CALLMEBOT_PHONE="5533999999999"
 CALLMEBOT_APIKEY="sua-chave-callmebot"
 PORT=3000
+FRONTEND_URL="http://localhost:8080"
 
-# Opcional: recuperação de senha por e-mail
-# BREVO_API_KEY="sua-chave-brevo"
-# EMAIL_FROM="email-remetente@exemplo.com"
-# FRONTEND_URL="http://localhost:8080"
+# Opcional: envio do e-mail de recuperação de senha pelo Resend
+# RESEND_API_KEY="sua-chave-resend"
+# EMAIL_FROM="onboarding@resend.dev"
+# EMAIL_FROM_NAME="AgroSensor"
+# EMAIL_DESTINO_TESTE="seu-email@exemplo.com"
 ```
+
+**Recuperação de senha:** sem `RESEND_API_KEY` e `EMAIL_FROM`, nenhum e-mail é enviado. Fora de produção, o link de redefinição aparece no terminal da API, o que permite testar o fluxo sem conta no Resend. O remetente `onboarding@resend.dev` só entrega no e-mail do dono da conta Resend; para outros destinatários, é preciso verificar um domínio. Em desenvolvimento, `EMAIL_DESTINO_TESTE` envia todos os e-mails de recuperação para esse endereço. `FRONTEND_URL` deve ser o endereço em que a interface está aberta, porque é usado para montar o link.
 
 Sem uma chave válida do CallMeBot, os alertas continuam sendo registrados, mas a mensagem de WhatsApp não é entregue.
 
@@ -281,7 +289,7 @@ npm install
 cp .env.exemplo .env
 ```
 
-No `gateway/.env`, ajuste `SERIAL_PORT` para a porta do Arduino (por exemplo, `COM3` no Windows ou `/dev/ttyUSB0` no Linux) e, se necessário, `BACKEND_URL`. Depois:
+No `gateway/.env`, ajuste `SERIAL_PORT` para a porta do Arduino (por exemplo, `COM3` no Windows ou `/dev/ttyACM0` no Linux) e, se necessário, `BACKEND_URL`. Depois:
 
 ```bash
 npm start

@@ -71,3 +71,14 @@
     padding-top: 56px;
   }
 }
+
+input[type="number"].sem-setas::-webkit-outer-spin-button,
+input[type="number"].sem-setas::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"].sem-setas {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
