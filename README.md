@@ -187,6 +187,8 @@ Todos os testes foram feitos pela equipe, manualmente, em ambiente local. O repo
 
 O ensaio revelou que o *gateway* descartava leituras iguais à anterior mesmo quando chegavam 2 minutos depois. A correção (PR #129) foi verificada com uma porta serial simulada, mas ainda não com o kit.
 
+📁 **Procedimentos, resultados, capturas e dados brutos de cada teste:** [`documentacao/testes/`](documentacao/testes/).
+
 ---
 
 ## ⚠️ Limitações conhecidas
@@ -320,6 +322,7 @@ integrador-ifnmg-equipe2/
 ├── design-ux-ui/            # Protótipos no Figma e guia de estilos
 ├── documentacao/            # Requisitos, regras de negócio, casos de uso, banco, atas e referências
 │   ├── diagramas/           # Modelos conceitual e lógico do banco
+│   ├── testes/              # Registros, capturas e dados dos testes
 │   └── imagens/             # Imagens usadas neste README
 └── agrosensorAPIControl/    # Submódulo com a coleção de requisições da API
 ```
@@ -336,6 +339,7 @@ integrador-ifnmg-equipe2/
 | [`casos-de-uso.md`](documentacao/casos-de-uso.md) | Casos de uso |
 | [`modelagem-banco.md`](documentacao/modelagem-banco.md) | Modelagem do banco de dados |
 | [`diagramas/`](documentacao/diagramas/) | Modelo conceitual, modelo lógico e diagrama do projeto |
+| [`testes/`](documentacao/testes/) | Registros dos testes e do ensaio, com capturas e dados brutos |
 | [`atas-reuniao.md`](documentacao/atas-reuniao.md) | Atas das reuniões da equipe |
 | [`referencias.md`](documentacao/referencias.md) | Referências bibliográficas |
 

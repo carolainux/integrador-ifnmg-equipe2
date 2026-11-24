@@ -1,0 +1,11 @@
+Teste 1b - Rota do gateway continua pública (PR #130, branch teste-pr130)
+Data: 20/11/2026, 19h40 (22:40:33 GMT)
+Comando: POST /api/leituras sem token, para uma plantação inexistente (00000000-...)
+
+HTTP/1.1 409 Conflict
+{"erro":"Não foi possível concluir por um vínculo inválido com outro registro."}
+
+Resultado: APROVADO. A rota não exigiu token (não houve 401); a leitura foi recusada
+apenas porque a plantação não existe (chave estrangeira). Nenhum dado foi gravado.
+Observação: a mensagem genérica 409 poderia ser mais clara ("plantação não encontrada"),
+mas não afeta o gateway, que sempre envia um id válido.
