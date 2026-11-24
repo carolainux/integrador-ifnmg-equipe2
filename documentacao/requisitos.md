@@ -34,7 +34,7 @@ O AgroSensor é um sistema de monitoramento climático desenvolvido para apoiar 
 | RF18 | O sistema deve disponibilizar operações REST para gerenciamento de usuários, plantações, sensores, dispositivos, leituras e alertas. | Implementado |
 | RF19 | O usuário deve poder visualizar a lista de dispositivos e sensores disponíveis no momento do cadastro de uma plantação. | Implementado |
 | RF20 | O sistema deve manter a sessão do usuário, permitir sair (*logout*) e restringir as telas internas a usuários autenticados. | Implementado |
-| RF21 | O sistema deve permitir recuperar a senha por link enviado ao e-mail. | Implementado, não testado |
+| RF21 | O sistema deve permitir recuperar a senha por link enviado ao e-mail. | Implementado |
 | RF22 | O sistema deve exibir um painel com indicadores e a situação das plantações. | Implementado |
 | RF23 | O sistema deve exibir o histórico das leituras em gráfico, por período. | Parcial |
 | RF24 | O sistema deve permitir consultar os alertas gerados. | Implementado |
