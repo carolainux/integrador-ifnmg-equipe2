@@ -15,6 +15,11 @@ export const AuthController = {
     });
   },
 
+  async validarTokenRecuperacao(req: Request, res: Response, _next: NextFunction) {
+    const resultado = await AuthService.validarTokenRecuperacao(req.body.token);
+    return res.status(200).json(resultado);
+  },
+
   async redefinirSenha(req: Request, res: Response, _next: NextFunction) {
     const { token, nova_senha } = req.body;
     const resultado = await AuthService.redefinirSenha(token, nova_senha);

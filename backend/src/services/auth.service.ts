@@ -61,12 +61,27 @@ export const AuthService = {
     }
   },
 
-  async redefinirSenha(token: string, nova_senha: string) {
+  async buscarUsuarioPorTokenValido(token: string) {
     const tokenHash = hashToken(token);
     const usuario = await UsuarioModel.buscarPorResetTokenHash(tokenHash);
 
     if (!usuario || !usuario.reset_token_expira_em || usuario.reset_token_expira_em.getTime() <= Date.now()) {
       throw Object.assign(new Error('Link de recuperação inválido ou expirado.'), { status: 400 });
+    }
+
+    return { usuario, tokenHash };
+  },
+
+  async validarTokenRecuperacao(token: string) {
+    await AuthService.buscarUsuarioPorTokenValido(token);
+    return { valido: true };
+  },
+
+  async redefinirSenha(token: string, nova_senha: string) {
+    const { usuario, tokenHash } = await AuthService.buscarUsuarioPorTokenValido(token);
+
+    if (await bcrypt.compare(nova_senha, usuario.senha)) {
+      throw Object.assign(new Error('A nova senha deve ser diferente da senha atual.'), { status: 400 });
     }
 
     const senha = await bcrypt.hash(nova_senha, 10);
