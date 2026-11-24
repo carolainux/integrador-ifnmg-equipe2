@@ -1,0 +1,898 @@
+
+> gateway@1.0.0 start
+> tsx watch --env-file=.env src/serial-gateway.ts
+
+😈 Gateway AgroSensor iniciado!
+  Rota de destino: http://localhost:3000/api/leituras
+  Conectado ao dispositivo em: COM3 @ 115200 bps
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 2% | Ar: 84.3% | Temp: 27.4ºC | Luz: 44%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 2% | Ar: 84.5% | Temp: 27.4ºC | Luz: 43%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 2% | Ar: 84.6% | Temp: 27.4ºC | Luz: 42%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 2% | Ar: 84.7% | Temp: 27.4ºC | Luz: 41%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 2% | Ar: 84.9% | Temp: 27.5ºC | Luz: 40%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 2% | Ar: 84.6% | Temp: 27.5ºC | Luz: 40%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 55% | Ar: 84.9% | Temp: 27.5ºC | Luz: 38%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 57% | Ar: 85.6% | Temp: 27.5ºC | Luz: 35%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 10% | Ar: 86% | Temp: 27.5ºC | Luz: 21%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 5% | Ar: 85.6% | Temp: 27.6ºC | Luz: 34%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 5% | Ar: 85.8% | Temp: 27.6ºC | Luz: 35%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 86.6% | Temp: 27.5ºC | Luz: 34%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 10% | Ar: 86.8% | Temp: 27.4ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 5% | Ar: 86.8% | Temp: 27.3ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 86.3% | Temp: 27.5ºC | Luz: 3%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 86.5% | Temp: 27.7ºC | Luz: 85%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 6% | Ar: 84.8% | Temp: 27.8ºC | Luz: 81%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 85.8% | Temp: 27.3ºC | Luz: 77%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 86.2% | Temp: 27.2ºC | Luz: 31%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 86.7% | Temp: 27ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 87.3% | Temp: 27ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 86.6% | Temp: 27.2ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 85.9% | Temp: 27.3ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 85.6% | Temp: 27.4ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 85.4% | Temp: 27.4ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 85.1% | Temp: 27.4ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 84.9% | Temp: 27.4ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 84.7% | Temp: 27.4ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 84.6% | Temp: 27.4ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 84.7% | Temp: 27.5ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.7% | Temp: 27.5ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 84.6% | Temp: 27.5ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 84.7% | Temp: 27.4ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.9% | Temp: 27.4ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 85% | Temp: 27.4ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 84.9% | Temp: 27.4ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 85% | Temp: 27.5ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 85.1% | Temp: 27.4ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 85.3% | Temp: 27.4ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 85.2% | Temp: 27.4ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 85.2% | Temp: 27.4ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 85.9% | Temp: 27.5ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 85.1% | Temp: 27.5ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.6% | Temp: 27.6ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.8% | Temp: 27.6ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.4% | Temp: 27.6ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.3% | Temp: 27.7ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.2% | Temp: 27.7ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 5% | Ar: 83.8% | Temp: 27.7ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 5% | Ar: 83.5% | Temp: 27.7ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 5% | Ar: 83.5% | Temp: 27.8ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 5% | Ar: 83.6% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 83.5% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 83.6% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 83.8% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 83.9% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 5% | Ar: 84.1% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 5% | Ar: 84.4% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.3% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.5% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.6% | Temp: 27.7ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.5% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.7% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.5% | Temp: 27.8ºC | Luz: 34%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.7% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.8% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.6% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.8% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 2% | Ar: 84.5% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 84.4% | Temp: 27.9ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 3% | Ar: 84.4% | Temp: 27.9ºC | Luz: 34%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.1% | Temp: 27.8ºC | Luz: 34%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 5% | Ar: 84.3% | Temp: 27.8ºC | Luz: 34%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 6% | Ar: 84.3% | Temp: 27.7ºC | Luz: 34%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.5% | Temp: 27.7ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.5% | Temp: 27.8ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.3% | Temp: 27.8ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 84.1% | Temp: 27.8ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 4% | Ar: 83.9% | Temp: 27.9ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 69% | Ar: 83.9% | Temp: 27.9ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 69% | Ar: 83.6% | Temp: 27.9ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 69% | Ar: 83.8% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 70% | Ar: 83.8% | Temp: 27.8ºC | Luz: 34%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 71% | Ar: 83.7% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 71% | Ar: 83.8% | Temp: 27.8ºC | Luz: 34%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 72% | Ar: 83.9% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+⚠️ Conexão perdida.
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+❌ Erro na porta serial: Opening COM3: File not found
+⏳ Tentando nova conexão em 5 segundos...
+  Conectado ao dispositivo em: COM3 @ 115200 bps
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 70% | Ar: 84.4% | Temp: 27.6ºC | Luz: 31%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 71% | Ar: 83.9% | Temp: 27.8ºC | Luz: 31%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 72% | Ar: 83.8% | Temp: 27.8ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 72% | Ar: 83.6% | Temp: 27.9ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 72% | Ar: 83.4% | Temp: 27.8ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 72% | Ar: 83.5% | Temp: 27.8ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 72% | Ar: 83.6% | Temp: 27.9ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.4% | Temp: 27.9ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.4% | Temp: 27.8ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.4% | Temp: 27.9ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.3% | Temp: 27.9ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.3% | Temp: 27.9ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.2% | Temp: 27.9ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.4% | Temp: 27.9ºC | Luz: 32%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.5% | Temp: 27.9ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.3% | Temp: 27.9ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.2% | Temp: 27.9ºC | Luz: 3%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.4% | Temp: 27.8ºC | Luz: 3%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.8% | Temp: 27.7ºC | Luz: 3%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 84% | Temp: 27.7ºC | Luz: 3%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 84% | Temp: 27.6ºC | Luz: 3%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 74% | Ar: 84% | Temp: 27.6ºC | Luz: 3%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 84% | Temp: 27.6ºC | Luz: 3%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 74% | Ar: 84% | Temp: 27.6ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 74% | Ar: 84.1% | Temp: 27.5ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 75% | Ar: 84% | Temp: 27.5ºC | Luz: 3%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 74% | Ar: 84.1% | Temp: 27.5ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 84% | Temp: 27.5ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.9% | Temp: 27.5ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.9% | Temp: 27.4ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 84% | Temp: 27.4ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 84% | Temp: 27.3ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.9% | Temp: 27.3ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 84% | Temp: 27.3ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.9% | Temp: 27.3ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.8% | Temp: 27.3ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.9% | Temp: 27.3ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.8% | Temp: 27.3ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.7% | Temp: 27.3ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.8% | Temp: 27.2ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 73% | Ar: 83.8% | Temp: 27.3ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 72% | Ar: 83.6% | Temp: 27.2ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 72% | Ar: 83.7% | Temp: 27.2ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 72% | Ar: 83.6% | Temp: 27.2ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 72% | Ar: 83.5% | Temp: 27.2ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 72% | Ar: 83.6% | Temp: 27.2ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 72% | Ar: 83.5% | Temp: 27.2ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 71% | Ar: 83.5% | Temp: 27.2ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 71% | Ar: 83.4% | Temp: 27.2ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 71% | Ar: 83.5% | Temp: 27.2ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 71% | Ar: 83.5% | Temp: 27.2ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 71% | Ar: 83.4% | Temp: 27.1ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 71% | Ar: 83.5% | Temp: 27.1ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 71% | Ar: 83.5% | Temp: 27.2ºC | Luz: 4%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 71% | Ar: 83.4% | Temp: 27.1ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 70% | Ar: 83.4% | Temp: 27.1ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 70% | Ar: 83.3% | Temp: 27.1ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 70% | Ar: 83.4% | Temp: 27.1ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 70% | Ar: 83.7% | Temp: 26.9ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 70% | Ar: 83.9% | Temp: 26.9ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 70% | Ar: 83.8% | Temp: 27ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 69% | Ar: 83.8% | Temp: 26.9ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 70% | Ar: 83.8% | Temp: 26.9ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 69% | Ar: 83.8% | Temp: 26.9ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 69% | Ar: 83.7% | Temp: 27ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 69% | Ar: 83.6% | Temp: 27ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 69% | Ar: 83.5% | Temp: 27ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 69% | Ar: 83.4% | Temp: 27ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 69% | Ar: 83.3% | Temp: 27ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 68% | Ar: 83.3% | Temp: 27ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 68% | Ar: 83.3% | Temp: 26.9ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 68% | Ar: 83.2% | Temp: 26.9ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 68% | Ar: 83.3% | Temp: 26.9ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 67% | Ar: 83.3% | Temp: 26.9ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 67% | Ar: 83.2% | Temp: 26.9ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 67% | Ar: 83.3% | Temp: 26.9ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 67% | Ar: 83.4% | Temp: 26.9ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 67% | Ar: 83.2% | Temp: 26.9ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 67% | Ar: 83.3% | Temp: 26.9ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 67% | Ar: 83.2% | Temp: 26.8ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 67% | Ar: 83.3% | Temp: 26.8ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.8ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 67% | Ar: 83.3% | Temp: 26.8ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.8ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.2% | Temp: 26.8ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.8ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 67% | Ar: 83.3% | Temp: 26.8ºC | Luz: 5%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.8ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.2% | Temp: 26.8ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.8ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.7ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.8ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.7ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.2% | Temp: 26.7ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.7ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.7ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.7ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.7ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.7ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.7ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.7ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.6ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.6ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.6ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.6ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.6ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.6ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.6ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.5ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.6ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.5ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.6ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.5ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.5ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.5% | Temp: 26.5ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.5ºC | Luz: 6%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.5ºC | Luz: 7%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.5% | Temp: 26.5ºC | Luz: 7%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.6% | Temp: 26.5ºC | Luz: 7%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.5% | Temp: 26.4ºC | Luz: 7%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.5% | Temp: 26.5ºC | Luz: 7%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.5ºC | Luz: 7%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.4ºC | Luz: 7%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.5% | Temp: 26.5ºC | Luz: 7%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.4ºC | Luz: 7%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.5% | Temp: 26.4ºC | Luz: 7%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.4ºC | Luz: 7%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.4ºC | Luz: 7%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.4ºC | Luz: 7%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.4ºC | Luz: 7%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.4ºC | Luz: 7%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.4ºC | Luz: 7%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.4ºC | Luz: 8%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.4ºC | Luz: 8%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.4ºC | Luz: 8%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 9%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 10%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.3ºC | Luz: 10%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 11%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 12%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 13%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 15%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.3ºC | Luz: 16%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 18%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.3ºC | Luz: 21%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 25%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 26%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 27%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 29%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 30%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.3ºC | Luz: 30%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 30%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.3ºC | Luz: 33%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 35%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.5% | Temp: 26.3ºC | Luz: 37%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 39%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 42%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.5% | Temp: 26.3ºC | Luz: 44%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.5% | Temp: 26.3ºC | Luz: 47%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.5% | Temp: 26.3ºC | Luz: 48%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.5% | Temp: 26.3ºC | Luz: 50%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.5% | Temp: 26.3ºC | Luz: 51%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 52%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 53%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 54%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.3ºC | Luz: 54%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 54%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.3ºC | Luz: 54%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.3ºC | Luz: 53%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 53%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 54%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 56%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.5% | Temp: 26.3ºC | Luz: 57%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.4% | Temp: 26.3ºC | Luz: 59%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.3ºC | Luz: 59%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.3ºC | Luz: 58%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.3ºC | Luz: 59%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.3ºC | Luz: 60%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.3ºC | Luz: 62%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.3ºC | Luz: 63%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.2% | Temp: 26.3ºC | Luz: 65%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.3ºC | Luz: 65%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.3% | Temp: 26.3ºC | Luz: 66%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.2% | Temp: 26.3ºC | Luz: 67%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.2% | Temp: 26.4ºC | Luz: 67%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.1% | Temp: 26.4ºC | Luz: 68%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.2% | Temp: 26.4ºC | Luz: 68%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.1% | Temp: 26.4ºC | Luz: 68%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83% | Temp: 26.4ºC | Luz: 68%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83.1% | Temp: 26.4ºC | Luz: 68%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 83% | Temp: 26.4ºC | Luz: 68%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 82.9% | Temp: 26.4ºC | Luz: 68%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 82.9% | Temp: 26.4ºC | Luz: 69%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 82.9% | Temp: 26.5ºC | Luz: 70%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 82.8% | Temp: 26.5ºC | Luz: 70%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 82.7% | Temp: 26.5ºC | Luz: 71%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 65% | Ar: 82.7% | Temp: 26.5ºC | Luz: 71%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 82.6% | Temp: 26.5ºC | Luz: 72%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 82.5% | Temp: 26.6ºC | Luz: 72%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 82.4% | Temp: 26.6ºC | Luz: 72%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 82.3% | Temp: 26.6ºC | Luz: 72%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 82.2% | Temp: 26.6ºC | Luz: 72%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 82.1% | Temp: 26.6ºC | Luz: 72%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 82% | Temp: 26.6ºC | Luz: 73%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 82.1% | Temp: 26.7ºC | Luz: 73%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 82% | Temp: 26.6ºC | Luz: 73%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 82.1% | Temp: 26.6ºC | Luz: 73%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 82% | Temp: 26.7ºC | Luz: 74%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 81.9% | Temp: 26.7ºC | Luz: 74%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 81.8% | Temp: 26.7ºC | Luz: 74%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 81.7% | Temp: 26.7ºC | Luz: 74%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 81.8% | Temp: 26.7ºC | Luz: 74%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 81.6% | Temp: 26.7ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 81.6% | Temp: 26.8ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 81.6% | Temp: 26.9ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 81.1% | Temp: 27ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 81.2% | Temp: 27ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 81% | Temp: 27.1ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 81.2% | Temp: 27.1ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 81% | Temp: 27.2ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.7% | Temp: 27.2ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.7% | Temp: 27.3ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.7% | Temp: 27.2ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.9% | Temp: 27.2ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.8% | Temp: 27.1ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.9% | Temp: 27.1ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.8% | Temp: 27.1ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.8% | Temp: 27.2ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.8% | Temp: 27.1ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.7% | Temp: 27.2ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.7% | Temp: 27.2ºC | Luz: 74%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.6% | Temp: 27.2ºC | Luz: 74%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.7% | Temp: 27.2ºC | Luz: 74%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.6% | Temp: 27.2ºC | Luz: 74%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.5% | Temp: 27.2ºC | Luz: 73%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.6% | Temp: 27.2ºC | Luz: 74%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.5% | Temp: 27.2ºC | Luz: 73%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.5% | Temp: 27.2ºC | Luz: 74%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.4% | Temp: 27.2ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.3% | Temp: 27.3ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.2% | Temp: 27.3ºC | Luz: 74%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.2% | Temp: 27.3ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80% | Temp: 27.3ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80% | Temp: 27.4ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.9% | Temp: 27.4ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80% | Temp: 27.4ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80% | Temp: 27.4ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80% | Temp: 27.4ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80% | Temp: 27.5ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.9% | Temp: 27.5ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80% | Temp: 27.5ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.9% | Temp: 27.5ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.8% | Temp: 27.6ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.7% | Temp: 27.6ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.8% | Temp: 27.7ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.7% | Temp: 27.7ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.5% | Temp: 27.7ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.6% | Temp: 27.7ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.7% | Temp: 27.7ºC | Luz: 75%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.6% | Temp: 27.7ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.6% | Temp: 27.8ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.5% | Temp: 27.8ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.5% | Temp: 27.9ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.5% | Temp: 27.8ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.4% | Temp: 27.9ºC | Luz: 77%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.4% | Temp: 27.9ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.5% | Temp: 27.9ºC | Luz: 76%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 79.5% | Temp: 27.9ºC | Luz: 79%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 80.5% | Temp: 28.1ºC | Luz: 79%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 78.7% | Temp: 28.4ºC | Luz: 79%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 77.9% | Temp: 28.6ºC | Luz: 79%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 77.5% | Temp: 28.8ºC | Luz: 79%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 76.7% | Temp: 28.9ºC | Luz: 79%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 76.6% | Temp: 29ºC | Luz: 79%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 77.1% | Temp: 29ºC | Luz: 79%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 76.1% | Temp: 29.1ºC | Luz: 79%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 76.1% | Temp: 29.2ºC | Luz: 79%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 75.2% | Temp: 29.2ºC | Luz: 78%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 75.3% | Temp: 29.2ºC | Luz: 78%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 74.7% | Temp: 29.2ºC | Luz: 79%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 75% | Temp: 29.3ºC | Luz: 79%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 73.5% | Temp: 29.2ºC | Luz: 79%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 74.5% | Temp: 29.2ºC | Luz: 79%
+✅ Dados salvos com sucesso no backend.
+🌱 Plantação: c03f8398-297e-4cb2-8364-015b70fd4991 | Solo: 66% | Ar: 75.3% | Temp: 29.3ºC | Luz: 78%
+⚠️ Erro de conexão com a API Backend: fetch failed
